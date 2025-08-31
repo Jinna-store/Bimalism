@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Physics Chapters Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #7f8c8d;
+        }
+        
+        .chapters-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .chapter-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chapter-header {
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .chapter-number {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-content {
+            padding: 25px;
+        }
+        
+        .key-points {
+            list-style-type: none;
+        }
+        
+        .key-points li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .key-points li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .chapters-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JEE Physics Chapters Summary</h1>
+            <p class="subtitle">Key concepts and formulas for JEE exam preparation</p>
+            <div class="search-box">
+                <input type="text" placeholder="Search chapters...">
+                <i class="fas fa-search"></i>
+            </div>
+        </header>
+        
+        <div class="chapters-container">
+            <!-- Chapter 1 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 1</div>
+                    <h2 class="chapter-title">Physical World and Measurement</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>SI units: kg, m, s, A, K, mol, cd</li>
+                        <li>Dimensional formula: [M^a L^b T^c]</li>
+                        <li>Error propagation: Δz/z = Δx/x + Δy/y</li>
+                        <li>Significant figures rules</li>
+                        <li>Least count: Smallest measurable value</li>
+                        <li>Order of magnitude estimation</li>
+                        <li>Fundamental and derived units</li>
+                        <li>Accuracy vs precision</li>
+                        <li>Systematic and random errors</li>
+                        <li>Parallax method for distance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 2 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 2</div>
+                    <h2 class="chapter-title">Kinematics</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Displacement: Δx = x₂ - x₁</li>
+                        <li>Velocity: v = dx/dt</li>
+                        <li>Acceleration: a = dv/dt</li>
+                        <li>Equation of motion: v = u + at</li>
+                        <li>Distance: s = ut + ½at²</li>
+                        <li>Velocity squared: v² = u² + 2as</li>
+                        <li>Relative velocity: v_AB = v_A - v_B</li>
+                        <li>Projectile range: R = (u² sin2θ)/g</li>
+                        <li>Time of flight: T = (2u sinθ)/g</li>
+                        <li>Maximum height: H = (u² sin²θ)/(2g)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 3 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 3</div>
+                    <h2 class="chapter-title">Laws of Motion</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Newton’s 1st law: Inertia</li>
+                        <li>Newton’s 2nd law: F = ma</li>
+                        <li>Newton’s 3rd law: Action = -Reaction</li>
+                        <li>Friction: f = μN</li>
+                        <li>Impulse: J = FΔt</li>
+                        <li>Momentum: p = mv</li>
+                        <li>Pulley systems: Tensions</li>
+                        <li>Free body diagrams</li>
+                        <li>Centripetal force: F = mv²/r</li>
+                        <li>Constraint equations</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 4 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 4</div>
+                    <h2 class="chapter-title">Work, Energy and Power</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Work: W = F·d cosθ</li>
+                        <li>Kinetic energy: KE = ½mv²</li>
+                        <li>Potential energy: PE = mgh</li>
+                        <li>Work-energy theorem: W = ΔKE</li>
+                        <li>Power: P = W/t</li>
+                        <li>Conservation of energy</li>
+                        <li>Spring energy: PE = ½kx²</li>
+                        <li>Collision: Elastic and inelastic</li>
+                        <li>Coefficient of restitution: e</li>
+                        <li>Work by variable force: W = ∫F dx</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 5 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 5</div>
+                    <h2 class="chapter-title">Rotational Motion</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Angular velocity: ω = dθ/dt</li>
+                        <li>Angular acceleration: α = dω/dt</li>
+                        <li>Torque: τ = r × F</li>
+                        <li>Moment of inertia: I = Σmr²</li>
+                        <li>Angular momentum: L = Iω</li>
+                        <li>Rotational KE: KE = ½Iω²</li>
+                        <li>Parallel axis theorem</li>
+                        <li>Perpendicular axis theorem</li>
+                        <li>Rolling motion: v = rω</li>
+                        <li>Conservation of angular momentum</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 6 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 6</div>
+                    <h2 class="chapter-title">Gravitation</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Gravitational force: F = GMm/r²</li>
+                        <li>Gravitational potential: V = -GM/r</li>
+                        <li>Escape velocity: v_e = √(2GM/r)</li>
+                        <li>Orbital velocity: v_o = √(GM/r)</li>
+                        <li>Kepler’s 1st law: Elliptical orbits</li>
+                        <li>Kepler’s 2nd law: Equal areas</li>
+                        <li>Kepler’s 3rd law: T² ∝ r³</li>
+                        <li>Gravitational field: g = GM/r²</li>
+                        <li>Potential energy: PE = -GMm/r</li>
+                        <li>Variation of g with height, depth</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 7 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 7</div>
+                    <h2 class="chapter-title">Properties of Solids and Liquids</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Young’s modulus: Y = stress/strain</li>
+                        <li>Pressure: P = F/A</li>
+                        <li>Archimedes’ principle</li>
+                        <li>Buoyant force: F_b = ρVg</li>
+                        <li>Pascal’s law: Pressure transmission</li>
+                        <li>Bernoulli’s equation: P + ρgh + ½ρv²</li>
+                        <li>Viscosity: F = ηA(dv/dx)</li>
+                        <li>Surface tension: T = F/l</li>
+                        <li>Poiseuille’s formula: Q = (πPr⁴)/(8ηl)</li>
+                        <li>Stokes’ law: F = 6πηrv</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 8 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 8</div>
+                    <h2 class="chapter-title">Thermodynamics</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>1st law: ΔQ = ΔU + ΔW</li>
+                        <li>Work done: W = PΔV</li>
+                        <li>Specific heat: Q = mcΔT</li>
+                        <li>Ideal gas law: PV = nRT</li>
+                        <li>2nd law: Entropy increases</li>
+                        <li>Carnot efficiency: η = 1 - (T₂/T₁)</li>
+                        <li>Adiabatic process: PV^γ = constant</li>
+                        <li>Isothermal process: PV = constant</li>
+                        <li>Molar specific heat: C_p - C_v = R</li>
+                        <li>Heat transfer: Conduction, convection, radiation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 9 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 9</div>
+                    <h2 class="chapter-title">Kinetic Theory of Gases</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Pressure: P = (1/3)(nmv²)/V</li>
+                        <li>RMS speed: v_rms = √(3RT/M)</li>
+                        <li>Average KE: KE = (3/2)kT</li>
+                        <li>Degrees of freedom</li>
+                        <li>Law of equipartition of energy</li>
+                        <li>Mean free path: λ = 1/(√2πd²N)</li>
+                        <li>Avogadro’s number: N_A = 6.022×10²³</li>
+                        <li>Boltzmann constant: k = R/N_A</li>
+                        <li>Maxwell’s speed distribution</li>
+                        <li>Ideal gas assumptions</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 10 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 10</div>
+                    <h2 class="chapter-title">Oscillations and Waves</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>SHM: a = -ω²x</li>
+                        <li>Angular frequency: ω = √(k/m)</li>
+                        <li>Time period: T = 2π√(m/k)</li>
+                        <li>Wave equation: v = fλ</li>
+                        <li>Wave speed: v = √(T/μ)</li>
+                        <li>Doppler effect: f’ = f(v±v_o)/(v±v_s)</li>
+                        <li>Beats: f_beat = |f₁ - f₂|</li>
+                        <li>Standing waves: λ_n = 2L/n</li>
+                        <li>Energy in SHM: E = ½kA²</li>
+                        <li>Superposition principle</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 11 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 11</div>
+                    <h2 class="chapter-title">Electrostatics</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Coulomb’s law: F = kq₁q₂/r²</li>
+                        <li>Electric field: E = F/q</li>
+                        <li>Gauss’s law: Φ = q/ε₀</li>
+                        <li>Electric potential: V = kq/r</li>
+                        <li>Capacitance: C = Q/V</li>
+                        <li>Electric dipole moment: p = qd</li>
+                        <li>Potential energy: U = -p·E</li>
+                        <li>Capacitors in series: 1/C = Σ(1/C_i)</li>
+                        <li>Capacitors in parallel: C = ΣC_i</li>
+                        <li>Electric flux: Φ = E·A cosθ</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 12 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 12</div>
+                    <h2 class="chapter-title">Current Electricity</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Ohm’s law: V = IR</li>
+                        <li>Resistance: R = ρL/A</li>
+                        <li>Power: P = VI = I²R</li>
+                        <li>Resistors in series: R = ΣR_i</li>
+                        <li>Resistors in parallel: 1/R = Σ(1/R_i)</li>
+                        <li>Kirchhoff’s 1st law: ΣI = 0</li>
+                        <li>Kirchhoff’s 2nd law: ΣV = 0</li>
+                        <li>Wheatstone bridge: Balanced condition</li>
+                        <li>EMF and internal resistance</li>
+                        <li>Drift velocity: v_d = I/(nqA)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 13 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 13</div>
+                    <h2 class="chapter-title">Magnetic Effects of Current</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Biot-Savart law: dB = (μ₀I dl×r)/(4πr³)</li>
+                        <li>Ampere’s law: ∮B·dl = μ₀I</li>
+                        <li>Force on conductor: F = ILB sinθ</li>
+                        <li>Lorentz force: F = q(v×B)</li>
+                        <li>Magnetic moment: M = IA</li>
+                        <li>Magnetic field (solenoid): B = μ₀nI</li>
+                        <li>Cyclotron frequency: f = qB/(2πm)</li>
+                        <li>Torque on loop: τ = M×B</li>
+                        <li>Moving coil galvanometer</li>
+                        <li>Magnetic field lines</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 14 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 14</div>
+                    <h2 class="chapter-title">Electromagnetic Induction</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Faraday’s law: ε = -dΦ/dt</li>
+                        <li>Lenz’s law: Opposes flux change</li>
+                        <li>Magnetic flux: Φ = BA cosθ</li>
+                        <li>Induced EMF: ε = BLv (motional)</li>
+                        <li>Self-inductance: ε = -L dI/dt</li>
+                        <li>Mutual inductance: ε = -M dI/dt</li>
+                        <li>Energy in inductor: E = ½LI²</li>
+                        <li>Transformer: V_s/V_p = N_s/N_p</li>
+                        <li>AC generator principle</li>
+                        <li>Eddy currents</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 15 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 15</div>
+                    <h2 class="chapter-title">Electromagnetic Waves</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>EM wave speed: c = 1/√(μ₀ε₀)</li>
+                        <li>Wave equation: E = E₀ sin(ωt-kx)</li>
+                        <li>Energy density: u = ½ε₀E²</li>
+                        <li>Poynting vector: S = (E×B)/μ₀</li>
+                        <li>Intensity: I = u_avg c</li>
+                        <li>Maxwell’s equations</li>
+                        <li>EM spectrum: Radio to gamma</li>
+                        <li>Polarization of waves</li>
+                        <li>Displacement current</li>
+                        <li>Transverse nature of EM waves</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 16 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 16</div>
+                    <h2 class="chapter-title">Optics</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Snell’s law: n₁sinθ₁ = n₂sinθ₂</li>
+                        <li>Lens formula: 1/f = 1/v - 1/u</li>
+                        <li>Magnification: m = h’/h = v/u</li>
+                        <li>Power of lens: P = 1/f (in meters)</li>
+                        <li>Refraction: n = c/v</li>
+                        <li>Total internal reflection: sinθ_c = n₂/n₁</li>
+                        <li>Young’s double slit: d sinθ = nλ</li>
+                        <li>Single slit diffraction: a sinθ = nλ</li>
+                        <li>Optical path: μx</li>
+                        <li>Polarization: Brewster’s angle</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 17 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 17</div>
+                    <h2 class="chapter-title">Dual Nature of Matter</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Photoelectric effect: E = hν</li>
+                        <li>Work function: φ = hν₀</li>
+                        <li>De Broglie wavelength: λ = h/p</li>
+                        <li>Einstein’s equation: KE_max = hν - φ</li>
+                        <li>Planck’s constant: h = 6.626×10⁻³⁴ Js</li>
+                        <li>Momentum: p = h/λ</li>
+                        <li>Wave-particle duality</li>
+                        <li>Photon energy: E = hc/λ</li>
+                        <li>Stopping potential: V_s = (hν - φ)/e</li>
+                        <li>Davisson-Germer experiment</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 18 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 18</div>
+                    <h2 class="chapter-title">Atoms and Nuclei</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Bohr’s model: E_n = -13.6/n² eV</li>
+                        <li>Radius: r_n = 0.529n²/Z Å</li>
+                        <li>Energy difference: ΔE = hc/λ</li>
+                        <li>Radioactive decay: N = N₀e^(-λt)</li>
+                        <li>Half-life: T_½ = ln(2)/λ</li>
+                        <li>Binding energy: BE = Δmc²</li>
+                        <li>Alpha decay: A→A-4, Z→Z-2</li>
+                        <li>Beta decay: Z→Z±1</li>
+                        <li>Gamma decay: Energy emission</li>
+                        <li>Nuclear fission and fusion</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 19 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 19</div>
+                    <h2 class="chapter-title">Electronic Devices</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Energy bands: Conduction, valence</li>
+                        <li>p-n junction: Forward, reverse bias</li>
+                        <li>Diode equation: I = I₀(e^(V/V_T) - 1)</li>
+                        <li>Transistor: NPN, PNP</li>
+                        <li>Common emitter gain: β = I_C/I_B</li>
+                        <li>Logic gates: AND, OR, NOT, NAND, NOR</li>
+                        <li>Zener diode: Voltage regulation</li>
+                        <li>Photodiode: Light detection</li>
+                        <li>LED: Light emission</li>
+                        <li>Semiconductor doping</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 20 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 20</div>
+                    <h2 class="chapter-title">Communication Systems</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Bandwidth: f_max - f_min</li>
+                        <li>Amplitude modulation: m = (V_max - V_min)/(V_max + V_min)</li>
+                        <li>Frequency modulation</li>
+                        <li>Signal-to-noise ratio</li>
+                        <li>Propagation: Ground, sky, space waves</li>
+                        <li>Antenna length: L = λ/4</li>
+                        <li>Modulation index: μ = A_m/A_c</li>
+                        <li>Shannon’s capacity: C = B log₂(1 + S/N)</li>
+                        <li>Optical communication: Fiber optics</li>
+                        <li>Satellite communication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>JEE Physics Chapters Summary | Exam Focused Key Points</p>
+            <p>Designed for effective revision and quick reference</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('.search-box input');
+            const chapterCards = document.querySelectorAll('.chapter-card');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                chapterCards.forEach(card => {
+                    const title = card.querySelector('.chapter-title').textContent.toLowerCase();
+                    const content = card.querySelector('.chapter-content').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

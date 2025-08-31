@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1: Units and Measurements Quiz | JEE Preparation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec, #e8ecef);
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #d4a017;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .subtitle {
+      color: #555;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    
+    .back-btn {
+      display: inline-block;
+      background: #e74c3c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .back-btn:hover {
+      background: #c0392b;
+      transform: translateY(-2px);
+    }
+    
+    .quiz-container {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    
+    .timer {
+      text-align: right;
+      font-size: 1.2rem;
+      color: #d4a017;
+      margin-bottom: 15px;
+    }
+    
+    .question {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d4a017;
+      margin-bottom: 15px;
+    }
+    
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .option {
+      padding: 10px;
+      background: rgba(240, 240, 240, 0.9);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .option:hover {
+      background: rgba(212, 160, 23, 0.3);
+    }
+    
+    .option.selected {
+      background: #d4a017;
+      color: #fff;
+    }
+    
+    .option.correct {
+      background: #28a745;
+      color: #fff;
+    }
+    
+    .option.incorrect {
+      background: #e74c3c;
+      color: #fff;
+    }
+    
+    .submit-btn, .next-btn {
+      display: inline-block;
+      background: #d4a017;
+      color: #333;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .submit-btn:hover, .next-btn:hover {
+      background: #b58900;
+    }
+    
+    .score {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #555;
+      margin-top: 20px;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .quiz-container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Chapter 1: Units and Measurements Quiz</h1>
+      <p class="subtitle">20 multiple-choice questions | 20 minutes</p>
+      <a href="jee.html" class="back-btn">← Back to Main Page</a>
+    </header>
+
+    <div class="quiz-container" id="quiz">
+      <div class="timer" id="timer">20:00</div>
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+      <button class="submit-btn" id="submit-btn">Submit Answer</button>
+      <button class="next-btn" id="next-btn" style="display: none;">Next Question</button>
+    </div>
+    <div class="score" id="score"></div>
+
+    <footer>
+      <p>Made with ❤️ for JEE Aspirants | Chapter 1 Quiz</p>
+      <p>Based on JEE Main & Advanced Syllabus</p>
+    </footer>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What is the SI unit of length?",
+        options: ["Meter", "Foot", "Inch", "Yard"],
+        correct: 0
+      },
+      {
+        question: "How many fundamental units are there in the SI system?",
+        options: ["5", "6", "7", "8"],
+        correct: 2
+      },
+      {
+        question: "Which of the following is a derived unit?",
+        options: ["Kilogram", "Second", "Newton", "Ampere"],
+        correct: 2
+      },
+      {
+        question: "Dimensional formula for energy is:",
+        options: ["MLT^{-2}", "ML^2T^{-2}", "M L T^{-1}", "M L^2 T^{-1}"],
+        correct: 1
+      },
+      {
+        question: "The least count of a measuring instrument is:",
+        options: ["Maximum value it can measure", "Smallest value it can measure accurately", "Average error", "Systematic error"],
+        correct: 1
+      },
+      {
+        question: "Significant figures in 0.00250 are:",
+        options: ["2", "3", "4", "5"],
+        correct: 2
+      },
+      {
+        question: "Parsec is a unit of:",
+        options: ["Time", "Mass", "Distance", "Force"],
+        correct: 2
+      },
+      {
+        question: "Which is not a fundamental quantity?",
+        options: ["Temperature", "Electric current", "Force", "Luminous intensity"],
+        correct: 2
+      },
+      {
+        question: "The dimensional formula for pressure is:",
+        options: ["ML^{-1}T^{-2}", "MLT^{-2}", "M L^2 T^{-2}", "M^{-1} L T^{-2}"],
+        correct: 0
+      },
+      {
+        question: "Random errors can be reduced by:",
+        options: ["Taking single measurement", "Taking multiple measurements", "Using better instruments", "Calibration"],
+        correct: 1
+      },
+      {
+        question: "The number of significant figures in 5.00 × 10^2 is:",
+        options: ["1", "2", "3", "4"],
+        correct: 2
+      },
+      {
+        question: "Candela is the SI unit of:",
+        options: ["Luminous intensity", "Amount of substance", "Electric current", "Temperature"],
+        correct: 0
+      },
+      {
+        question: "Dimensional analysis cannot give:",
+        options: ["Correctness of formula", "Numerical constants", "Unit conversion", "Homogeneity"],
+        correct: 1
+      },
+      {
+        question: "Absolute error is:",
+        options: ["Difference between measured and true value", "Percentage error", "Relative error", "Mean error"],
+        correct: 0
+      },
+      {
+        question: "The unit of plane angle is:",
+        options: ["Steradian", "Radian", "Degree", "Grad"],
+        correct: 1
+      },
+      {
+        question: "In SI system, the unit of energy is:",
+        options: ["Erg", "Calorie", "Joule", "Electron volt"],
+        correct: 2
+      },
+      {
+        question: "The percentage error in a measurement is:",
+        options: ["Absolute error / measured value × 100", "Measured value / absolute error × 100", "True value / measured value × 100", "None"],
+        correct: 0
+      },
+      {
+        question: "Which pair has same dimensions?",
+        options: ["Force and work", "Energy and torque", "Momentum and velocity", "Pressure and density"],
+        correct: 1
+      },
+      {
+        question: "The base unit for thermodynamic temperature is:",
+        options: ["Celsius", "Fahrenheit", "Kelvin", "Rankine"],
+        correct: 2
+      },
+      {
+        question: "Significant figures indicate:",
+        options: ["Accuracy", "Precision", "Error", "Range"],
+        correct: 1
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedOption = null;
+    let timeLeft = 1200; // 20 minutes in seconds
+    let timerInterval;
+
+    const questionElement = document.getElementById('question');
+    const optionsElement = document.getElementById('options');
+    const submitBtn = document.getElementById('submit-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const scoreElement = document.getElementById('score');
+    const timerElement = document.getElementById('timer');
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          showScore();
+        }
+      }, 1000);
+    }
+
+    function loadQuestion() {
+      const q = quizData[currentQuestion];
+      questionElement.textContent = q.question;
+      optionsElement.innerHTML = '';
+      q.options.forEach((option, index) => {
+        const div = document.createElement('div');
+        div.classList.add('option');
+        div.textContent = option;
+        div.addEventListener('click', () => selectOption(index, div));
+        optionsElement.appendChild(div);
+      });
+      submitBtn.style.display = 'block';
+      nextBtn.style.display = 'none';
+      selectedOption = null;
+    }
+
+    function selectOption(index, element) {
+      selectedOption = index;
+      document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    function checkAnswer() {
+      if (selectedOption === null) return;
+      const correct = quizData[currentQuestion].correct;
+      const options = document.querySelectorAll('.option');
+      options[correct].classList.add('correct');
+      if (selectedOption !== correct) {
+        options[selectedOption].classList.add('incorrect');
+      } else {
+        score++;
+      }
+      submitBtn.style.display = 'none';
+      nextBtn.style.display = 'block';
+    }
+
+    function showScore() {
+      document.getElementById('quiz').innerHTML = '';
+      scoreElement.textContent = `Your Score: ${score} out of ${quizData.length}`;
+      clearInterval(timerInterval);
+    }
+
+    submitBtn.addEventListener('click', checkAnswer);
+    nextBtn.addEventListener('click', () => {
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadQuestion();
+      startTimer();
+    });
+  </script>
+</body>
+</html>
+
+

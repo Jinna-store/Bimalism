@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics Chapters Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #7f8c8d;
+        }
+        
+        .chapters-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .chapter-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chapter-header {
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .chapter-number {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-content {
+            padding: 25px;
+        }
+        
+        .key-points {
+            list-style-type: none;
+        }
+        
+        .key-points li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .key-points li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .chapters-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mathematics Chapters Summary</h1>
+            <p class="subtitle">Key concepts and formulas for exam preparation</p>
+            <div class="search-box">
+                <input type="text" placeholder="Search chapters...">
+                <i class="fas fa-search"></i>
+            </div>
+        </header>
+        
+        <div class="chapters-container">
+            <!-- Chapter 1 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 1</div>
+                    <h2 class="chapter-title">Sets, Relations and Functions</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>A set is a collection of distinct objects</li>
+                        <li>Types of relations: reflexive, symmetric, transitive</li>
+                        <li>Function composition: (f∘g)(x) = f(g(x))</li>
+                        <li>One-to-one (injective) functions</li>
+                        <li>Onto (surjective) functions</li>
+                        <li>Binary operations and their properties</li>
+                        <li>Cardinality of sets</li>
+                        <li>Inverse functions and relations</li>
+                        <li>Equivalence relations and classes</li>
+                        <li>Cartesian product of sets</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 2 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 2</div>
+                    <h2 class="chapter-title">Complex Numbers and Quadratic Equations</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>i² = -1 (definition of imaginary unit)</li>
+                        <li>Complex number form: z = a + bi</li>
+                        <li>Modulus: |z| = √(a² + b²)</li>
+                        <li>Conjugate: if z = a+bi, then z̄ = a-bi</li>
+                        <li>Quadratic formula: x = [-b ± √(b²-4ac)]/(2a)</li>
+                        <li>Polar form: z = r(cosθ + isinθ)</li>
+                        <li>Euler's formula: e^(iθ) = cosθ + isinθ</li>
+                        <li>De Moivre's theorem: (cosθ + isinθ)^n = cos(nθ) + isin(nθ)</li>
+                        <li>Cube roots of unity: 1, ω, ω² where ω = -1/2 + i√3/2</li>
+                        <li>Argand plane representation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 3 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 3</div>
+                    <h2 class="chapter-title">Matrices and Determinants</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Matrix multiplication is not commutative</li>
+                        <li>Determinant of 2x2 matrix: ad - bc</li>
+                        <li>Inverse of matrix: A⁻¹ = adj(A)/|A|</li>
+                        <li>Elementary row operations</li>
+                        <li>Types of matrices: symmetric, skew-symmetric, orthogonal</li>
+                        <li>Rank of a matrix</li>
+                        <li>System of linear equations: AX = B</li>
+                        <li>Cramer's rule for solving systems</li>
+                        <li>Eigenvalues and eigenvectors</li>
+                        <li>Properties of determinants</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 4 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 4</div>
+                    <h2 class="chapter-title">Permutations and Combinations</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>nPr = n!/(n-r)!</li>
+                        <li>nCr = n!/[r!(n-r)!]</li>
+                        <li>0! = 1 (by definition)</li>
+                        <li>Circular permutations: (n-1)!</li>
+                        <li>Combinations with repetition: (n+r-1)Cr</li>
+                        <li>Binomial coefficient: C(n, r) = C(n, n-r)</li>
+                        <li>Pascal's identity: C(n, r) + C(n, r+1) = C(n+1, r+1)</li>
+                        <li>Number of subsets of a set: 2^n</li>
+                        <li>Division of identical items: (n+r-1)Cr</li>
+                        <li>Derangements: !n = n!∑(-1)^k/k!</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 5 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 5</div>
+                    <h2 class="chapter-title">Mathematical Induction</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Base case: Verify for n = 1 (or smallest value)</li>
+                        <li>Inductive hypothesis: Assume true for n = k</li>
+                        <li>Inductive step: Prove for n = k+1</li>
+                        <li>Strong induction: Assume true for all values ≤ k</li>
+                        <li>Sum of first n natural numbers: n(n+1)/2</li>
+                        <li>Sum of squares: n(n+1)(2n+1)/6</li>
+                        <li>Sum of cubes: [n(n+1)/2]²</li>
+                        <li>Divisibility proofs using induction</li>
+                        <li>Inequality proofs using induction</li>
+                        <li>Principle of mathematical induction</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 6 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 6</div>
+                    <h2 class="chapter-title">Binomial Theorem</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>(a+b)^n = Σ C(n, k) a^(n-k) b^k</li>
+                        <li>General term: T_{r+1} = C(n, r) a^(n-r) b^r</li>
+                        <li>Middle term: when n is even: T_{(n/2)+1}</li>
+                        <li>When n is odd: two middle terms</li>
+                        <li>Greatest coefficient term</li>
+                        <li>Binomial expansion for negative exponents</li>
+                        <li>Binomial expansion for rational exponents</li>
+                        <li>Approximations using binomial theorem</li>
+                        <li>Sum of binomial coefficients: 2^n</li>
+                        <li>Sum of alternating binomial coefficients: 0</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 7 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 7</div>
+                    <h2 class="chapter-title">Sequences and Series</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Arithmetic progression: a, a+d, a+2d,...</li>
+                        <li>AP nth term: a_n = a + (n-1)d</li>
+                        <li>AP sum: S_n = n/2[2a + (n-1)d]</li>
+                        <li>Geometric progression: a, ar, ar²,...</li>
+                        <li>GP nth term: a_n = ar^(n-1)</li>
+                        <li>GP sum: S_n = a(1-r^n)/(1-r) for r≠1</li>
+                        <li>Infinite GP sum: a/(1-r) for |r|&lt;1</li>
+                        <li>Harmonic progression: reciprocals of AP</li>
+                        <li>Arithmetic mean: (a+b)/2</li>
+                        <li>Geometric mean: √(ab)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 8 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 8</div>
+                    <h2 class="chapter-title">Limits, Continuity and Differentiability</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Limit definition: lim_{x→a} f(x) = L</li>
+                        <li>Standard limit: lim_{x→0} sin(x)/x = 1</li>
+                        <li>L'Hôpital's rule for 0/0 or ∞/∞ forms</li>
+                        <li>Continuity: lim_{x→a} f(x) = f(a)</li>
+                        <li>Differentiability implies continuity</li>
+                        <li>Derivative definition: f'(x) = lim_{h→0} [f(x+h)-f(x)]/h</li>
+                        <li>Product rule: (uv)' = u'v + uv'</li>
+                        <li>Quotient rule: (u/v)' = (u'v - uv')/v²</li>
+                        <li>Chain rule: (f∘g)'(x) = f'(g(x))·g'(x)</li>
+                        <li>Rolle's theorem and Mean Value Theorem</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 9 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 9</div>
+                    <h2 class="chapter-title">Integral Calculus</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Fundamental theorem of calculus</li>
+                        <li>Integration by substitution</li>
+                        <li>Integration by parts: ∫u dv = uv - ∫v du</li>
+                        <li>Definite integral properties</li>
+                        <li>Standard integrals: ∫x^n dx = x^(n+1)/(n+1) + C</li>
+                        <li>∫(1/x) dx = ln|x| + C</li>
+                        <li>∫e^x dx = e^x + C</li>
+                        <li>∫sin(x) dx = -cos(x) + C</li>
+                        <li>∫cos(x) dx = sin(x) + C</li>
+                        <li>Area under curves using integration</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 10 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 10</div>
+                    <h2 class="chapter-title">Differential Equations</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Order: highest derivative in equation</li>
+                        <li>Degree: power of highest order derivative</li>
+                        <li>Variable separable method</li>
+                        <li>Homogeneous differential equations</li>
+                        <li>Linear differential equations</li>
+                        <li>Integrating factor method</li>
+                        <li>Exact differential equations</li>
+                        <li>Second order linear differential equations</li>
+                        <li>Complementary function and particular integral</li>
+                        <li>Applications: growth/decay, Newton's law of cooling</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 11 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 11</div>
+                    <h2 class="chapter-title">Coordinate Geometry</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Distance formula: √[(x₂-x₁)² + (y₂-y₁)²]</li>
+                        <li>Section formula: (mx₂+nx₁)/(m+n), (my₂+ny₁)/(m+n)</li>
+                        <li>Midpoint formula: ((x₁+x₂)/2, (y₁+y₂)/2)</li>
+                        <li>Slope of line: m = (y₂-y₁)/(x₂-x₁)</li>
+                        <li>Equation of line: y - y₁ = m(x - x₁)</li>
+                        <li>Distance from point to line: |ax₁+by₁+c|/√(a²+b²)</li>
+                        <li>Conic sections: circle, ellipse, parabola, hyperbola</li>
+                        <li>Circle equation: (x-h)² + (y-k)² = r²</li>
+                        <li>Parabola equation: y² = 4ax</li>
+                        <li>Ellipse equation: x²/a² + y²/b² = 1</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 12 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 12</div>
+                    <h2 class="chapter-title">Three Dimensional Geometry</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Distance formula in 3D: √[(x₂-x₁)² + (y₂-y₁)² + (z₂-z₁)²]</li>
+                        <li>Section formula in 3D</li>
+                        <li>Direction cosines and ratios</li>
+                        <li>Angle between two lines</li>
+                        <li>Equation of line in 3D: (x-x₁)/a = (y-y₁)/b = (z-z₁)/c</li>
+                        <li>Equation of plane: ax + by + cz + d = 0</li>
+                        <li>Distance from point to plane</li>
+                        <li>Angle between two planes</li>
+                        <li>Angle between line and plane</li>
+                        <li>Coplanarity of two lines</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 13 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 13</div>
+                    <h2 class="chapter-title">Vector Algebra</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Scalar and vector quantities</li>
+                        <li>Vector addition (triangle law)</li>
+                        <li>Dot product: a·b = |a||b|cosθ</li>
+                        <li>Cross product: a×b = |a||b|sinθ n</li>
+                        <li>Scalar triple product: [a b c] = a·(b×c)</li>
+                        <li>Vector triple product: a×(b×c) = (a·c)b - (a·b)c</li>
+                        <li>Projection of vector a on b: (a·b)/|b|</li>
+                        <li>Position vector and displacement vector</li>
+                        <li>Section formula in vectors</li>
+                        <li>Applications in physics and engineering</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 14 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 14</div>
+                    <h2 class="chapter-title">Statistics and Probability</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Mean, median, mode</li>
+                        <li>Variance and standard deviation</li>
+                        <li>Probability: P(E) = n(E)/n(S)</li>
+                        <li>Addition rule: P(A∪B) = P(A) + P(B) - P(A∩B)</li>
+                        <li>Multiplication rule: P(A∩B) = P(A) × P(B|A)</li>
+                        <li>Bayes' theorem</li>
+                        <li>Binomial distribution</li>
+                        <li>Normal distribution</li>
+                        <li>Poisson distribution</li>
+                        <li>Conditional probability</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 15 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 15</div>
+                    <h2 class="chapter-title">Trigonometry</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Radian measure: π radians = 180°</li>
+                        <li>Trigonometric ratios: sin, cos, tan, cosec, sec, cot</li>
+                        <li>Pythagorean identity: sin²θ + cos²θ = 1</li>
+                        <li>Sum and difference formulas</li>
+                        <li>Double angle formulas</li>
+                        <li>Triple angle formulas</li>
+                        <li>Product-to-sum identities</li>
+                        <li>Sum-to-product identities</li>
+                        <li>Inverse trigonometric functions</li>
+                        <li>Heights and distances applications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Mathematics Chapters Summary | Exam Focused Key Points</p>
+            <p>Designed for effective revision and quick reference</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('.search-box input');
+            const chapterCards = document.querySelectorAll('.chapter-card');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                chapterCards.forEach(card => {
+                    const title = card.querySelector('.chapter-title').textContent.toLowerCase();
+                    const content = card.querySelector('.chapter-content').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
