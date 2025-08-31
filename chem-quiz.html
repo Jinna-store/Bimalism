@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemistry Quiz Chapters 1–20</title>
+  <style>
+    body {font-family: Arial, sans-serif; background:#f9f9f9; margin:0; padding:0;}
+    header {background:#222; color:#fff; padding:1rem; text-align:center;}
+    section {padding:20px; margin:auto; max-width:900px;}
+    h2 {background:#444; color:#fff; padding:10px; border-radius:6px;}
+    .question {background:#fff; padding:15px; margin:15px 0; border-radius:6px; box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+    .options label {display:block; margin:6px 0; cursor:pointer;}
+    button {background:#d4a017; color:#fff; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; margin-top:10px;}
+    button:hover {background:#b8860b;}
+    .result {margin-top:15px; padding:10px; background:#e3f2fd; border-left:5px solid #2196f3;}
+    .timer {font-size:18px; font-weight:bold; color:#b71c1c; margin:10px 0;}
+    .answer {display:none; margin-top:10px; color:green; font-weight:bold;}
+    .explanation {display:none; margin-top:5px; font-size:14px; color:#444;}
+  </style>
+</head>
+<body>
+<header>
+  <h1>Chemistry Quiz (Chapters 1–20)</h1>
+  <p>Each quiz has 20 questions | Time Limit: 20 minutes</p>
+</header>
+
+<section>
+  <h2>Chapter 1: Some Basic Concepts of Chemistry</h2>
+  <div class="timer" id="timer1">20:00</div>
+  <form id="quiz1"></form>
+  <button onclick="submitQuiz('quiz1','result1',answers1);">Submit Quiz</button>
+  <div id="result1" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 2: Structure of Atom</h2>
+  <div class="timer" id="timer2">20:00</div>
+  <form id="quiz2"></form>
+  <button onclick="submitQuiz('quiz2','result2',answers2);">Submit Quiz</button>
+  <div id="result2" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 3: Classification of Elements and Periodicity</h2>
+  <div class="timer" id="timer3">20:00</div>
+  <form id="quiz3"></form>
+  <button onclick="submitQuiz('quiz3','result3',answers3);">Submit Quiz</button>
+  <div id="result3" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 4: Chemical Bonding and Molecular Structure</h2>
+  <div class="timer" id="timer4">20:00</div>
+  <form id="quiz4"></form>
+  <button onclick="submitQuiz('quiz4','result4',answers4);">Submit Quiz</button>
+  <div id="result4" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 5: States of Matter</h2>
+  <div class="timer" id="timer5">20:00</div>
+  <form id="quiz5"></form>
+  <button onclick="submitQuiz('quiz5','result5',answers5);">Submit Quiz</button>
+  <div id="result5" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data ---------- */
+const q1 = [
+  {q:"What is the SI unit of amount of substance?",o:["Mole","Gram","Liter","Kilogram"],a:0,exp:"Mole is the SI unit for amount of substance."},
+  {q:"Avogadro’s number is:",o:["6.022×10²³","6.626×10⁻³⁴","9.11×10⁻³¹","1.6×10⁻¹⁹"],a:0,exp:"Avogadro’s number = 6.022×10²³ particles/mol."},
+  {q:"Molarity is defined as:",o:["Moles/Volume","Mass/Volume","Moles/Mass","Volume/Moles"],a:0,exp:"Molarity = moles of solute per liter of solution."},
+  {q:"Law of conservation of mass was given by:",o:["Lavoisier","Dalton","Proust","Avogadro"],a:0,exp:"Lavoisier proposed the law of conservation of mass."},
+  {q:"The mole concept applies to:",o:["Atoms","Molecules","Both","None"],a:2,exp:"Mole concept applies to both atoms and molecules."},
+  {q:"1 mole of CO₂ contains:",o:["6.022×10²³ molecules","12 g","44 g","22.4 L"],a:0,exp:"1 mole = 6.022×10²³ molecules."},
+  {q:"Which is a law of chemical combination?",o:["Law of definite proportions","Law of gravity","Law of motion","Law of inertia"],a:0,exp:"Law of definite proportions is a chemical law."},
+  {q:"Molar mass of water (H₂O) is:",o:["18 g/mol","16 g/mol","20 g/mol","22 g/mol"],a:0,exp:"Molar mass of H₂O = 2×1 + 16 = 18 g/mol."},
+  {q:"Stoichiometry involves:",o:["Chemical reactions","Physical changes","Both","None"],a:0,exp:"Stoichiometry deals with quantities in chemical reactions."},
+  {q:"Limiting reagent is:",o:["Reagent in excess","Reagent consumed first","Solvent","Catalyst"],a:1,exp:"Limiting reagent determines reaction extent."},
+  {q:"Percentage yield is:",o:["Actual/Theoretical × 100","Theoretical/Actual × 100","Actual/Moles × 100","None"],a:0,exp:"% Yield = (actual yield/theoretical yield) × 100."},
+  {q:"Empirical formula gives:",o:["Simplest ratio","Molecular formula","Exact mass","None"],a:0,exp:"Empirical formula shows simplest atom ratio."},
+  {q:"Molecular formula of glucose is:",o:["C₆H₁₂O₆","CH₂O","C₁₂H₂₂O₁₁","C₂H₄O₂"],a:0,exp:"Glucose has molecular formula C₆H₁₂O₆."},
+  {q:"Mass percent is calculated as:",o:["(Mass of solute/Mass of solution) × 100","Mass of solute × 100","Mass of solution/Mass of solute","None"],a:0,exp:"Mass % = (mass of solute/mass of solution) × 100."},
+  {q:"Dalton’s atomic theory states atoms are:",o:["Divisible","Indivisible","Charged","None"],a:1,exp:"Dalton proposed atoms are indivisible."},
+  {q:"1 mole of O₂ gas at STP occupies:",o:["22.4 L","11.2 L","44.8 L","1 L"],a:0,exp:"1 mole of any gas at STP = 22.4 L."},
+  {q:"Which is not a state of matter?",o:["Solid","Liquid","Gas","Energy"],a:3,exp:"Energy is not a state of matter."},
+  {q:"The law of multiple proportions was given by:",o:["Dalton","Lavoisier","Proust","Avogadro"],a:0,exp:"Dalton proposed the law of multiple proportions."},
+  {q:"Mole fraction is:",o:["Moles of component/Total moles","Moles/Volume","Mass/Moles","None"],a:0,exp:"Mole fraction = moles of component/total moles."},
+  {q:"The atomic mass unit (amu) is based on:",o:["Carbon-12","Oxygen-16","Hydrogen-1","Nitrogen-14"],a:0,exp:"1 amu = 1/12 mass of Carbon-12."}
+];
+
+const q2 = [
+  {q:"Who proposed the quantum model of the atom?",o:["Bohr","Rutherford","Thomson","Schrödinger"],a:3,exp:"Schrödinger developed the quantum mechanical model."},
+  {q:"The energy of an electron in Bohr’s model is:",o:["-13.6/n² eV","13.6/n² eV","-13.6n² eV","13.6n eV"],a:0,exp:"Energy E_n = -13.6/n² eV in Bohr’s model."},
+  {q:"The de Broglie wavelength is given by:",o:["h/p","p/h","h²/p","p/h²"],a:0,exp:"λ = h/p, where h is Planck’s constant."},
+  {q:"Principal quantum number (n) determines:",o:["Shape","Orientation","Size","Spin"],a:2,exp:"n determines the size and energy of the orbital."},
+  {q:"The maximum number of electrons in a shell is:",o:["2n²","n²","2n","n"],a:0,exp:"Maximum electrons = 2n² per shell."},
+  {q:"The azimuthal quantum number (l) defines:",o:["Size","Shape","Orientation","Spin"],a:1,exp:"l defines the shape of the orbital."},
+  {q:"The magnetic quantum number (m_l) defines:",o:["Size","Shape","Orientation","Spin"],a:2,exp:"m_l defines the orientation of the orbital."},
+  {q:"The spin quantum number (m_s) has values:",o:["+½ or -½","0 or 1","1 or 2","None"],a:0,exp:"m_s = +½ or -½ for electron spin."},
+  {q:"Heisenberg’s uncertainty principle states:",o:["Position and momentum cannot both be known exactly","Energy is quantized","Electrons have dual nature","None"],a:0,exp:"Uncertainty principle limits precision of position and momentum."},
+  {q:"The atomic number represents:",o:["Number of protons","Number of neutrons","Number of electrons","Total nucleons"],a:0,exp:"Atomic number = number of protons."},
+  {q:"The Aufbau principle governs:",o:["Electron configuration","Nuclear stability","Bond formation","None"],a:0,exp:"Aufbau principle dictates electron filling order."},
+  {q:"Hund’s rule states:",o:["Electrons fill degenerate orbitals singly first","Electrons pair immediately","Orbitals fill randomly","None"],a:0,exp:"Hund’s rule maximizes unpaired electrons."},
+  {q:"The electron configuration of Na (11) is:",o:["1s² 2s² 2p⁶ 3s¹","1s² 2s² 2p⁵","1s² 2s² 2p⁶ 3s²","1s² 2s² 2p⁴"],a:0,exp:"Na: 1s² 2s² 2p⁶ 3s¹."},
+  {q:"The Bohr radius is:",o:["0.529×10⁻¹⁰ m","0.529×10⁻⁸ m","0.529×10⁻¹² m","0.529×10⁻⁶ m"],a:0,exp:"Bohr radius = 0.529×10⁻¹⁰ m."},
+  {q:"Which model introduced orbitals?",o:["Bohr","Rutherford","Thomson","Quantum mechanical"],a:3,exp:"Quantum mechanical model introduced orbitals."},
+  {q:"The spectral lines of hydrogen are due to:",o:["Electron transitions","Nuclear reactions","Proton movement","None"],a:0,exp:"Spectral lines arise from electron transitions."},
+  {q:"The Pauli exclusion principle states:",o:["No two electrons can have same quantum numbers","Electrons fill lowest energy orbitals","Electrons have dual nature","None"],a:0,exp:"Pauli principle ensures unique quantum states."},
+  {q:"The energy of a photon is given by:",o:["E = hv","E = mc²","E = λ/h","E = h/λ"],a:0,exp:"Photon energy = hv, where v is frequency."},
+  {q:"The atomic model with a nucleus was proposed by:",o:["Thomson","Rutherford","Bohr","Dalton"],a:1,exp:"Rutherford proposed the nuclear model."},
+  {q:"The maximum number of electrons in l=2 is:",o:["6","10","2","8"],a:0,exp:"For l=2, max electrons = 2(2l+1) = 6."}
+];
+
+const q3 = [
+  {q:"The periodic table was developed by:",o:["Mendeleev","Bohr","Dalton","Rutherford"],a:0,exp:"Mendeleev created the modern periodic table."},
+  {q:"Atomic radius across a period:",o:["Increases","Decreases","Remains constant","Varies"],a:1,exp:"Atomic radius decreases due to increasing nuclear charge."},
+  {q:"Ionization energy across a period:",o:["Decreases","Increases","Remains constant","Varies"],a:1,exp:"Ionization energy increases across a period."},
+  {q:"Electronegativity is highest in:",o:["Alkali metals","Halogens","Noble gases","Transition metals"],a:1,exp:"Halogens have the highest electronegativity."},
+  {q:"The s-block elements are in groups:",o:["1 and 2","3 to 12","13 to 18","17 and 18"],a:0,exp:"s-block includes groups 1 and 2."},
+  {q:"The d-block elements are:",o:["Transition metals","Alkali metals","Halogens","Noble gases"],a:0,exp:"d-block elements are transition metals."},
+  {q:"The number of periods in the periodic table is:",o:["7","8","6","9"],a:0,exp:"There are 7 periods in the periodic table."},
+  {q:"The element with atomic number 17 belongs to:",o:["Group 1","Group 17","Group 2","Group 18"],a:1,exp:"Cl (17) is in group 17 (halogens)."},
+  {q:"The atomic radius down a group:",o:["Increases","Decreases","Remains constant","Varies"],a:0,exp:"Atomic radius increases down a group."},
+  {q:"The shielding effect is due to:",o:["Inner electrons","Protons","Neutrons","None"],a:0,exp:"Inner electrons shield outer electrons from nucleus."},
+  {q:"The most electronegative element is:",o:["Fluorine","Oxygen","Chlorine","Nitrogen"],a:0,exp:"Fluorine has the highest electronegativity (4.0)."},
+  {q:"The noble gases are in group:",o:["1","17","18","2"],a:2,exp:"Noble gases are in group 18."},
+  {q:"The modern periodic law is based on:",o:["Atomic mass","Atomic number","Mass number","Isotopes"],a:1,exp:"Modern periodic law is based on atomic number."},
+  {q:"The p-block elements are in groups:",o:["1 and 2","3 to 12","13 to 18","17 and 18"],a:2,exp:"p-block includes groups 13 to 18."},
+  {q:"The metallic character down a group:",o:["Decreases","Increases","Remains constant","Varies"],a:1,exp:"Metallic character increases down a group."},
+  {q:"The element with atomic number 11 is:",o:["Na","Mg","Al","Si"],a:0,exp:"Na has atomic number 11."},
+  {q:"The lanthanides belong to:",o:["s-block","p-block","d-block","f-block"],a:3,exp:"Lanthanides are f-block elements."},
+  {q:"The ionization energy of noble gases is:",o:["High","Low","Zero","Moderate"],a:0,exp:"Noble gases have high ionization energy."},
+  {q:"The atomic radius of Li compared to Na is:",o:["Larger","Smaller","Equal","Varies"],a:1,exp:"Li has a smaller radius than Na."},
+  {q:"The element in period 3, group 17 is:",o:["Cl","S","Ar","P"],a:0,exp:"Cl is in period 3, group 17."}
+];
+
+const q4 = [
+  {q:"An ionic bond is formed by:",o:["Sharing electrons","Transferring electrons","Delocalized electrons","None"],a:1,exp:"Ionic bond involves electron transfer."},
+  {q:"The bond in NaCl is:",o:["Covalent","Ionic","Metallic","Coordinate"],a:1,exp:"NaCl has an ionic bond."},
+  {q:"Covalent bonds involve:",o:["Electron transfer","Electron sharing","Proton transfer","None"],a:1,exp:"Covalent bonds share electrons."},
+  {q:"VSEPR theory predicts:",o:["Molecular geometry","Bond length","Bond energy","None"],a:0,exp:"VSEPR predicts molecular shapes."},
+  {q:"The shape of NH₃ molecule is:",o:["Tetrahedral","Trigonal pyramidal","Linear","Trigonal planar"],a:1,exp:"NH₃ has trigonal pyramidal shape (VSEPR)."},
+  {q:"Hybridization in CH₄ is:",o:["sp","sp²","sp³","dsp²"],a:2,exp:"CH₄ has sp³ hybridization."},
+  {q:"The bond order of N₂ is:",o:["1","2","3","4"],a:2,exp:"N₂ has a triple bond, bond order = 3."},
+  {q:"A polar covalent bond is formed when:",o:["Electronegativity differs","Electronegativity is same","Electrons are transferred","None"],a:0,exp:"Polar bonds form with electronegativity difference."},
+  {q:"The shape of H₂O molecule is:",o:["Linear","Bent","Tetrahedral","Trigonal planar"],a:1,exp:"H₂O is bent due to lone pairs."},
+  {q:"Sigma bonds are formed by:",o:["Head-on overlap","Sideways overlap","No overlap","None"],a:0,exp:"Sigma bonds form by head-on orbital overlap."},
+  {q:"Pi bonds are formed by:",o:["Head-on overlap","Sideways overlap","No overlap","None"],a:1,exp:"Pi bonds form by sideways orbital overlap."},
+  {q:"The hybridization of carbon in C₂H₂ is:",o:["sp","sp²","sp³","dsp²"],a:0,exp:"C₂H₂ has sp hybridization."},
+  {q:"The bond angle in NH₃ is:",o:["109.5°","107°","120°","180°"],a:1,exp:"NH₃ has bond angle ≈107° due to lone pair."},
+  {q:"Molecular orbital theory explains:",o:["Bond formation","Electron configuration","Both","None"],a:2,exp:"Molecular orbital theory explains bonding and electron distribution."},
+  {q:"The bond in O₂ is:",o:["Single","Double","Triple","None"],a:1,exp:"O₂ has a double bond (bond order = 2)."},
+  {q:"The dipole moment of CO₂ is:",o:["Zero","Non-zero","Variable","None"],a:0,exp:"CO₂ is linear, dipole moments cancel."},
+  {q:"The hybridization in BF₃ is:",o:["sp","sp²","sp³","dsp²"],a:1,exp:"BF₃ has sp² hybridization."},
+  {q:"A coordinate bond is formed by:",o:["Electron sharing","One-sided electron donation","Electron transfer","None"],a:1,exp:"Coordinate bond involves one-sided electron pair donation."},
+  {q:"The shape of CH₄ is:",o:["Tetrahedral","Trigonal planar","Linear","Bent"],a:0,exp:"CH₄ is tetrahedral (sp³ hybridization)."},
+  {q:"The bond order of O₂⁺ is:",o:["1.5","2","2.5","3"],a:2,exp:"O₂⁺ has bond order 2.5 (molecular orbital theory)."}
+];
+
+const q5 = [
+  {q:"The ideal gas equation is:",o:["PV = nRT","PV = RT","P = nRT/V","V = nRT/P"],a:0,exp:"Ideal gas equation is PV = nRT."},
+  {q:"Boyle’s law states:",o:["P ∝ 1/V","V ∝ T","P ∝ T","None"],a:0,exp:"Boyle’s law: P ∝ 1/V at constant T."},
+  {q:"Charles’s law states:",o:["V ∝ T","P ∝ T","V ∝ 1/P","None"],a:0,exp:"Charles’s law: V ∝ T at constant P."},
+  {q:"The value of gas constant R is:",o:["8.314 J/mol·K","0.0821 L·atm/mol·K","Both","None"],a:2,exp:"R = 8.314 J/mol·K or 0.0821 L·atm/mol·K."},
+  {q:"The critical temperature of a gas is:",o:["Temperature above which it cannot be liquefied","Boiling point","Melting point","None"],a:0,exp:"Critical temperature = max T for liquefaction."},
+  {q:"Van der Waals equation corrects for:",o:["Intermolecular forces and volume","Pressure only","Temperature only","None"],a:0,exp:"Van der Waals corrects for intermolecular forces and molecular volume."},
+  {q:"The kinetic energy of gas molecules is proportional to:",o:["Temperature","Pressure","Volume","None"],a:0,exp:"KE ∝ T (kinetic theory of gases)."},
+  {q:"STP stands for:",o:["Standard Temperature and Pressure","Standard Time and Pressure","Standard Temperature and Volume","None"],a:0,exp:"STP = 0°C and 1 atm."},
+  {q:"1 mole of gas at STP occupies:",o:["22.4 L","11.2 L","44.8 L","1 L"],a:0,exp:"1 mole of gas at STP = 22.4 L."},
+  {q:"Dalton’s law of partial pressures states:",o:["Total P = sum of partial pressures","P ∝ V","P ∝ T","None"],a:0,exp:"Total pressure = sum of partial pressures."},
+  {q:"The compressibility factor Z is:",o:["PV/nRT","nRT/PV","PV/nT","None"],a:0,exp:"Z = PV/nRT measures deviation from ideal gas."},
+  {q:"Real gases behave ideally at:",o:["Low P, high T","High P, low T","High P, high T","None"],a:0,exp:"Real gases are ideal at low pressure, high temperature."},
+  {q:"The average kinetic energy of a gas molecule is:",o:["3/2 kT","1/2 kT","2/3 kT","kT"],a:0,exp:"Average KE = 3/2 kT per molecule."},
+  {q:"Graham’s law relates diffusion to:",o:["Molar mass","Pressure","Temperature","None"],a:0,exp:"Rate of diffusion ∝ 1/√molar mass."},
+  {q:"The van der Waals constant ‘a’ corrects for:",o:["Intermolecular forces","Molecular volume","Pressure","None"],a:0,exp:"‘a’ corrects for intermolecular attractions."},
+  {q:"The van der Waals constant ‘b’ corrects for:",o:["Molecular volume","Intermolecular forces","Pressure","None"],a:0,exp:"‘b’ corrects for volume occupied by molecules."},
+  {q:"The root mean square speed is given by:",o:["√(3RT/M)","√(2RT/M)","√(RT/M)","None"],a:0,exp:"v_rms = √(3RT/M)."},
+  {q:"The intermolecular forces in liquids are:",o:["Stronger than gases","Weaker than gases","Same as gases","None"],a:0,exp:"Liquids have stronger intermolecular forces than gases."},
+  {q:"The boiling point of a liquid depends on:",o:["External pressure","Temperature","Both","None"],a:0,exp:"Boiling point varies with external pressure."},
+  {q:"The critical pressure is:",o:["Pressure at critical temperature","Atmospheric pressure","Vapor pressure","None"],a:0,exp:"Critical pressure is pressure at critical temperature."}
+];
+
+/* ---------- Answers ---------- */
+const answers1 = q1.map(x => x.a);
+const answers2 = q2.map(x => x.a);
+const answers3 = q3.map(x => x.a);
+const answers4 = q4.map(x => x.a);
+const answers5 = q5.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `<p><b>Q${i+1}.</b> ${item.q}</p>` +
+      item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("") +
+      `<div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>` +
+      `<div class="explanation">Explanation: ${item.exp}</div>` +
+      `<button type="button" onclick="showAnswer(this)">Show Answer</button>`;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q1, "quiz1");
+loadQuestions(q2, "quiz2");
+loadQuestions(q3, "quiz3");
+loadQuestions(q4, "quiz4");
+loadQuestions(q5, "quiz5");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0, out = "";
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
+    }
+  });
+  document.getElementById(resId).innerHTML = `<div class='result'><b>Score: ${score}/${ansArr.length}</b><br>${out}</div>`;
+}
+function qAns(formId) {
+  if (formId === "quiz1") return q1;
+  if (formId === "quiz2") return q2;
+  if (formId === "quiz3") return q3;
+  if (formId === "quiz4") return q4;
+  return q5;
+}
+
+/* ---------- Timer ---------- */
+function startTimer(duration, display) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    display.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
+    }
+  }, 1000);
+}
+startTimer(20 * 60, document.getElementById("timer1"));
+startTimer(20 * 60, document.getElementById("timer2"));
+startTimer(20 * 60, document.getElementById("timer3"));
+startTimer(20 * 60, document.getElementById("timer4"));
+startTimer(20 * 60, document.getElementById("timer5"));
+
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemistry Quiz Chapters 6–20</title>
+  <style>
+    body {font-family: Arial, sans-serif; background:#f9f9f9; margin:0; padding:0;}
+    header {background:#222; color:#fff; padding:1rem; text-align:center;}
+    section {padding:20px; margin:auto; max-width:900px;}
+    h2 {background:#444; color:#fff; padding:10px; border-radius:6px;}
+    .question {background:#fff; padding:15px; margin:15px 0; border-radius:6px; box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+    .options label {display:block; margin:6px 0; cursor:pointer;}
+    button {background:#d4a017; color:#fff; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; margin-top:10px;}
+    button:hover {background:#b8860b;}
+    .result {margin-top:15px; padding:10px; background:#e3f2fd; border-left:5px solid #2196f3;}
+    .timer {font-size:18px; font-weight:bold; color:#b71c1c; margin:10px 0;}
+    .answer {display:none; margin-top:10px; color:green; font-weight:bold;}
+    .explanation {display:none; margin-top:5px; font-size:14px; color:#444;}
+  </style>
+</head>
+<body>
+
+<section>
+  <h2>Chapter 6: Thermodynamics</h2>
+  <div class="timer" id="timer6">20:00</div>
+  <form id="quiz6"></form>
+  <button onclick="submitQuiz('quiz6','result6',answers6);">Submit Quiz</button>
+  <div id="result6" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 7: Equilibrium</h2>
+  <div class="timer" id="timer7">20:00</div>
+  <form id="quiz7"></form>
+  <button onclick="submitQuiz('quiz7','result7',answers7);">Submit Quiz</button>
+  <div id="result7" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 8: Redox Reactions</h2>
+  <div class="timer" id="timer8">20:00</div>
+  <form id="quiz8"></form>
+  <button onclick="submitQuiz('quiz8','result8',answers8);">Submit Quiz</button>
+  <div id="result8" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 9: Hydrogen</h2>
+  <div class="timer" id="timer9">20:00</div>
+  <form id="quiz9"></form>
+  <button onclick="submitQuiz('quiz9','result9',answers9);">Submit Quiz</button>
+  <div id="result9" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 10: The s-Block Elements</h2>
+  <div class="timer" id="timer10">20:00</div>
+  <form id="quiz10"></form>
+  <button onclick="submitQuiz('quiz10','result10',answers10);">Submit Quiz</button>
+  <div id="result10" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 11: The p-Block Elements</h2>
+  <div class="timer" id="timer11">20:00</div>
+  <form id="quiz11"></form>
+  <button onclick="submitQuiz('quiz11','result11',answers11);">Submit Quiz</button>
+  <div id="result11" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 12: Organic Chemistry - Some Basic Principles</h2>
+  <div class="timer" id="timer12">20:00</div>
+  <form id="quiz12"></form>
+  <button onclick="submitQuiz('quiz12','result12',answers12);">Submit Quiz</button>
+  <div id="result12" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 13: Hydrocarbons</h2>
+  <div class="timer" id="timer13">20:00</div>
+  <form id="quiz13"></form>
+  <button onclick="submitQuiz('quiz13','result13',answers13);">Submit Quiz</button>
+  <div id="result13" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 14: Environmental Chemistry</h2>
+  <div class="timer" id="timer14">20:00</div>
+  <form id="quiz14"></form>
+  <button onclick="submitQuiz('quiz14','result14',answers14);">Submit Quiz</button>
+  <div id="result14" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 15: Solid State</h2>
+  <div class="timer" id="timer15">20:00</div>
+  <form id="quiz15"></form>
+  <button onclick="submitQuiz('quiz15','result15',answers15);">Submit Quiz</button>
+  <div id="result15" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 16: Solutions</h2>
+  <div class="timer" id="timer16">20:00</div>
+  <form id="quiz16"></form>
+  <button onclick="submitQuiz('quiz16','result16',answers16);">Submit Quiz</button>
+  <div id="result16" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 17: Electrochemistry</h2>
+  <div class="timer" id="timer17">20:00</div>
+  <form id="quiz17"></form>
+  <button onclick="submitQuiz('quiz17','result17',answers17);">Submit Quiz</button>
+  <div id="result17" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 18: Chemical Kinetics</h2>
+  <div class="timer" id="timer18">20:00</div>
+  <form id="quiz18"></form>
+  <button onclick="submitQuiz('quiz18','result18',answers18);">Submit Quiz</button>
+  <div id="result18" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 19: Surface Chemistry</h2>
+  <div class="timer" id="timer19">20:00</div>
+  <form id="quiz19"></form>
+  <button onclick="submitQuiz('quiz19','result19',answers19);">Submit Quiz</button>
+  <div id="result19" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 20: General Principles and Processes of Isolation of Elements</h2>
+  <div class="timer" id="timer20">20:00</div>
+  <form id="quiz20"></form>
+  <button onclick="submitQuiz('quiz20','result20',answers20);">Submit Quiz</button>
+  <div id="result20" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data ---------- */
+const q6 = [
+  {q:"The first law of thermodynamics is:",o:["ΔU = q + w","ΔU = q - w","ΔU = w - q","ΔU = q/w"],a:0,exp:"First law: ΔU = q + w (work done on system)."},
+  {q:"Entropy measures:",o:["Disorder","Energy","Heat","Work"],a:0,exp:"Entropy quantifies disorder in a system."},
+  {q:"Gibbs free energy is given by:",o:["ΔG = ΔH - TΔS","ΔG = ΔH + TΔS","ΔG = ΔH/T - ΔS","ΔG = TΔS - ΔH"],a:0,exp:"ΔG = ΔH - TΔS determines spontaneity."},
+  {q:"The second law of thermodynamics states:",o:["Entropy increases","Energy is conserved","Heat flows spontaneously","None"],a:0,exp:"Entropy of an isolated system increases."},
+  {q:"A spontaneous process has:",o:["ΔG < 0","ΔG > 0","ΔG = 0","None"],a:0,exp:"Spontaneous processes have ΔG < 0."},
+  {q:"The unit of enthalpy is:",o:["Joule","Pascal","Watt","Newton"],a:0,exp:"Enthalpy is measured in Joules."},
+  {q:"The zeroth law defines:",o:["Temperature","Entropy","Energy","Work"],a:0,exp:"Zeroth law establishes thermal equilibrium."},
+  {q:"Enthalpy change (ΔH) is:",o:["q at constant pressure","q at constant volume","w at constant pressure","None"],a:0,exp:"ΔH = q_p at constant pressure."},
+  {q:"A system at equilibrium has:",o:["ΔG = 0","ΔH = 0","ΔS = 0","None"],a:0,exp:"At equilibrium, ΔG = 0."},
+  {q:"The standard state temperature is:",o:["298 K","273 K","300 K","0 K"],a:0,exp:"Standard state is at 298 K (25°C)."},
+  {q:"The unit of entropy is:",o:["J/K","J","W","N"],a:0,exp:"Entropy is measured in J/K."},
+  {q:"Hess’s law is used to calculate:",o:["Enthalpy change","Entropy change","Gibbs energy","None"],a:0,exp:"Hess’s law calculates ΔH for reactions."},
+  {q:"A process with ΔS > 0 is:",o:["Favorable","Unfavorable","At equilibrium","None"],a:0,exp:"Positive ΔS favors spontaneity."},
+  {q:"The heat capacity at constant volume relates to:",o:["Internal energy","Enthalpy","Entropy","None"],a:0,exp:"C_v relates to change in internal energy."},
+  {q:"The heat capacity at constant pressure relates to:",o:["Enthalpy","Internal energy","Entropy","None"],a:0,exp:"C_p relates to change in enthalpy."},
+  {q:"A non-spontaneous process requires:",o:["External work","Zero work","Negative entropy","None"],a:0,exp:"Non-spontaneous processes need external work."},
+  {q:"The standard enthalpy of formation is for:",o:["1 mole of compound","1 mole of element","1 g of compound","None"],a:0,exp:"ΔH_f is for 1 mole of compound formed."},
+  {q:"The third law of thermodynamics states:",o:["Entropy is zero at 0 K","Energy is conserved","Heat flows","None"],a:0,exp:"Entropy of a perfect crystal is zero at 0 K."},
+  {q:"The work done in an isothermal expansion is:",o:["-nRT ln(V₂/V₁)","nRT ln(V₁/V₂)","nRT","None"],a:0,exp:"Work = -nRT ln(V₂/V₁) for isothermal expansion."},
+  {q:"A reaction with ΔH < 0 is:",o:["Exothermic","Endothermic","Isothermal","None"],a:0,exp:"ΔH < 0 indicates an exothermic reaction."}
+];
+
+const q7 = [
+  {q:"Chemical equilibrium is:",o:["Dynamic","Static","Both","None"],a:0,exp:"Chemical equilibrium is dynamic, with equal rates."},
+  {q:"Le Chatelier’s principle predicts:",o:["Response to stress","Equilibrium constant","Rate of reaction","None"],a:0,exp:"Le Chatelier’s principle predicts system response to changes."},
+  {q:"The equilibrium constant K_c is:",o:["[Products]/[Reactants]","[Reactants]/[Products]","[Products] × [Reactants]","None"],a:0,exp:"K_c = [products]/[reactants] at equilibrium."},
+  {q:"pH is defined as:",o:["-log[H⁺]","log[H⁺]","[H⁺]/log","None"],a:0,exp:"pH = -log[H⁺] measures acidity."},
+  {q:"A strong acid:",o:["Fully dissociates","Partially dissociates","Does not dissociate","None"],a:0,exp:"Strong acids fully dissociate in water."},
+  {q:"The solubility product (K_sp) applies to:",o:["Slightly soluble salts","Soluble salts","Gases","None"],a:0,exp:"K_sp is for slightly soluble salts."},
+  {q:"A buffer solution resists:",o:["pH change","Temperature change","Pressure change","None"],a:0,exp:"Buffers resist pH changes."},
+  {q:"The conjugate base of H₂O is:",o:["OH⁻","H₃O⁺","H₂","None"],a:0,exp:"H₂O loses H⁺ to form OH⁻."},
+  {q:"The pH of a neutral solution at 25°C is:",o:["7","0","14","1"],a:0,exp:"Neutral pH = 7 at 25°C."},
+  {q:"Increasing pressure shifts equilibrium to:",o:["Side with fewer moles of gas","Side with more moles of gas","No effect","None"],a:0,exp:"Pressure favors fewer gas moles (Le Chatelier)."},
+  {q:"The unit of K_c depends on:",o:["Reaction stoichiometry","Temperature","Pressure","None"],a:0,exp:"K_c units vary with reaction stoichiometry."},
+  {q:"A weak acid has:",o:["Low K_a","High K_a","Zero K_a","None"],a:0,exp:"Weak acids have low K_a values."},
+  {q:"The common ion effect:",o:["Reduces solubility","Increases solubility","No effect","None"],a:0,exp:"Common ion effect reduces solubility."},
+  {q:"The pOH is defined as:",o:["-log[OH⁻]","log[OH⁻]","[OH⁻]/log","None"],a:0,exp:"pOH = -log[OH⁻]."},
+  {q:"At 25°C, pH + pOH equals:",o:["14","7","0","1"],a:0,exp:"pH + pOH = 14 at 25°C."},
+  {q:"The equilibrium constant for gases is:",o:["K_p","K_c","K_sp","None"],a:0,exp:"K_p is used for gas-phase equilibria."},
+  {q:"A Bronsted-Lowry acid:",o:["Donates H⁺","Accepts H⁺","Donates OH⁻","None"],a:0,exp:"Bronsted-Lowry acid donates a proton."},
+  {q:"The solubility of AgCl is determined by:",o:["K_sp","K_c","K_p","None"],a:0,exp:"K_sp governs solubility of AgCl."},
+  {q:"Increasing temperature favors:",o:["Endothermic reaction","Exothermic reaction","No effect","None"],a:0,exp:"Temperature increase favors endothermic reactions."},
+  {q:"The ionic product of water (K_w) at 25°C is:",o:["10⁻¹⁴","10⁻⁷","10⁻¹²","10⁻¹⁰"],a:0,exp:"K_w = 10⁻¹⁴ at 25°C."}
+];
+
+const q8 = [
+  {q:"Oxidation involves:",o:["Loss of electrons","Gain of electrons","No electron change","None"],a:0,exp:"Oxidation is loss of electrons."},
+  {q:"Reduction involves:",o:["Gain of electrons","Loss of electrons","No electron change","None"],a:0,exp:"Reduction is gain of electrons."},
+  {q:"The oxidizing agent:",o:["Gets reduced","Gets oxidized","No change","None"],a:0,exp:"Oxidizing agent accepts electrons, gets reduced."},
+  {q:"The reducing agent:",o:["Gets oxidized","Gets reduced","No change","None"],a:0,exp:"Reducing agent loses electrons, gets oxidized."},
+  {q:"The oxidation number of O in H₂O is:",o:["-2","+2","0","-1"],a:0,exp:"Oxygen has oxidation number -2 in H₂O."},
+  {q:"The Nernst equation is:",o:["E = E° - (RT/nF) ln Q","E = E° + (RT/nF) ln Q","E = E° - (nF/RT) ln Q","None"],a:0,exp:"Nernst equation: E = E° - (RT/nF) ln Q."},
+  {q:"In a galvanic cell, the cathode is:",o:["Positive","Negative","Neutral","None"],a:0,exp:"Cathode is positive in galvanic cells."},
+  {q:"The standard electrode potential is at:",o:["298 K, 1 M, 1 atm","273 K, 1 M, 1 atm","298 K, 0.1 M, 1 atm","None"],a:0,exp:"Standard conditions: 298 K, 1 M, 1 atm."},
+  {q:"The oxidation number of S in SO₄²⁻ is:",o:["+6","+4","-2","0"],a:0,exp:"S in SO₄²⁻ has oxidation number +6."},
+  {q:"A redox reaction involves:",o:["Oxidation and reduction","Only oxidation","Only reduction","None"],a:0,exp:"Redox = oxidation + reduction."},
+  {q:"The salt bridge in a cell maintains:",o:["Electrical neutrality","Ion flow","Both","None"],a:2,exp:"Salt bridge maintains neutrality and ion flow."},
+  {q:"The standard hydrogen electrode has potential:",o:["0 V","1 V","-1 V","0.5 V"],a:0,exp:"SHE has a standard potential of 0 V."},
+  {q:"The oxidation number of Cl in Cl₂ is:",o:["0","+1","-1","+2"],a:0,exp:"Elements in free state have oxidation number 0."},
+  {q:"The cell potential is calculated as:",o:["E_cathode - E_anode","E_anode - E_cathode","E_cathode + E_anode","None"],a:0,exp:"E_cell = E_cathode - E_anode."},
+  {q:"A disproportionation reaction involves:",o:["Same species oxidized and reduced","Only oxidation","Only reduction","None"],a:0,exp:"Disproportionation involves both oxidation and reduction."},
+  {q:"The oxidation number of H in H₂ is:",o:["0","+1","-1","+2"],a:0,exp:"H in H₂ has oxidation number 0."},
+  {q:"Electrochemical series arranges:",o:["Reduction potentials","Oxidation potentials","Both","None"],a:0,exp:"Electrochemical series lists standard reduction potentials."},
+  {q:"The anode in a galvanic cell is:",o:["Negative","Positive","Neutral","None"],a:0,exp:"Anode is negative in galvanic cells."},
+  {q:"Faraday’s first law relates to:",o:["Mass deposited","Voltage","Current","None"],a:0,exp:"Mass deposited ∝ charge passed."},
+  {q:"The unit of cell potential is:",o:["Volt","Ampere","Ohm","Joule"],a:0,exp:"Cell potential is measured in volts."}
+];
+
+const q9 = [
+  {q:"Hydrogen belongs to group:",o:["1","2","17","18"],a:0,exp:"Hydrogen is in group 1 of the periodic table."},
+  {q:"The most abundant isotope of hydrogen is:",o:["Protium","Deuterium","Tritium","None"],a:0,exp:"Protium (¹H) is the most abundant isotope."},
+  {q:"Hydrogen forms:",o:["Ionic hydrides","Covalent hydrides","Metallic hydrides","All"],a:3,exp:"Hydrogen forms all types of hydrides."},
+  {q:"The oxidation number of H in NaH is:",o:["-1","+1","0","+2"],a:0,exp:"H has -1 in ionic hydrides like NaH."},
+  {q:"Heavy water is:",o:["D₂O","H₂O","T₂O","None"],a:0,exp:"Heavy water is D₂O (deuterium oxide)."},
+  {q:"Hydrogen peroxide (H₂O₂) acts as:",o:["Oxidizing agent","Reducing agent","Both","None"],a:2,exp:"H₂O₂ can act as both oxidizing and reducing agent."},
+  {q:"The decomposition of H₂O₂ is:",o:["2H₂O₂ → 2H₂O + O₂","H₂O₂ → H₂O + O","2H₂O₂ → H₂ + 2O₂","None"],a:0,exp:"2H₂O₂ → 2H₂O + O₂ is the decomposition reaction."},
+  {q:"The temporary hardness of water is due to:",o:["Ca(HCO₃)₂","CaSO₄","CaCl₂","None"],a:0,exp:"Temporary hardness is due to bicarbonates."},
+  {q:"Permanent hardness of water is removed by:",o:["Ion exchange","Boiling","Filtration","None"],a:0,exp:"Ion exchange removes permanent hardness."},
+  {q:"The oxidation number of H in H₂O is:",o:["+1","-1","0","+2"],a:0,exp:"H has +1 in covalent compounds like H₂O."},
+  {q:"The most reactive form of hydrogen is:",o:["Nascent hydrogen","Atomic hydrogen","Molecular hydrogen","None"],a:1,exp:"Atomic hydrogen is highly reactive."},
+  {q:"The preparation of H₂ gas is done by:",o:["Bosch process","Electrolysis of water","Both","None"],a:2,exp:"H₂ is prepared by Bosch process and electrolysis."},
+  {q:"The bond in H₂ molecule is:",o:["Covalent","Ionic","Metallic","None"],a:0,exp:"H₂ has a covalent bond."},
+  {q:"The isotope tritium is:",o:["Radioactive","Stable","Both","None"],a:0,exp:"Tritium (³H) is radioactive."},
+  {q:"The boiling point of D₂O compared to H₂O is:",o:["Higher","Lower","Same","None"],a:0,exp:"D₂O has a higher boiling point."},
+  {q:"Hydrogen is used in:",o:["Fuel cells","Ammonia synthesis","Both","None"],a:2,exp:"Hydrogen is used in fuel cells and ammonia synthesis."},
+  {q:"The hybridization of H₂O is:",o:["sp³","sp²","sp","None"],a:0,exp:"H₂O has sp³ hybridization."},
+  {q:"The density of D₂O compared to H₂O is:",o:["Higher","Lower","Same","None"],a:0,exp:"D₂O is denser than H₂O."},
+  {q:"The structure of H₂O₂ is:",o:["Non-planar","Planar","Linear","None"],a:0,exp:"H₂O₂ has a non-planar structure."},
+  {q:"The oxidation state of O in H₂O₂ is:",o:["-1","-2","0","+1"],a:0,exp:"O in H₂O₂ has oxidation state -1."}
+];
+
+const q10 = [
+  {q:"The s-block elements include:",o:["Alkali and alkaline earth metals","Transition metals","Halogens","None"],a:0,exp:"s-block includes groups 1 and 2."},
+  {q:"The general electron configuration of group 1 is:",o:["ns¹","ns²","ns²np¹","ns²np²"],a:0,exp:"Group 1: ns¹ (alkali metals)."},
+  {q:"The most reactive alkali metal is:",o:["Li","Na","K","Cs"],a:3,exp:"Cs is the most reactive alkali metal."},
+  {q:"The oxidation state of alkali metals is:",o:["+1","+2","0","-1"],a:0,exp:"Alkali metals form +1 ions."},
+  {q:"The alkaline earth metals are in group:",o:["1","2","17","18"],a:1,exp:"Group 2 contains alkaline earth metals."},
+  {q:"The general electron configuration of group 2 is:",o:["ns²","ns¹","ns²np¹","ns²np²"],a:0,exp:"Group 2: ns² (alkaline earth metals)."},
+  {q:"The compound NaCl is:",o:["Ionic","Covalent","Metallic","None"],a:0,exp:"NaCl is an ionic compound."},
+  {q:"The flame color of sodium is:",o:["Yellow","Red","Green","Blue"],a:0,exp:"Sodium gives a yellow flame."},
+  {q:"The flame color of calcium is:",o:["Brick red","Yellow","Green","Blue"],a:0,exp:"Calcium gives a brick red flame."},
+  {q:"The most abundant s-block element in Earth’s crust is:",o:["Na","K","Ca","Mg"],a:2,exp:"Calcium is abundant in Earth’s crust."},
+  {q:"The compound CaCO₃ is used in:",o:["Cement","Glass","Both","None"],a:2,exp:"CaCO₃ is used in cement and glass."},
+  {q:"The ionization energy of s-block elements:",o:["Decreases down group","Increases down group","Remains constant","None"],a:0,exp:"Ionization energy decreases down the group."},
+  {q:"The metallic character of s-block elements:",o:["Increases down group","Decreases down group","Remains constant","None"],a:0,exp:"Metallic character increases down the group."},
+  {q:"The compound MgO is:",o:["Basic","Acidic","Neutral","None"],a:0,exp:"MgO is a basic oxide."},
+  {q:"The solubility of hydroxides of group 2:",o:["Increases down group","Decreases down group","Remains constant","None"],a:0,exp:"Solubility of group 2 hydroxides increases down."},
+  {q:"The element Be differs from other group 2 elements due to:",o:["Small size","High ionization energy","Both","None"],a:2,exp:"Be has small size and high ionization energy."},
+  {q:"The compound NaHCO₃ is used as:",o:["Baking soda","Washing soda","Plaster of Paris","None"],a:0,exp:"NaHCO₃ is baking soda."},
+  {q:"The hydration energy of s-block ions:",o:["Increases down group","Decreases down group","Remains constant","None"],a:1,exp:"Hydration energy decreases with increasing ion size."},
+  {q:"The compound CaSO₄·½H₂O is:",o:["Plaster of Paris","Gypsum","Lime","None"],a:0,exp:"CaSO₄·½H₂O is Plaster of Paris."},
+  {q:"The s-block elements form:",o:["Basic oxides","Acidic oxides","Neutral oxides","None"],a:0,exp:"s-block elements form basic oxides."}
+];
+
+const q11 = [
+  {q:"The p-block elements are in groups:",o:["1 and 2","3 to 12","13 to 18","17 and 18"],a:2,exp:"p-block includes groups 13 to 18."},
+  {q:"The most electronegative element is:",o:["Fluorine","Oxygen","Chlorine","Nitrogen"],a:0,exp:"Fluorine has the highest electronegativity (4.0)."},
+  {q:"The compound BCl₃ has the shape:",o:["Trigonal planar","Tetrahedral","Linear","Bent"],a:0,exp:"BCl₃ is trigonal planar (sp² hybridization)."},
+  {q:"The oxidation state of N in NH₃ is:",o:["-3","+3","0","-1"],a:0,exp:"N in NH₃ has oxidation state -3."},
+  {q:"The allotrope of carbon with sp³ hybridization is:",o:["Diamond","Graphite","Fullerene","None"],a:0,exp:"Diamond has sp³ hybridized carbon atoms."},
+  {q:"The gas used in fire extinguishers is:",o:["CO₂","N₂","O₂","H₂"],a:0,exp:"CO₂ is used in fire extinguishers."},
+  {q:"The noble gases are chemically:",o:["Inert","Reactive","Moderately reactive","None"],a:0,exp:"Noble gases are inert due to stable electron configuration."},
+  {q:"The compound PCl₅ has hybridization:",o:["sp³d","sp³","sp²","sp"],a:0,exp:"PCl₅ has sp³d hybridization."},
+  {q:"The halogen with the highest reactivity is:",o:["F","Cl","Br","I"],a:0,exp:"Fluorine is the most reactive halogen."},
+  {q:"The oxidation state of S in H₂SO₄ is:",o:["+6","+4","0","-2"],a:0,exp:"S in H₂SO₄ has oxidation state +6."},
+  {q:"The allotrope of phosphorus used in matches is:",o:["White phosphorus","Red phosphorus","Black phosphorus","None"],a:1,exp:"Red phosphorus is used in matches."},
+  {q:"The gas responsible for the greenhouse effect is:",o:["CO₂","O₂","N₂","H₂"],a:0,exp:"CO₂ contributes to the greenhouse effect."},
+  {q:"The compound AlCl₃ is:",o:["Ionic","Covalent","Metallic","None"],a:1,exp:"AlCl₃ is covalent in the gaseous state."},
+  {q:"The noble gas used in lighting is:",o:["Neon","Argon","Krypton","All"],a:3,exp:"Neon, argon, and krypton are used in lighting."},
+  {q:"The oxidation state of C in CO₂ is:",o:["+4","+2","0","-4"],a:0,exp:"C in CO₂ has oxidation state +4."},
+  {q:"The compound NH₃ is prepared by:",o:["Haber’s process","Contact process","Ostwald process","None"],a:0,exp:"NH₃ is prepared by Haber’s process."},
+  {q:"The p-block element with highest melting point is:",o:["Carbon","Boron","Nitrogen","Oxygen"],a:0,exp:"Carbon (diamond) has a high melting point."},
+  {q:"The compound SF₆ has the shape:",o:["Octahedral","Tetrahedral","Trigonal bipyramidal","None"],a:0,exp:"SF₆ is octahedral (sp³d² hybridization)."},
+  {q:"The gas used in balloons is:",o:["Helium","Hydrogen","Nitrogen","Oxygen"],a:0,exp:"Helium is used in balloons due to low density."},
+  {q:"The oxidation state of Cl in HClO₄ is:",o:["+7","+5","+3","0"],a:0,exp:"Cl in HClO₄ has oxidation state +7."}
+];
+
+const q12 = [
+  {q:"The functional group in alcohols is:",o:["-OH"," -CHO"," -COOH"," -NH₂"],a:0,exp:"Alcohols have the -OH functional group."},
+  {q:"The general formula of alkanes is:",o:["CₙH₂ₙ₊₂","CₙH₂ₙ","CₙH₂ₙ₋₂","CₙH₂ₙ₊₁"],a:0,exp:"Alkanes: CₙH₂ₙ₊₂."},
+  {q:"Hybridization of carbon in ethene is:",o:["sp²","sp³","sp","dsp²"],a:0,exp:"Ethene (C₂H₄) has sp² hybridized carbon."},
+  {q:"The IUPAC name of CH₃CH₂OH is:",o:["Ethanol","Methanol","Propanol","Butanol"],a:0,exp:"CH₃CH₂OH is ethanol."},
+  {q:"Aromatic compounds contain:",o:["Benzene ring","Alkane chain","Alkyne chain","None"],a:0,exp:"Aromatic compounds have a benzene ring."},
+  {q:"The functional group in aldehydes is:",o:["-CHO"," -COOH"," -OH"," -NH₂"],a:0,exp:"Aldehydes have the -CHO group."},
+  {q:"Homologous series differ by:",o:["CH₂","CH₃","C₂H₅","None"],a:0,exp:"Homologous series differ by a CH₂ unit."},
+  {q:"The compound CH₃COOH is:",o:["Acetic acid","Formic acid","Propanoic acid","Butanoic acid"],a:0,exp:"CH₃COOH is acetic acid."},
+  {q:"The functional group in ketones is:",o:[">C=O"," -CHO"," -OH"," -COOH"],a:0,exp:"Ketones have the >C=O functional group."},
+  {q:"The IUPAC name of CH₃CHO is:",o:["Ethanal","Methanal","Propanal","Butanal"],a:0,exp:"CH₃CHO is ethanal."},
+  {q:"Isomerism due to different carbon skeletons is:",o:["Chain isomerism","Position isomerism","Functional isomerism","None"],a:0,exp:"Chain isomerism involves different carbon skeletons."},
+  {q:"The compound C₆H₆ is:",o:["Benzene","Cyclohexane","Hexane","None"],a:0,exp:"C₆H₆ is benzene."},
+  {q:"The functional group in amines is:",o:["-NH₂"," -OH"," -CHO"," -COOH"],a:0,exp:"Amines have the -NH₂ functional group."},
+  {q:"The hybridization of carbon in ethyne is:",o:["sp","sp²","sp³","dsp²"],a:0,exp:"Ethyne (C₂H₂) has sp hybridized carbon."},
+  {q:"The IUPAC name of CH₃CH₂CH₂OH is:",o:["Propan-1-ol","Propan-2-ol","Ethanol","Butanol"],a:0,exp:"CH₃CH₂CH₂OH is propan-1-ol."},
+  {q:"Stereoisomerism includes:",o:["Geometric isomerism","Chain isomerism","Position isomerism","None"],a:0,exp:"Geometric isomerism is a type of stereoisomerism."},
+  {q:"The compound CH₃COCH₃ is:",o:["Propanone","Ethanal","Methanol","None"],a:0,exp:"CH₃COCH₃ is propanone (acetone)."},
+  {q:"The general formula of alkenes is:",o:["CₙH₂ₙ","CₙH₂ₙ₊₂","CₙH₂ₙ₋₂","CₙH₂ₙ₊₁"],a:0,exp:"Alkenes: CₙH₂ₙ."},
+  {q:"The functional group in carboxylic acids is:",o:["-COOH"," -CHO"," -OH"," -NH₂"],a:0,exp:"Carboxylic acids have the -COOH group."},
+  {q:"The IUPAC name of C₆H₅OH is:",o:["Phenol","Benzene","Toluene","None"],a:0,exp:"C₆H₅OH is phenol."}
+];
+
+const q13 = [
+  {q:"The general formula of alkynes is:",o:["CₙH₂ₙ₋₂","CₙH₂ₙ","CₙH₂ₙ₊₂","CₙH₂ₙ₊₁"],a:0,exp:"Alkynes: CₙH₂ₙ₋₂."},
+  {q:"The compound C₂H₄ is:",o:["Ethene","Ethyne","Ethane","None"],a:0,exp:"C₂H₄ is ethene."},
+  {q:"The reaction of alkenes with Br₂ forms:",o:["Dibromoalkane","Monobromoalkane","Trihaloalkane","None"],a:0,exp:"Alkenes add Br₂ to form dibromoalkanes."},
+  {q:"The compound C₆H₁₂ is:",o:["Cyclohexane","Hexane","Benzene","None"],a:0,exp:"C₆H₁₂ is cyclohexane or hexane."},
+  {q:"The test for unsaturation is:",o:["Bromine water test","Litmus test","Fehling’s test","None"],a:0,exp:"Bromine water decolorizes with alkenes/alkynes."},
+  {q:"The compound C₂H₂ is:",o:["Ethyne","Ethene","Ethane","None"],a:0,exp:"C₂H₂ is ethyne."},
+  {q:"Alkanes undergo:",o:["Substitution reactions","Addition reactions","Elimination reactions","None"],a:0,exp:"Alkanes undergo substitution (e.g., halogenation)."},
+  {q:"The product of ethene with H₂ is:",o:["Ethane","Methane","Propane","None"],a:0,exp:"Ethene + H₂ → Ethane (hydrogenation)."},
+  {q:"The compound C₆H₆ undergoes:",o:["Electrophilic substitution","Nucleophilic substitution","Addition","None"],a:0,exp:"Benzene undergoes electrophilic substitution."},
+  {q:"The catalyst used in hydrogenation of alkenes is:",o:["Ni","Fe","Cu","None"],a:0,exp:"Ni is used as a catalyst in hydrogenation."},
+  {q:"The general formula of cycloalkanes is:",o:["CₙH₂ₙ","CₙH₂ₙ₊₂","CₙH₂ₙ₋₂","None"],a:0,exp:"Cycloalkanes: CₙH₂ₙ."},
+  {q:"The compound C₃H₆ is:",o:["Propene","Propane","Propyne","None"],a:0,exp:"C₃H₆ is propene."},
+  {q:"The ozonolysis of alkenes produces:",o:["Aldehydes/ketones","Alcohols","Carboxylic acids","None"],a:0,exp:"Ozonolysis cleaves double bonds to form aldehydes/ketones."},
+  {q:"The compound C₄H₁₀ is:",o:["Butane","Butene","Butyne","None"],a:0,exp:"C₄H₁₀ is butane."},
+  {q:"The reaction of ethyne with H₂O forms:",o:["Acetaldehyde","Ethanol","Methanol","None"],a:0,exp:"Ethyne + H₂O → Acetaldehyde (hydration)."},
+  {q:"The stability of benzene is due to:",o:["Delocalized electrons","Localized electrons","Sigma bonds","None"],a:0,exp:"Benzene’s stability comes from delocalized π-electrons."},
+  {q:"The compound C₅H₁₀ is:",o:["Pentene","Pentane","Pentyne","None"],a:0,exp:"C₅H₁₀ is pentene."},
+  {q:"The halogenation of alkanes occurs via:",o:["Free radical mechanism","Electrophilic addition","Nucleophilic substitution","None"],a:0,exp:"Alkanes halogenate via free radical mechanism."},
+  {q:"The product of benzene with Cl₂ in presence of FeCl₃ is:",o:["Chlorobenzene","Dichlorobenzene","Trichlorobenzene","None"],a:0,exp:"Benzene + Cl₂ → Chlorobenzene (electrophilic substitution)."},
+  {q:"The combustion of hydrocarbons produces:",o:["CO₂ and H₂O","CO and H₂","C and H₂","None"],a:0,exp:"Complete combustion yields CO₂ and H₂O."}
+];
+
+const q14 = [
+  {q:"The greenhouse effect is caused by:",o:["CO₂","O₂","N₂","H₂"],a:0,exp:"CO₂ traps heat, causing the greenhouse effect."},
+  {q:"Ozone depletion is primarily caused by:",o:["CFCs","CO₂","SO₂","NO₂"],a:0,exp:"CFCs release chlorine, depleting ozone."},
+  {q:"The layer containing ozone is:",o:["Stratosphere","Troposphere","Mesosphere","Thermosphere"],a:0,exp:"Ozone layer is in the stratosphere."},
+  {q:"Acid rain is caused by:",o:["SO₂ and NOₓ","CO₂","O₂","H₂"],a:0,exp:"SO₂ and NOₓ form acids in rain."},
+  {q:"The primary pollutant is:",o:["Emitted directly","Formed by reactions","Both","None"],a:0,exp:"Primary pollutants are emitted directly."},
+  {q:"Smog is a combination of:",o:["Smoke and fog","Dust and fog","Smoke and CO₂","None"],a:0,exp:"Smog = smoke + fog."},
+  {q:"The gas causing photochemical smog is:",o:["O₃","CO₂","SO₂","N₂"],a:0,exp:"Ozone is a key component of photochemical smog."},
+  {q:"The pH of acid rain is:",o:["Below 5.6","Above 7","7","None"],a:0,exp:"Acid rain has pH < 5.6."},
+  {q:"The gas responsible for global warming is:",o:["CO₂","O₂","N₂","H₂"],a:0,exp:"CO₂ is a major contributor to global warming."},
+  {q:"The BOD measures:",o:["Organic matter in water","Oxygen in air","CO₂ in water","None"],a:0,exp:"BOD = Biochemical Oxygen Demand for organic matter."},
+  {q:"The ozone layer protects from:",o:["UV rays","Infrared rays","X-rays","None"],a:0,exp:"Ozone absorbs harmful UV rays."},
+  {q:"The secondary pollutant is:",o:["Formed by chemical reactions","Emitted directly","Both","None"],a:0,exp:"Secondary pollutants form via reactions."},
+  {q:"The gas causing eutrophication is:",o:["Nitrates","CO₂","SO₂","O₂"],a:0,exp:"Nitrates cause algal blooms, leading to eutrophication."},
+  {q:"The Montreal Protocol bans:",o:["CFCs","CO₂","SO₂","NO₂"],a:0,exp:"Montreal Protocol phased out CFCs."},
+  {q:"The greenhouse gas with high global warming potential is:",o:["CH₄","CO₂","N₂O","All"],a:3,exp:"CH₄ and N₂O have higher GWP than CO₂."},
+  {q:"The source of CO in air is:",o:["Incomplete combustion","Complete combustion","Photosynthesis","None"],a:0,exp:"CO forms from incomplete combustion."},
+  {q:"The pollutant causing respiratory issues is:",o:["Particulate matter","O₂","N₂","H₂"],a:0,exp:"Particulate matter affects respiratory health."},
+  {q:"The Kyoto Protocol addresses:",o:["Global warming","Ozone depletion","Acid rain","None"],a:0,exp:"Kyoto Protocol targets greenhouse gas emissions."},
+  {q:"The gas causing asphyxiation is:",o:["CO","O₂","N₂","H₂"],a:0,exp:"CO binds to hemoglobin, causing asphyxiation."},
+  {q:"The COD measures:",o:["Chemical oxygen demand","Biological oxygen demand","Total oxygen","None"],a:0,exp:"COD measures oxygen needed for chemical oxidation."}
+];
+
+const q15 = [
+  {q:"The crystalline solids have:",o:["Regular arrangement","Amorphous structure","No structure","None"],a:0,exp:"Crystalline solids have a regular atomic arrangement."},
+  {q:"The number of Bravais lattices is:",o:["14","7","12","10"],a:0,exp:"There are 14 Bravais lattices."},
+  {q:"The unit cell of NaCl is:",o:["FCC","BCC","Simple cubic","None"],a:0,exp:"NaCl has a face-centered cubic (FCC) structure."},
+  {q:"Amorphous solids lack:",o:["Long-range order","Short-range order","Both","None"],a:0,exp:"Amorphous solids lack long-range order."},
+  {q:"The coordination number of BCC lattice is:",o:["8","6","12","4"],a:0,exp:"BCC has a coordination number of 8."},
+  {q:"The packing efficiency of FCC is:",o:["74%","68%","52%","60%"],a:0,exp:"FCC has 74% packing efficiency."},
+  {q:"Schottky defect involves:",o:["Vacancies of ions","Interstitial atoms","Substitutional atoms","None"],a:0,exp:"Schottky defect is ion vacancies in equal numbers."},
+  {q:"Frenkel defect involves:",o:["Interstitial ions","Vacancies","Both","None"],a:0,exp:"Frenkel defect is an ion in interstitial site."},
+  {q:"The coordination number of diamond is:",o:["4","6","8","12"],a:0,exp:"Diamond has tetrahedral coordination (4)."},
+  {q:"The number of atoms per unit cell in FCC is:",o:["4","2","1","6"],a:0,exp:"FCC unit cell has 4 atoms."},
+  {q:"The crystal system of diamond is:",o:["Cubic","Tetragonal","Orthorhombic","None"],a:0,exp:"Diamond has a cubic crystal system."},
+  {q:"The defect causing color in crystals is:",o:["F-center","Schottky","Frenkel","None"],a:0,exp:"F-centers (electron trapped in anion vacancy) cause color."},
+  {q:"The packing efficiency of BCC is:",o:["68%","74%","52%","60%"],a:0,exp:"BCC has 68% packing efficiency."},
+  {q:"The unit cell with a ≠ b ≠ c and α = β = γ = 90° is:",o:["Cubic","Orthorhombic","Tetragonal","Monoclinic"],a:1,exp:"Orthorhombic: a ≠ b ≠ c, all angles 90°."},
+  {q:"The number of atoms per unit cell in BCC is:",o:["2","4","1","6"],a:0,exp:"BCC unit cell has 2 atoms."},
+  {q:"The coordination number of simple cubic lattice is:",o:["6","8","12","4"],a:0,exp:"Simple cubic has coordination number 6."},
+  {q:"The defect in ZnS is typically:",o:["Frenkel","Schottky","Substitutional","None"],a:0,exp:"ZnS shows Frenkel defects due to small ion size."},
+  {q:"The crystal system with a = b ≠ c and α = β = 90°, γ = 120° is:",o:["Hexagonal","Cubic","Tetragonal","None"],a:0,exp:"Hexagonal system has a = b ≠ c, γ = 120°."},
+  {q:"The density of a crystal is calculated by:",o:["(Z × M)/(N_A × a³)","(M)/(N_A × a³)","(Z × a³)/(M × N_A)","None"],a:0,exp:"Density = (Z × M)/(N_A × a³)."},
+  {q:"The example of a covalent solid is:",o:["Diamond","NaCl","Iron","None"],a:0,exp:"Diamond is a covalent network solid."}
+];
+
+const q16 = [
+  {q:"Raoult’s law applies to:",o:["Ideal solutions","Non-ideal solutions","Electrolytes","None"],a:0,exp:"Raoult’s law is for ideal solutions."},
+  {q:"The unit of molality is:",o:["mol/kg","mol/L","mol/m³","None"],a:0,exp:"Molality = moles of solute per kg of solvent."},
+  {q:"The colligative property is:",o:["Vapour pressure lowering","Viscosity","Density","None"],a:0,exp:"Vapour pressure lowering is a colligative property."},
+  {q:"The van’t Hoff factor accounts for:",o:["Dissociation/association","Vapour pressure","Density","None"],a:0,exp:"van’t Hoff factor corrects for dissociation/association."},
+  {q:"The boiling point elevation is given by:",o:["ΔT_b = K_b × m","ΔT_b = K_f × m","ΔT_b = K_b / m","None"],a:0,exp:"ΔT_b = K_b × m for boiling point elevation."},
+  {q:"The freezing point depression is given by:",o:["ΔT_f = K_f × m","ΔT_f = K_b × m","ΔT_f = K_f / m","None"],a:0,exp:"ΔT_f = K_f × m for freezing point depression."},
+  {q:"The osmotic pressure is given by:",o:["π = CRT","π = C/RT","π = RT/C","None"],a:0,exp:"Osmotic pressure π = CRT."},
+  {q:"A solution with same osmotic pressure is:",o:["Isotonic","Hypertonic","Hypotonic","None"],a:0,exp:"Isotonic solutions have equal osmotic pressure."},
+  {q:"The unit of molarity is:",o:["mol/L","mol/kg","mol/m³","None"],a:0,exp:"Molarity = moles of solute per liter of solution."},
+  {q:"The mole fraction of solute is:",o:["Moles of solute/Total moles","Moles of solvent/Total moles","Moles of solute/Volume","None"],a:0,exp:"Mole fraction = moles of solute/total moles."},
+  {q:"The vapour pressure of a solution is:",o:["Lower than pure solvent","Higher than pure solvent","Same as pure solvent","None"],a:0,exp:"Raoult’s law: solution vapour pressure is lower."},
+  {q:"The boiling point of a solution is:",o:["Higher than pure solvent","Lower than pure solvent","Same as pure solvent","None"],a:0,exp:"Boiling point elevation occurs in solutions."},
+  {q:"The freezing point of a solution is:",o:["Lower than pure solvent","Higher than pure solvent","Same as pure solvent","None"],a:0,exp:"Freezing point depression occurs in solutions."},
+  {q:"The van’t Hoff factor for NaCl is:",o:["2","1","3","0"],a:0,exp:"NaCl dissociates into 2 ions (i = 2)."},
+  {q:"The colligative property depends on:",o:["Number of solute particles","Nature of solute","Nature of solvent","None"],a:0,exp:"Colligative properties depend on solute particle number."},
+  {q:"The unit of K_b (boiling point constant) is:",o:["K kg/mol","K L/mol","K/mol","None"],a:0,exp:"K_b has units K kg/mol."},
+  {q:"The osmotic pressure depends on:",o:["Temperature","Concentration","Both","None"],a:2,exp:"π = CRT depends on temperature and concentration."},
+  {q:"A non-volatile solute:",o:["Lowers vapour pressure","Increases vapour pressure","No effect","None"],a:0,exp:"Non-volatile solutes lower vapour pressure."},
+  {q:"The van’t Hoff factor for glucose is:",o:["1","2","3","0"],a:0,exp:"Glucose does not dissociate, i = 1."},
+  {q:"The relative lowering of vapour pressure is:",o:["Mole fraction of solute","Mole fraction of solvent","Molarity","None"],a:0,exp:"Relative lowering = mole fraction of solute."}
+];
+
+const q17 = [
+  {q:"The conductance of a solution is due to:",o:["Ions","Molecules","Atoms","None"],a:0,exp:"Ions conduct electricity in solutions."},
+  {q:"The unit of molar conductivity is:",o:["S m²/mol","S/m","S m","None"],a:0,exp:"Molar conductivity: S m²/mol."},
+  {q:"Kohlrausch’s law applies to:",o:["Strong electrolytes","Weak electrolytes","Both","None"],a:0,exp:"Kohlrausch’s law is for strong electrolytes."},
+  {q:"The conductivity of a solution decreases with:",o:["Dilution","Concentration increase","Temperature decrease","None"],a:0,exp:"Conductivity decreases with dilution."},
+  {q:"The cell constant is given by:",o:["l/A","A/l","l × A","None"],a:0,exp:"Cell constant = length/area (l/A)."},
+  {q:"The Nernst equation relates:",o:["Cell potential","Conductivity","Resistance","None"],a:0,exp:"Nernst equation gives cell potential."},
+  {q:"The standard emf of a cell is:",o:["E_cathode - E_anode","E_anode - E_cathode","E_cathode + E_anode","None"],a:0,exp:"E_cell = E_cathode - E_anode."},
+  {q:"The unit of specific conductivity is:",o:["S/m","S m²/mol","S","None"],a:0,exp:"Specific conductivity: S/m."},
+  {q:"The electrolyte in a lead-acid battery is:",o:["H₂SO₄","NaCl","KOH","None"],a:0,exp:"Lead-acid battery uses H₂SO₄."},
+  {q:"The cathode in an electrolytic cell is:",o:["Negative","Positive","Neutral","None"],a:0,exp:"Cathode is negative in electrolytic cells."},
+  {q:"Faraday’s second law relates to:",o:["Mass ratio","Voltage","Current","None"],a:0,exp:"Mass ratio = equivalent weight ratio."},
+  {q:"The standard reduction potential of Cu²⁺/Cu is:",o:["+0.34 V","0 V","-0.34 V","None"],a:0,exp:"Cu²⁺/Cu has E° = +0.34 V."},
+  {q:"The electrolyte in a dry cell is:",o:["NH₄Cl","H₂SO₄","KOH","None"],a:0,exp:"Dry cell uses NH₄Cl paste."},
+  {q:"The Gibbs free energy change is related to:",o:["-nFE","nFE","E/nF","None"],a:0,exp:"ΔG = -nFE for cell reactions."},
+  {q:"The unit of equivalent conductivity is:",o:["S m²/equiv","S/m","S m²/mol","None"],a:0,exp:"Equivalent conductivity: S m²/equiv."},
+  {q:"The conductivity increases with:",o:["Temperature","Dilution","Concentration","None"],a:0,exp:"Conductivity increases with temperature."},
+  {q:"The electrochemical equivalent is proportional to:",o:["Equivalent weight","Atomic weight","Molecular weight","None"],a:0,exp:"Electrochemical equivalent ∝ equivalent weight."},
+  {q:"The anode in an electrolytic cell is:",o:["Positive","Negative","Neutral","None"],a:0,exp:"Anode is positive in electrolytic cells."},
+  {q:"The standard hydrogen electrode is used as:",o:["Reference electrode","Cathode","Anode","None"],a:0,exp:"SHE is a reference with E° = 0 V."},
+  {q:"The cell constant has unit:",o:["m⁻¹","m","m²","None"],a:0,exp:"Cell constant unit is m⁻¹."}
+];
+
+const q18 = [
+  {q:"The rate of reaction is:",o:["Change in concentration/time","Change in volume/time","Change in pressure/time","None"],a:0,exp:"Rate = Δ[reactant or product]/Δt."},
+  {q:"The unit of rate constant for a first-order reaction is:",o:["s⁻¹","L/mol·s","mol/L·s","None"],a:0,exp:"First-order rate constant: s⁻¹."},
+  {q:"The order of a reaction is:",o:["Sum of powers of concentration terms","Rate constant","Half-life","None"],a:0,exp:"Order = sum of exponents in rate law."},
+  {q:"The half-life of a first-order reaction is:",o:["Constant","Proportional to concentration","Inversely proportional to concentration","None"],a:0,exp:"t₁/₂ is constant for first-order reactions."},
+  {q:"The Arrhenius equation relates:",o:["Rate constant and temperature","Rate and concentration","Order and rate","None"],a:0,exp:"k = A e^(-Ea/RT) relates k and T."},
+  {q:"The activation energy is:",o:["Energy barrier for reaction","Product energy","Reactant energy","None"],a:0,exp:"Ea is the energy barrier for reaction."},
+  {q:"A catalyst:",o:["Lowers activation energy","Increases activation energy","Changes equilibrium","None"],a:0,exp:"Catalyst lowers Ea, speeds up reaction."},
+  {q:"The unit of rate constant for a second-order reaction is:",o:["L/mol·s","s⁻¹","mol/L·s","None"],a:0,exp:"Second-order rate constant: L/mol·s."},
+  {q:"The molecularity of a reaction is:",o:["Number of molecules in elementary step","Order of reaction","Rate constant","None"],a:0,exp:"Molecularity is for elementary steps."},
+  {q:"The rate law is determined by:",o:["Experiment","Stoichiometry","Equilibrium constant","None"],a:0,exp:"Rate law is determined experimentally."},
+  {q:"The half-life of a second-order reaction is:",o:["Inversely proportional to initial concentration","Constant","Proportional to concentration","None"],a:0,exp:"t₁/₂ ∝ 1/[A]₀ for second-order."},
+  {q:"The collision theory states:",o:["Molecules must collide with proper energy and orientation","Molecules react without collision","Energy is not required","None"],a:0,exp:"Collision theory requires energy and orientation."},
+  {q:"The rate constant increases with:",o:["Temperature","Concentration","Pressure","None"],a:0,exp:"k increases with temperature (Arrhenius)."},
+  {q:"A zero-order reaction has rate:",o:["Independent of concentration","Proportional to concentration","Proportional to square of concentration","None"],a:0,exp:"Rate = k for zero-order reactions."},
+  {q:"The unit of rate of reaction is:",o:["mol/L·s","L/mol·s","s⁻¹","None"],a:0,exp:"Rate unit: mol/L·s."},
+  {q:"The integrated rate law for first-order is:",o:["ln[A] = -kt + ln[A]₀","[A] = -kt + [A]₀","1/[A] = kt + 1/[A]₀","None"],a:0,exp:"ln[A] = -kt + ln[A]₀ for first-order."},
+  {q:"The frequency factor in Arrhenius equation is:",o:["A","Ea","R","T"],a:0,exp:"A is the frequency factor."},
+  {q:"The order of a complex reaction is:",o:["Determined experimentally","Always an integer","Equal to molecularity","None"],a:0,exp:"Order is found experimentally."},
+  {q:"The rate of a reaction doubles when temperature increases by:",o:["10 K","20 K","30 K","None"],a:0,exp:"Rate typically doubles per 10 K increase."},
+  {q:"The transition state is:",o:["High-energy intermediate","Reactant","Product","None"],a:0,exp:"Transition state is a high-energy intermediate."}
+];
+
+const q19 = [
+  {q:"Adsorption is:",o:["Surface phenomenon","Bulk phenomenon","Both","None"],a:0,exp:"Adsorption occurs on surfaces."},
+  {q:"The substance adsorbed is called:",o:["Adsorbate","Adsorbent","Both","None"],a:0,exp:"Adsorbate is the substance adsorbed."},
+  {q:"Physical adsorption is due to:",o:["Van der Waals forces","Chemical bonds","Covalent bonds","None"],a:0,exp:"Physical adsorption involves weak van der Waals forces."},
+  {q:"Chemisorption is:",o:["Specific and irreversible","Non-specific and reversible","Weak and reversible","None"],a:0,exp:"Chemisorption is specific and often irreversible."},
+  {q:"The Freundlich isotherm describes:",o:["Adsorption","Absorption","Both","None"],a:0,exp:"Freundlich isotherm models adsorption."},
+  {q:"A catalyst in surface reactions:",o:["Provides active sites","Increases activation energy","Changes equilibrium","None"],a:0,exp:"Catalyst provides active sites for adsorption."},
+  {q:"The unit of surface tension is:",o:["N/m","N/m²","J/m","None"],a:0,exp:"Surface tension: N/m."},
+  {q:"Colloids are particles of size:",o:["1–1000 nm","1–10 nm","1000–10000 nm","None"],a:0,exp:"Colloids have particle sizes 1–1000 nm."},
+  {q:"The Tyndall effect is shown by:",o:["Colloids","True solutions","Suspensions","None"],a:0,exp:"Colloids scatter light (Tyndall effect)."},
+  {q:"The process of coagulation is:",o:["Aggregation of colloidal particles","Dispersion of particles","Adsorption","None"],a:0,exp:"Coagulation is aggregation of colloids."},
+  {q:"The Hardy-Schulze rule states:",o:["Higher charge ions coagulate better","Lower charge ions coagulate better","No effect of charge","None"],a:0,exp:"Higher charge ions are more effective in coagulation."},
+  {q:"Emulsions are:",o:["Liquid-liquid colloids","Solid-liquid colloids","Gas-liquid colloids","None"],a:0,exp:"Emulsions are liquid-liquid colloidal systems."},
+  {q:"The zeta potential is related to:",o:["Colloidal stability","Adsorption","Absorption","None"],a:0,exp:"Zeta potential determines colloidal stability."},
+  {q:"The Langmuir isotherm assumes:",o:["Monolayer adsorption","Multilayer adsorption","No adsorption","None"],a:0,exp:"Langmuir assumes monolayer adsorption."},
+  {q:"The example of a lyophilic colloid is:",o:["Starch","Gold sol","Sulphur sol","None"],a:0,exp:"Starch is a lyophilic colloid."},
+  {q:"The Brownian motion is observed in:",o:["Colloids","True solutions","Suspensions","None"],a:0,exp:"Colloids show Brownian motion."},
+  {q:"The electrophoresis is:",o:["Movement of colloidal particles in electric field","Coagulation","Adsorption","None"],a:0,exp:"Electrophoresis is movement in an electric field."},
+  {q:"The protective colloid prevents:",o:["Coagulation","Adsorption","Absorption","None"],a:0,exp:"Protective colloids stabilize by preventing coagulation."},
+  {q:"The example of a gel is:",o:["Jelly","Milk","Fog","None"],a:0,exp:"Jelly is an example of a gel."},
+  {q:"The adsorption increases with:",o:["Surface area","Temperature","Pressure","None"],a:0,exp:"Adsorption increases with surface area."}
+];
+
+const q20 = [
+  {q:"The process of extracting metal from ore is:",o:["Metallurgy","Electrolysis","Distillation","None"],a:0,exp:"Metallurgy is the extraction of metals from ores."},
+  {q:"The ore of aluminium is:",o:["Bauxite","Hematite","Magnetite","None"],a:0,exp:"Bauxite (Al₂O₃·2H₂O) is the ore of aluminium."},
+  {q:"Froth flotation is used for:",o:["Sulphide ores","Oxide ores","Carbonate ores","None"],a:0,exp:"Froth flotation concentrates sulphide ores."},
+  {q:"The process of roasting involves:",o:["Heating ore in presence of O₂","Heating ore in absence of O₂","Leaching","None"],a:0,exp:"Roasting heats ore with oxygen."},
+  {q:"The reducing agent in blast furnace is:",o:["CO","C","H₂","None"],a:0,exp:"CO reduces iron oxides in blast furnace."},
+  {q:"The process of converting ore to oxide is:",o:["Calcination","Roasting","Smelting","None"],a:0,exp:"Roasting converts sulphide ores to oxides."},
+  {q:"The extraction of Al is done by:",o:["Hall-Héroult process","Bayer process","Both","None"],a:0,exp:"Hall-Héroult process extracts aluminium."},
+  {q:"The flux used in iron extraction is:",o:["Limestone","Silica","Alumina","None"],a:0,exp:"Limestone (CaCO₃) is used as flux."},
+  {q:"The ore of iron is:",o:["Hematite","Bauxite","Cinnabar","None"],a:0,exp:"Hematite (Fe₂O₃) is the ore of iron."},
+  {q:"The process of leaching is used for:",o:["Aluminium","Iron","Copper","None"],a:0,exp:"Leaching is used for aluminium (Bayer process)."},
+  {q:"The slag in blast furnace is:",o:["CaSiO₃","Fe₂O₃","Al₂O₃","None"],a:0,exp:"CaSiO₃ is the slag in iron extraction."},
+  {q:"The electrolyte in Al extraction is:",o:["Molten Al₂O₃ + cryolite","NaCl","KOH","None"],a:0,exp:"Molten Al₂O₃ with cryolite is used."},
+  {q:"The process of smelting involves:",o:["Reduction of ore","Oxidation of ore","Leaching","None"],a:0,exp:"Smelting reduces ore to metal."},
+  {q:"The ore of mercury is:",o:["Cinnabar","Hematite","Bauxite","None"],a:0,exp:"Cinnabar (HgS) is the ore of mercury."},
+  {q:"The purpose of flux is to:",o:["Remove impurities","Reduce ore","Oxidize ore","None"],a:0,exp:"Flux removes impurities as slag."},
+  {q:"The extraction of copper involves:",o:["Bessemerisation","Electrolysis","Both","None"],a:2,exp:"Copper is extracted by roasting and electrolysis."},
+  {q:"The gangue is:",o:["Impurity in ore","Pure metal","Ore","None"],a:0,exp:"Gangue is the impurity in ore."},
+  {q:"The process of zone refining is used for:",o:["Ultrapure metals","Alloys","Oxides","None"],a:0,exp:"Zone refining purifies metals like Si."},
+  {q:"The reducing agent for ZnO is:",o:["Carbon","CO","H₂","None"],a:0,exp:"Carbon reduces ZnO to Zn."},
+  {q:"The Mond process is used for:",o:["Nickel","Iron","Aluminium","None"],a:0,exp:"Mond process purifies nickel."}
+];
+
+/* ---------- Answers ---------- */
+const answers6 = q6.map(x => x.a);
+const answers7 = q7.map(x => x.a);
+const answers8 = q8.map(x => x.a);
+const answers9 = q9.map(x => x.a);
+const answers10 = q10.map(x => x.a);
+const answers11 = q11.map(x => x.a);
+const answers12 = q12.map(x => x.a);
+const answers13 = q13.map(x => x.a);
+const answers14 = q14.map(x => x.a);
+const answers15 = q15.map(x => x.a);
+const answers16 = q16.map(x => x.a);
+const answers17 = q17.map(x => x.a);
+const answers18 = q18.map(x => x.a);
+const answers19 = q19.map(x => x.a);
+const answers20 = q20.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `<p><b>Q${i+1}.</b> ${item.q}</p>` +
+      item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("") +
+      `<div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>` +
+      `<div class="explanation">Explanation: ${item.exp}</div>` +
+      `<button type="button" onclick="showAnswer(this)">Show Answer</button>`;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q6, "quiz6");
+loadQuestions(q7, "quiz7");
+loadQuestions(q8, "quiz8");
+loadQuestions(q9, "quiz9");
+loadQuestions(q10, "quiz10");
+loadQuestions(q11, "quiz11");
+loadQuestions(q12, "quiz12");
+loadQuestions(q13, "quiz13");
+loadQuestions(q14, "quiz14");
+loadQuestions(q15, "quiz15");
+loadQuestions(q16, "quiz16");
+loadQuestions(q17, "quiz17");
+loadQuestions(q18, "quiz18");
+loadQuestions(q19, "quiz19");
+loadQuestions(q20, "quiz20");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0, out = "";
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
+    }
+  });
+  document.getElementById(resId).innerHTML = `<div class='result'><b>Score: ${score}/${ansArr.length}</b><br>${out}</div>`;
+}
+function qAns(formId) {
+  if (formId === "quiz6") return q6;
+  if (formId === "quiz7") return q7;
+  if (formId === "quiz8") return q8;
+  if (formId === "quiz9") return q9;
+  if (formId === "quiz10") return q10;
+  if (formId === "quiz11") return q11;
+  if (formId === "quiz12") return q12;
+  if (formId === "quiz13") return q13;
+  if (formId === "quiz14") return q14;
+  if (formId === "quiz15") return q15;
+  if (formId === "quiz16") return q16;
+  if (formId === "quiz17") return q17;
+  if (formId === "quiz18") return q18;
+  if (formId === "quiz19") return q19;
+  return q20;
+}
+
+/* ---------- Timer ---------- */
+function startTimer(duration, display) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    display.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
+    }
+  }, 1000);
+}
+startTimer(20 * 60, document.getElementById("timer6"));
+startTimer(20 * 60, document.getElementById("timer7"));
+startTimer(20 * 60, document.getElementById("timer8"));
+startTimer(20 * 60, document.getElementById("timer9"));
+startTimer(20 * 60, document.getElementById("timer10"));
+startTimer(20 * 60, document.getElementById("timer11"));
+startTimer(20 * 60, document.getElementById("timer12"));
+startTimer(20 * 60, document.getElementById("timer13"));
+startTimer(20 * 60, document.getElementById("timer14"));
+startTimer(20 * 60, document.getElementById("timer15"));
+startTimer(20 * 60, document.getElementById("timer16"));
+startTimer(20 * 60, document.getElementById("timer17"));
+startTimer(20 * 60, document.getElementById("timer18"));
+startTimer(20 * 60, document.getElementById("timer19"));
+startTimer(20 * 60, document.getElementById("timer20"));
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
+</body>
+</html>
