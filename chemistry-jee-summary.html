@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Chemistry Chapters Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #7f8c8d;
+        }
+        
+        .chapters-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .chapter-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chapter-header {
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .chapter-number {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .chapter-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-content {
+            padding: 25px;
+        }
+        
+        .key-points {
+            list-style-type: none;
+        }
+        
+        .key-points li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .key-points li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .formula {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .chapters-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JEE Chemistry Chapters Summary</h1>
+            <p class="subtitle">Key concepts and formulas for JEE exam preparation</p>
+            <div class="search-box">
+                <input type="text" placeholder="Search chapters...">
+                <i class="fas fa-search"></i>
+            </div>
+        </header>
+        
+        <div class="chapters-container">
+            <!-- Chapter 1 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 1</div>
+                    <h2 class="chapter-title">Some Basic Concepts of Chemistry</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Mole: n = m/M</li>
+                        <li>Avogadro’s number: N_A = 6.022×10²³</li>
+                        <li>Molar mass: M = m/n</li>
+                        <li>Percentage composition: (mass of element/total mass) × 100</li>
+                        <li>Empirical formula: Simplest ratio</li>
+                        <li>Molecular formula: n × empirical formula</li>
+                        <li>Limiting reagent: Determines product yield</li>
+                        <li>Molarity: M = moles of solute/L of solution</li>
+                        <li>Molality: m = moles of solute/kg of solvent</li>
+                        <li>Mole fraction: x_A = n_A/(n_A + n_B)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 2 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 2</div>
+                    <h2 class="chapter-title">Structure of Atom</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Bohr’s radius: a_0 = 0.529n²/Z Å</li>
+                        <li>Energy of electron: E_n = -13.6Z²/n² eV</li>
+                        <li>De Broglie wavelength: λ = h/(mv)</li>
+                        <li>Uncertainty principle: Δx·Δp ≥ h/(4π)</li>
+                        <li>Quantum numbers: n, l, m_l, m_s</li>
+                        <li>Planck’s constant: h = 6.626×10⁻³⁴ Js</li>
+                        <li>Aufbau principle: Order of filling orbitals</li>
+                        <li>Pauli’s exclusion principle</li>
+                        <li>Hund’s rule: Maximum multiplicity</li>
+                        <li>Photon energy: E = hν</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 3 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 3</div>
+                    <h2 class="chapter-title">Classification of Elements and Periodicity</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Periodic law: Properties repeat periodically</li>
+                        <li>Ionization energy: Energy to remove electron</li>
+                        <li>Electronegativity: Pauling scale</li>
+                        <li>Atomic radius: Decreases across period</li>
+                        <li>Ionic radius: Cations < atoms < anions</li>
+                        <li>Electron affinity: Energy change on gaining electron</li>
+                        <li>s, p, d, f blocks in periodic table</li>
+                        <li>Diagonal relationship: Li-Mg, Be-Al</li>
+                        <li>Oxidation states: Trends in groups</li>
+                        <li>Metallic character: Increases down group</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 4 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 4</div>
+                    <h2 class="chapter-title">Chemical Bonding and Molecular Structure</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Bond order: ½(N_b - N_a)</li>
+                        <li>VSEPR theory: Electron pair repulsion</li>
+                        <li>Hybridization: sp, sp², sp³</li>
+                        <li>Dipole moment: μ = q × d</li>
+                        <li>Fajan’s rule: Polarization of ions</li>
+                        <li>Bond energy: Energy to break bond</li>
+                        <li>MO theory: Bonding, antibonding orbitals</li>
+                        <li>Hydrogen bonding: Intermolecular force</li>
+                        <li>Valence bond theory: Orbital overlap</li>
+                        <li>Resonance: Delocalized electrons</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 5 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 5</div>
+                    <h2 class="chapter-title">States of Matter</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Ideal gas law: PV = nRT</li>
+                        <li>Van der Waals equation: [P + a/V²](V - b) = RT</li>
+                        <li冥
+                        <li>Boyle’s law: PV = constant</li>
+                        <li>Charles’ law: V/T = constant</li>
+                        <li>Avogadro’s law: V/n = constant</li>
+                        <li>Kinetic energy: KE = (3/2)RT</li>
+                        <li>Root mean square speed: v_rms = √(3RT/M)</li>
+                        <li>Compressibility factor: Z = PV/nRT</li>
+                        <li>Critical temperature: T_c = 8a/(27Rb)</li>
+                        <li>Mean free path: λ = 1/(√2πd²N)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 6 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 6</div>
+                    <h2 class="chapter-title">Thermodynamics</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>First law: ΔU = q + W</li>
+                        <li>Work: W = -PΔV</li>
+                        <li>Enthalpy: H = U + PV</li>
+                        <li>Entropy: ΔS = q_rev/T</li>
+                        <li>Gibbs free energy: ΔG = ΔH - TΔS</li>
+                        <li>Hess’s law: ΔH independent of path</li>
+                        <li>Standard molar enthalpy: ΔH_f°</li>
+                        <li>Bond enthalpy: ΔH = Σ(bond broken) - Σ(bond formed)</li>
+                        <li>Second law: ΔS_total ≥ 0</li>
+                        <li>Carnot efficiency: η = 1 - (T₂/T₁)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 7 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 7</div>
+                    <h2 class="chapter-title">Equilibrium</h2>
+                </3
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Equilibrium constant: K_c = [products]/[reactants]</li>
+                        <li>Le Chatelier’s principle</li>
+                        <li>pH: pH = -log[H⁺]</li>
+                        <li>Solubility product: K_sp = [A⁺]^m[B⁻]^n</li>
+                        <li>Acid dissociation: K_a = [H⁺][A⁻]/[HA]</li>
+                        <li>Base dissociation: K_b = [OH⁻][BH⁺]/[B]</li>
+                        <li>Relation: K_w = K_a × K_b = 10⁻¹⁴</li>
+                        <li>Buffer: pH = pK_a + log([salt]/[acid])</li>
+                        <li>Reaction quotient: Q = [products]/[reactants]</li>
+                        <li>Common ion effect</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 8 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 8</div>
+                    <h2 class="chapter-title">Redox Reactions</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Oxidation number: Rules for assignment</li>
+                        <li>Redox reaction: Oxidation + Reduction</li>
+                        <li>Balancing: Half-reaction method</li>
+                        <li>Standard electrode potential: E°</li>
+                        <li>Nernst equation: E = E° - (RT/nF)lnQ</li>
+                        <li>Faraday’s 1st law: m = ZIt</li>
+                        <li>Farwarden’s 2nd law: m₁/m₂ = Z₁/Z₂</li>
+                        <li>Electrochemical cell: E_cell = E_cathode - E_anode</li>
+                        <li>Galvanic cell: Spontaneous reaction</li>
+                        <li>Electrolysis: Non-spontaneous reaction</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 9 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 9</div>
+                    <h2 class="chapter-title">Hydrogen</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Hydrogen isotopes: H-1, H-2, H-3</li>
+                        <li>Hydrides: Ionic, covalent, metallic</li>
+                        <li>Water hardness: Ca²⁺, Mg²⁺ ions</li>
+                        <li>Hydrogen peroxide: H₂O₂, oxidizing agent</li>
+                        <li>Ortho and paralue hydrogen</li>
+                        <li>Hydrogen bonding: H₂O properties</li>
+                        <li>Preparation: Electrolysis, Bosch process</li>
+                        <li>Uses: Fuel, ammonia synthesis</li>
+                        <li>Heavy water: D₂O, nuclear reactors</li>
+                        <li>Hydrogen economy: Fuel cells</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 10 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 10</div>
+                    <h2 class="chapter-title">s-Block Elements</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Group 1: Alkali metals, +1 oxidation</li>
+                        <li>Group 2: Alkaline earth metals, +2 oxidation</li>
+                        <li>Diagonal relationship: Li-Mg</li>
+                        <li>Sodium carbonate: Solvay process</li>
+                        <li>Sodium hydroxide: Electrolysis</li>
+                        <li>Calcium carbonate: CaCO₃, thermal decomposition</li>
+                        <li>Reactivity: Increases down group</li>
+                        <li>Flame test: Characteristic colors</li>
+                        <li>Hydration energy: Decreases down group</li>
+                        <li>Compounds: Oxides, hydroxides, halides</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 11 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 11</div>
+                    <h2 class="chapter-title">p-Block Elements</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Group 13-18: Varied oxidation states</li>
+                        <li>Boron: B₂O₃, borax (Na₂B₄O₇·10H₂O)</li>
+                        <li>Carbon: Allotropes (diamond, graphite)</li>
+                        <li>Nitrogen: NH₃, HNO₃ preparation</li>
+                        <li>Oxygen: O₂, O₃ (ozone)</li>
+                        <li>Halogens: F₂ to I₂, reactivity decreases</li>
+                        <li>Noble gases: Inert, Xe compounds</li>
+                        <li>Acidic oxides: CO₂, SO₂</li>
+                        <li>Allotropy: P, S forms</li>
+                        <li>Oxoacids: HNO₃, H₂SO₄</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 12 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 12</div>
+                    <h2 class="chapter-title">Organic Chemistry - Some Basic Principles</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>IUPAC nomenclature: Systematic naming</li>
+                        <li>Isomerism: Structural, stereo, geometrical</li>
+                        <li>Hybridization: sp³, sp², sp</li>
+                        <li>Resonance: Electron delocalization</li>
+                        <li>Inductive effect: Electron shift</li>
+                        <li>Electromeric effect: Electron shift on reaction</li>
+                        <li>Hyperconjugation: Electron delocalization via σ bonds</li>
+                        <li>Functional groups: -OH, -CHO, -COOH</li>
+                        <li>Reaction intermediates: Carbocation, carbanion</li>
+                        <li>Types of reactions: Substitution, elimination</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 13 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 13</div>
+                    <h2 class="chapter-title">Hydrocarbons</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Alkanes: C_nH_{2n+2}</li>
+                        <li>Alkenes: C_nH_{2n}</li>
+                        <li>Alkynes: C_nH_{2n-2}</li>
+                        <li>Aromaticity: Hückel’s rule (4n+2 π electrons)</li>
+                        <li>Substitution: Free radical, electrophilic, nucleophilic</li>
+                        <li>Addition: Electrophilic, nucleophilic</li>
+                        <li>Pyrolysis: Thermal decomposition</li>
+                        <li>Ozonolysis: Cleavage of alkenes</li>
+                        <li>Markovnikov’s rule: H to less substituted carbon</li>
+                        <li>Anti-Markovnikov’s rule: H to more substituted carbon</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 14 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 14</div>
+                    <h2 class="chapter-title">Environmental Chemistry</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Greenhouse effect: CO₂, CH₄</li>
+                        <li>Ozone depletion: CFCs, O₃ → O₂</li>
+                        <li>Smog: Photochemical, classical</li>
+                        <li>Acid rain: SO₂, NOₓ</li>
+                        <li>Eutrophication: Nutrient enrichment</li>
+                        <li>BOD: Biochemical oxygen demand</li>
+                        <li>COD: Chemical oxygen demand</li>
+                        <li>Global warming potential: CO₂ = 1, CH₄ = 25</li>
+                        <li>Stratospheric ozone: O₃ protection</li>
+                        <li>Pollution control: Catalytic converters</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 15 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 15</div>
+                    <h2 class="chapter-title">Solutions</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Raoult’s law: P = x_A P_A + x_B P_B</li>
+                        <li>Henry’s law: C = k_H P</li>
+                        <li>Molarity: M = moles/L</li>
+                        <li>Molality: m = moles/kg</li>
+                        <li>Mole fraction: x_A = n_A/(n_A + n_B)</li>
+                        <li>Ideal solutions: ΔH_mix = 0</li>
+                        <li>Non-ideal solutions: Positive/negative deviation</li>
+                        <li>Colligative properties: BP elevation, FP depression</li>
+                        <li>Boiling point elevation: ΔT_b = K_b m</li>
+                        <li>Freezing point depression: ΔT_f = K_f m</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 16 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 16</div>
+                    <h2 class="chapter-title">Electrochemistry</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Faraday’s 1st law: m = ZIt</li>
+                        <li>Faraday’s 2nd law: m₁/m₂ = Z₁/Z₂</li>
+                        <li>Nernst equation: E = E° - (RT/nF)lnQ</li>
+                        <li>Standard electrode potential: E°</li>
+                        <li>Conductivity: κ = 1/ρ</li>
+                        <li>Kohlrausch’s law: Λ_m = Λ_m° - K√c</li>
+                        <li>Galvanic cell: E_cell = E_cathode - E_anode</li>
+                        <li>Electrolytic cell: Non-spontaneous reaction</li>
+                        <li>Battery: EMF series</li>
+                        <li>Corrosion: Electrochemical process</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 17 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 17</div>
+                    <h2 class="chapter-title">Chemical Kinetics</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Rate law: Rate = k[A]^m[B]^n</li>
+                        <li>Order of reaction: m + n</li>
+                        <li>Half-life (1st order): t_½ = ln(2)/k</li>
+                        <li>Half-life (2nd order): t_½ = 1/(k[A]₀)</li>
+                        <li>Arrhenius equation: k = Ae^(-E_a/RT)</li>
+                        <li>Rate constant: k</li>
+                        <li>Activation energy: E_a</li>
+                        <li>First order reaction: [A] = [A]₀e^(-kt)</li>
+                        <li>Second order reaction: 1/[A] = kt + 1/[A]₀</li>
+                        <li>Collision theory: Reaction rate factors</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 18 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 18</div>
+                    <h2 class="chapter-title">Surface Chemistry</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Adsorption: Surface accumulation</li>
+                        <li>Absorption: Bulk penetration</li>
+                        <li>Langmuir isotherm: θ = kp/(1 + kp)</li>
+                        <li>Catalysis: Lowers E_a</li>
+                        <li>Homogeneous catalysis: Same phase</li>
+                        <li>Heterogeneous catalysis: Different phases</li>
+                        <li>Colloids: 1-1000 nm particles</li>
+                        <li>Tyndall effect: Light scattering</li>
+                        <li>Emulsions: Liquid-liquid colloids</li>
+                        <li>Hardy-Schulz rule: Coagulation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 19 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 19</div>
+                    <h2 class="chapter-title">General Principles and Processes of Isolation</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Concentration: Gravity separation, froth flotation</li>
+                        <li>Roasting: Ore + heat → metal oxide</li>
+                        <li>Smelting: Metal oxide + C → metal</li>
+                        <li>Electrolytic reduction: Al, Cu</li>
+                        <li>Refining: Distillation, liquation</li>
+                        <li>Ellingham diagram: ΔG vs T</li>
+                        <li>Leaching: Chemical extraction (Au, Ag)</li>
+                        <li>Zone refining: Semiconductors</li>
+                        <li>Mond’s process: Ni purification</li>
+                        <li>Van Arkel process: Zr, Ti purification</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 20 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 20</div>
+                    <h2 class="chapter-title">d and f Block Elements</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Transition metals: d-orbital electrons</li>
+                        <li>Lanthanoids: 4f electrons</li>
+                        <li>Actinoids: 5f electrons</li>
+                        <li>Oxidation states: Multiple values</li>
+                        <li>Coordination compounds: Ligands</li>
+                        <li>Magnetic properties: Para-, dia-, ferromagnetic</li>
+                        <li>Catalytic properties: d-block</li>
+                        <li>Color: d-d transitions</li>
+                        <li>Lanthanoid contraction: Size decrease</li>
+                        <li>Interstitial compounds: Metal-nonmetal</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 21 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 21</div>
+                    <h2 class="chapter-title">Coordination Compounds</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Coordination number: Number of ligands</li>
+                        <li>Ligands: Electron pair donors</li>
+                        <li>Valence bond theory: Hybridization</li>
+                        <li>Crystal field theory: d-orbital splitting</li>
+                        <li>Isomerism: Structural, geometrical, optical</li>
+                        <li>Chelate effect: Stable complexes</li>
+                        <li>Werner’s theory: Primary, secondary valency</li>
+                        <li>Spectrochemical series: Ligand strength</li>
+                        <li>Magnetic properties: Spin states</li>
+                        <li>Stability constant: K_f = [ML_n]/[M][L]^n</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 22 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 22</div>
+                    <h2 class="chapter-title">Haloalkanes and Haloarenes</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Nucleophilic substitution: S_N1, S_N2</li>
+                        <li>Elimination reactions: E1, E2</li>
+                        <li>Haloalkanes: R-X (X = halogen)</li>
+                        <li>Haloarenes: Ar-X</li>
+                        <li>Grignard reagent: R-Mg-X</li>
+                        <li>Sandmeyer reaction: Ar-N₂⁺ → Ar-X</li>
+                        <li>Fittig reaction: Ar-X + Na → Ar-Ar</li>
+                        <li>Wurtz reaction: R-X + Na → R-R</li>
+                        <li>Chirality: Optical activity</li>
+                        <li>Polyhalogen compounds: CCl₄, DDT</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 23 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 23</div>
+                    <h2 class="chapter-title">Alcohols, Phenols and Ethers</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Alcohols: R-OH, primary, secondary, tertiary</li>
+                        <li>Phenols: Ar-OH</li>
+                        <li>Ethers: R-O-R</li>
+                        <li>Oxidation: Alcohol → aldehyde/ketone</li>
+                        <li>Dehydration: Alcohol → alkene</li>
+                        <li>Williamson synthesis: Alkoxide + alkyl halide → ether</li>
+                        <li>Lucas test: ZnCl₂ + HCl → turbidity</li>
+                        <li>Esterification: Alcohol + carboxylic acid → ester</li>
+                        <li>Acidic nature: Phenol > alcohol</li>
+                        <li>Cleavage: Ethers → alcohols/phenols</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 24 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 24</div>
+                    <h2 class="chapter-title">Aldehydes, Ketones and Carboxylic Acids</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Aldehydes: R-CHO</li>
+                        <li>Ketones: R-CO-R</li>
+                        <li>Carboxylic acids: R-COOH</li>
+                        <li>Cannizzaro reaction: 2R-CHO → R-CH₂OH + R-COO⁻</li>
+                        <li>Aldol condensation: Enolate + carbonyl → β-hydroxy carbonyl</li>
+                        <li>Oxidation: Aldehyde → carboxylic acid</li>
+                        <li>Reduction: Carbonyl → alcohol</li>
+                        <li>Acidic strength: Carboxylic acid > phenol</li>
+                        <li>Fehling’s test: R-CHO → red precipitate</li>
+                        <li>Tollens’ test: R-CHO → silver mirror</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 25 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 25</div>
+                    <h2 class="chapter-title">Biomolecules</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Carbohydrates: (CH₂O)_n</li>
+                        <li>Monosaccharides: Glucose, fructose</li>
+                        <li>Disaccharides: Sucrose, maltose</li>
+                        <li>Polysaccharides: Starch, cellulose</li>
+                        <li>Proteins: Amino acid polymers</li>
+                        <li>Peptide bond: -CO-NH-</li>
+                        <li>Enzymes: Biological catalysts</li>
+                        <li>Lipids: Fats, oils, waxes</li>
+                        <li>Nucleic acids: DNA, RNA</li>
+                        <li>Vitamins: A, B, C, D, E, K</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 26 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 26</div>
+                    <h2 class="chapter-title">Polymers</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Addition polymers: Polyethene, PVC</li>
+                        <li>Condensation polymers: Nylon, polyester</li>
+                        <li>Polymerization: Monomer → polymer</li>
+                        <li>Degree of polymerization: Number of monomer units</li>
+                        <li>Molecular mass: Average molecular weight</li>
+                        <li>Thermoplastics: Soften on heating</li>
+                        <li>Thermosetting plastics: Rigid on heating</li>
+                        <li>Natural polymers: Rubber, cellulose</li>
+                        <li>Synthetic polymers: Bakelite, Teflon</li>
+                        <li>Copolymers: Two different monomers</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 27 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 27</div>
+                    <h2 class="chapter-title">Chemistry in Everyday Life</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Drugs: Agonist, antagonist</li>
+                        <li>Analgesics: Aspirin, paracetamol</li>
+                        <li>Antacids: Mg(OH)₂, Al(OH)₃</li>
+                        <li>Antibiotics: Penicillin, streptomycin</li>
+                        <li>Antiseptics: Dettol, iodine</li>
+                        <li>Disinfectants: Bleach, phenol</li>
+                        <li>Antifertility drugs: Hormones</li>
+                        <li>Antihistamines: Cetirizine</li>
+                        <li>Tranquilizers: Barbiturates</li>
+                        <li>Food additives: Preservatives, sweeteners</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Chapter 28 -->
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 28</div>
+                    <h2 class="chapter-title">Chemical Energetics</h2>
+                </div>
+                <div class="chapter-content">
+                    <ul class="key-points">
+                        <li>Internal energy: U = q + w</li>
+                        <li>Enthalpy: H = U + PV</li>
+                        <li>Heat: q = mCΔT</li>
+                        <li>Work: w = -PΔV</li>
+                        <li>Free energy: G = H - TS</li>
+                        <li>Spontaneity: ΔG < 0</li>
+                        <li>Standard enthalpy change: ΔH°</li>
+                        <li>Standard entropy change: ΔS°</li>
+                        <li>Standard Gibbs free energy: ΔG°</li>
+                        <li>Bond energy: Energy to break bond</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>JEE Chemistry Chapters Summary | Exam Focused Key Points</p>
+            <p>Designed for effective revision and quick reference</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('.search-box input');
+            const chapterCards = document.querySelectorAll('.chapter-card');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                chapterCards.forEach(card => {
+                    const title = card.querySelector('.chapter-title').textContent.toLowerCase();
+                    const content = card.querySelector('.chapter-content').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

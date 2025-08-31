@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Summary - NEET Preparation Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        header {
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .chemistry-icon {
+            font-size: 3rem;
+            margin: 15px 0;
+        }
+        
+        .content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+        }
+        
+        .main-content {
+            line-height: 1.6;
+        }
+        
+        .chapter {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f1f1;
+            transition: all 0.3s ease;
+        }
+        
+        .chapter:hover {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .chapter h2 {
+            color: #00b4db;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f1f1;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .chapter h2:hover {
+            color: #0083b0;
+        }
+        
+        .chapter h3 {
+            color: #2193b0;
+            margin: 15px 0 10px;
+        }
+        
+        .chapter ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .chapter li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .chapter li:before {
+            content: "•";
+            color: #00b4db;
+            position: absolute;
+            left: 0;
+        }
+        
+        .formula {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #6a11cb;
+            transition: transform 0.3s ease;
+        }
+        
+        .formula:hover {
+            transform: translateX(5px);
+        }
+        
+        .key-points {
+            background: #eef7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2193b0;
+        }
+        
+        .key-points h4 {
+            color: #2193b0;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            height: fit-content;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar h3 {
+            color: #00b4db;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            text-align: center;
+        }
+        
+        .quick-links {
+            list-style-type: none;
+        }
+        
+        .quick-links li {
+            margin-bottom: 10px;
+        }
+        
+        .quick-links a {
+            display: block;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .quick-links a:hover {
+            background: #6a11cb;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .important-topics {
+            margin-top: 30px;
+        }
+        
+        .important-topics h4 {
+            color: #0083b0;
+            margin-bottom: 10px;
+        }
+        
+        .topic-list {
+            list-style-type: none;
+        }
+        
+        .topic-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            align-items: center;
+        }
+        
+        .topic-list li:before {
+            content: "•";
+            color: #0083b0;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f1f1f1;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-quiz {
+            background: linear-gradient(to right, #00b4db, #0083b0);
+        }
+        
+        .btn-home {
+            background: linear-gradient(to right, #38ef7d, #11998e);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>NEET Preparation Hub</h1>
+                    <p class="subtitle">Chemistry Summary - Key Concepts for NEET Exam</p>
+                </div>
+                <button class="back-btn" onclick="window.location.href='neet.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Subjects
+                </button>
+            </div>
+            <div class="chemistry-icon">
+                <i class="fas fa-flask"></i>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="main-content">
+                <div class="chapter" id="ch1">
+                    <h2>1. Some Basic Concepts of Chemistry</h2>
+                    <p>Fundamental concepts including matter classification, laws of chemical combination, mole concept, and stoichiometry.</p>
+                    
+                    <div class="key-points">
+                        <h4>Key Concepts</h4>
+                        <ul>
+                            <li>Matter and its classification</li>
+                            <li>Laws of chemical combination</li>
+                            <li>Dalton's atomic theory</li>
+                            <li>Mole concept and Avogadro's number</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Stoichiometry</h3>
+                    <p>Calculations based on balanced chemical equations, limiting reagents, and percentage yield.</p>
+                    
+                    <div class="formula">
+                        <p><strong>Mole:</strong> n = mass / molar mass</p>
+                        <p>Molarity: M = moles / volume (L)</p>
+                    </div>
+                </div>
+                
+                <div class="chapter" id="ch2">
+                    <h2>2. Structure of Atom</h2>
+                    <p>Atomic models, quantum numbers, electronic configuration, and spectral lines.</p>
+                    
+                    <h3>Atomic Models</h3>
+                    <p>Bohr's model, quantum mechanical model, and dual nature of matter.</p>
+                    
+                    <div class="formula">
+                        <p>Energy: E_n = -13.6 / n² eV</p>
+                        <p>De Broglie wavelength: λ = h / p</p>
+                    </div>
+                    
+                    <h3>Quantum Numbers</h3>
+                    <p>Principal (n), azimuthal (l), magnetic (m_l), spin (m_s).</p>
+                </div>
+                
+                <div class="chapter" id="ch3">
+                    <h2>3. Classification of Elements and Periodicity</h2>
+                    <p>Periodic table, trends in properties like atomic radius, ionization energy, and electronegativity.</p>
+                    
+                    <div class="key-points">
+                        <h4>Periodic Trends</h4>
+                        <ul>
+                            <li>Atomic radius decreases across period</li>
+                            <li>Ionization energy increases across period</li>
+                            <li>Electronegativity increases across period</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>s, p, d, f Blocks</h3>
+                    <p>Classification based on electron configuration.</p>
+                </div>
+                
+                <div class="chapter" id="ch4">
+                    <h2>4. Chemical Bonding and Molecular Structure</h2>
+                    <p>Ionic, covalent bonds, VSEPR theory, hybridization, and molecular orbital theory.</p>
+                    
+                    <div class="formula">
+                        <p>Bond order = (N_b - N_a) / 2</p>
+                    </div>
+                    
+                    <h3>VSEPR Theory</h3>
+                    <p>Predicts molecular geometry based on electron pairs.</p>
+                </div>
+                
+                <div class="chapter" id="ch5">
+                    <h2>5. States of Matter</h2>
+                    <p>Gases, liquids, solids; gas laws, kinetic theory, and intermolecular forces.</p>
+                    
+                    <div class="key-points">
+                        <h4>Gas Laws</h4>
+                        <ul>
+                            <li>Boyle's law: PV = constant</li>
+                            <li>Charles's law: V/T = constant</li>
+                            <li>Ideal gas equation: PV = nRT</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="formula">
+                        <p>Van der Waals equation: (P + a/V²)(V - b) = RT</p>
+                    </div>
+                </div>
+                
+                <div class="chapter" id="ch6">
+                    <h2>6. Thermodynamics</h2>
+                    <p>Laws of thermodynamics, enthalpy, entropy, and Gibbs free energy.</p>
+                    
+                    <div class="formula">
+                        <p>First law: ΔU = q + w</p>
+                        <p>Gibbs free energy: ΔG = ΔH - TΔS</p>
+                    </div>
+                    
+                    <h3>Laws</h3>
+                    <ul>
+                        <li>First law: Conservation of energy</li>
+                        <li>Second law: Entropy increases</li>
+                    </ul>
+                </div>
+                
+                <div class="chapter" id="ch7">
+                    <h2>7. Equilibrium</h2>
+                    <p>Chemical equilibrium, Le Chatelier's principle, acids-bases, and solubility.</p>
+                    
+                    <h3>Equilibrium Constant</h3>
+                    <div class="formula">
+                        <p>K_c = [products] / [reactants]</p>
+                        <p>pH = -log[H⁺]</p>
+                    </div>
+                </div>
+                
+                <div class="chapter" id="ch8">
+                    <h2>8. Redox Reactions</h2>
+                    <p>Oxidation-reduction, balancing equations, and electrochemical cells.</p>
+                    
+                    <div class="key-points">
+                        <h4>Concepts</h4>
+                        <ul>
+                            <li>Oxidation number</li>
+                            <li>Electrode potential</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="formula">
+                        <p>Nernst equation: E = E° - (RT/nF) ln Q</p>
+                    </div>
+                </div>
+                
+                <div class="chapter" id="ch9">
+                    <h2>9. Hydrogen</h2>
+                    <p>Position in periodic table, isotopes, hydrides, and water properties.</p>
+                    
+                    <div class="formula">
+                        <p>H₂O₂ decomposition: 2H₂O₂ → 2H₂O + O₂</p>
+                    </div>
+                </div>
+                
+                <div class="chapter" id="ch10">
+                    <h2>10. The s-Block Elements</h2>
+                    <p>Alkali and alkaline earth metals, properties, and compounds.</p>
+                    
+                    <div class="key-points">
+                        <h4>Properties</h4>
+                        <ul>
+                            <li>Low ionization energy</li>
+                            <li>High reactivity</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="actions">
+                    <a href="chem-quiz.html?chapter=1" class="btn btn-quiz">
+                        <i class="fas fa-brain"></i> Take Chemistry Quiz
+                    </a>
+                    <a href="neet.html" class="btn btn-home">
+                        <i class="fas fa-home"></i> Back to Main Hub
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3>Quick Navigation</h3>
+                <ul class="quick-links">
+                    <li><a href="#ch1"><i class="fas fa-book"></i> Basic Concepts</a></li>
+                    <li><a href="#ch2"><i class="fas fa-book"></i> Structure of Atom</a></li>
+                    <li><a href="#ch3"><i class="fas fa-book"></i> Classification of Elements</a></li>
+                    <li><a href="#ch4"><i class="fas fa-book"></i> Chemical Bonding</a></li>
+                    <li><a href="#ch5"><i class="fas fa-book"></i> States of Matter</a></li>
+                    <li><a href="#ch6"><i class="fas fa-book"></i> Thermodynamics</a></li>
+                    <li><a href="#ch7"><i class="fas fa-book"></i> Equilibrium</a></li>
+                    <li><a href="#ch8"><i class="fas fa-book"></i> Redox Reactions</a></li>
+                    <li><a href="#ch9"><i class="fas fa-book"></i> Hydrogen</a></li>
+                    <li><a href="#ch10"><i class="fas fa-book"></i> s-Block Elements</a></li>
+                </ul>
+                
+                <div class="important-topics">
+                    <h4>Most Important Topics for NEET</h4>
+                    <ul class="topic-list">
+                        <li>Organic Chemistry</li>
+                        <li>Physical Chemistry Calculations</li>
+                        <li>p-Block Elements</li>
+                        <li>Coordination Compounds</li>
+                        <li>Chemical Bonding</li>
+                        <li>Equilibrium</li>
+                        <li>Thermodynamics</li>
+                        <li>Atomic Structure</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 NEET Preparation Hub | Chemistry Summary Page</p>
+            <p>Comprehensive study material for NEET exam preparation</p>
+        </footer>
+    </div>
+
+<script>
+    // Smooth scroll for sidebar navigation
+    document.querySelectorAll('.quick-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // Toggle chapter content visibility
+    document.querySelectorAll('.chapter h2').forEach(header => {
+        header.addEventListener('click', function() {
+            const chapterContent = this.nextElementSibling;
+            if (chapterContent && chapterContent.style.display !== 'none') {
+                chapterContent.style.display = 'none';
+            } else {
+                chapterContent.style.display = 'block';
+            }
+        });
+    });
+
+    // Animation for page elements
+    document.addEventListener('DOMContentLoaded', function() {
+        const chapters = document.querySelectorAll('.chapter');
+        chapters.forEach((chapter, index) => {
+            chapter.style.opacity = "0";
+            chapter.style.transform = "translateY(20px)";
+            setTimeout(() => {
+                chapter.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                chapter.style.opacity = "1";
+                chapter.style.transform = "translateY(0)";
+            }, 200 * index);
+        });
+
+        // Dynamic chapter navigation based on URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const chapter = urlParams.get('chapter');
+        if (chapter) {
+            const targetChapter = document.getElementById(`ch${chapter}`);
+            if (targetChapter) {
+                targetChapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                targetChapter.style.background = '#f0f0f0';
+                setTimeout(() => {
+                    targetChapter.style.transition = 'background 1s ease';
+                    targetChapter.style.background = 'transparent';
+                }, 2000);
+            }
+        }
+    });
+
+    // Back button navigation
+    function goBack() {
+        window.location.href = "neet.html";
+    }
+</script>
+</body>
+</html>
