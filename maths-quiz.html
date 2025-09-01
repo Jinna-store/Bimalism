@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JEE Mathematics Quiz Chapters 1–15</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      margin: auto;
+      max-width: 900px;
+    }
+    h2 {
+      background: #444;
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .question {
+      background: #fff;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .options label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    button {
+      background: #d4a017;
+      color: #fff;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #b8860b;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #e3f2fd;
+      border-left: 5px solid #2196f3;
+    }
+    .timer {
+      font-size: 18px;
+      font-weight: bold;
+      color: #b71c1c;
+      margin: 10px 0;
+    }
+    .answer {
+      display: none;
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+    .explanation {
+      display: none;
+      margin-top: 5px;
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>JEE Mathematics Quiz (Chapters 1–15)</h1>
+  <p>Each quiz has questions from previous years | Time Limit: 20 minutes</p>
+</header>
+
+<section>
+  <h2>Chapter 1: Sets</h2>
+  <div class="timer" id="timer1">20:00</div>
+  <form id="quiz1"></form>
+  <button onclick="submitQuiz('quiz1','result1',answers1);">Submit Quiz</button>
+  <div id="result1" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 2: Relations and Functions</h2>
+  <div class="timer" id="timer2">20:00</div>
+  <form id="quiz2"></form>
+  <button onclick="submitQuiz('quiz2','result2',answers2);">Submit Quiz</button>
+  <div id="result2" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 3: Trigonometric Functions</h2>
+  <div class="timer" id="timer3">20:00</div>
+  <form id="quiz3"></form>
+  <button onclick="submitQuiz('quiz3','result3',answers3);">Submit Quiz</button>
+  <div id="result3" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 4: Principle of Mathematical Induction</h2>
+  <div class="timer" id="timer4">20:00</div>
+  <form id="quiz4"></form>
+  <button onclick="submitQuiz('quiz4','result4',answers4);">Submit Quiz</button>
+  <div id="result4" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 5: Complex Numbers and Quadratic Equations</h2>
+  <div class="timer" id="timer5">20:00</div>
+  <form id="quiz5"></form>
+  <button onclick="submitQuiz('quiz5','result5',answers5);">Submit Quiz</button>
+  <div id="result5" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 6: Linear Inequalities</h2>
+  <div class="timer" id="timer6">20:00</div>
+  <form id="quiz6"></form>
+  <button onclick="submitQuiz('quiz6','result6',answers6);">Submit Quiz</button>
+  <div id="result6" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 7: Permutations and Combinations</h2>
+  <div class="timer" id="timer7">20:00</div>
+  <form id="quiz7"></form>
+  <button onclick="submitQuiz('quiz7','result7',answers7);">Submit Quiz</button>
+  <div id="result7" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 8: Binomial Theorem</h2>
+  <div class="timer" id="timer8">20:00</div>
+  <form id="quiz8"></form>
+  <button onclick="submitQuiz('quiz8','result8',answers8);">Submit Quiz</button>
+  <div id="result8" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 9: Sequences and Series</h2>
+  <div class="timer" id="timer9">20:00</div>
+  <form id="quiz9"></form>
+  <button onclick="submitQuiz('quiz9','result9',answers9);">Submit Quiz</button>
+  <div id="result9" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 10: Straight Lines</h2>
+  <div class="timer" id="timer10">20:00</div>
+  <form id="quiz10"></form>
+  <button onclick="submitQuiz('quiz10','result10',answers10);">Submit Quiz</button>
+  <div id="result10" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 11: Conic Sections</h2>
+  <div class="timer" id="timer11">20:00</div>
+  <form id="quiz11"></form>
+  <button onclick="submitQuiz('quiz11','result11',answers11);">Submit Quiz</button>
+  <div id="result11" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 12: Introduction to Three Dimensional Geometry</h2>
+  <div class="timer" id="timer12">20:00</div>
+  <form id="quiz12"></form>
+  <button onclick="submitQuiz('quiz12','result12',answers12);">Submit Quiz</button>
+  <div id="result12" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 13: Limits and Derivatives</h2>
+  <div class="timer" id="timer13">20:00</div>
+  <form id="quiz13"></form>
+  <button onclick="submitQuiz('quiz13','result13',answers13);">Submit Quiz</button>
+  <div id="result13" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 14: Mathematical Reasoning</h2>
+  <div class="timer" id="timer14">20:00</div>
+  <form id="quiz14"></form>
+  <button onclick="submitQuiz('quiz14','result14',answers14);">Submit Quiz</button>
+  <div id="result14" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 15: Statistics</h2>
+  <div class="timer" id="timer15">20:00</div>
+  <form id="quiz15"></form>
+  <button onclick="submitQuiz('quiz15','result15',answers15);">Submit Quiz</button>
+  <div id="result15" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data ---------- */
+const q1 = [
+  {
+    "q": "If A = {1, 2, 3, 4} and B = {3, 4, 5, 6}, then the number of elements in A ∪ B is",
+    "o": ["4", "6", "8", "10"],
+    "a": 1,
+    "exp": "A ∪ B = {1, 2, 3, 4, 5, 6}. The number of elements is 6."
+  },
+  {
+    "q": "The number of subsets of a set with 4 elements is",
+    "o": ["8", "12", "16", "32"],
+    "a": 2,
+    "exp": "For a set with n elements, the number of subsets is 2^n. Here, n = 4, so 2^4 = 16."
+  }
+];
+
+const q2 = [
+  {
+    "q": "The domain of the function f(x) = 1/√(x - 2) is",
+    "o": ["x > 2", "x < 2", "x ≥ 2", "x ≤ 2"],
+    "a": 0,
+    "exp": "For f(x) to be defined, x - 2 > 0, so x > 2."
+  },
+  {
+    "q": "If f(x) = x² and g(x) = x + 1, then (f ∘ g)(x) is",
+    "o": ["x² + 1", "(x + 1)²", "x² + x", "x + 1"],
+    "a": 1,
+    "exp": "(f ∘ g)(x) = f(g(x)) = f(x + 1) = (x + 1)²."
+  }
+];
+
+const q3 = [
+  {
+    "q": "The value of sin(5π/3) is",
+    "o": ["√3/2", "-√3/2", "1/2", "-1/2"],
+    "a": 1,
+    "exp": "sin(5π/3) = sin(2π - π/3) = -sin(π/3) = -√3/2."
+  },
+  {
+    "q": "If tan θ = 3/4, then cos θ is",
+    "o": ["3/5", "4/5", "5/3", "5/4"],
+    "a": 1,
+    "exp": "tan θ = 3/4 implies opposite = 3, adjacent = 4. Hypotenuse = √(3² + 4²) = 5. So, cos θ = adjacent/hypotenuse = 4/5."
+  }
+];
+
+const q4 = [
+  {
+    "q": "To prove 1 + 2 + ... + n = n(n+1)/2 by induction, the inductive step involves assuming the statement is true for n = k and proving it for",
+    "o": ["n = k - 1", "n = k", "n = k + 1", "n = k + 2"],
+    "a": 2,
+    "exp": "In mathematical induction, we assume the statement is true for n = k and prove it for n = k + 1."
+  }
+];
+
+const q5 = [
+  {
+    "q": "The modulus of the complex number z = 3 + 4i is",
+    "o": ["5", "7", "3", "4"],
+    "a": 0,
+    "exp": "|z| = √(3² + 4²) = √(9 + 16) = √25 = 5."
+  },
+  {
+    "q": "The roots of the quadratic equation x² - 4x + 4 = 0 are",
+    "o": ["2, 2", "2, -2", "4, 4", "-2, -2"],
+    "a": 0,
+    "exp": "Using the quadratic formula, x = [4 ± √(16 - 16)]/2 = 4/2 = 2. Both roots are 2."
+  }
+];
+
+const q6 = [
+  {
+    "q": "The solution to the inequality 2x - 3 > 5 is",
+    "o": ["x > 4", "x < 4", "x > 1", "x < 1"],
+    "a": 0,
+    "exp": "2x - 3 > 5 implies 2x > 8, so x > 4."
+  }
+];
+
+const q7 = [
+  {
+    "q": "The number of ways to arrange 5 distinct objects in a row is",
+    "o": ["120", "60", "24", "720"],
+    "a": 0,
+    "exp": "Number of permutations of 5 distinct objects = 5! = 120."
+  },
+  {
+    "q": "The number of ways to choose 3 items from 5 is",
+    "o": ["10", "15", "20", "60"],
+    "a": 0,
+    "exp": "Number of combinations = C(5,3) = 5!/(3!2!) = 10."
+  }
+];
+
+const q8 = [
+  {
+    "q": "The coefficient of x³ in the expansion of (1 + x)⁵ is",
+    "o": ["5", "10", "20", "60"],
+    "a": 1,
+    "exp": "Coefficient of x^r in (1 + x)^n is C(n,r). For x³, r = 3, n = 5, so C(5,3) = 10."
+  }
+];
+
+const q9 = [
+  {
+    "q": "The sum of the first 10 terms of the AP 2, 5, 8, ... is",
+    "o": ["155", "185", "215", "245"],
+    "a": 0,
+    "exp": "For AP, S_n = n/2[2a + (n-1)d]. Here, a = 2, d = 3, n = 10. S_10 = 10/2[2·2 + (10-1)·3] = 5(4 + 27) = 5·31 = 155."
+  }
+];
+
+const q10 = [
+  {
+    "q": "The slope of the line passing through points (2, 3) and (4, 7) is",
+    "o": ["1", "2", "3", "4"],
+    "a": 1,
+    "exp": "Slope = (y₂ - y₁)/(x₂ - x₁) = (7 - 3)/(4 - 2) = 4/2 = 2."
+  }
+];
+
+const q11 = [
+  {
+    "q": "The eccentricity of the ellipse x²/16 + y²/9 = 1 is",
+    "o": ["√7/4", "√7/3", "√3/4", "√3/9"],
+    "a": 0,
+    "exp": "For ellipse x²/a² + y²/b² = 1, e = √(1 - b²/a²). Here, a² = 16, b² = 9, so e = √(1 - 9/16) = √(7/16) = √7/4."
+  }
+];
+
+const q12 = [
+  {
+    "q": "The distance between points (1, 2, 3) and (4, 5, 6) in 3D space is",
+    "o": ["√27", "√18", "√9", "√3"],
+    "a": 0,
+    "exp": "Distance = √[(4-1)² + (5-2)² + (6-3)²] = √(9 + 9 + 9) = √27."
+  }
+];
+
+const q13 = [
+  {
+    "q": "The limit lim(x→2) (x² - 4)/(x - 2) is",
+    "o": ["2", "4", "6", "8"],
+    "a": 1,
+    "exp": "(x² - 4)/(x - 2) = (x - 2)(x + 2)/(x - 2) = x + 2 (for x ≠ 2). As x→2, x + 2 → 4."
+  }
+];
+
+const q14 = [
+  {
+    "q": "The negation of the statement 'All roses are red' is",
+    "o": ["All roses are not red", "Some roses are red", "Some roses are not red", "No roses are red"],
+    "a": 2,
+    "exp": "Negation of 'All A are B' is 'Some A are not B'. Thus, 'Some roses are not red'."
+  }
+];
+
+const q15 = [
+  {
+    "q": "The mean of the data set {2, 4, 6, 8, 10} is",
+    "o": ["4", "5", "6", "7"],
+    "a": 1,
+    "exp": "Mean = (2 + 4 + 6 + 8 + 10)/5 = 30/5 = 6."
+  }
+];
+
+/* ---------- Answers ---------- */
+const answers1 = q1.map(x => x.a);
+const answers2 = q2.map(x => x.a);
+const answers3 = q3.map(x => x.a);
+const answers4 = q4.map(x => x.a);
+const answers5 = q5.map(x => x.a);
+const answers6 = q6.map(x => x.a);
+const answers7 = q7.map(x => x.a);
+const answers8 = q8.map(x => x.a);
+const answers9 = q9.map(x => x.a);
+const answers10 = q10.map(x => x.a);
+const answers11 = q11.map(x => x.a);
+const answers12 = q12.map(x => x.a);
+const answers13 = q13.map(x => x.a);
+const answers14 = q14.map(x => x.a);
+const answers15 = q15.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `<p><b>Q${i+1}.</b> ${item.q}</p>` +
+      item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("") +
+      `<div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>` +
+      `<div class="explanation">Explanation: ${item.exp}</div>` +
+      `<button type="button" onclick="showAnswer(this)">Show Answer</button>`;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q1, "quiz1");
+loadQuestions(q2, "quiz2");
+loadQuestions(q3, "quiz3");
+loadQuestions(q4, "quiz4");
+loadQuestions(q5, "quiz5");
+loadQuestions(q6, "quiz6");
+loadQuestions(q7, "quiz7");
+loadQuestions(q8, "quiz8");
+loadQuestions(q9, "quiz9");
+loadQuestions(q10, "quiz10");
+loadQuestions(q11, "quiz11");
+loadQuestions(q12, "quiz12");
+loadQuestions(q13, "quiz13");
+loadQuestions(q14, "quiz14");
+loadQuestions(q15, "quiz15");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0, out = "";
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
+    }
+  });
+  document.getElementById(resId).innerHTML = `<div class='result'><b>Score: ${score}/${ansArr.length}</b><br>${out}</div>`;
+}
+function qAns(formId) {
+  switch (formId) {
+    case "quiz1": return q1;
+    case "quiz2": return q2;
+    case "quiz3": return q3;
+    case "quiz4": return q4;
+    case "quiz5": return q5;
+    case "quiz6": return q6;
+    case "quiz7": return q7;
+    case "quiz8": return q8;
+    case "quiz9": return q9;
+    case "quiz10": return q10;
+    case "quiz11": return q11;
+    case "quiz12": return q12;
+    case "quiz13": return q13;
+    case "quiz14": return q14;
+    case "quiz15": return q15;
+    default: return [];
+  }
+}
+
+/* ---------- Timer ---------- */
+function startTimer(duration, display) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    display.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
+    }
+  }, 1000);
+}
+startTimer(20 * 60, document.getElementById("timer1"));
+startTimer(20 * 60, document.getElementById("timer2"));
+startTimer(20 * 60, document.getElementById("timer3"));
+startTimer(20 * 60, document.getElementById("timer4"));
+startTimer(20 * 60, document.getElementById("timer5"));
+startTimer(20 * 60, document.getElementById("timer6"));
+startTimer(20 * 60, document.getElementById("timer7"));
+startTimer(20 * 60, document.getElementById("timer8"));
+startTimer(20 * 60, document.getElementById("timer9"));
+startTimer(20 * 60, document.getElementById("timer10"));
+startTimer(20 * 60, document.getElementById("timer11"));
+startTimer(20 * 60, document.getElementById("timer12"));
+startTimer(20 * 60, document.getElementById("timer13"));
+startTimer(20 * 60, document.getElementById("timer14"));
+startTimer(20 * 60, document.getElementById("timer15"));
+
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
+</body>
+</html>
