@@ -3,379 +3,639 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapter 1: Units and Measurements Quiz | JEE Preparation</title>
+  <title>JEE Physics Quiz Chapters 1–14</title>
   <style>
-    * {
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f0f4f8, #d9e2ec, #e8ecef);
-      color: #333;
-      line-height: 1.6;
-      padding: 20px;
-      min-height: 100vh;
-    }
-    
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
     header {
+      background: #222;
+      color: #fff;
+      padding: 1rem;
       text-align: center;
-      margin-bottom: 30px;
+    }
+    section {
       padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin: auto;
+      max-width: 900px;
     }
-    
-    h1 {
-      color: #d4a017;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-    
-    .subtitle {
-      color: #555;
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-    }
-    
-    .back-btn {
-      display: inline-block;
-      background: #e74c3c;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 10px;
-      transition: all 0.3s ease;
-    }
-    
-    .back-btn:hover {
-      background: #c0392b;
-      transform: translateY(-2px);
-    }
-    
-    .quiz-container {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-    
-    .timer {
-      text-align: right;
-      font-size: 1.2rem;
-      color: #d4a017;
-      margin-bottom: 15px;
-    }
-    
-    .question {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #d4a017;
-      margin-bottom: 15px;
-    }
-    
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    
-    .option {
+    h2 {
+      background: #444;
+      color: #fff;
       padding: 10px;
-      background: rgba(240, 240, 240, 0.9);
-      border-radius: 8px;
+      border-radius: 6px;
+    }
+    .question {
+      background: #fff;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .options label {
+      display: block;
+      margin: 6px 0;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
-    
-    .option:hover {
-      background: rgba(212, 160, 23, 0.3);
-    }
-    
-    .option.selected {
+    button {
       background: #d4a017;
       color: #fff;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
     }
-    
-    .option.correct {
-      background: #28a745;
-      color: #fff;
+    button:hover {
+      background: #b8860b;
     }
-    
-    .option.incorrect {
-      background: #e74c3c;
-      color: #fff;
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #e3f2fd;
+      border-left: 5px solid #2196f3;
     }
-    
-    .submit-btn, .next-btn {
-      display: inline-block;
-      background: #d4a017;
-      color: #333;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
+    .timer {
+      font-size: 18px;
       font-weight: bold;
-      margin-top: 20px;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      color: #b71c1c;
+      margin: 10px 0;
     }
-    
-    .submit-btn:hover, .next-btn:hover {
-      background: #b58900;
+    .answer {
+      display: none;
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
     }
-    
-    .score {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #555;
-      margin-top: 20px;
-    }
-    
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .quiz-container {
-        padding: 15px;
-      }
+    .explanation {
+      display: none;
+      margin-top: 5px;
+      font-size: 14px;
+      color: #444;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Chapter 1: Units and Measurements Quiz</h1>
-      <p class="subtitle">20 multiple-choice questions | 20 minutes</p>
-      <a href="jee.html" class="back-btn">← Back to Main Page</a>
-    </header>
+<header>
+  <h1>JEE Physics Quiz (Chapters 1–14)</h1>
+  <p>Each quiz has 20 questions | Time Limit: 20 minutes</p>
+</header>
 
-    <div class="quiz-container" id="quiz">
-      <div class="timer" id="timer">20:00</div>
-      <div class="question" id="question"></div>
-      <div class="options" id="options"></div>
-      <button class="submit-btn" id="submit-btn">Submit Answer</button>
-      <button class="next-btn" id="next-btn" style="display: none;">Next Question</button>
-    </div>
-    <div class="score" id="score"></div>
+<section>
+  <h2>Chapter 1: Physical World</h2>
+  <div class="timer" id="timer1">20:00</div>
+  <form id="quiz1"></form>
+  <button onclick="submitQuiz('quiz1','result1',answers1);">Submit Quiz</button>
+  <div id="result1" class="result"></div>
+</section>
 
-    <footer>
-      <p>Made with ❤️ for JEE Aspirants | Chapter 1 Quiz</p>
-      <p>Based on JEE Main & Advanced Syllabus</p>
-    </footer>
-  </div>
+<section>
+  <h2>Chapter 2: Units and Measurement</h2>
+  <div class="timer" id="timer2">20:00</div>
+  <form id="quiz2"></form>
+  <button onclick="submitQuiz('quiz2','result2',answers2);">Submit Quiz</button>
+  <div id="result2" class="result"></div>
+</section>
 
-  <script>
-    const quizData = [
-      {
-        question: "What is the SI unit of length?",
-        options: ["Meter", "Foot", "Inch", "Yard"],
-        correct: 0
-      },
-      {
-        question: "How many fundamental units are there in the SI system?",
-        options: ["5", "6", "7", "8"],
-        correct: 2
-      },
-      {
-        question: "Which of the following is a derived unit?",
-        options: ["Kilogram", "Second", "Newton", "Ampere"],
-        correct: 2
-      },
-      {
-        question: "Dimensional formula for energy is:",
-        options: ["MLT^{-2}", "ML^2T^{-2}", "M L T^{-1}", "M L^2 T^{-1}"],
-        correct: 1
-      },
-      {
-        question: "The least count of a measuring instrument is:",
-        options: ["Maximum value it can measure", "Smallest value it can measure accurately", "Average error", "Systematic error"],
-        correct: 1
-      },
-      {
-        question: "Significant figures in 0.00250 are:",
-        options: ["2", "3", "4", "5"],
-        correct: 2
-      },
-      {
-        question: "Parsec is a unit of:",
-        options: ["Time", "Mass", "Distance", "Force"],
-        correct: 2
-      },
-      {
-        question: "Which is not a fundamental quantity?",
-        options: ["Temperature", "Electric current", "Force", "Luminous intensity"],
-        correct: 2
-      },
-      {
-        question: "The dimensional formula for pressure is:",
-        options: ["ML^{-1}T^{-2}", "MLT^{-2}", "M L^2 T^{-2}", "M^{-1} L T^{-2}"],
-        correct: 0
-      },
-      {
-        question: "Random errors can be reduced by:",
-        options: ["Taking single measurement", "Taking multiple measurements", "Using better instruments", "Calibration"],
-        correct: 1
-      },
-      {
-        question: "The number of significant figures in 5.00 × 10^2 is:",
-        options: ["1", "2", "3", "4"],
-        correct: 2
-      },
-      {
-        question: "Candela is the SI unit of:",
-        options: ["Luminous intensity", "Amount of substance", "Electric current", "Temperature"],
-        correct: 0
-      },
-      {
-        question: "Dimensional analysis cannot give:",
-        options: ["Correctness of formula", "Numerical constants", "Unit conversion", "Homogeneity"],
-        correct: 1
-      },
-      {
-        question: "Absolute error is:",
-        options: ["Difference between measured and true value", "Percentage error", "Relative error", "Mean error"],
-        correct: 0
-      },
-      {
-        question: "The unit of plane angle is:",
-        options: ["Steradian", "Radian", "Degree", "Grad"],
-        correct: 1
-      },
-      {
-        question: "In SI system, the unit of energy is:",
-        options: ["Erg", "Calorie", "Joule", "Electron volt"],
-        correct: 2
-      },
-      {
-        question: "The percentage error in a measurement is:",
-        options: ["Absolute error / measured value × 100", "Measured value / absolute error × 100", "True value / measured value × 100", "None"],
-        correct: 0
-      },
-      {
-        question: "Which pair has same dimensions?",
-        options: ["Force and work", "Energy and torque", "Momentum and velocity", "Pressure and density"],
-        correct: 1
-      },
-      {
-        question: "The base unit for thermodynamic temperature is:",
-        options: ["Celsius", "Fahrenheit", "Kelvin", "Rankine"],
-        correct: 2
-      },
-      {
-        question: "Significant figures indicate:",
-        options: ["Accuracy", "Precision", "Error", "Range"],
-        correct: 1
-      }
-    ];
+<section>
+  <h2>Chapter 3: Motion in a Straight Line</h2>
+  <div class="timer" id="timer3">20:00</div>
+  <form id="quiz3"></form>
+  <button onclick="submitQuiz('quiz3','result3',answers3);">Submit Quiz</button>
+  <div id="result3" class="result"></div>
+</section>
 
-    let currentQuestion = 0;
-    let score = 0;
-    let selectedOption = null;
-    let timeLeft = 1200; // 20 minutes in seconds
-    let timerInterval;
+<section>
+  <h2>Chapter 4: Motion in a Plane</h2>
+  <div class="timer" id="timer4">20:00</div>
+  <form id="quiz4"></form>
+  <button onclick="submitQuiz('quiz4','result4',answers4);">Submit Quiz</button>
+  <div id="result4" class="result"></div>
+</section>
 
-    const questionElement = document.getElementById('question');
-    const optionsElement = document.getElementById('options');
-    const submitBtn = document.getElementById('submit-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const scoreElement = document.getElementById('score');
-    const timerElement = document.getElementById('timer');
+<section>
+  <h2>Chapter 5: Laws of Motion</h2>
+  <div class="timer" id="timer5">20:00</div>
+  <form id="quiz5"></form>
+  <button onclick="submitQuiz('quiz5','result5',answers5);">Submit Quiz</button>
+  <div id="result5" class="result"></div>
+</section>
 
-    function startTimer() {
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          showScore();
-        }
-      }, 1000);
+<section>
+  <h2>Chapter 6: Work, Energy and Power</h2>
+  <div class="timer" id="timer6">20:00</div>
+  <form id="quiz6"></form>
+  <button onclick="submitQuiz('quiz6','result6',answers6);">Submit Quiz</button>
+  <div id="result6" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 7: System of Particles and Rotational Motion</h2>
+  <div class="timer" id="timer7">20:00</div>
+  <form id="quiz7"></form>
+  <button onclick="submitQuiz('quiz7','result7',answers7);">Submit Quiz</button>
+  <div id="result7" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 8: Gravitation</h2>
+  <div class="timer" id="timer8">20:00</div>
+  <form id="quiz8"></form>
+  <button onclick="submitQuiz('quiz8','result8',answers8);">Submit Quiz</button>
+  <div id="result8" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 9: Mechanical Properties of Solids</h2>
+  <div class="timer" id="timer9">20:00</div>
+  <form id="quiz9"></form>
+  <button onclick="submitQuiz('quiz9','result9',answers9);">Submit Quiz</button>
+  <div id="result9" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 10: Mechanical Properties of Fluids</h2>
+  <div class="timer" id="timer10">20:00</div>
+  <form id="quiz10"></form>
+  <button onclick="submitQuiz('quiz10','result10',answers10);">Submit Quiz</button>
+  <div id="result10" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 11: Thermal Properties of Matter</h2>
+  <div class="timer" id="timer11">20:00</div>
+  <form id="quiz11"></form>
+  <button onclick="submitQuiz('quiz11','result11',answers11);">Submit Quiz</button>
+  <div id="result11" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 12: Thermodynamics</h2>
+  <div class="timer" id="timer12">20:00</div>
+  <form id="quiz12"></form>
+  <button onclick="submitQuiz('quiz12','result12',answers12);">Submit Quiz</button>
+  <div id="result12" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 13: Kinetic Theory</h2>
+  <div class="timer" id="timer13">20:00</div>
+  <form id="quiz13"></form>
+  <button onclick="submitQuiz('quiz13','result13',answers13);">Submit Quiz</button>
+  <div id="result13" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 14: Oscillations and Waves</h2>
+  <div class="timer" id="timer14">20:00</div>
+  <form id="quiz14"></form>
+  <button onclick="submitQuiz('quiz14','result14',answers14);">Submit Quiz</button>
+  <div id="result14" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data ---------- */
+const q1 = [
+  {q:"Who is known as the Father of Modern Physics?",o:["Newton","Einstein","Galileo","Faraday"],a:1,exp:"Einstein developed relativity, revolutionizing physics."},
+  {q:"Which branch studies celestial bodies?",o:["Mechanics","Astronomy","Optics","Electrodynamics"],a:1,exp:"Astronomy deals with stars, planets, and the universe."},
+  {q:"Physics is primarily based on:",o:["Experiments","Philosophy","Art","Myth"],a:0,exp:"Physics relies on empirical observations and experiments."},
+  {q:"The SI system was adopted in:",o:["1960","1948","1954","1971"],a:0,exp:"The SI system was adopted in 1960 by CGPM."},
+  {q:"Which is not a fundamental force?",o:["Gravitational","Electromagnetic","Friction","Strong nuclear"],a:2,exp:"Friction is a derived force, electromagnetic in nature."},
+  {q:"Who discovered the Raman effect?",o:["C.V. Raman","S.N. Bose","H.J. Bhabha","J.C. Bose"],a:0,exp:"C.V. Raman received the Nobel Prize for the Raman effect."},
+  {q:"Which force binds the nucleus?",o:["Electromagnetic","Weak nuclear","Strong nuclear","Gravitational"],a:2,exp:"Strong nuclear force holds protons and neutrons together."},
+  {q:"Who proposed the theory of relativity?",o:["Einstein","Newton","Planck","Bohr"],a:0,exp:"Einstein introduced special and general relativity."},
+  {q:"Who originated quantum theory?",o:["Planck","Einstein","Bohr","Schrödinger"],a:0,exp:"Max Planck proposed quantum theory in 1900."},
+  {q:"The scope of physics includes:",o:["Only mechanics","All natural phenomena","Only astronomy","Only biology"],a:1,exp:"Physics covers all natural phenomena."},
+  {q:"Technology is the application of:",o:["Art","Biology","Physics","Chemistry"],a:2,exp:"Technology applies principles of physics."},
+  {q:"The universe began with:",o:["Steady State","Big Bang","Black Hole","Nebula"],a:1,exp:"The Big Bang theory explains the universe's origin."},
+  {q:"Weak nuclear force causes:",o:["Beta decay","Gamma radiation","Strong bonding","Gravity"],a:0,exp:"Weak nuclear force is responsible for beta decay."},
+  {q:"Who discovered radioactivity?",o:["Curie","Rutherford","Becquerel","Einstein"],a:2,exp:"Henri Becquerel discovered radioactivity in 1896."},
+  {q:"Which is not a branch of physics?",o:["Thermodynamics","Astrology","Electrodynamics","Mechanics"],a:1,exp:"Astrology is not a scientific field."},
+  {q:"Modern physics began with:",o:["Relativity & Quantum Mechanics","Classical Mechanics","Astrology","Alchemy"],a:0,exp:"Relativity and quantum mechanics mark modern physics."},
+  {q:"Who discovered the electron?",o:["Thomson","Rutherford","Bohr","Curie"],a:0,exp:"J.J. Thomson discovered the electron in 1897."},
+  {q:"Which branch deals with light?",o:["Optics","Mechanics","Nuclear Physics","Solid State"],a:0,exp:"Optics studies the behavior of light."},
+  {q:"The first Nobel Prize in Physics (1901) was awarded to:",o:["Planck","Röntgen","Curie","Einstein"],a:1,exp:"Röntgen received it for discovering X-rays."},
+  {q:"Physics impacts society through:",o:["Art","Technology","Mythology","Religion"],a:1,exp:"Physics drives technological advancements."}
+];
+
+const q2 = [
+  {q:"The SI unit of luminous intensity is:",o:["Candela","Lux","Lumen","Steradian"],a:0,exp:"Candela is the SI base unit for luminous intensity."},
+  {q:"How many fundamental SI units are there?",o:["5","7","9","11"],a:1,exp:"There are seven fundamental SI units."},
+  {q:"Parallax method measures:",o:["Small distances","Large distances","Mass","Temperature"],a:1,exp:"Parallax is used for large astronomical distances."},
+  {q:"Which quantity is dimensionless?",o:["Refractive index","Velocity","Force","Work"],a:0,exp:"Refractive index has no units."},
+  {q:"The exact SI speed of light is:",o:["2.998×10^8 m/s","3×10^8 m/s","299000 km/s","2.97×10^8 m/s"],a:0,exp:"Speed of light is defined as 2.998×10^8 m/s."},
+  {q:"Accuracy refers to:",o:["Closeness to true value","Repeatability","Randomness","Error"],a:0,exp:"Accuracy measures closeness to the true value."},
+  {q:"Precision refers to:",o:["Closeness to true value","Consistency","Error margin","Deviation"],a:1,exp:"Precision indicates repeatability of measurements."},
+  {q:"Significant figures in 0.004560 are:",o:["3","4","5","6"],a:2,exp:"Digits 4560 give 4 significant figures."},
+  {q:"The dimension of Planck’s constant is:",o:["ML²T⁻¹","ML²T⁻²","ML²T⁻³","MLT⁻²"],a:0,exp:"Planck’s constant has dimensions ML²T⁻¹."},
+  {q:"One light year equals:",o:["3.0×10^8 m","9.46×10^15 m","1.5×10^11 m","3.84×10^8 m"],a:1,exp:"1 light year = 9.46×10^15 meters."},
+  {q:"Least count of a vernier caliper (0.1 cm main scale, 10 divisions):",o:["0.01 cm","0.1 cm","0.001 cm","0.2 cm"],a:0,exp:"Least count = 0.1 cm / 10 = 0.01 cm."},
+  {q:"Which is a derived unit?",o:["Kelvin","Ampere","Pascal","Mole"],a:2,exp:"Pascal (N/m²) is a derived unit."},
+  {q:"Dimension of energy is:",o:["ML²T⁻²","MLT⁻²","ML²T⁻³","M⁰L⁰T⁰"],a:0,exp:"Energy has dimensions ML²T⁻²."},
+  {q:"Which error can be corrected?",o:["Systematic","Random","Personal","Instrumental"],a:0,exp:"Systematic errors can be identified and corrected."},
+  {q:"Method to measure Earth’s radius:",o:["Eratosthenes method","Parallax","Spectroscopy","Radar"],a:0,exp:"Eratosthenes used shadows to measure Earth’s radius."},
+  {q:"One parsec equals:",o:["3.26 ly","1 ly","10 ly","1000 ly"],a:0,exp:"1 parsec = 3.26 light years."},
+  {q:"The SI unit of electric current is:",o:["Volt","Ampere","Ohm","Coulomb"],a:1,exp:"Ampere is the SI unit for current."},
+  {q:"Very small lengths are measured using:",o:["Parallax","Electron microscope","Vernier caliper","Radar"],a:1,exp:"Electron microscopes measure nanoscale lengths."},
+  {q:"Which is not a base unit?",o:["Kelvin","Mole","Second","Newton"],a:3,exp:"Newton is a derived unit (kg m/s²)."},
+  {q:"Planck’s constant value is:",o:["6.626×10⁻³⁴ Js","9.11×10⁻³¹ kg","1.6×10⁻¹⁹ C","3×10⁸ m/s"],a:0,exp:"Planck’s constant = 6.626×10⁻³⁴ Js."}
+];
+
+const q3 = [
+  {q:"Displacement is a:",o:["Scalar","Vector","Dimensionless","None"],a:1,exp:"Displacement has magnitude and direction, making it a vector."},
+  {q:"Speed is a:",o:["Scalar","Vector","Tensor","None"],a:0,exp:"Speed is a scalar quantity, only magnitude."},
+  {q:"Which is an equation of uniformly accelerated motion?",o:["v = u + at","s = ut + ½at²","v² = u² + 2as","All"],a:3,exp:"All are equations of uniformly accelerated motion."},
+  {q:"The graph of uniform motion is:",o:["Straight line","Curve","Circle","Parabola"],a:0,exp:"Uniform motion gives a straight line in a position-time graph."},
+  {q:"The slope of a velocity-time graph gives:",o:["Displacement","Acceleration","Velocity","Jerk"],a:1,exp:"Slope of v-t graph equals acceleration."},
+  {q:"The area under a velocity-time graph gives:",o:["Displacement","Velocity","Acceleration","Jerk"],a:0,exp:"Area under v-t graph equals displacement."},
+  {q:"Retardation refers to:",o:["Negative acceleration","Positive acceleration","Zero acceleration","Random motion"],a:0,exp:"Retardation is negative acceleration."},
+  {q:"Acceleration due to gravity on Earth is:",o:["8.9 m/s²","9.8 m/s²","10.8 m/s²","9.2 m/s²"],a:1,exp:"g ≈ 9.8 m/s² on Earth’s surface."},
+  {q:"Velocity at the top for a body thrown vertically upward is:",o:["Zero","Infinite","g","u"],a:0,exp:"At maximum height, velocity is zero."},
+  {q:"The unit of acceleration is:",o:["m/s","m/s²","m²/s","N"],a:1,exp:"Acceleration is measured in m/s²."},
+  {q:"If velocity is zero, displacement is:",o:["Zero","Finite","Negative","Undefined"],a:0,exp:"Zero velocity implies no displacement."},
+  {q:"Distance vs. displacement:",o:["Always equal","Distance ≥ displacement","Displacement ≥ distance","No relation"],a:1,exp:"Distance is always greater than or equal to displacement."},
+  {q:"Average speed is calculated as:",o:["Total distance/time","Total displacement/time","Total velocity/time","None"],a:0,exp:"Average speed = total distance / total time."},
+  {q:"The slope of a position-time graph gives:",o:["Velocity","Acceleration","Jerk","Speed"],a:0,exp:"Slope of s-t graph equals velocity."},
+  {q:"Uniformly accelerated motion implies:",o:["Constant velocity","Constant acceleration","Variable speed","Circular motion"],a:1,exp:"Constant acceleration defines uniformly accelerated motion."},
+  {q:"Negative velocity indicates:",o:["Motion backward","Zero velocity","Acceleration","Rest"],a:0,exp:"Negative velocity means motion in the opposite direction."},
+  {q:"If acceleration is zero:",o:["Uniform motion","Uniform acceleration","Rest","Random"],a:0,exp:"Zero acceleration implies uniform motion."},
+  {q:"The equation v² = u² + 2as is derived by:",o:["Elimination","Differentiation","Integration","None"],a:0,exp:"Derived by eliminating time from kinematic equations."},
+  {q:"Which quantity can be negative?",o:["Distance","Speed","Displacement","Mass"],a:2,exp:"Displacement can be negative due to direction."},
+  {q:"Rest implies:",o:["Zero displacement","Zero velocity","Zero acceleration","Both a and b"],a:3,exp:"Rest means zero velocity and displacement."}
+];
+
+const q4 = [
+  {q:"A projectile is launched at 20 m/s at 30° to the horizontal. The horizontal range is (g = 10 m/s²):",o:["20 m","30 m","34.6 m","40 m"],a:2,exp:"Range = u²sin2θ/g = (20² × sin60°)/10 = 34.6 m."},
+  {q:"The magnitude of vector A = 3i + 4j is:",o:["5","7","12","25"],a:0,exp:"|A| = √(3² + 4²) = √25 = 5."},
+  {q:"The resultant of vectors 3i and 4j is:",o:["5","7","12","25"],a:0,exp:"Resultant = √(3² + 4²) = 5."},
+  {q:"The velocity of a particle in a circle of radius r with angular velocity ω is:",o:["rω","r/ω","ω/r","r²ω"],a:0,exp:"Linear velocity v = rω."},
+  {q:"The time of flight of a projectile is:",o:["(2u cosθ)/g","(2u sinθ)/g","(u² sin2θ)/g","(u sin2θ)/g"],a:1,exp:"Time of flight = (2u sinθ)/g."},
+  {q:"A body projected horizontally from height h follows a:",o:["Straight line","Parabola","Circle","Ellipse"],a:1,exp:"Horizontal projection with gravity results in a parabolic path."},
+  {q:"The angle for maximum range on a horizontal plane is:",o:["30°","45°","60°","90°"],a:1,exp:"Maximum range occurs at 45°."},
+  {q:"Centripetal acceleration for a particle moving in a circle is:",o:["v²/r","r/v²","v/r","r²/v"],a:0,exp:"Centripetal acceleration = v²/r."},
+  {q:"The horizontal component of velocity in projectile motion is:",o:["Constant","Increasing","Decreasing","Zero"],a:0,exp:"No horizontal acceleration, so velocity is constant."},
+  {q:"The vertical component of velocity at maximum height is:",o:["Zero","Maximum","Minimum","Equal to horizontal"],a:0,exp:"Vertical velocity is zero at maximum height."},
+  {q:"Time of flight is independent of:",o:["Initial velocity","Angle of projection","Height of projection","Gravity"],a:2,exp:"Time of flight depends on u, θ, and g, not height."},
+  {q:"Maximum height of a projectile is:",o:["(u² sin²θ)/(2g)","(u² cos²θ)/(2g)","(u² sin2θ)/(2g)","(u²)/(2g)"],a:0,exp:"H = (u² sin²θ)/(2g)."},
+  {q:"The path of a projectile is:",o:["Circular","Parabolic","Elliptical","Hyperbolic"],a:1,exp:"Projectile motion under gravity is parabolic."},
+  {q:"Angular displacement is measured in:",o:["Degrees","Radians","Revolutions","All"],a:3,exp:"Angular displacement can be in degrees, radians, or revolutions."},
+  {q:"Centripetal force is directed:",o:["Outward","Inward","Tangentially","None"],a:1,exp:"Centripetal force points toward the center."},
+  {q:"Angular velocity of a particle in a circle is:",o:["v/r","r/v","vr","v²/r"],a:0,exp:"Angular velocity ω = v/r."},
+  {q:"The period of revolution in a circle is:",o:["2πr/v","vr/2π","2πv/r","r/2πv"],a:0,exp:"Period T = 2πr/v."},
+  {q:"Frequency of revolution is the reciprocal of:",o:["Speed","Period","Radius","Centripetal force"],a:1,exp:"Frequency f = 1/T."},
+  {q:"Centripetal acceleration with angular velocity ω is:",o:["rω²","ω²/r","r/ω²","ω/r²"],a:0,exp:"Centripetal acceleration = rω²."},
+  {q:"Angular displacement is measured in:",o:["Degrees","Radians","Revolutions","All"],a:3,exp:"Angular displacement can be in degrees, radians, or revolutions."}
+];
+
+const q5 = [
+  {q:"Newton’s First Law is also known as:",o:["Law of Inertia","Law of Force","Law of Action-Reaction","Law of Momentum"],a:0,exp:"It states objects remain at rest or in motion unless acted upon."},
+  {q:"Force is defined as:",o:["Mass × Acceleration","Mass × Velocity","Momentum × Time","Weight × Gravity"],a:0,exp:"Force = ma (Newton’s Second Law)."},
+  {q:"Newton’s Second Law relates:",o:["Force and velocity","Force and acceleration","Force and momentum","Force and energy"],a:1,exp:"F = ma relates force to acceleration."},
+  {q:"Newton’s Third Law states:",o:["Action = Reaction","F = ma","Inertia","Conservation of momentum"],a:0,exp:"Every action has an equal and opposite reaction."},
+  {q:"The SI unit of force is:",o:["Newton","Joule","Watt","Pascal"],a:0,exp:"Newton (N) = kg m/s²."},
+  {q:"Momentum is defined as:",o:["Mass × Velocity","Force × Time","Mass × Acceleration","Energy × Time"],a:0,exp:"Momentum p = mv."},
+  {q:"Impulse equals:",o:["Change in momentum","Force × Distance","Mass × Velocity","Energy × Time"],a:0,exp:"Impulse = force × time = Δp."},
+  {q:"Friction opposes:",o:["Relative motion","Absolute motion","Gravitational force","Electromagnetic force"],a:0,exp:"Friction acts against relative motion of surfaces."},
+  {q:"Conservation of momentum applies when:",o:["No external force","Constant velocity","Constant acceleration","No friction"],a:0,exp:"Momentum is conserved without external forces."},
+  {q:"Inertia depends on:",o:["Velocity","Mass","Acceleration","Force"],a:1,exp:"Inertia is a property of mass."},
+  {q:"A body at rest is due to:",o:["Inertia","Friction","Gravity","All"],a:0,exp:"Inertia keeps a body at rest."},
+  {q:"Friction force depends on:",o:["Surface area","Normal force","Velocity","Acceleration"],a:1,exp:"Friction = μ × normal force."},
+  {q:"Centripetal force in circular motion is provided by:",o:["Tension/Gravity/Friction","Velocity","Acceleration","Momentum"],a:0,exp:"Tension, gravity, or friction can provide centripetal force."},
+  {q:"The coefficient of friction is:",o:["Dimensionless","N","m/s²","kg"],a:0,exp:"It’s a dimensionless ratio."},
+  {q:"Weight is a:",o:["Scalar","Vector","Constant","Dimensionless"],a:1,exp:"Weight = mg, a vector quantity."},
+  {q:"Acceleration is zero when:",o:["Net force is zero","Velocity is zero","Momentum is zero","Mass is zero"],a:0,exp:"Zero net force implies zero acceleration."},
+  {q:"Which is a contact force?",o:["Gravity","Magnetic","Friction","Electrostatic"],a:2,exp:"Friction requires surface contact."},
+  {q:"The unit of impulse is:",o:["kg m/s","N m","Joule","Watt"],a:0,exp:"Impulse has the same units as momentum."},
+  {q:"Newton’s laws are valid in:",o:["Inertial frames","Non-inertial frames","Both","None"],a:0,exp:"They apply in non-accelerating (inertial) frames."},
+  {q:"A rocket operates on:",o:["Conservation of momentum","Conservation of energy","Inertia","Friction"],a:0,exp:"Rockets work via momentum conservation."}
+];
+
+const q6 = [
+  {q:"Work is defined as:",o:["Force × Distance","Force × Time","Mass × Velocity","Energy × Time"],a:0,exp:"Work = force × distance × cosθ."},
+  {q:"The SI unit of work is:",o:["Joule","Newton","Watt","Pascal"],a:0,exp:"Joule (J) = N m."},
+  {q:"Energy is a:",o:["Scalar","Vector","Dimensionless","None"],a:0,exp:"Energy has magnitude only."},
+  {q:"The unit of power is:",o:["Joule","Newton","Watt","Pascal"],a:2,exp:"Watt (W) = J/s."},
+  {q:"Kinetic energy is given by:",o:["mv²","½mv²","mv","½mv"],a:1,exp:"Kinetic energy = ½mv²."},
+  {q:"Potential energy of a spring is:",o:["½kx²","kx²","½kx","kx"],a:0,exp:"Spring potential energy = ½kx²."},
+  {q:"The law of conservation of energy states:",o:["Energy cannot be created/destroyed","Energy is always kinetic","Energy is always potential","Energy is not conserved"],a:0,exp:"Energy transforms but is conserved."},
+  {q:"Power is defined as:",o:["Work/Time","Force × Velocity","Both","None"],a:2,exp:"Power = work/time or force × velocity."},
+  {q:"1 Joule equals:",o:["1 N m","1 kg m/s²","1 W s","All"],a:0,exp:"Joule = Newton-meter."},
+  {q:"Work done by friction is:",o:["Always positive","Always negative","Zero or negative","Always zero"],a:2,exp:"Friction opposes motion, so work is zero or negative."},
+  {q:"A body at rest can have:",o:["Kinetic energy","Potential energy","Both","None"],a:1,exp:"Resting bodies can have potential energy."},
+  {q:"Efficiency of a machine is:",o:["Always 100%","Output/Input × 100","Input/Output × 100","None"],a:1,exp:"Efficiency = (output/input) × 100."},
+  {q:"The unit of energy is the same as:",o:["Work","Power","Force","Momentum"],a:0,exp:"Energy and work both use Joules."},
+  {q:"Work by a conservative force is:",o:["Path-dependent","Path-independent","Always zero","Always negative"],a:1,exp:"Conservative forces like gravity are path-independent."},
+  {q:"Which is not a form of energy?",o:["Kinetic","Potential","Thermal","Mass"],a:3,exp:"Mass is not energy, though related via E=mc²."},
+  {q:"The work-energy theorem relates:",o:["Work and kinetic energy","Work and potential energy","Work and total energy","None"],a:0,exp:"Work done = change in kinetic energy."},
+  {q:"Power is a:",o:["Scalar","Vector","Dimensionless","None"],a:0,exp:"Power is a scalar quantity."},
+  {q:"Energy stored in a stretched wire is:",o:["½kx²","kx²","½kx","kx"],a:0,exp:"Elastic potential energy = ½kx²."},
+  {q:"1 kWh equals:",o:["3.6 × 10⁶ J","3.6 × 10³ J","3.6 × 10⁵ J","3.6 × 10⁴ J"],a:0,exp:"1 kWh = 3.6 × 10⁶ Joules."},
+  {q:"Work done by gravity on a falling body is:",o:["Positive","Negative","Zero","Path-dependent"],a:0,exp:"Gravity does positive work as the body falls."}
+];
+
+const q7 = [
+  {q:"The center of mass is:",o:["Fixed point","Mass-weighted average position","Geometric center","None"],a:1,exp:"Center of mass is the mass-weighted average position."},
+  {q:"Moment of inertia depends on:",o:["Mass distribution","Axis of rotation","Both","None"],a:2,exp:"It depends on mass distribution and axis."},
+  {q:"The SI unit of angular momentum is:",o:["kg m²/s","kg m/s","kg m²/s²","N m"],a:0,exp:"Angular momentum = kg m²/s."},
+  {q:"Torque is defined as:",o:["Force × Distance","Force × Velocity","Mass × Acceleration","None"],a:0,exp:"Torque = force × perpendicular distance."},
+  {q:"Moment of inertia of a solid sphere is:",o:["2/5 MR²","1/2 MR²","MR²","2/3 MR²"],a:0,exp:"For a solid sphere, I = 2/5 MR²."},
+  {q:"Angular velocity is a:",o:["Scalar","Vector","Dimensionless","None"],a:1,exp:"Angular velocity is a vector."},
+  {q:"Conservation of angular momentum applies when:",o:["No external torque","No external force","Constant velocity","Constant acceleration"],a:0,exp:"No external torque conserves angular momentum."},
+  {q:"The unit of torque is:",o:["N m","Joule","Watt","kg m/s"],a:0,exp:"Torque is measured in N m."},
+  {q:"Radius of gyration is:",o:["Length","Mass","Moment of inertia","None"],a:0,exp:"Radius of gyration is a length parameter."},
+  {q:"Angular acceleration is:",o:["α = τ/I","α = I/τ","α = τ × I","α = I × τ"],a:0,exp:"α = torque/moment of inertia."},
+  {q:"Center of mass of a uniform rod is at:",o:["One end","Midpoint","Quarter length","None"],a:1,exp:"For a uniform rod, it’s at the midpoint."},
+  {q:"Moment of inertia of a thin ring is:",o:["MR²","1/2 MR²","2/5 MR²","1/12 MR²"],a:0,exp:"For a thin ring, I = MR²."},
+  {q:"Rotational kinetic energy is:",o:["½ Iω²","Iω²","½ Iω","Iω"],a:0,exp:"Rotational kinetic energy = ½ Iω²."},
+  {q:"Torque is a:",o:["Scalar","Vector","Dimensionless","None"],a:1,exp:"Torque is a vector quantity."},
+  {q:"The parallel axis theorem relates to:",o:["Moment of inertia","Torque","Angular momentum","None"],a:0,exp:"It adjusts moment of inertia for a new axis."},
+  {q:"Angular momentum is:",o:["Iω","I/ω","ω/I","None"],a:0,exp:"Angular momentum = I × ω."},
+  {q:"Perpendicular axis theorem applies to:",o:["3D bodies","2D bodies","1D bodies","None"],a:1,exp:"It applies to 2D bodies."},
+  {q:"Moment of inertia of a disc is:",o:["1/2 MR²","MR²","2/5 MR²","1/12 MR²"],a:0,exp:"For a disc, I = 1/2 MR²."},
+  {q:"Earth’s angular velocity is:",o:["7.27 × 10⁻⁵ rad/s","7.27 × 10⁻³ rad/s","7.27 × 10⁻² rad/s","7.27 × 10⁻⁴ rad/s"],a:0,exp:"Earth’s ω = 7.27 × 10⁻⁵ rad/s."},
+  {q:"The rotational analogue of force is:",o:["Torque","Angular momentum","Moment of inertia","Angular velocity"],a:0,exp:"Torque is the rotational equivalent of force."}
+];
+
+const q8 = [
+  {q:"The universal law of gravitation was proposed by:",o:["Newton","Einstein","Kepler","Galileo"],a:0,exp:"Newton formulated the law of universal gravitation."},
+  {q:"The gravitational constant G is:",o:["6.67 × 10⁻¹¹ N m²/kg²","6.67 × 10⁻¹⁰ N m²/kg²","6.67 × 10⁻¹² N m²/kg²","6.67 × 10⁻⁹ N m²/kg²"],a:0,exp:"G = 6.67 × 10⁻¹¹ N m²/kg²."},
+  {q:"Acceleration due to gravity on Earth is:",o:["9.8 m/s²","8.9 m/s²","10.8 m/s²","9.2 m/s²"],a:0,exp:"g ≈ 9.8 m/s² on Earth’s surface."},
+  {q:"Gravitational force is:",o:["Attractive only","Repulsive only","Both","None"],a:0,exp:"Gravity is always an attractive force."},
+  {q:"The value of g decreases with:",o:["Altitude","Depth","Both","None"],a:2,exp:"g decreases with altitude and depth."},
+  {q:"Kepler’s First Law states:",o:["Elliptical orbits","Equal areas","Harmonic law","None"],a:0,exp:"Planets follow elliptical orbits with the Sun at one focus."},
+  {q:"Escape velocity on Earth is:",o:["11.2 km/s","12.2 km/s","10.2 km/s","13.2 km/s"],a:0,exp:"Escape velocity ≈ 11.2 km/s."},
+  {q:"Gravitational potential energy is:",o:["-GMm/r","GMm/r","GMm/r²","None"],a:0,exp:"Potential energy = -GMm/r."},
+  {q:"Kepler’s Third Law relates:",o:["T² ∝ r³","T ∝ r²","T² ∝ r²","T ∝ r³"],a:0,exp:"T² ∝ r³ for planetary orbits."},
+  {q:"Gravitational force is proportional to:",o:["1/r²","r²","1/r","r"],a:0,exp:"F ∝ 1/r² (inverse square law)."},
+  {q:"The value of g is maximum at:",o:["Equator","Poles","Center of Earth","High altitude"],a:1,exp:"g is maximum at the poles."},
+  {q:"Orbital velocity of a satellite is:",o:["√(GM/r)","√(GM/r²)","GM/r","GM/r²"],a:0,exp:"Orbital velocity = √(GM/r)."},
+  {q:"Weightlessness in a satellite is due to:",o:["Zero gravity","Free fall","No mass","None"],a:1,exp:"Weightlessness results from free fall."},
+  {q:"The period of a geostationary satellite is:",o:["24 hours","12 hours","48 hours","6 hours"],a:0,exp:"Geostationary satellites have a 24-hour period."},
+  {q:"Gravitational field strength is:",o:["GM/r²","GM/r","GMr","G/r"],a:0,exp:"Field strength = GM/r²."},
+  {q:"Escape velocity depends on:",o:["Mass of planet","Radius of planet","Both","None"],a:2,exp:"Depends on mass and radius of the planet."},
+  {q:"Kepler’s Second Law states:",o:["Equal areas in equal times","Elliptical orbits","T² ∝ r³","None"],a:0,exp:"Equal areas are swept in equal times."},
+  {q:"Gravitational force is a:",o:["Contact force","Non-contact force","Frictional force","None"],a:1,exp:"Gravity acts without contact."},
+  {q:"The value of g at Earth’s center is:",o:["9.8 m/s²","Zero","Infinite","4.9 m/s²"],a:1,exp:"g = 0 at the Earth’s center."},
+  {q:"Gravitational potential is:",o:["-GM/r","GM/r","GM/r²","None"],a:0,exp:"Gravitational potential = -GM/r."}
+];
+
+const q9 = [
+  {q:"Elasticity allows a body to:",o:["Resist deformation","Deform permanently","Break easily","None"],a:0,exp:"Elasticity resists deformation and allows shape recovery."},
+  {q:"Stress is defined as:",o:["Force/Area","Force × Area","Force/Volume","Force × Length"],a:0,exp:"Stress = force per unit area."},
+  {q:"The SI unit of stress is:",o:["Pascal","Newton","Joule","Watt"],a:0,exp:"Stress is measured in Pascal (N/m²)."},
+  {q:"Strain is:",o:["Dimensionless","m","N/m²","kg"],a:0,exp:"Strain is a dimensionless ratio."},
+  {q:"Hooke’s Law is valid within:",o:["Elastic limit","Plastic region","Fracture point","None"],a:0,exp:"Hooke’s Law applies within the elastic limit."},
+  {q:"Young’s modulus is:",o:["Stress/Strain","Strain/Stress","Force/Area","Force/Length"],a:0,exp:"Young’s modulus = stress/strain."},
+  {q:"The unit of Young’s modulus is:",o:["Pascal","Newton","Joule","None"],a:0,exp:"Young’s modulus is measured in Pascal."},
+  {q:"Poisson’s ratio is:",o:["Dimensionless","m","N/m²","kg"],a:0,exp:"Poisson’s ratio is dimensionless."},
+  {q:"Bulk modulus relates to:",o:["Volume change","Length change","Shape change","None"],a:0,exp:"Bulk modulus measures resistance to volume change."},
+  {q:"Shear modulus relates to:",o:["Shape change","Volume change","Length change","None"],a:0,exp:"Shear modulus measures resistance to shape change."},
+  {q:"Elastic limit is the point beyond which:",o:["Permanent deformation occurs","Elasticity increases","Material breaks","None"],a:0,exp:"Beyond elastic limit, permanent deformation occurs."},
+  {q:"High Young’s modulus indicates:",o:["Rigidity","Flexibility","Brittleness","None"],a:0,exp:"High Young’s modulus means a rigid material."},
+  {q:"The stress-strain curve is linear in:",o:["Elastic region","Plastic region","Fracture point","None"],a:0,exp:"Stress ∝ strain in the elastic region."},
+  {q:"Modulus of rigidity is another name for:",o:["Young’s modulus","Bulk modulus","Shear modulus","None"],a:2,exp:"Modulus of rigidity = shear modulus."},
+  {q:"A perfectly elastic body:",o:["Recovers completely","Deforms permanently","Breaks easily","None"],a:0,exp:"It recovers its original shape."},
+  {q:"The unit of strain is:",o:["Pascal","No unit","Newton","Joule"],a:1,exp:"Strain is dimensionless."},
+  {q:"Breaking stress is:",o:["Ultimate strength","Yield strength","Elastic limit","None"],a:0,exp:"Breaking stress is the ultimate strength."},
+  {q:"Elastic potential energy in a wire is:",o:["½ stress × strain","½ force × length","½ Young’s modulus × strain²","None"],a:0,exp:"Elastic energy = ½ stress × strain."},
+  {q:"A brittle material:",o:["Breaks without plastic deformation","Has large plastic region","Is highly elastic","None"],a:0,exp:"Brittle materials break with little plastic deformation."},
+  {q:"The slope of the stress-strain curve gives:",o:["Young’s modulus","Bulk modulus","Shear modulus","None"],a:0,exp:"Slope in elastic region = Young’s modulus."}
+];
+
+const q10 = [
+  {q:"Pressure is defined as:",o:["Force/Area","Force × Area","Mass/Area","None"],a:0,exp:"Pressure = force per unit area."},
+  {q:"The SI unit of pressure is:",o:["Pascal","Newton","Joule","Watt"],a:0,exp:"Pressure is measured in Pascal (N/m²)."},
+  {q:"Pascal’s principle applies to:",o:["Fluids at rest","Fluids in motion","Solids","None"],a:0,exp:"Pascal’s principle applies to static fluids."},
+  {q:"Buoyant force is given by:",o:["Archimedes’ principle","Bernoulli’s principle","Pascal’s principle","None"],a:0,exp:"Buoyant force = weight of displaced fluid."},
+  {q:"The density of water is:",o:["1000 kg/m³","100 kg/m³","10 kg/m³","10000 kg/m³"],a:0,exp:"Water’s density = 1000 kg/m³."},
+  {q:"Bernoulli’s principle relates to:",o:["Fluids in motion","Fluids at rest","Solids","None"],a:0,exp:"Bernoulli’s principle applies to moving fluids."},
+  {q:"Viscosity measures:",o:["Resistance to flow","Density","Pressure","None"],a:0,exp:"Viscosity is a fluid’s resistance to flow."},
+  {q:"The unit of viscosity is:",o:["Pa s","N/m²","kg/m³","m/s"],a:0,exp:"Viscosity is measured in Pascal-second."},
+  {q:"The equation of continuity is:",o:["A₁v₁ = A₂v₂","P₁ + ρgh = P₂","F = ρgV","None"],a:0,exp:"A₁v₁ = A₂v₂ for incompressible fluids."},
+  {q:"Surface tension is:",o:["Force/Length","Force × Length","Force/Area","None"],a:0,exp:"Surface tension = force per unit length."},
+  {q:"The unit of surface tension is:",o:["N/m","N m","N/m²","kg/m³"],a:0,exp:"Surface tension has unit N/m."},
+  {q:"Archimedes’ principle states:",o:["Buoyant force = weight of displaced fluid","Pressure ∝ depth","Flow rate is constant","None"],a:0,exp:"Buoyant force equals weight of displaced fluid."},
+  {q:"Pressure at depth h in a fluid is:",o:["ρgh","ρg/h","h/ρg","None"],a:0,exp:"Pressure = ρgh + atmospheric pressure."},
+  {q:"A hydrometer measures:",o:["Density","Pressure","Viscosity","Surface tension"],a:0,exp:"Hydrometer measures fluid density."},
+  {q:"Bernoulli’s equation conserves:",o:["Energy","Momentum","Mass","None"],a:0,exp:"It’s based on energy conservation."},
+  {q:"Streamline flow is:",o:["Laminar","Turbulent","Both","None"],a:0,exp:"Streamline flow is laminar."},
+  {q:"The unit of density is:",o:["kg/m³","kg/m²","kg/m","N/m"],a:0,exp:"Density = kg/m³."},
+  {q:"Capillary rise is due to:",o:["Surface tension","Viscosity","Pressure","None"],a:0,exp:"Surface tension causes capillary rise."},
+  {q:"Reynolds number indicates:",o:["Laminar or turbulent flow","Pressure","Density","None"],a:0,exp:"Reynolds number predicts flow type."},
+  {q:"Buoyant force acts:",o:["Upward","Downward","Sideways","None"],a:0,exp:"Buoyant force acts upward."}
+];
+
+const q11 = [
+  {q:"The SI unit of temperature is:",o:["Celsius","Kelvin","Fahrenheit","Rankine"],a:1,exp:"Kelvin is the SI unit of temperature."},
+  {q:"Specific heat capacity is defined as:",o:["Heat per unit mass per degree","Heat per unit volume","Heat per unit time","None"],a:0,exp:"Specific heat = heat/(mass × ΔT)."},
+  {q:"Latent heat is associated with:",o:["Phase change","Temperature change","Volume change","None"],a:0,exp:"Latent heat is required for phase transitions."},
+  {q:"Thermal conductivity has unit:",o:["W/m K","J/kg K","J/m²","W/m² K"],a:0,exp:"Thermal conductivity is measured in W/m K."},
+  {q:"Newton’s law of cooling states:",o:["Rate of heat loss ∝ temperature difference","Heat loss ∝ time","Heat loss ∝ area","None"],a:0,exp:"Rate of cooling ∝ (T - T₀)."},
+  {q:"The coefficient of thermal expansion is:",o:["Dimensionless","m/K","K/m","None"],a:0,exp:"It’s a dimensionless ratio."},
+  {q:"Heat transfer by convection occurs in:",o:["Solids","Fluids","Vacuum","None"],a:1,exp:"Convection occurs in fluids due to particle movement."},
+  {q:"Blackbody radiation depends on:",o:["Temperature","Material","Surface area","None"],a:0,exp:"Blackbody radiation depends on T⁴ (Stefan’s law)."},
+  {q:"The Stefan-Boltzmann law states:",o:["Power ∝ T⁴","Power ∝ T²","Power ∝ T","None"],a:0,exp:"P = σAT⁴ for a blackbody."},
+  {q:"Wien’s displacement law relates:",o:["λ_max ∝ 1/T","λ_max ∝ T","λ_max ∝ T²","None"],a:0,exp:"λ_max T = constant."},
+  {q:"The unit of latent heat is:",o:["J/kg","J/m³","J/K","W/m K"],a:0,exp:"Latent heat = J/kg."},
+  {q:"Thermal equilibrium implies:",o:["Equal temperature","Equal heat","Equal volume","None"],a:0,exp:"Objects in thermal equilibrium have the same temperature."},
+  {q:"Heat transfer by radiation requires:",o:["Medium","No medium","Contact","None"],a:1,exp:"Radiation travels through a vacuum."},
+  {q:"The triple point of water occurs at:",o:["0°C, 1 atm","0.01°C, 611.657 Pa","100°C, 1 atm","None"],a:1,exp:"Triple point is at 0.01°C, 611.657 Pa."},
+  {q:"Specific heat of water is:",o:["4186 J/kg K","1000 J/kg K","2000 J/kg K","500 J/kg K"],a:0,exp:"Specific heat of water ≈ 4186 J/kg K."},
+  {q:"Conduction is dominant in:",o:["Solids","Liquids","Gases","Vacuum"],a:0,exp:"Conduction occurs primarily in solids."},
+  {q:"The unit of thermal conductivity is:",o:["W/m K","J/kg K","J/m²","W/m² K"],a:0,exp:"Thermal conductivity = W/m K."},
+  {q:"Heat is a form of:",o:["Energy","Force","Momentum","None"],a:0,exp:"Heat is a form of energy transfer."},
+  {q:"The zeroth law of thermodynamics defines:",o:["Temperature","Entropy","Internal energy","None"],a:0,exp:"Zeroth law establishes temperature equilibrium."},
+  {q:"The emissivity of a perfect blackbody is:",o:["0","1","0.5","2"],a:1,exp:"A perfect blackbody has emissivity = 1."}
+];
+
+const q12 = [
+  {q:"The first law of thermodynamics is a statement of:",o:["Energy conservation","Entropy increase","Heat transfer","None"],a:0,exp:"First law: ΔU = Q - W."},
+  {q:"The second law of thermodynamics states:",o:["Entropy increases","Energy is conserved","Heat flows naturally from hot to cold","Both a and c"],a:3,exp:"Entropy of an isolated system increases; heat flows from hot to cold."},
+  {q:"The efficiency of a Carnot engine depends on:",o:["T₁ and T₂","Work done","Heat input","None"],a:0,exp:"Efficiency = 1 - T₂/T₁."},
+  {q:"Internal energy is a:",o:["State function","Path function","Constant","None"],a:0,exp:"Internal energy depends only on the state."},
+  {q:"The unit of entropy is:",o:["J/K","J/kg K","W/m K","None"],a:0,exp:"Entropy is measured in J/K."},
+  {q:"A reversible process is:",o:["Idealized, no entropy change","Irreversible","Always spontaneous","None"],a:0,exp:"Reversible processes have no net entropy change."},
+  {q:"The Carnot cycle consists of:",o:["2 isothermal, 2 adiabatic","2 isobaric, 2 isochoric","2 isothermal, 2 isochoric","None"],a:0,exp:"Carnot cycle has two isothermal and two adiabatic processes."},
+  {q:"Work done in an isochoric process is:",o:["Zero","Q","ΔU","None"],a:0,exp:"No volume change, so W = 0."},
+  {q:"The specific heat at constant volume is:",o:["C_v = ΔQ/ΔT","C_v = ΔU/ΔT","C_v = ΔQ/mΔT","None"],a:1,exp:"C_v = (ΔU/ΔT)/m."},
+  {q:"The specific heat at constant pressure is:",o:["C_p = ΔQ/ΔT","C_p = ΔH/ΔT","C_p = ΔQ/mΔT","None"],a:1,exp:"C_p = (ΔH/ΔT)/m."},
+  {q:"The relation between C_p and C_v is:",o:["C_p - C_v = R","C_p + C_v = R","C_p/C_v = R","None"],a:0,exp:"C_p - C_v = R for an ideal gas."},
+  {q:"An adiabatic process has:",o:["No heat transfer","No work done","No entropy change","None"],a:0,exp:"Adiabatic means Q = 0."},
+  {q:"The efficiency of a heat engine is:",o:["W/Q₁","Q₂/Q₁","W/Q₂","None"],a:0,exp:"Efficiency = work output/heat input."},
+  {q:"Entropy is a measure of:",o:["Disorder","Energy","Temperature","None"],a:0,exp:"Entropy measures system disorder."},
+  {q:"The zeroth law of thermodynamics establishes:",o:["Temperature","Entropy","Internal energy","None"],a:0,exp:"It defines thermal equilibrium."},
+  {q:"In an isothermal process:",o:["Temperature is constant","Pressure is constant","Volume is constant","None"],a:0,exp:"Isothermal means constant temperature."},
+  {q:"The work done in an adiabatic process depends on:",o:["ΔT","ΔV","ΔP","None"],a:1,exp:"W = -PΔV in adiabatic processes."},
+  {q:"A refrigerator works on:",o:["Carnot cycle","Reversed Carnot cycle","Otto cycle","None"],a:1,exp:"Refrigerators use a reversed Carnot cycle."},
+  {q:"The coefficient of performance of a refrigerator is:",o:["Q₂/W","W/Q₁","Q₁/W","None"],a:0,exp:"COP = Q₂/W for a refrigerator."},
+  {q:"The second law implies:",o:["No 100% efficient engine","Energy conservation","No heat transfer","None"],a:0,exp:"No engine can be 100% efficient due to entropy."}
+];
+
+const q13 = [
+  {q:"Kinetic theory explains the behavior of:",o:["Gases","Solids","Liquids","None"],a:0,exp:"Kinetic theory models gas behavior."},
+  {q:"The average kinetic energy of gas molecules is proportional to:",o:["Temperature","Pressure","Volume","None"],a:0,exp:"KE_avg ∝ T (in Kelvin)."},
+  {q:"The ideal gas equation is:",o:["PV = nRT","PV = RT","P = nRT/V","None"],a:0,exp:"PV = nRT for ideal gases."},
+  {q:"The mean free path is:",o:["Average distance between collisions","Total distance traveled","Average speed","None"],a:0,exp:"Mean free path is the average distance between collisions."},
+  {q:"The degree of freedom for a monatomic gas is:",o:["3","5","6","2"],a:0,exp:"Monatomic gas has 3 translational degrees of freedom."},
+  {q:"The RMS speed of gas molecules is:",o:["√(3RT/M)","√(2RT/M)","√(RT/M)","None"],a:0,exp:"v_rms = √(3RT/M)."},
+  {q:"Pressure of an ideal gas is proportional to:",o:["Average KE","Volume","Temperature","All"],a:0,exp:"P ∝ average kinetic energy of molecules."},
+  {q:"The law of equipartition of energy states:",o:["Energy is equally distributed","Energy is conserved","Energy is proportional to T","None"],a:0,exp:"Each degree of freedom contributes ½kT energy."},
+  {q:"The degree of freedom for a diatomic gas is:",o:["3","5","6","7"],a:1,exp:"Diatomic gas has 3 translational + 2 rotational = 5."},
+  {q:"The specific heat ratio γ for a monatomic gas is:",o:["5/3","7/5","4/3","3/2"],a:0,exp:"γ = C_p/C_v = 5/3 for monatomic gas."},
+  {q:"The average speed of gas molecules is:",o:["√(8RT/πM)","√(3RT/M)","√(2RT/M)","None"],a:0,exp:"v_avg = √(8RT/πM)."},
+  {q:"The most probable speed is:",o:["√(2RT/M)","√(3RT/M)","√(8RT/πM)","None"],a:0,exp:"v_mp = √(2RT/M)."},
+  {q:"The pressure of a gas is due to:",o:["Molecular collisions","Temperature","Volume","None"],a:0,exp:"Pressure arises from molecular collisions with walls."},
+  {q:"The Maxwell-Boltzmann distribution describes:",o:["Speed distribution","Energy distribution","Pressure distribution","None"],a:0,exp:"It describes the speed distribution of gas molecules."},
+  {q:"The mean free path depends on:",o:["Temperature","Pressure","Both","None"],a:2,exp:"Mean free path depends on T and P."},
+  {q:"The internal energy of an ideal gas depends on:",o:["Temperature","Pressure","Volume","None"],a:0,exp:"Internal energy depends only on temperature."},
+  {q:"The specific heat of an ideal gas is:",o:["Constant","Variable","Zero","None"],a:0,exp:"Specific heat is constant for an ideal gas."},
+  {q:"The degree of freedom for a triatomic gas is:",o:["3","6","5","9"],a:1,exp:"Triatomic gas has 3 translational + 3 rotational = 6."},
+  {q:"The kinetic energy per mole of an ideal gas is:",o:["3/2 RT","RT","5/2 RT","None"],a:0,exp:"KE = 3/2 RT for a monatomic gas."},
+  {q:"The Boyle’s law is a special case of:",o:["Ideal gas law","Charles’ law","Gay-Lussac’s law","None"],a:0,exp:"Boyle’s law (PV = constant) is derived from PV = nRT."}
+];
+
+const q14 = [
+  {q:"The motion of a simple pendulum is:",o:["SHM","Circular","Linear","None"],a:0,exp:"Simple pendulum exhibits simple harmonic motion."},
+  {q:"The time period of a simple pendulum is:",o:["2π√(L/g)","2π√(g/L)","π√(L/g)","None"],a:0,exp:"T = 2π√(L/g)."},
+  {q:"The frequency of oscillation is:",o:["1/T","T","2π/T","None"],a:0,exp:"Frequency f = 1/T."},
+  {q:"The angular frequency of SHM is:",o:["ω = 2πf","ω = f/2π","ω = 2π/T","Both a and c"],a:3,exp:"ω = 2πf = 2π/T."},
+  {q:"The restoring force in SHM is proportional to:",o:["Displacement","Velocity","Acceleration","None"],a:0,exp:"F = -kx in SHM."},
+  {q:"The time period of a spring-mass system is:",o:["2π√(m/k)","2π√(k/m)","π√(m/k)","None"],a:0,exp:"T = 2π√(m/k)."},
+  {q:"The velocity of a wave is given by:",o:["v = fλ","v = f/λ","v = λ/f","None"],a:0,exp:"Wave speed v = frequency × wavelength."},
+  {q:"The unit of wave number is:",o:["m⁻¹","m","Hz","None"],a:0,exp:"Wave number = 1/λ, unit m⁻¹."},
+  {q:"Transverse waves can propagate in:",o:["Solids and liquids","Gases","Solids only","Vacuum"],a:0,exp:"Transverse waves require a medium with shear strength."},
+  {q:"Longitudinal waves can propagate in:",o:["Solids, liquids, gases","Solids only","Vacuum","None"],a:0,exp:"Longitudinal waves travel through any medium."},
+  {q:"The speed of sound in air depends on:",o:["Temperature","Pressure","Both","None"],a:0,exp:"Speed of sound ∝ √T."},
+  {q:"The Doppler effect is observed due to:",o:["Relative motion","Absolute motion","Stationary source","None"],a:0,exp:"Doppler effect arises from relative motion."},
+  {q:"The intensity of a wave is proportional to:",o:["Amplitude²","Frequency²","Wavelength²","None"],a:0,exp:"Intensity ∝ A²."},
+  {q:"The phase difference for constructive interference is:",o:["0 or 2π","π","π/2","None"],a:0,exp:"Constructive interference occurs at phase difference 0 or 2π."},
+  {q:"The condition for destructive interference is:",o:["Phase difference = π","Phase difference = 0","Phase difference = π/2","None"],a:0,exp:"Destructive interference occurs at π."},
+  {q:"The fundamental frequency of a string is:",o:["f = (1/2L)√(T/μ)","f = (1/L)√(T/μ)","f = (2L)√(T/μ)","None"],a:0,exp:"f = (1/2L)√(T/μ)."},
+  {q:"Standing waves are formed by:",o:["Superposition of waves","Single wave","Refraction","None"],a:0,exp:"Standing waves result from wave superposition."},
+  {q:"The energy in SHM is:",o:["Constant","Variable","Zero","None"],a:0,exp:"Total energy in SHM is conserved."},
+  {q:"The speed of a transverse wave on a string is:",o:["√(T/μ)","√(μ/T)","T/μ","None"],a:0,exp:"v = √(T/μ)."},
+  {q:"Beats are formed due to:",o:["Interference of waves","Diffraction","Refraction","None"],a:0,exp:"Beats result from interference of waves with different frequencies."}
+];
+
+/* ---------- Answers ---------- */
+const answers1 = q1.map(x => x.a);
+const answers2 = q2.map(x => x.a);
+const answers3 = q3.map(x => x.a);
+const answers4 = q4.map(x => x.a);
+const answers5 = q5.map(x => x.a);
+const answers6 = q6.map(x => x.a);
+const answers7 = q7.map(x => x.a);
+const answers8 = q8.map(x => x.a);
+const answers9 = q9.map(x => x.a);
+const answers10 = q10.map(x => x.a);
+const answers11 = q11.map(x => x.a);
+const answers12 = q12.map(x => x.a);
+const answers13 = q13.map(x => x.a);
+const answers14 = q14.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `<p><b>Q${i+1}.</b> ${item.q}</p>` +
+      item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("") +
+      `<div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>` +
+      `<div class="explanation">Explanation: ${item.exp}</div>` +
+      `<button type="button" onclick="showAnswer(this)">Show Answer</button>`;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q1, "quiz1");
+loadQuestions(q2, "quiz2");
+loadQuestions(q3, "quiz3");
+loadQuestions(q4, "quiz4");
+loadQuestions(q5, "quiz5");
+loadQuestions(q6, "quiz6");
+loadQuestions(q7, "quiz7");
+loadQuestions(q8, "quiz8");
+loadQuestions(q9, "quiz9");
+loadQuestions(q10, "quiz10");
+loadQuestions(q11, "quiz11");
+loadQuestions(q12, "quiz12");
+loadQuestions(q13, "quiz13");
+loadQuestions(q14, "quiz14");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0, out = "";
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
     }
+  });
+  document.getElementById(resId).innerHTML = `<div class='result'><b>Score: ${score}/${ansArr.length}</b><br>${out}</div>`;
+}
+function qAns(formId) {
+  switch (formId) {
+    case "quiz1": return q1;
+    case "quiz2": return q2;
+    case "quiz3": return q3;
+    case "quiz4": return q4;
+    case "quiz5": return q5;
+    case "quiz6": return q6;
+    case "quiz7": return q7;
+    case "quiz8": return q8;
+    case "quiz9": return q9;
+    case "quiz10": return q10;
+    case "quiz11": return q11;
+    case "quiz12": return q12;
+    case "quiz13": return q13;
+    case "quiz14": return q14;
+    default: return [];
+  }
+}
 
-    function loadQuestion() {
-      const q = quizData[currentQuestion];
-      questionElement.textContent = q.question;
-      optionsElement.innerHTML = '';
-      q.options.forEach((option, index) => {
-        const div = document.createElement('div');
-        div.classList.add('option');
-        div.textContent = option;
-        div.addEventListener('click', () => selectOption(index, div));
-        optionsElement.appendChild(div);
-      });
-      submitBtn.style.display = 'block';
-      nextBtn.style.display = 'none';
-      selectedOption = null;
+/* ---------- Timer ---------- */
+function startTimer(duration, display) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    display.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
     }
+  }, 1000);
+}
+startTimer(20 * 60, document.getElementById("timer1"));
+startTimer(20 * 60, document.getElementById("timer2"));
+startTimer(20 * 60, document.getElementById("timer3"));
+startTimer(20 * 60, document.getElementById("timer4"));
+startTimer(20 * 60, document.getElementById("timer5"));
+startTimer(20 * 60, document.getElementById("timer6"));
+startTimer(20 * 60, document.getElementById("timer7"));
+startTimer(20 * 60, document.getElementById("timer8"));
+startTimer(20 * 60, document.getElementById("timer9"));
+startTimer(20 * 60, document.getElementById("timer10"));
+startTimer(20 * 60, document.getElementById("timer11"));
+startTimer(20 * 60, document.getElementById("timer12"));
+startTimer(20 * 60, document.getElementById("timer13"));
+startTimer(20 * 60, document.getElementById("timer14"));
 
-    function selectOption(index, element) {
-      selectedOption = index;
-      document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-      element.classList.add('selected');
-    }
-
-    function checkAnswer() {
-      if (selectedOption === null) return;
-      const correct = quizData[currentQuestion].correct;
-      const options = document.querySelectorAll('.option');
-      options[correct].classList.add('correct');
-      if (selectedOption !== correct) {
-        options[selectedOption].classList.add('incorrect');
-      } else {
-        score++;
-      }
-      submitBtn.style.display = 'none';
-      nextBtn.style.display = 'block';
-    }
-
-    function showScore() {
-      document.getElementById('quiz').innerHTML = '';
-      scoreElement.textContent = `Your Score: ${score} out of ${quizData.length}`;
-      clearInterval(timerInterval);
-    }
-
-    submitBtn.addEventListener('click', checkAnswer);
-    nextBtn.addEventListener('click', () => {
-      currentQuestion++;
-      if (currentQuestion < quizData.length) {
-        loadQuestion();
-      } else {
-        showScore();
-      }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      loadQuestion();
-      startTimer();
-    });
-  </script>
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
 </body>
 </html>
-
-
