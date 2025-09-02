@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JEE Chemistry Quiz Chapters 1–14</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      margin: auto;
+      max-width: 900px;
+    }
+    h2 {
+      background: #444;
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .question {
+      background: #fff;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .options label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    button {
+      background: #d4a017;
+      color: #fff;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #b8860b;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #e3f2fd;
+      border-left: 5px solid #2196f3;
+    }
+    .timer {
+      font-size: 18px;
+      font-weight: bold;
+      color: #b71c1c;
+      margin: 10px 0;
+    }
+    .answer {
+      display: none;
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+    .explanation {
+      display: none;
+      margin-top: 5px;
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>JEE Chemistry Quiz (Chapters 1–14)</h1>
+  <p>Each quiz has 20 questions | Time Limit: 20 minutes</p>
+</header>
+
+<section>
+  <h2>Chapter 1: Some Basic Concepts of Chemistry</h2>
+  <div class="timer" id="timer1">20:00</div>
+  <form id="quiz1"></form>
+  <button onclick="submitQuiz('quiz1','result1',answers1);">Submit Quiz</button>
+  <div id="result1" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 2: Structure of Atom</h2>
+  <div class="timer" id="timer2">20:00</div>
+  <form id="quiz2"></form>
+  <button onclick="submitQuiz('quiz2','result2',answers2);">Submit Quiz</button>
+  <div id="result2" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 3: Classification of Elements and Periodicity</h2>
+  <div class="timer" id="timer3">20:00</div>
+  <form id="quiz3"></form>
+  <button onclick="submitQuiz('quiz3','result3',answers3);">Submit Quiz</button>
+  <div id="result3" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 4: Chemical Bonding and Molecular Structure</h2>
+  <div class="timer" id="timer4">20:00</div>
+  <form id="quiz4"></form>
+  <button onclick="submitQuiz('quiz4','result4',answers4);">Submit Quiz</button>
+  <div id="result4" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 5: States of Matter</h2>
+  <div class="timer" id="timer5">20:00</div>
+  <form id="quiz5"></form>
+  <button onclick="submitQuiz('quiz5','result5',answers5);">Submit Quiz</button>
+  <div id="result5" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 6: Thermodynamics</h2>
+  <div class="timer" id="timer6">20:00</div>
+  <form id="quiz6"></form>
+  <button onclick="submitQuiz('quiz6','result6',answers6);">Submit Quiz</button>
+  <div id="result6" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 7: Equilibrium</h2>
+  <div class="timer" id="timer7">20:00</div>
+  <form id="quiz7"></form>
+  <button onclick="submitQuiz('quiz7','result7',answers7);">Submit Quiz</button>
+  <div id="result7" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 8: Redox Reactions</h2>
+  <div class="timer" id="timer8">20:00</div>
+  <form id="quiz8"></form>
+  <button onclick="submitQuiz('quiz8','result8',answers8);">Submit Quiz</button>
+  <div id="result8" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 9: Hydrogen</h2>
+  <div class="timer" id="timer9">20:00</div>
+  <form id="quiz9"></form>
+  <button onclick="submitQuiz('quiz9','result9',answers9);">Submit Quiz</button>
+  <div id="result9" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 10: s-Block Elements</h2>
+  <div class="timer" id="timer10">20:00</div>
+  <form id="quiz10"></form>
+  <button onclick="submitQuiz('quiz10','result10',answers10);">Submit Quiz</button>
+  <div id="result10" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 11: p-Block Elements</h2>
+  <div class="timer" id="timer11">20:00</div>
+  <form id="quiz11"></form>
+  <button onclick="submitQuiz('quiz11','result11',answers11);">Submit Quiz</button>
+  <div id="result11" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 12: Organic Chemistry - Basic Principles</h2>
+  <div class="timer" id="timer12">20:00</div>
+  <form id="quiz12"></form>
+  <button onclick="submitQuiz('quiz12','result12',answers12);">Submit Quiz</button>
+  <div id="result12" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 13: Hydrocarbons</h2>
+  <div class="timer" id="timer13">20:00</div>
+  <form id="quiz13"></form>
+  <button onclick="submitQuiz('quiz13','result13',answers13);">Submit Quiz</button>
+  <div id="result13" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 14: Environmental Chemistry</h2>
+  <div class="timer" id="timer14">20:00</div>
+  <form id="quiz14"></form>
+  <button onclick="submitQuiz('quiz14','result14',answers14);">Submit Quiz</button>
+  <div id="result14" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data ---------- */
+const q1 = [
+  {q:"What is the SI unit of amount of substance?",o:["Mole","Gram","Liter","Kilogram"],a:0,exp:"Mole is the SI unit for amount of substance."},
+  {q:"The molecular mass of CO₂ is:",o:["12 u","44 u","32 u","28 u"],a:1,exp:"CO₂ = 12 + (16 × 2) = 44 u."},
+  {q:"Avogadro’s number is:",o:["6.022 × 10²³","6.626 × 10⁻³⁴","1.6 × 10⁻¹⁹","9.11 × 10⁻³¹"],a:0,exp:"Avogadro’s number = 6.022 × 10²³ particles/mol."},
+  {q:"Molarity is defined as:",o:["Moles/Volume","Mass/Volume","Moles/Mass","Volume/Moles"],a:0,exp:"Molarity (M) = moles of solute/liter of solution."},
+  {q:"The law of conservation of mass was proposed by:",o:["Dalton","Lavoisier","Avogadro","Boyle"],a:1,exp:"Lavoisier proposed the law of conservation of mass."},
+  {q:"1 mole of H₂ contains:",o:["2 g","1 g","4 g","0.5 g"],a:0,exp:"1 mole of H₂ = 2 × 1 = 2 g."},
+  {q:"Molality is defined as:",o:["Moles/kg of solvent","Moles/liter","Mass/Volume","None"],a:0,exp:"Molality (m) = moles of solute/kg of solvent."},
+  {q:"The empirical formula of C₆H₁₂O₆ is:",o:["CH₂O","C₆H₁₂O₆","C₃H₆O₃","C₂H₄O₂"],a:0,exp:"Simplest ratio: CH₂O."},
+  {q:"Percentage composition gives:",o:["Mass % of elements","Mole %","Volume %","None"],a:0,exp:"Percentage of each element’s mass in a compound."},
+  {q:"The unit of molar mass is:",o:["g/mol","kg/mol","g/liter","mol/g"],a:0,exp:"Molar mass is measured in g/mol."},
+  {q:"Which is a limiting reagent?",o:["Reagent in excess","Reagent consumed first","Catalyst","None"],a:1,exp:"Limiting reagent determines reaction extent."},
+  {q:"The law of definite proportions was given by:",o:["Proust","Dalton","Lavoisier","Avogadro"],a:0,exp:"Proust stated compounds have fixed proportions."},
+  {q:"1 amu equals:",o:["1.66 × 10⁻²⁷ kg","1.6 × 10⁻¹⁹ kg","9.11 × 10⁻³¹ kg","6.022 × 10²³ kg"],a:0,exp:"1 amu = 1.66 × 10⁻²⁷ kg."},
+  {q:"The number of moles in 36 g of water is:",o:["1","2","3","4"],a:1,exp:"Moles = 36/18 = 2."},
+  {q:"Stoichiometry deals with:",o:["Reaction mechanisms","Mass relationships","Kinetics","None"],a:1,exp:"Stoichiometry involves mass ratios in reactions."},
+  {q:"The unit of concentration is:",o:["mol/L","g/L","kg/m³","All"],a:0,exp:"Molarity (mol/L) is a common concentration unit."},
+  {q:"The molecular formula shows:",o:["Actual number of atoms","Simplest ratio","Mass ratio","None"],a:0,exp:"Molecular formula gives exact atom counts."},
+  {q:"Avogadro’s law relates:",o:["Volume and moles","Pressure and temperature","Volume and pressure","None"],a:0,exp:"V ∝ n at constant T and P."},
+  {q:"The mass of 1 mole of electrons is:",o:["9.11 × 10⁻³¹ kg","5.5 × 10⁻⁴ kg","1.6 × 10⁻¹⁹ kg","None"],a:1,exp:"Mass = 9.11 × 10⁻³¹ × 6.022 × 10²³ ≈ 5.5 × 10⁻⁴ kg."},
+  {q:"The equivalent weight of an element is:",o:["Atomic weight/valency","Molecular weight/valency","Mass/moles","None"],a:0,exp:"Equivalent weight = atomic weight/valency."}
+];
+
+const q2 = [
+  {q:"Who proposed the planetary model of the atom?",o:["Bohr","Rutherford","Thomson","Dalton"],a:0,exp:"Bohr proposed the planetary model with quantized orbits."},
+  {q:"The charge of an electron is:",o:["1.6 × 10⁻¹⁹ C","1.6 × 10⁻¹⁶ C","9.11 × 10⁻³¹ C","None"],a:0,exp:"Electron charge = -1.6 × 10⁻¹⁹ C."},
+  {q:"The quantum number that defines orbital shape is:",o:["Principal","Azimuthal","Magnetic","Spin"],a:1,exp:"Azimuthal quantum number (l) defines orbital shape."},
+  {q:"The maximum number of electrons in a shell is:",o:["2n²","n²","2n","n"],a:0,exp:"Electrons = 2n², where n is the principal quantum number."},
+  {q:"Heisenberg’s uncertainty principle states:",o:["Δx·Δp ≥ h/4π","E = mc²","F = ma","None"],a:0,exp:"Cannot know position and momentum exactly."},
+  {q:"The de Broglie wavelength is given by:",o:["h/p","p/h","h/E","E/h"],a:0,exp:"λ = h/p, where p is momentum."},
+  {q:"The atomic number represents:",o:["Protons","Neutrons","Electrons","Nucleons"],a:0,exp:"Atomic number = number of protons."},
+  {q:"The Pauli exclusion principle states:",o:["No two electrons have same quantum numbers","Electrons fill lowest energy first","Electrons pair oppositely","None"],a:0,exp:"Each electron has a unique set of quantum numbers."},
+  {q:"The Aufbau principle governs:",o:["Electron filling order","Nuclear stability","Bond formation","None"],a:0,exp:"Electrons fill orbitals from lowest energy."},
+  {q:"The energy of an electron in H-atom is:",o:["-13.6/n² eV","13.6/n² eV","-13.6 n² eV","None"],a:0,exp:"E = -13.6/n² eV for hydrogen."},
+  {q:"The spectrum of hydrogen is:",o:["Line","Continuous","Band","None"],a:0,exp:"Hydrogen shows a line spectrum."},
+  {q:"The magnetic quantum number defines:",o:["Orbital orientation","Orbital shape","Energy level","Spin"],a:0,exp:"m_l defines orbital orientation in a magnetic field."},
+  {q:"The value of Planck’s constant is:",o:["6.626 × 10⁻³⁴ Js","1.6 × 10⁻¹⁹ Js","9.11 × 10⁻³¹ Js","None"],a:0,exp:"h = 6.626 × 10⁻³⁴ Js."},
+  {q:"The Bohr radius is:",o:["0.529 × 10⁻¹⁰ m","0.529 × 10⁻⁸ m","0.529 × 10⁻¹² m","None"],a:0,exp:"Bohr radius = 0.529 × 10⁻¹⁰ m."},
+  {q:"The spin quantum number values are:",o:["+1/2, -1/2","0, 1","1, -1","None"],a:0,exp:"m_s = +1/2, -1/2."},
+  {q:"The number of orbitals in n=3 shell is:",o:["9","5","7","3"],a:0,exp:"Number of orbitals = n² = 3² = 9."},
+  {q:"The Rydberg constant is used in:",o:["Hydrogen spectrum","Gas laws","Bond energy","None"],a:0,exp:"Rydberg constant is used in hydrogen spectral lines."},
+  {q:"The ground state of hydrogen is:",o:["1s","2s","2p","3s"],a:0,exp:"Ground state of hydrogen is 1s orbital."},
+  {q:"Hund’s rule states:",o:["Electrons fill orbitals singly first","Lowest energy first","Opposite spins","None"],a:0,exp:"Electrons occupy orbitals singly before pairing."},
+  {q:"The number of electrons in a neutral atom equals:",o:["Protons","Neutrons","Nucleons","None"],a:0,exp:"Neutral atom: electrons = protons."}
+];
+
+const q3 = [
+  {q:"The modern periodic table is based on:",o:["Atomic mass","Atomic number","Mass number","None"],a:1,exp:"Arranged by increasing atomic number."},
+  {q:"The creator of the periodic table is:",o:["Mendeleev","Moseley","Dalton","Bohr"],a:0,exp:"Mendeleev developed the periodic table."},
+  {q:"Elements in the same group have the same:",o:["Valence electrons","Atomic mass","Protons","None"],a:0,exp:"Same group = same valence electrons."},
+  {q:"The number of periods in the periodic table is:",o:["7","8","6","9"],a:0,exp:"There are 7 periods."},
+  {q:"Ionization energy increases:",o:["Across a period","Down a group","Both","None"],a:0,exp:"Increases left to right due to nuclear charge."},
+  {q:"Electronegativity is highest for:",o:["Fluorine","Chlorine","Oxygen","Nitrogen"],a:0,exp:"Fluorine has the highest electronegativity."},
+  {q:"The atomic radius decreases:",o:["Across a period","Down a group","Both","None"],a:0,exp:"Decreases across due to increased nuclear charge."},
+  {q:"The first element of the periodic table is:",o:["Hydrogen","Helium","Lithium","Beryllium"],a:0,exp:"Hydrogen has atomic number 1."},
+  {q:"The number of groups in the periodic table is:",o:["18","16","20","14"],a:0,exp:"There are 18 groups."},
+  {q:"Metals are found on the:",o:["Left side","Right side","Middle","None"],a:0,exp:"Metals are on the left of the periodic table."},
+  {q:"Non-metals are generally:",o:["Brittle","Conductors","Ductile","None"],a:0,exp:"Non-metals are brittle or gaseous."},
+  {q:"The element with atomic number 17 is:",o:["Chlorine","Fluorine","Argon","Sulfur"],a:0,exp:"Atomic number 17 = Chlorine."},
+  {q:"The lanthanides are in period:",o:["6","5","7","4"],a:0,exp:"Lanthanides are in period 6."},
+  {q:"The most electronegative element is:",o:["Fluorine","Chlorine","Oxygen","Bromine"],a:0,exp:"Fluorine has electronegativity 4.0."},
+  {q:"The diagonal relationship exists between:",o:["Li and Mg","Na and K","Be and B","None"],a:0,exp:"Li and Mg show similar properties."},
+  {q:"The s-block contains:",o:["Groups 1 and 2","Groups 3-12","Group 18","None"],a:0,exp:"s-block includes groups 1 and 2."},
+  {q:"The d-block elements are:",o:["Transition metals","Alkali metals","Halogens","None"],a:0,exp:"d-block elements are transition metals."},
+  {q:"The element with the highest ionization energy is:",o:["Helium","Neon","Fluorine","Argon"],a:0,exp:"Helium has the highest ionization energy."},
+  {q:"The periodic law states:",o:["Properties repeat periodically","Mass increases","Electrons are fixed","None"],a:0,exp:"Properties recur with atomic number."},
+  {q:"The atomic radius of Na compared to Cl is:",o:["Larger","Smaller","Equal","None"],a:0,exp:"Na has a larger radius than Cl."}
+];
+
+const q4 = [
+  {q:"A covalent bond involves:",o:["Electron sharing","Electron transfer","Proton sharing","None"],a:0,exp:"Covalent bonds share electrons."},
+  {q:"Ionic bonds form between:",o:["Metal and non-metal","Two non-metals","Two metals","None"],a:0,exp:"Ionic bonds involve electron transfer."},
+  {q:"The shape of CH₄ is:",o:["Tetrahedral","Linear","Trigonal planar","None"],a:0,exp:"CH₄ has a tetrahedral shape (VSEPR)."},
+  {q:"Hybridization in NH₃ is:",o:["sp³","sp²","sp","None"],a:0,exp:"NH₃ has sp³ hybridization."},
+  {q:"The bond angle in H₂O is approximately:",o:["104.5°","120°","180°","109.5°"],a:0,exp:"H₂O has a bent shape, ~104.5°."},
+  {q:"A pi bond is formed by:",o:["Sideways overlap","Head-on overlap","Ionic transfer","None"],a:0,exp:"Pi bonds form via sideways p-orbital overlap."},
+  {q:"The strongest type of bond is:",o:["Covalent","Ionic","Hydrogen","Van der Waals"],a:0,exp:"Covalent bonds are typically strongest."},
+  {q:"Dipole moment is highest in:",o:["HF","HCl","HBr","HI"],a:0,exp:"HF has the highest electronegativity difference."},
+  {q:"VSEPR theory predicts:",o:["Molecular shape","Bond energy","Hybridization","None"],a:0,exp:"VSEPR predicts molecular geometry."},
+  {q:"The bond order of O₂ is:",o:["2","1","3","0"],a:0,exp:"O₂ has a double bond (bond order = 2)."},
+  {q:"Hydrogen bonding occurs in:",o:["HF","CH₄","CCl₄","None"],a:0,exp:"HF has H bonded to F, enabling H-bonding."},
+  {q:"The hybridization of C in CO₂ is:",o:["sp","sp²","sp³","None"],a:0,exp:"CO₂ has linear geometry, sp hybridization."},
+  {q:"The bond in N₂ is:",o:["Triple","Double","Single","None"],a:0,exp:"N₂ has a triple bond."},
+  {q:"Polar molecules have:",o:["Asymmetric charge distribution","Symmetric shape","No dipoles","None"],a:0,exp:"Polarity arises from uneven charge."},
+  {q:"The shape of SF₆ is:",o:["Octahedral","Tetrahedral","Trigonal bipyramidal","None"],a:0,exp:"SF₆ has octahedral geometry."},
+  {q:"Coordinate covalent bonds involve:",o:["One atom donating both electrons","Equal sharing","Ionic transfer","None"],a:0,exp:"One atom provides both bonding electrons."},
+  {q:"The bond angle in NH₃ is:",o:["107°","120°","109.5°","180°"],a:0,exp:"NH₃ has ~107° due to lone pair repulsion."},
+  {q:"Metallic bonds involve:",o:["Delocalized electrons","Localized electrons","Ionic transfer","None"],a:0,exp:"Metallic bonds have free electrons."},
+  {q:"The bond order of NO is:",o:["2.5","2","3","1"],a:0,exp:"NO has bond order 2.5 (MO theory)."},
+  {q:"The molecule with no dipole moment is:",o:["CCl₄","CHCl₃","NH₃","H₂O"],a:0,exp:"CCl₄ is tetrahedral, dipoles cancel."}
+];
+
+const q5 = [
+  {q:"The ideal gas law is:",o:["PV = nRT","PV = RT","P = nRT/V","None"],a:0,exp:"PV = nRT for ideal gases."},
+  {q:"Boyle’s law states:",o:["P ∝ 1/V","V ∝ T","P ∝ T","None"],a:0,exp:"P₁V₁ = P₂V₂ at constant T."},
+  {q:"The van der Waals equation corrects for:",o:["Molecular interactions","Ideal gas assumptions","Both","None"],a:2,exp:"Corrects for volume and attractions."},
+  {q:"The critical temperature is:",o:["Temperature above which gas cannot liquefy","Boiling point","Melting point","None"],a:0,exp:"Above T_c, gas cannot be liquefied."},
+  {q:"The compressibility factor Z equals:",o:["PV/nRT","nRT/PV","P/nRT","None"],a:0,exp:"Z = PV/nRT, 1 for ideal gases."},
+  {q:"The boiling point of water is:",o:["100°C at 1 atm","0°C","50°C","None"],a:0,exp:"Water boils at 100°C at 1 atm."},
+  {q:"Charles’ law states:",o:["V ∝ T","P ∝ T","V ∝ 1/P","None"],a:0,exp:"V₁/T₁ = V₂/T₂ at constant P."},
+  {q:"The unit of pressure is:",o:["Pascal","Joule","Newton","Watt"],a:0,exp:"Pressure is measured in Pascal."},
+  {q:"The molar volume at STP is:",o:["22.4 L","24.4 L","20.4 L","None"],a:0,exp:"1 mole of gas occupies 22.4 L at STP."},
+  {q:"Avogadro’s law states:",o:["V ∝ n","V ∝ T","P ∝ n","None"],a:0,exp:"Volume is proportional to moles."},
+  {q:"The kinetic energy of gas molecules is proportional to:",o:["Temperature","Pressure","Volume","None"],a:0,exp:"KE ∝ T (in Kelvin)."},
+  {q:"The mean free path is:",o:["Average distance between collisions","Total distance","Speed","None"],a:0,exp:"Mean free path is collision distance."},
+  {q:"Real gases deviate from ideal behavior at:",o:["High pressure, low temperature","Low pressure, high temperature","Both","None"],a:0,exp:"Deviations occur at high P, low T."},
+  {q:"The unit of R (gas constant) is:",o:["J/mol K","J/kg K","Pa m³/mol K","All"],a:3,exp:"R = 8.314 J/mol K or equivalent."},
+  {q:"Dalton’s law states:",o:["Total P = sum of partial pressures","P ∝ 1/V","V ∝ T","None"],a:0,exp:"P_total = P₁ + P₂ + ..."},
+  {q:"The diffusion rate is governed by:",o:["Graham’s law","Boyle’s law","Charles’ law","None"],a:0,exp:"Rate ∝ 1/√M (Graham’s law)."},
+  {q:"The temperature at STP is:",o:["0°C","25°C","100°C","None"],a:0,exp:"STP is 0°C (273 K)."},
+  {q:"The pressure at STP is:",o:["1 atm","2 atm","0.5 atm","None"],a:0,exp:"STP is 1 atm (101325 Pa)."},
+  {q:"The RMS speed of gas molecules is:",o:["√(3RT/M)","√(2RT/M)","√(8RT/πM)","None"],a:0,exp:"v_rms = √(3RT/M)."},
+  {q:"The critical point involves:",o:["Liquid-gas equilibrium","Solid-liquid","Solid-gas","None"],a:0,exp:"Critical point is liquid-gas boundary."}
+];
+
+const q6 = [
+  {q:"The first law of thermodynamics is:",o:["ΔU = Q - W","Q = W","ΔU = Q + W","None"],a:0,exp:"ΔU = Q - W (energy conservation)."},
+  {q:"Enthalpy (H) is defined as:",o:["U + PV","U - PV","Q - W","None"],a:0,exp:"H = U + PV."},
+  {q:"The unit of enthalpy is:",o:["Joule","Pascal","Watt","None"],a:0,exp:"Enthalpy is measured in Joules."},
+  {q:"A process with no heat transfer is:",o:["Adiabatic","Isothermal","Isobaric","None"],a:0,exp:"Adiabatic means Q = 0."},
+  {q:"The second law of thermodynamics states:",o:["Entropy increases","Energy is conserved","Heat flows hot to cold","Both a and c"],a:3,exp:"Entropy increases; heat flows naturally."},
+  {q:"Gibbs free energy is:",o:["G = H - TS","G = H + TS","G = U - PV","None"],a:0,exp:"G = H - TS."},
+  {q:"A spontaneous process has:",o:["ΔG < 0","ΔG > 0","ΔG = 0","None"],a:0,exp:"Negative ΔG indicates spontaneity."},
+  {q:"The unit of entropy is:",o:["J/K","J/mol","J/kg K","None"],a:0,exp:"Entropy is measured in J/K."},
+  {q:"An isothermal process has:",o:["Constant temperature","Constant pressure","Constant volume","None"],a:0,exp:"Isothermal means T is constant."},
+  {q:"The standard enthalpy of formation is for:",o:["1 mole of compound","1 g of compound","1 mole of element","None"],a:0,exp:"ΔH_f is for 1 mole of compound."},
+  {q:"The Hess’s law states:",o:["ΔH is path-independent","ΔH is path-dependent","ΔH = Q","None"],a:0,exp:"ΔH depends only on initial/final states."},
+  {q:"The bond dissociation energy is:",o:["Energy to break a bond","Energy to form a bond","Heat of reaction","None"],a:0,exp:"Energy required to break 1 mole of bonds."},
+  {q:"The unit of ΔG is:",o:["Joule","Pascal","Watt","None"],a:0,exp:"Gibbs free energy is in Joules."},
+  {q:"An exothermic reaction has:",o:["ΔH < 0","ΔH > 0","ΔH = 0","None"],a:0,exp:"Exothermic releases heat."},
+  {q:"The work done in an isochoric process is:",o:["Zero","Q","ΔU","None"],a:0,exp:"No volume change, so W = 0."},
+  {q:"The relation C_p - C_v equals:",o:["R","2R","R/2","None"],a:0,exp:"C_p - C_v = R for ideal gases."},
+  {q:"The entropy change for a reversible process is:",o:["Zero","Positive","Negative","None"],a:0,exp:"ΔS = 0 for reversible processes."},
+  {q:"The standard state temperature is:",o:["298 K","273 K","300 K","None"],a:0,exp:"Standard state is 298 K (25°C)."},
+  {q:"The heat of combustion is always:",o:["Exothermic","Endothermic","Zero","None"],a:0,exp:"Combustion releases heat."},
+  {q:"The Kirchhoff’s law relates:",o:["ΔH with temperature","ΔG with pressure","ΔS with volume","None"],a:0,exp:"ΔH varies with T (C_p dependence)."}
+];
+
+const q7 = [
+  {q:"Equilibrium constant K_c is expressed in:",o:["Concentration","Pressure","Moles","None"],a:0,exp:"K_c uses molar concentrations."},
+  {q:"Le Chatelier’s principle states:",o:["System adjusts to minimize disturbance","System stays constant","Reaction stops","None"],a:0,exp:"Adjusts to counter changes."},
+  {q:"For a reaction at equilibrium:",o:["ΔG = 0","ΔH = 0","ΔS = 0","None"],a:0,exp:"ΔG = 0 at equilibrium."},
+  {q:"The unit of K_p is:",o:["No unit","Pa","mol/L","None"],a:0,exp:"K_p is dimensionless for moles balanced."},
+  {q:"A large K_c indicates:",o:["Products favored","Reactants favored","No reaction","None"],a:0,exp:"Large K_c means equilibrium favors products."},
+  {q:"The pH of a neutral solution at 25°C is:",o:["7","0","14","None"],a:0,exp:"pH = 7 for neutral water at 25°C."},
+  {q:"The expression for K_w is:",o:["[H⁺][OH⁻]","[H⁺]/[OH⁻]","[H₂O]","None"],a:0,exp:"K_w = [H⁺][OH⁻] = 10⁻¹⁴ at 25°C."},
+  {q:"A buffer solution resists:",o:["pH change","Temperature change","Pressure change","None"],a:0,exp:"Buffers maintain stable pH."},
+  {q:"The solubility product K_sp is for:",o:["Slightly soluble salts","Gases","Liquids","None"],a:0,exp:"K_sp applies to sparingly soluble salts."},
+  {q:"The pH of a 0.1 M HCl solution is:",o:["1","2","3","7"],a:0,exp:"pH = -log(0.1) = 1."},
+  {q:"The conjugate base of HCl is:",o:["Cl⁻","H⁺","OH⁻","None"],a:0,exp:"Cl⁻ is the conjugate base of HCl."},
+  {q:"A strong acid:",o:["Fully ionizes","Partially ionizes","Does not ionize","None"],a:0,exp:"Strong acids completely dissociate."},
+  {q:"The equilibrium constant depends on:",o:["Temperature","Pressure","Concentration","None"],a:0,exp:"K varies with temperature."},
+  {q:"The reaction quotient Q is:",o:["Same as K at equilibrium","Always equal to K","Independent of K","None"],a:0,exp:"Q = K at equilibrium."},
+  {q:"The pOH of a solution with pH 3 is:",o:["11","7","3","None"],a:0,exp:"pH + pOH = 14, so pOH = 11."},
+  {q:"The common ion effect:",o:["Decreases solubility","Increases solubility","No effect","None"],a:0,exp:"Common ions reduce solubility."},
+  {q:"The Henderson-Hasselbalch equation is for:",o:["Buffers","Gases","Solids","None"],a:0,exp:"Used to calculate buffer pH."},
+  {q:"The degree of dissociation depends on:",o:["Concentration","Temperature","Both","None"],a:2,exp:"Dissociation varies with T and concentration."},
+  {q:"The K_a of a weak acid indicates:",o:["Strength of acid","pH","Concentration","None"],a:0,exp:"Larger K_a means stronger acid."},
+  {q:"The equilibrium shifts left if:",o:["Reactants are added","Products are added","Temperature decreases","None"],a:0,exp:"Adding reactants shifts equilibrium left."}
+];
+
+const q8 = [
+  {q:"Oxidation involves:",o:["Loss of electrons","Gain of electrons","No electron change","None"],a:0,exp:"Oxidation is electron loss."},
+  {q:"Reduction involves:",o:["Gain of electrons","Loss of electrons","No electron change","None"],a:0,exp:"Reduction is electron gain."},
+  {q:"The oxidizing agent:",o:["Gets reduced","Gets oxidized","Remains unchanged","None"],a:0,exp:"Oxidizing agent gains electrons."},
+  {q:"The reducing agent:",o:["Gets oxidized","Gets reduced","Remains unchanged","None"],a:0,exp:"Reducing agent loses electrons."},
+  {q:"The oxidation number of O in H₂O is:",o:["-2","0","+2","None"],a:0,exp:"Oxygen is typically -2 in compounds."},
+  {q:"In a galvanic cell, the anode is:",o:["Negative","Positive","Neutral","None"],a:0,exp:"Anode is where oxidation occurs."},
+  {q:"The standard reduction potential is for:",o:["Cathode","Anode","Electrolyte","None"],a:0,exp:"Reduction occurs at the cathode."},
+  {q:"The Nernst equation relates:",o:["E with concentration","E with temperature","Both","None"],a:2,exp:"E = E° - (RT/nF)lnQ."},
+  {q:"The oxidation number of S in SO₄²⁻ is:",o:["+6","+4","+2","0"],a:0,exp:"S = +6 in sulfate ion."},
+  {q:"A redox reaction is:",o:["Balanced for electrons","Unbalanced for electrons","No electron transfer","None"],a:0,exp:"Electrons balance in redox reactions."},
+  {q:"The cathode in a cell is:",o:["Positive","Negative","Neutral","None"],a:0,exp:"Cathode is where reduction occurs."},
+  {q:"The standard hydrogen electrode has E°:",o:["0 V","1 V","-1 V","None"],a:0,exp:"SHE is defined as 0 V."},
+  {q:"The cell potential is:",o:["E_cathode - E_anode","E_anode - E_cathode","E_cathode + E_anode","None"],a:0,exp:"E_cell = E_cathode - E_anode."},
+  {q:"The oxidation number of N in NH₃ is:",o:["-3","0","+3","None"],a:0,exp:"N = -3 in ammonia."},
+  {q:"Balancing redox reactions requires:",o:["Equal electrons","Equal protons","Equal neutrons","None"],a:0,exp:"Electrons must balance."},
+  {q:"The electrolyte in a cell:",o:["Conducts ions","Conducts electrons","Insulates","None"],a:0,exp:"Electrolyte allows ion flow."},
+  {q:"The oxidation number of Cl in Cl₂ is:",o:["0","+1","-1","None"],a:0,exp:"Elements have oxidation number 0."},
+  {q:"The Faraday constant is:",o:["96485 C/mol","1.6 × 10⁻¹⁹ C","6.022 × 10²³ C","None"],a:0,exp:"F = 96485 C/mol."},
+  {q:"A spontaneous cell has:",o:["E_cell > 0","E_cell < 0","E_cell = 0","None"],a:0,exp:"Positive E_cell indicates spontaneity."},
+  {q:"The half-reaction at the anode involves:",o:["Oxidation","Reduction","No reaction","None"],a:0,exp:"Oxidation occurs at the anode."}
+];
+
+const q9 = [
+  {q:"The atomic number of hydrogen is:",o:["1","2","3","0"],a:0,exp:"Hydrogen has atomic number 1."},
+  {q:"Hydrogen exists as:",o:["H₂","H","H⁺","None"],a:0,exp:"Hydrogen is a diatomic gas (H₂)."},
+  {q:"The most abundant isotope of hydrogen is:",o:["Protium","Deuterium","Tritium","None"],a:0,exp:"Protium (¹H) is ~99.98% abundant."},
+  {q:"Heavy water contains:",o:["Deuterium","Protium","Tritium","None"],a:0,exp:"Heavy water is D₂O (deuterium)."},
+  {q:"The hydride ion is:",o:["H⁻","H⁺","H₂","None"],a:0,exp:"Hydride is H⁻ in ionic compounds."},
+  {q:"Hydrogen bonding is strongest in:",o:["H₂O","NH₃","HF","All"],a:0,exp:"H₂O has strong H-bonding."},
+  {q:"The oxidation state of H in NaH is:",o:["-1","0","+1","None"],a:0,exp:"H is -1 in hydrides like NaH."},
+  {q:"Hydrogen is prepared industrially by:",o:["Bosch process","Electrolysis","Both","None"],a:2,exp:"Bosch process and electrolysis are used."},
+  {q:"The boiling point of H₂ is:",o:["20.28 K","100 K","273 K","None"],a:0,exp:"H₂ boils at 20.28 K."},
+  {q:"Hydrogen forms:",o:["Covalent bonds","Ionic bonds","Both","None"],a:2,exp:"H forms covalent (H₂) and ionic (NaH) bonds."},
+  {q:"The isotope deuterium has:",o:["1 proton, 1 neutron","1 proton, 0 neutrons","2 protons","None"],a:0,exp:"Deuterium is ¹H²."},
+  {q:"Ortho-hydrogen has:",o:["Parallel spins","Opposite spins","No spins","None"],a:0,exp:"Ortho-H₂ has parallel nuclear spins."},
+  {q:"Para-hydrogen has:",o:["Opposite spins","Parallel spins","No spins","None"],a:0,exp:"Para-H₂ has opposite nuclear spins."},
+  {q:"Hydrogen is used in:",o:["Haber process","Fuel cells","Both","None"],a:2,exp:"Used in NH₃ synthesis and fuel cells."},
+  {q:"The density of H₂ gas is:",o:["0.089 g/L","0.9 g/L","8.9 g/L","None"],a:0,exp:"Density of H₂ at STP is 0.089 g/L."},
+  {q:"The bond energy of H₂ is:",o:["436 kJ/mol","200 kJ/mol","600 kJ/mol","None"],a:0,exp:"H-H bond energy is 436 kJ/mol."},
+  {q:"Hydrogen peroxide (H₂O₂) is:",o:["Oxidizing agent","Reducing agent","Both","None"],a:2,exp:"H₂O₂ can act as both."},
+  {q:"The structure of H₂O₂ is:",o:["Non-linear","Linear","Tetrahedral","None"],a:0,exp:"H₂O₂ has a non-linear structure."},
+  {q:"The mass number of tritium is:",o:["3","2","1","None"],a:0,exp:"Tritium (³H) has mass number 3."},
+  {q:"Hydrogen’s position in the periodic table is:",o:["Group 1","Group 17","Both","None"],a:2,exp:"H is in Group 1 but shows non-metal properties."}
+];
+
+const q10 = [
+  {q:"The s-block includes:",o:["Groups 1 and 2","Groups 3-12","Group 18","None"],a:0,exp:"s-block contains alkali and alkaline earth metals."},
+  {q:"The element in group 1, period 2 is:",o:["Lithium","Sodium","Potassium","None"],a:0,exp:"Lithium is in group 1, period 2."},
+  {q:"The general valence electron configuration of s-block is:",o:["ns¹⁻²","np¹⁻⁶","nd¹⁻¹⁰","None"],a:0,exp:"s-block elements have ns¹ or ns²."},
+  {q:"Sodium belongs to:",o:["Alkali metals","Alkaline earth metals","Halogens","None"],a:0,exp:"Sodium is an alkali metal."},
+  {q:"The most reactive s-block element is:",o:["Francium","Lithium","Magnesium","None"],a:0,exp:"Francium is highly reactive."},
+  {q:"The oxidation state of group 2 elements is:",o:["+2","+1","0","None"],a:0,exp:"Group 2 forms +2 ions (e.g., Mg²⁺)."},
+  {q:"The flame color of sodium is:",o:["Yellow","Red","Green","None"],a:0,exp:"Sodium gives a yellow flame."},
+  {q:"The compound NaCl is:",o:["Ionic","Covalent","Metallic","None"],a:0,exp:"NaCl is an ionic compound."},
+  {q:"The atomic radius of K compared to Na is:",o:["Larger","Smaller","Equal","None"],a:0,exp:"K has a larger radius (down group)."},
+  {q:"The ionization energy of Mg is:",o:["Higher than Na","Lower than Na","Equal to Na","None"],a:0,exp:"Mg has higher IE due to higher charge."},
+  {q:"The s-block elements form:",o:["Basic oxides","Acidic oxides","Neutral oxides","None"],a:0,exp:"s-block oxides are basic (e.g., Na₂O)."},
+  {q:"The density of Cs is:",o:["Highest in group 1","Lowest in group 1","Same as Na","None"],a:0,exp:"Cs has the highest density in group 1."},
+  {q:"The compound CaCO₃ is:",o:["Insoluble in water","Soluble in water","Gaseous","None"],a:0,exp:"CaCO₃ is sparingly soluble."},
+  {q:"The flame color of calcium is:",o:["Brick red","Yellow","Green","None"],a:0,exp:"Calcium gives a brick-red flame."},
+  {q:"The s-block elements are:",o:["Soft metals","Hard metals","Non-metals","None"],a:0,exp:"s-block elements are soft and metallic."},
+  {q:"The melting point of Li is:",o:["Highest in group 1","Lowest in group 1","Same as Na","None"],a:0,exp:"Li has the highest melting point in group 1."},
+  {q:"The compound MgSO₄ is:",o:["Soluble","Insoluble","Gaseous","None"],a:0,exp:"MgSO₄ is soluble in water."},
+  {q:"The hydration energy is highest for:",o:["Li⁺","Na⁺","K⁺","None"],a:0,exp:"Smaller Li⁺ has higher hydration energy."},
+  {q:"The s-block carbonates are:",o:["Insoluble except group 1","Soluble","Gaseous","None"],a:0,exp:"Group 1 carbonates are soluble; group 2 are not."},
+  {q:"The diagonal relationship exists between:",o:["Li and Mg","Na and Ca","K and Sr","None"],a:0,exp:"Li and Mg share similar properties."}
+];
+
+const q11 = [
+  {q:"The p-block includes:",o:["Groups 13-18","Groups 1-2","Groups 3-12","None"],a:0,exp:"p-block spans groups 13 to 18."},
+  {q:"The element in group 13, period 3 is:",o:["Aluminium","Boron","Gallium","None"],a:0,exp:"Aluminium is in group 13, period 3."},
+  {q:"The valence electron configuration of p-block is:",o:["np¹⁻⁶","ns¹⁻²","nd¹⁻¹⁰","None"],a:0,exp:"p-block elements have np¹⁻⁶."},
+  {q:"The most electronegative p-block element is:",o:["Fluorine","Chlorine","Nitrogen","None"],a:0,exp:"Fluorine is the most electronegative."},
+  {q:"The compound BCl₃ has the shape:",o:["Trigonal planar","Tetrahedral","Linear","None"],a:0,exp:"BCl₃ is trigonal planar (VSEPR)."},
+  {q:"The oxidation state of N in NH₃ is:",o:["-3","+3","0","None"],a:0,exp:"N = -3 in ammonia."},
+  {q:"The p-block includes:",o:["Metals, non-metals, metalloids","Only metals","Only non-metals","None"],a:0,exp:"p-block has diverse elements."},
+  {q:"The compound SF₆ is:",o:["Octahedral","Tetrahedral","Trigonal bipyramidal","None"],a:0,exp:"SF₆ has octahedral geometry."},
+  {q:"The noble gases are in:",o:["Group 18","Group 17","Group 16","None"],a:0,exp:"Group 18 contains noble gases."},
+  {q:"The boiling point of Cl₂ is:",o:["-34°C","0°C","100°C","None"],a:0,exp:"Cl₂ boils at -34°C."},
+  {q:"The hybridization of P in PCl₅ is:",o:["sp³d","sp³","sp²","None"],a:0,exp:"PCl₅ has sp³d hybridization."},
+  {q:"The compound CO₂ is:",o:["Linear","Bent","Tetrahedral","None"],a:0,exp:"CO₂ is linear (sp hybridization)."},
+  {q:"The oxidation state of S in SO₂ is:",o:["+4","0","+6","None"],a:0,exp:"S = +4 in SO₂."},
+  {q:"The p-block oxides are generally:",o:["Acidic or amphoteric","Basic","Neutral","None"],a:0,exp:"p-block oxides are acidic/amphoteric."},
+  {q:"The element with highest ionization energy in group 17 is:",o:["Fluorine","Chlorine","Bromine","None"],a:0,exp:"Fluorine has highest IE in group 17."},
+  {q:"The compound NH₃ is:",o:["Polar","Non-polar","Ionic","None"],a:0,exp:"NH₃ is polar due to lone pair."},
+  {q:"The trend of electronegativity in p-block:",o:["Increases across period","Decreases across period","Constant","None"],a:0,exp:"Increases left to right."},
+  {q:"The compound XeF₂ is:",o:["Linear","Bent","Tetrahedral","None"],a:0,exp:"XeF₂ is linear."},
+  {q:"The p-block element with lowest melting point is:",o:["Helium","Neon","Argon","None"],a:0,exp:"Helium has the lowest melting point."},
+  {q:"The hybridization of C in CO is:",o:["sp","sp²","sp³","None"],a:0,exp:"CO has sp hybridization."}
+];
+
+const q12 = [
+  {q:"Organic chemistry studies compounds of:",o:["Carbon","Nitrogen","Oxygen","None"],a:0,exp:"Organic chemistry focuses on carbon compounds."},
+  {q:"The general formula of alkanes is:",o:["CₙH₂ₙ₊₂","CₙH₂ₙ","CₙH₂ₙ₋₂","None"],a:0,exp:"Alkanes have CₙH₂ₙ₊₂."},
+  {q:"A functional group is:",o:["Reactive part of molecule","Inert part","Whole molecule","None"],a:0,exp:"Functional group determines reactivity."},
+  {q:"The hybridization of C in ethene is:",o:["sp²","sp³","sp","None"],a:0,exp:"Ethene (C₂H₄) has sp² hybridization."},
+  {q:"The IUPAC name of CH₃CH₂OH is:",o:["Ethanol","Methanol","Propanol","None"],a:0,exp:"CH₃CH₂OH is ethanol."},
+  {q:"Aromatic compounds contain:",o:["Benzene ring","Alkane chain","Alkyne bond","None"],a:0,exp:"Aromatic compounds have a benzene ring."},
+  {q:"The bond in ethyne is:",o:["Triple","Double","Single","None"],a:0,exp:"Ethyne (C₂H₂) has a triple bond."},
+  {q:"Isomerism involves:",o:["Same formula, different structures","Different formulas","Same structure","None"],a:0,exp:"Isomers have same molecular formula, different structures."},
+  {q:"The functional group in alcohols is:",o:["-OH","=O","–COOH","None"],a:0,exp:"Alcohols have the -OH group."},
+  {q:"The IUPAC name of CH₃CHO is:",o:["Ethanal","Methanal","Propanone","None"],a:0,exp:"CH₃CHO is ethanal (aldehyde)."},
+  {q:"Homologous series differ by:",o:["CH₂","CH₃","C₂H₅","None"],a:0,exp:"Each member differs by CH₂ unit."},
+  {q:"The hybridization of C in benzene is:",o:["sp²","sp³","sp","None"],a:0,exp:"Benzene has sp² hybridized carbons."},
+  {q:"The functional group in ketones is:",o:["C=O","–OH","–COOH","None"],a:0,exp:"Ketones have the C=O group."},
+  {q:"Catenation is the ability of:",o:["Carbon to form chains","Nitrogen to bond","Oxygen to bond","None"],a:0,exp:"Carbon forms long chains/rings."},
+  {q:"The IUPAC name of C₆H₆ is:",o:["Benzene","Cyclohexane","Hexene","None"],a:0,exp:"C₆H₆ is benzene."},
+  {q:"The bond angle in ethane is:",o:["109.5°","120°","180°","None"],a:0,exp:"Ethane (sp³) has 109.5° bond angles."},
+  {q:"Structural isomerism is shown by:",o:["C₄H₁₀","C₂H₆","CH₄","None"],a:0,exp:"C₄H₁₀ has n-butane and isobutane."},
+  {q:"The functional group in carboxylic acids is:",o:["–COOH","–OH","C=O","None"],a:0,exp:"Carboxylic acids have –COOH."},
+  {q:"The bond in alkenes is:",o:["Double","Single","Triple","None"],a:0,exp:"Alkenes have a C=C double bond."},
+  {q:"The IUPAC name of CH₃COCH₃ is:",o:["Propanone","Ethanal","Methanol","None"],a:0,exp:"CH₃COCH₃ is propanone (ketone)."}
+];
+
+const q13 = [
+  {q:"Hydrocarbons contain:",o:["C and H only","C, H, O","C, H, N","None"],a:0,exp:"Hydrocarbons are composed of carbon and hydrogen."},
+  {q:"The general formula of alkenes is:",o:["CₙH₂ₙ","CₙH₂ₙ₊₂","CₙH₂ₙ₋₂","None"],a:0,exp:"Alkenes have CₙH₂ₙ."},
+  {q:"The general formula of alkynes is:",o:["CₙH₂ₙ₋₂","CₙH₂ₙ","CₙH₂ₙ₊₂","None"],a:0,exp:"Alkynes have CₙH₂ₙ₋₂."},
+  {q:"The reaction of alkanes with Cl₂ is:",o:["Substitution","Addition","Elimination","None"],a:0,exp:"Alkanes undergo free radical substitution."},
+  {q:"The IUPAC name of C₂H₄ is:",o:["Ethene","Ethane","Ethyne","None"],a:0,exp:"C₂H₄ is ethene (alkene)."},
+  {q:"The reaction of alkenes with Br₂ is:",o:["Addition","Substitution","Elimination","None"],a:0,exp:"Alkenes undergo electrophilic addition."},
+  {q:"Benzene is:",o:["Aromatic","Aliphatic","Acyclic","None"],a:0,exp:"Benzene is an aromatic hydrocarbon."},
+  {q:"The hybridization of C in ethyne is:",o:["sp","sp²","sp³","None"],a:0,exp:"Ethyne (C₂H₂) has sp hybridization."},
+  {q:"The product of ethene + H₂ is:",o:["Ethane","Methane","Propane","None"],a:0,exp:"Ethene + H₂ → Ethane (hydrogenation)."},
+  {q:"The test for unsaturation uses:",o:["Br₂ water","H₂SO₄","NaOH","None"],a:0,exp:"Br₂ water decolorizes with alkenes/alkynes."},
+  {q:"The IUPAC name of C₃H₆ is:",o:["Propene","Propane","Propyne","None"],a:0,exp:"C₃H₆ is propene (alkene)."},
+  {q:"Alkanes are:",o:["Saturated","Unsaturated","Aromatic","None"],a:0,exp:"Alkanes have single bonds only."},
+  {q:"The reaction of alkynes with H₂O gives:",o:["Ketones/Aldehydes","Alcohols","Acids","None"],a:0,exp:"Hydration of alkynes forms carbonyls."},
+  {q:"The structure of benzene is:",o:["Planar, 6-membered ring","Linear","Tetrahedral","None"],a:0,exp:"Benzene has a planar ring with delocalized π electrons."},
+  {q:"The combustion of hydrocarbons produces:",o:["CO₂ and H₂O","CO and H₂","C and H₂","None"],a:0,exp:"Complete combustion yields CO₂ and H₂O."},
+  {q:"The IUPAC name of C₄H₁₀ is:",o:["Butane","Propane","Pentane","None"],a:0,exp:"C₄H₁₀ is butane."},
+  {q:"The reaction of benzene with Cl₂ requires:",o:["FeCl₃ catalyst","Light","Heat","None"],a:0,exp:"Electrophilic substitution needs FeCl₃."},
+  {q:"The number of isomers of C₅H₁₂ is:",o:["3","2","4","None"],a:0,exp:"C₅H₁₂ has three isomers."},
+  {q:"Alkenes undergo:",o:["Electrophilic addition","Nucleophilic addition","Substitution","None"],a:0,exp:"Alkenes react via electrophilic addition."},
+  {q:"The bond angle in ethyne is:",o:["180°","120°","109.5°","None"],a:0,exp:"Ethyne (sp) has linear 180° angles."}
+];
+
+const q14 = [
+  {q:"Environmental chemistry studies:",o:["Chemical processes in environment","Organic reactions","Inorganic reactions","None"],a:0,exp:"Focuses on chemical phenomena in air, water, soil."},
+  {q:"The greenhouse effect is caused by:",o:["CO₂, CH₄","O₂","N₂","None"],a:0,exp:"CO₂ and CH₄ trap heat."},
+  {q:"Ozone depletion is caused by:",o:["CFCs","CO₂","SO₂","None"],a:0,exp:"CFCs release Cl, destroying ozone."},
+  {q:"The layer containing ozone is:",o:["Stratosphere","Troposphere","Mesosphere","None"],a:0,exp:"Ozone layer is in the stratosphere."},
+  {q:"Smog is a combination of:",o:["Smoke and fog","CO₂ and O₂","N₂ and O₂","None"],a:0,exp:"Smog = smoke + fog, often with pollutants."},
+  {q:"The pH of acid rain is:",o:["Below 5.6","Above 7","7","None"],a:0,exp:"Acid rain has pH < 5.6 due to SO₂, NOₓ."},
+  {q:"The main source of CO pollution is:",o:["Vehicles","Volcanoes","Factories","None"],a:0,exp:"Vehicles emit CO from incomplete combustion."},
+  {q:"BOD stands for:",o:["Biochemical Oxygen Demand","Biological Oxygen Deficit","Both","None"],a:0,exp:"BOD measures oxygen needed for decomposition."},
+  {q:"The pollutant causing eutrophication is:",o:["Nitrates/Phosphates","CO₂","SO₂","None"],a:0,exp:"Nitrates/phosphates cause algal blooms."},
+  {q:"Ozone protects Earth from:",o:["UV radiation","IR radiation","X-rays","None"],a:0,exp:"Ozone absorbs harmful UV rays."},
+  {q:"The primary pollutant is:",o:["Emitted directly","Formed in atmosphere","Both","None"],a:0,exp:"Primary pollutants are directly emitted."},
+  {q:"Secondary pollutants include:",o:["O₃","CO","SO₂","None"],a:0,exp:"Ozone is formed from other pollutants."},
+  {q:"The main cause of global warming is:",o:["CO₂","O₂","N₂","None"],a:0,exp:"CO₂ is a major greenhouse gas."},
+  {q:"The Kyoto Protocol addresses:",o:["Greenhouse gas emissions","Ozone depletion","Acid rain","None"],a:0,exp:"Aims to reduce greenhouse gases."},
+  {q:"Photochemical smog is caused by:",o:["NOₓ and sunlight","CO₂","SO₂","None"],a:0,exp:"NOₓ reacts with sunlight to form smog."},
+  {q:"The pollutant causing Minamata disease is:",o:["Mercury","Lead","Cadmium","None"],a:0,exp:"Mercury poisoning causes Minamata disease."},
+  {q:"The unit of air quality index is:",o:["No unit","ppm","μg/m³","None"],a:0,exp:"AQI is dimensionless, based on pollutant levels."},
+  {q:"The main source of SO₂ pollution is:",o:["Power plants","Vehicles","Volcanoes","None"],a:0,exp:"Power plants burn fossil fuels, releasing SO₂."},
+  {q:"Green chemistry aims to:",o:["Reduce harmful substances","Increase production","Use more solvents","None"],a:0,exp:"Green chemistry minimizes environmental impact."},
+  {q:"The ozone hole is most prominent over:",o:["Antarctica","Arctic","Equator","None"],a:0,exp:"Ozone depletion is severe over Antarctica."}
+];
+
+/* ---------- Answers ---------- */
+const answers1 = q1.map(x => x.a);
+const answers2 = q2.map(x => x.a);
+const answers3 = q3.map(x => x.a);
+const answers4 = q4.map(x => x.a);
+const answers5 = q5.map(x => x.a);
+const answers6 = q6.map(x => x.a);
+const answers7 = q7.map(x => x.a);
+const answers8 = q8.map(x => x.a);
+const answers9 = q9.map(x => x.a);
+const answers10 = q10.map(x => x.a);
+const answers11 = q11.map(x => x.a);
+const answers12 = q12.map(x => x.a);
+const answers13 = q13.map(x => x.a);
+const answers14 = q14.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `<p><b>Q${i+1}.</b> ${item.q}</p>` +
+      item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("") +
+      `<div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>` +
+      `<div class="explanation">Explanation: ${item.exp}</div>` +
+      `<button type="button" onclick="showAnswer(this)">Show Answer</button>`;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q1, "quiz1");
+loadQuestions(q2, "quiz2");
+loadQuestions(q3, "quiz3");
+loadQuestions(q4, "quiz4");
+loadQuestions(q5, "quiz5");
+loadQuestions(q6, "quiz6");
+loadQuestions(q7, "quiz7");
+loadQuestions(q8, "quiz8");
+loadQuestions(q9, "quiz9");
+loadQuestions(q10, "quiz10");
+loadQuestions(q11, "quiz11");
+loadQuestions(q12, "quiz12");
+loadQuestions(q13, "quiz13");
+loadQuestions(q14, "quiz14");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0, out = "";
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
+    }
+  });
+  document.getElementById(resId).innerHTML = `<div class='result'><b>Score: ${score}/${ansArr.length}</b><br>${out}</div>`;
+}
+function qAns(formId) {
+  switch (formId) {
+    case "quiz1": return q1;
+    case "quiz2": return q2;
+    case "quiz3": return q3;
+    case "quiz4": return q4;
+    case "quiz5": return q5;
+    case "quiz6": return q6;
+    case "quiz7": return q7;
+    case "quiz8": return q8;
+    case "quiz9": return q9;
+    case "quiz10": return q10;
+    case "quiz11": return q11;
+    case "quiz12": return q12;
+    case "quiz13": return q13;
+    case "quiz14": return q14;
+    default: return [];
+  }
+}
+
+/* ---------- Timer ---------- */
+function startTimer(duration, display) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    display.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
+    }
+  }, 1000);
+}
+startTimer(20 * 60, document.getElementById("timer1"));
+startTimer(20 * 60, document.getElementById("timer2"));
+startTimer(20 * 60, document.getElementById("timer3"));
+startTimer(20 * 60, document.getElementById("timer4"));
+startTimer(20 * 60, document.getElementById("timer5"));
+startTimer(20 * 60, document.getElementById("timer6"));
+startTimer(20 * 60, document.getElementById("timer7"));
+startTimer(20 * 60, document.getElementById("timer8"));
+startTimer(20 * 60, document.getElementById("timer9"));
+startTimer(20 * 60, document.getElementById("timer10"));
+startTimer(20 * 60, document.getElementById("timer11"));
+startTimer(20 * 60, document.getElementById("timer12"));
+startTimer(20 * 60, document.getElementById("timer13"));
+startTimer(20 * 60, document.getElementById("timer14"));
+
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
+</body>
+</html>
