@@ -1,561 +1,1693 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEET Biology Quiz</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
-            color: #2c3e50;
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        
-        header {
-            background: linear-gradient(to right, #2c3e50, #4a7b8c);
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-        
-        .logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo i {
-            font-size: 2.8rem;
-            color: #7ac0d3;
-        }
-        
-        .logo h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        
-        .logo p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .main-content {
-            display: flex;
-            min-height: 500px;
-        }
-        
-        .chapters-panel {
-            width: 30%;
-            background: #f8f9fa;
-            padding: 20px;
-            border-right: 1px solid #eaecee;
-            overflow-y: auto;
-        }
-        
-        .chapters-panel h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #4a7b8c;
-        }
-        
-        .chapter-list {
-            list-style: none;
-        }
-        
-        .chapter-item {
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid #4a7b8c;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        
-        .chapter-item:hover {
-            background: #e3f2fd;
-            transform: translateX(5px);
-        }
-        
-        .chapter-item.active {
-            background: #4a7b8c;
-            color: white;
-            border-left: 4px solid #2c3e50;
-        }
-        
-        .quiz-panel {
-            width: 70%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eaecee;
-        }
-        
-        .timer {
-            display: flex;
-            align-items: center;
-            background: #fff4e5;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-weight: 600;
-            color: #e65100;
-        }
-        
-        .timer i {
-            margin-right: 8px;
-        }
-        
-        .score {
-            display: flex;
-            align-items: center;
-            background: #e8f5e9;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-weight: 600;
-            color: #2e7d32;
-        }
-        
-        .score i {
-            margin-right: 8px;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background: #4a7b8c;
-            border-radius: 4px;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        .question-container {
-            flex-grow: 1;
-        }
-        
-        .question-number {
-            font-size: 1rem;
-            color: #4a7b8c;
-            margin-bottom: 5px;
-        }
-        
-        .question {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-        
-        .options {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        
-        .option {
-            padding: 12px 15px;
-            margin-bottom: 12px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid #eaecee;
-        }
-        
-        .option:hover {
-            background: #e3f2fd;
-        }
-        
-        .option.selected {
-            background: #bbdefb;
-            border-color: #4a7b8c;
-        }
-        
-        .option.correct {
-            background: #c8e6c9;
-            border-color: #2e7d32;
-        }
-        
-        .option.incorrect {
-            background: #ffcdd2;
-            border-color: #c62828;
-        }
-        
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-prev {
-            background: #e0e0e0;
-            color: #424242;
-        }
-        
-        .btn-prev:hover {
-            background: #bdbdbd;
-        }
-        
-        .btn-next {
-            background: #4a7b8c;
-            color: white;
-        }
-        
-        .btn-next:hover {
-            background: #3a6a7a;
-        }
-        
-        .btn-submit {
-            background: #2e7d32;
-            color: white;
-        }
-        
-        .btn-submit:hover {
-            background: #1b5e20;
-        }
-        
-        .results-container {
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .results-container h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        
-        .score-display {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #4a7b8c;
-            margin: 20px 0;
-        }
-        
-        .score-text {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        .btn-restart {
-            background: #4a7b8c;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-restart:hover {
-            background: #3a6a7a;
-        }
-        
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .chapters-panel, .quiz-panel {
-                width: 100%;
-            }
-            
-            .chapters-panel {
-                border-right: none;
-                border-bottom: 1px solid #eaecee;
-                max-height: 200px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEET Biology Quiz Chapters 1–16</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background: #1a2a6c;
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    
+    section {
+      padding: 25px;
+      margin: 25px auto;
+      max-width: 900px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    h2 {
+      background: linear-gradient(to right, #1a2a6c, #b21f1f);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    
+    .question {
+      background: #f9f9f9;
+      padding: 18px;
+      margin: 18px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #1a2a6c;
+    }
+    
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a2a6c;
+      font-size: 1.1rem;
+    }
+    
+    .options label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px 15px;
+      background: #f0f8ff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid #d1e7ff;
+    }
+    
+    .options label:hover {
+      background: #e1efff;
+      border-color: #1a2a6c;
+    }
+    
+    .options input[type='radio'] {
+      margin-right: 10px;
+    }
+    
+    button {
+      background: #1a2a6c;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 15px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+    
+    button:hover {
+      background: #2a3a7c;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background: #e3f2fd;
+      border-radius: 8px;
+      border-left: 5px solid #2196f3;
+    }
+    
+    .timer {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #b71c1c;
+      margin: 15px 0;
+      padding: 10px;
+      background: #fff3e0;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px dashed #ff5722;
+    }
+    
+    .answer {
+      display: none;
+      margin-top: 15px;
+      color: #2e7d32;
+      font-weight: bold;
+      padding: 10px;
+      background: #e8f5e9;
+      border-radius: 6px;
+    }
+    
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #444;
+      padding: 12px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      border-left: 3px solid #78909c;
+    }
+    
+    .score-display {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #1a2a6c;
+      margin-bottom: 15px;
+    }
+    
+    .chapter-info {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .show-answer-btn {
+      background: #388e3c;
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+    
+    .show-answer-btn:hover {
+      background: #4caf50;
+    }
+    
+    .time-warning {
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+      display: none;
+      padding: 8px;
+      background: #ffebee;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-brain"></i>
-                <h1>NEET Biology Quiz</h1>
-                <p>Test your knowledge across all 25 chapters</p>
-            </div>
-        </header>
-        
-        <div class="main-content">
-            <div class="chapters-panel">
-                <h2>Chapters</h2>
-                <ul class="chapter-list">
-                    <li class="chapter-item active">The Cell</li>
-                    <li class="chapter-item">Biomolecules</li>
-                    <li class="chapter-item">Cell Cycle & Division</li>
-                    <li class="chapter-item">Plant Anatomy</li>
-                    <li class="chapter-item">Plant Physiology</li>
-                    <li class="chapter-item">Human Physiology</li>
-                    <li class="chapter-item">Diversity in Living World</li>
-                    <li class="chapter-item">Structural Organization in Animals</li>
-                    <li class="chapter-item">Animal Kingdom</li>
-                    <li class="chapter-item">Reproduction in Organisms</li>
-                    <li class="chapter-item">Sexual Reproduction in Flowering Plants</li>
-                    <li class="chapter-item">Human Reproduction</li>
-                    <li class="chapter-item">Reproductive Health</li>
-                    <li class="chapter-item">Principles of Inheritance</li>
-                    <li class="chapter-item">Molecular Basis of Inheritance</li>
-                    <li class="chapter-item">Evolution</li>
-                    <li class="chapter-item">Health & Diseases</li>
-                    <li class="chapter-item">Strategies for Enhancement</li>
-                    <li class="chapter-item">Microbes in Human Welfare</li>
-                    <li class="chapter-item">Biotechnology Principles</li>
-                    <li class="chapter-item">Biotechnology Applications</li>
-                    <li class="chapter-item">Organisms & Population</li>
-                    <li class="chapter-item">Ecosystem</li>
-                    <li class="chapter-item">Biodiversity & Conservation</li>
-                    <li class="chapter-item">Environmental Issues</li>
-                </ul>
-            </div>
-            
-            <div class="quiz-panel">
-                <div class="quiz-header">
-                    <div class="timer">
-                        <i class="fas fa-clock"></i>
-                        <span id="time">20:00</span>
-                    </div>
-                    <div class="score">
-                        <i class="fas fa-star"></i>
-                        <span>Score: <span id="score-value">0</span>/20</span>
-                    </div>
-                </div>
-                
-                <div class="progress-bar">
-                    <div class="progress" id="progress"></div>
-                </div>
-                
-                <div class="question-container">
-                    <div class="question-number">Question 1 of 20</div>
-                    <div class="question" id="question">Which of the following is known as the powerhouse of the cell?</div>
-                    
-                    <ul class="options">
-                        <li class="option">Golgi Apparatus</li>
-                        <li class="option">Mitochondria</li>
-                        <li class="option">Nucleus</li>
-                        <li class="option">Endoplasmic Reticulum</li>
-                    </ul>
-                </div>
-                
-                <div class="navigation">
-                    <button class="btn btn-prev" disabled>
-                        <i class="fas fa-arrow-left"></i> Previous
-                    </button>
-                    <button class="btn btn-next">
-                        Next <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<header>
+  <h1>NEET Biology Quiz (Chapters 1–3)</h1>
+  <p class="subtitle">Each chapter quiz has 20 questions | Time Limit: 20 minutes per chapter</p>
+</header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Sample questions for demonstration
-            const questions = [
-                {
-                    question: "Which of the following is known as the powerhouse of the cell?",
-                    options: ["Golgi Apparatus", "Mitochondria", "Nucleus", "Endoplasmic Reticulum"],
-                    answer: 1
-                },
-                {
-                    question: "Which biomolecule is the main source of energy for living organisms?",
-                    options: ["Proteins", "Nucleic Acids", "Carbohydrates", "Lipids"],
-                    answer: 2
-                },
-                {
-                    question: "During which phase of the cell cycle does DNA replication occur?",
-                    options: ["G1 phase", "S phase", "G2 phase", "M phase"],
-                    answer: 1
-                },
-                {
-                    question: "Which plant tissue is responsible for transportation of water and minerals?",
-                    options: ["Phloem", "Xylem", "Epidermis", "Cambium"],
-                    answer: 1
-                }
-            ];
-            
-            let currentQuestion = 0;
-            let score = 0;
-            let timeLeft = 1200; // 20 minutes in seconds
-            let timerInterval;
-            
-            const timeDisplay = document.getElementById('time');
-            const scoreDisplay = document.getElementById('score-value');
-            const progressBar = document.getElementById('progress');
-            const questionNumber = document.querySelector('.question-number');
-            const questionElement = document.getElementById('question');
-            const optionsElement = document.querySelector('.options');
-            const prevButton = document.querySelector('.btn-prev');
-            const nextButton = document.querySelector('.btn-next');
-            
-            // Start the timer
-            function startTimer() {
-                timerInterval = setInterval(function() {
-                    timeLeft--;
-                    
-                    const minutes = Math.floor(timeLeft / 60);
-                    const seconds = timeLeft % 60;
-                    
-                    timeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                    
-                    if (timeLeft <= 0) {
-                        clearInterval(timerInterval);
-                        endQuiz();
-                    }
-                }, 1000);
-            }
-            
-            // Load question
-            function loadQuestion() {
-                const question = questions[currentQuestion];
-                questionNumber.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
-                questionElement.textContent = question.question;
-                
-                // Update progress bar
-                progressBar.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
-                
-                // Clear previous options
-                optionsElement.innerHTML = '';
-                
-                // Add options
-                question.options.forEach((option, index) => {
-                    const li = document.createElement('li');
-                    li.className = 'option';
-                    li.textContent = option;
-                    li.addEventListener('click', () => selectOption(index));
-                    optionsElement.appendChild(li);
-                });
-                
-                // Update navigation buttons
-                prevButton.disabled = currentQuestion === 0;
-                
-                if (currentQuestion === questions.length - 1) {
-                    nextButton.innerHTML = 'Submit <i class="fas fa-check"></i>';
-                    nextButton.className = 'btn btn-submit';
-                    nextButton.addEventListener('click', endQuiz);
-                } else {
-                    nextButton.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
-                    nextButton.className = 'btn btn-next';
-                    nextButton.addEventListener('click', nextQuestion);
-                }
-            }
-            
-            // Select option
-            function selectOption(index) {
-                const options = document.querySelectorAll('.option');
-                options.forEach(option => option.classList.remove('selected'));
-                options[index].classList.add('selected');
-                
-                // Check if answer is correct
-                if (index === questions[currentQuestion].answer) {
-                    score++;
-                    scoreDisplay.textContent = score;
-                    options[index].classList.add('correct');
-                } else {
-                    options[index].classList.add('incorrect');
-                    options[questions[currentQuestion].answer].classList.add('correct');
-                }
-                
-                // Disable further selection
-                options.forEach(option => {
-                    option.style.pointerEvents = 'none';
-                });
-            }
-            
-            // Next question
-            function nextQuestion() {
-                if (currentQuestion < questions.length - 1) {
-                    currentQuestion++;
-                    loadQuestion();
-                }
-            }
-            
-            // Previous question
-            function prevQuestion() {
-                if (currentQuestion > 0) {
-                    currentQuestion--;
-                    loadQuestion();
-                }
-            }
-            
-            // End quiz
-            function endQuiz() {
-                clearInterval(timerInterval);
-                
-                document.querySelector('.quiz-panel').innerHTML = `
-                    <div class="results-container">
-                        <h2>Quiz Completed!</h2>
-                        <div class="score-display">${score}/${questions.length}</div>
-                        <p class="score-text">You scored ${Math.round((score/questions.length) * 100)}%</p>
-                        <p class="time-text">Time remaining: ${timeDisplay.textContent}</p>
-                        <button class="btn-restart" onclick="location.reload()">
-                            <i class="fas fa-redo"></i> Try Again
-                        </button>
-                    </div>
-                `;
-            }
-            
-            // Initialize quiz
-            loadQuestion();
-            startTimer();
-            
-            // Event listeners
-            prevButton.addEventListener('click', prevQuestion);
-            nextButton.addEventListener('click', nextQuestion);
-            
-            // Chapter selection
-            document.querySelectorAll('.chapter-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    document.querySelectorAll('.chapter-item').forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-        });
-    </script>
+<section>
+  <h2>Chapter 1: The Living World</h2>
+  <div class="timer" id="timer1">20:00</div>
+  <div class="time-warning" id="time-warning1">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz1"></form>
+  <button onclick="submitQuiz('quiz1','result1',answers1);">Submit Quiz</button>
+  <div id="result1" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 2: Biological Classification</h2>
+  <div class="timer" id="timer2">20:00</div>
+  <div class="time-warning" id="time-warning2">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz2"></form>
+  <button onclick="submitQuiz('quiz2','result2',answers2);">Submit Quiz</button>
+  <div id="result2" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 3: Plant Kingdom</h2>
+  <div class="timer" id="timer3">20:00</div>
+  <div class="time-warning" id="time-warning3">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz3"></form>
+  <button onclick="submitQuiz('quiz3','result3',answers3);">Submit Quiz</button>
+  <div id="result3" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data for NEET Biology Chapters 1-3 ---------- */
+const q1 = [
+  {q:"The scientific term for the process of assigning a name to an organism is:",o:["Identification", "Classification", "Nomenclature", "Characterization"],a:2,exp:"Nomenclature is the process of naming organisms according to established rules and conventions."},
+  {q:"The basic unit of classification is:",o:["Species", "Genus", "Family", "Order"],a:0,exp:"Species is the fundamental unit of classification. It represents a group of organisms that can interbreed and produce fertile offspring."},
+  {q:"Which of the following is a defining characteristic of living organisms?",o:["Metabolism", "Cellular organization", "Consciousness", "All of the above"],a:3,exp:"All of these are defining characteristics of living organisms according to NCERT."},
+  {q:"The taxonomic category 'Class' comes between:",o:["Phylum and Order", "Kingdom and Phylum", "Order and Family", "Family and Genus"],a:0,exp:"The correct hierarchy is: Kingdom → Phylum → Class → Order → Family → Genus → Species."},
+  {q:"Which of the following is not a part of taxonomic hierarchy?",o:["Genus", "Species", "Phylum", "Glomerus"],a:3,exp:"Glomerus is not a standard taxonomic category. The standard categories are Kingdom, Phylum, Class, Order, Family, Genus, and Species."},
+  {q:"ICBN stands for:",o:["International Code of Botanical Nomenclature", "International Code of Biological Naming", "Indian Code of Biological Nomenclature", "International Classification of Biological Names"],a:0,exp:"ICBN stands for International Code of Botanical Nomenclature, which provides rules for naming plants."},
+  {q:"The term 'New Systematics' was introduced by:",o:["Linnaeus", "Darwin", "Julian Huxley", "Whittaker"],a:2,exp:"Julian Huxley introduced the term 'New Systematics' in 1940."},
+  {q:"Which of the following is not a feature of all living organisms?",o:["Growth", "Reproduction", "Metabolism", "Consciousness"],a:3,exp:"Consciousness is not considered a defining feature of all living organisms, as plants and microorganisms don't exhibit it."},
+  {q:"The famous book 'Systema Naturae' was written by:",o:["Charles Darwin", "Carolus Linnaeus", "Aristotle", "Theophrastus"],a:1,exp:"Carolus Linnaeus wrote 'Systema Naturae' which laid the foundation for modern taxonomy."},
+  {q:"Which of the following is not a taxonomic aid?",o:["Herbarium", "Museum", "Botanical garden", "Laboratory"],a:3,exp:"Laboratory is a general facility, not specifically a taxonomic aid."},
+  {q:"The term 'species' was defined by:",o:["John Ray", "Carolus Linnaeus", "Ernst Mayr", "Charles Darwin"],a:0,exp:"John Ray was the first to define the term 'species' in biological terms."},
+  {q:"Which of the following is the correct sequence of taxonomic categories?",o:["Class → Phylum → Order → Family", "Phylum → Class → Order → Family", "Order → Class → Family → Genus", "Family → Order → Class → Phylum"],a:1,exp:"The correct sequence is: Kingdom → Phylum → Class → Order → Family → Genus → Species."},
+  {q:"The study of identification, classification and nomenclature of organisms is called:",o:["Ecology", "Taxonomy", "Physiology", "Morphology"],a:1,exp:"Taxonomy is the science of identification, classification and nomenclature of organisms."},
+  {q:"Which of the following is not true for growth?",o:["It is irreversible", "It increases mass", "It increases number of individuals", "All plants grow throughout their life"],a:2,exp:"Increase in number of individuals is reproduction, not growth."},
+  {q:"Keys are used for:",o:["Classification", "Identification", "Nomenclature", "Characterization"],a:1,exp:"Keys are taxonomic aids used for identification of organisms."},
+  {q:"Which of the following is not a characteristic of living things?",o:["Response to stimuli", "Reproduction", "Metabolism", "Isolated metabolic reactions"],a:3,exp:"Isolated metabolic reactions in test tubes are not living things."},
+  {q:"The term 'biology' was introduced by:",o:["Aristotle", "Lamarck", "Trevinarus", "Darwin"],a:2,exp:"The term 'biology' was introduced by Trevinarus and Lamarck independently."},
+  {q:"Which of the following is not a property of cells?",o:["Growth", "Reproduction", "Metabolism", "All of these are properties"],a:3,exp:"All of these are properties of cells."},
+  {q:"The number of known species of organisms is approximately:",o:["0.5 million", "1.7 million", "3.7 million", "5.7 million"],a:1,exp:"Approximately 1.7 million species have been described so far."},
+  {q:"Which of the following shows the correct hierarchy of classification?",o:["Kingdom → Order → Phylum → Class", "Phylum → Kingdom → Class → Order", "Kingdom → Phylum → Class → Order", "Class → Order → Kingdom → Phylum"],a:2,exp:"The correct hierarchy is: Kingdom → Phylum → Class → Order → Family → Genus → Species."}
+];
+
+const q2 = [
+  {q:"In the five-kingdom classification, which kingdom includes organisms that are completely non-cellulosic and heterotrophic?",o:["Monera", "Protista", "Fungi", "Animalia"],a:2,exp:"Fungi are heterotrophic organisms that have chitin in their cell walls instead of cellulose."},
+  {q:"Which among the following is NOT a characteristic of members of the Kingdom Monera?",o:["Presence of cell wall", "Autotrophic or heterotrophic nutrition", "Well-defined nucleus", "Cellular organization"],a:2,exp:"Monerans are prokaryotes and lack a well-defined nucleus. Their genetic material is not enclosed within a nuclear membrane."},
+  {q:"Which of the following is NOT a protozoan?",o:["Amoeba", "Paramecium", "Euglena", "Spirogyra"],a:3,exp:"Spirogyra is a filamentous green alga (plant-like protist), while Amoeba, Paramecium, and Euglena are animal-like protists (protozoans)."},
+  {q:"Diatoms are classified under:",o:["Fungi", "Protista", "Monera", "Plantae"],a:1,exp:"Diatoms are photosynthetic protists with siliceous cell walls."},
+  {q:"Which of the following is a symbiotic association of fungi with roots of plants?",o:["Lichen", "Mycorrhiza", "Plasmodium", "Mycelium"],a:1,exp:"Mycorrhiza is a mutualistic association between fungi and the roots of higher plants."},
+  {q:"Which of the following is not a class of fungi?",o:["Phycomycetes", "Ascomycetes", "Basidiomycetes", "Protomycetes"],a:3,exp:"The major classes of fungi are Phycomycetes, Ascomycetes, Basidiomycetes, and Deuteromycetes. Protomycetes is not a valid class."},
+  {q:"Viroids differ from viruses in having:",o:["DNA without protein coat", "RNA without protein coat", "DNA with protein coat", "RNA with protein coat"],a:1,exp:"Viroids are infectious RNA molecules without a protein coat, while viruses have either DNA or RNA with a protein coat."},
+  {q:"Which of the following is not included in the five-kingdom classification?",o:["Monera", "Protista", "Fungi", "Viruses"],a:3,exp:"Viruses are not included in the five-kingdom classification as they are not considered living organisms."},
+  {q:"The five-kingdom classification was proposed by:",o:["Linnaeus", "Whittaker", "Haeckel", "Copeland"],a:1,exp:"R.H. Whittaker proposed the five-kingdom classification in 1969."},
+  {q:"Which of the following are decomposers?",o:["Monerans", "Protists", "Fungi", "All of these"],a:2,exp:"Fungi are the primary decomposers in most ecosystems."},
+  {q:"Which kingdom includes organisms that are unicellular, eukaryotic and photosynthetic?",o:["Monera", "Protista", "Fungi", "Plantae"],a:1,exp:"Protista includes unicellular eukaryotic organisms, some of which are photosynthetic."},
+  {q:"The cell wall of fungi is made up of:",o:["Cellulose", "Chitin", "Peptidoglycan", "Silica"],a:1,exp:"The fungal cell wall is composed of chitin."},
+  {q:"Which of the following is a slime mold?",o:["Amoeba", "Physarum", "Euglena", "Paramecium"],a:1,exp:"Physarum is a slime mold, classified under Protista."},
+  {q:"Which of the following causes malaria?",o:["Plasmodium", "Amoeba", "Paramecium", "Trypanosoma"],a:0,exp:"Plasmodium is the protozoan parasite that causes malaria."},
+  {q:"The sexual spores of fungi are called:",o:["Conidia", "Sporangiospores", "Gametes", "Zygospores"],a:3,exp:"Zygospores are sexual spores formed in fungi."},
+  {q:"Which of the following is not a bacterial disease?",o:["Tuberculosis", "Cholera", "Typhoid", "Malaria"],a:3,exp:"Malaria is caused by Plasmodium, a protozoan, not a bacterium."},
+  {q:"The kingdom that includes blue-green algae is:",o:["Monera", "Protista", "Plantae", "Fungi"],a:0,exp:"Blue-green algae (cyanobacteria) are classified under Monera."},
+  {q:"Which of the following is not a characteristic of viruses?",o:["They contain DNA or RNA", "They can be crystallized", "They have their own metabolism", "They are obligate parasites"],a:2,exp:"Viruses lack their own metabolism and depend on host cells for replication."},
+  {q:"The study of fungi is called:",o:["Mycology", "Phycology", "Virology", "Bacteriology"],a:0,exp:"Mycology is the study of fungi."},
+  {q:"Which of the following is a symbiotic association between algae and fungi?",o:["Mycorrhiza", "Lichen", "Plasmodium", "Mycelium"],a:1,exp:"Lichen is a symbiotic association between algae and fungi."}
+];
+
+const q3 = [
+  {q:"Which of the following plants is haploid and has a dominant gametophytic generation?",o:["Funaria", "Cycas", "Marchantia", "Pinus"],a:2,exp:"Marchantia (a liverwort) has a dominant, independent, photosynthetic gametophytic phase, while the sporophyte is short-lived and dependent on the gametophyte."},
+  {q:"In bryophytes, the sporophyte is generally:",o:["Diploid and parasitic on gametophyte", "Haploid and parasitic on gametophyte", "Diploid and independent", "Haploid and independent"],a:0,exp:"In bryophytes, the sporophyte (diploid) is physically attached to and nutritionally dependent on the gametophyte (haploid)."},
+  {q:"Which of the following is a vascular cryptogam?",o:["Algae", "Bryophyte", "Pteridophyte", "Gymnosperm"],a:2,exp:"Pteridophytes are called vascular cryptogams because they have vascular tissues (xylem and phloem) but do not produce seeds (cryptogams)."},
+  {q:"The heterosporous pteridophyte is:",o:["Equisetum", "Lycopodium", "Selaginella", "Dryopteris"],a:2,exp:"Selaginella is a heterosporous pteridophyte that produces two types of spores - microspores and megaspores."},
+  {q:"Which of the following is not a characteristic feature of bryophytes?",o:["Presence of vascular tissue", "Dominant gametophyte", "Requirement of water for fertilization", "Rhizoids for attachment"],a:0,exp:"Bryophytes lack true vascular tissues (xylem and phloem), which is why they are non-vascular plants."},
+  {q:"The plant group that produces flowers and seeds is:",o:["Pteridophytes", "Bryophytes", "Gymnosperms", "All of these"],a:2,exp:"Gymnosperms are seed-producing plants, but their seeds are naked (not enclosed in fruits). Angiosperms produce flowers and seeds enclosed in fruits."},
+  {q:"Which of the following is a correct match?",o:["Bryophytes - Sphagnum", "Pteridophytes - Ginkgo", "Gymnosperms - Cycas", "Angiosperms - Pinus"],a:0,exp:"Sphagnum is a bryophyte (moss), Ginkgo and Cycas are gymnosperms, and Pinus is also a gymnosperm, not an angiosperm."},
+  {q:"Which of the following is not a bryophyte?",o:["Funaria", "Marchantia", "Sphagnum", "Selaginella"],a:3,exp:"Selaginella is a pteridophyte, not a bryophyte."},
+  {q:"The male gametes in bryophytes are:",o:["Motile", "Non-motile", "Both motile and non-motile", "Absent"],a:0,exp:"Male gametes in bryophytes are flagellated and motile, requiring water for fertilization."},
+  {q:"The xylem in pteridophytes lacks:",o:["Tracheids", "Vessels", "Xylem parenchyma", "Xylem fibers"],a:1,exp:"Pteridophytes have tracheids but lack vessels in their xylem."},
+  {q:"Which of the following is not a pteridophyte?",o:["Selaginella", "Equisetum", "Salvinia", "Chara"],a:3,exp:"Chara is a green alga, not a pteridophyte."},
+  {q:"The first plants to appear on land were:",o:["Bryophytes", "Pteridophytes", "Gymnosperms", "Algae"],a:0,exp:"Bryophytes were the first plants to colonize land."},
+  {q:"Which of the following is a seedless vascular plant?",o:["Cycas", "Pinus", "Fern", "Ginkgo"],a:2,exp:"Ferns are pteridophytes, which are vascular plants that do not produce seeds."},
+  {q:"The prothallus in ferns represents:",o:["Sporophyte", "Gametophyte", "Young sporophyte", "None of these"],a:1,exp:"The prothallus is the gametophyte generation in ferns."},
+  {q:"Which of the following is not true for gymnosperms?",o:["They have naked seeds", "They are heterosporous", "They have fruits", "They have well-developed vascular tissue"],a:2,exp:"Gymnosperms do not have fruits; their seeds are naked."},
+  {q:"The tallest gymnosperm is:",o:["Cycas", "Pinus", "Sequoia", "Ginkgo"],a:2,exp:"Sequoia (redwood) is the tallest gymnosperm."},
+  {q:"Which of the following is a living fossil?",o:["Cycas", "Pinus", "Fern", "Moss"],a:0,exp:"Cycas is often referred to as a living fossil because it has remained unchanged for millions of years."},
+  {q:"The female gametophyte in gymnosperms is:",o:["Archegonium", "Embryo sac", "Prothallus", "Cone"],a:0,exp:"The female gametophyte in gymnosperms contains archegonia."},
+  {q:"Which of the following is not an angiosperm?",o:["Wheat", "Rice", "Pine", "Mango"],a:2,exp:"Pine is a gymnosperm, not an angiosperm."},
+  {q:"Double fertilization is characteristic of:",o:["Bryophytes", "Pteridophytes", "Gymnosperms", "Angiosperms"],a:3,exp:"Double fertilization is a unique feature of angiosperms."}
+];
+
+/* ---------- Answers ---------- */
+const answers1 = q1.map(x => x.a);
+const answers2 = q2.map(x => x.a);
+const answers3 = q3.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `
+      <div class="question-text"><b>Q${i+1}.</b> ${item.q}</div>
+      <div class="options">
+        ${item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("")}
+      </div>
+      <div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>
+      <div class="explanation">Explanation: ${item.exp}</div>
+      <button type="button" class="show-answer-btn" onclick="showAnswer(this)">Show Answer</button>
+    `;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q1, "quiz1");
+loadQuestions(q2, "quiz2");
+loadQuestions(q3, "quiz3");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0;
+  let out = `<div class="score-display">Score: ${score}/${ansArr.length}</div>`;
+  
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
+    }
+  });
+  
+  // Update score
+  out = out.replace(`Score: 0/${ansArr.length}`, `Score: ${score}/${ansArr.length}`);
+  
+  document.getElementById(resId).innerHTML = out;
+  
+  // Stop the timer for this chapter
+  clearInterval(window[`timerInterval${formId.slice(-1)}`]);
+}
+
+function qAns(formId) {
+  if (formId === "quiz1") return q1;
+  if (formId === "quiz2") return q2;
+  if (formId === "quiz3") return q3;
+}
+
+/* ---------- Timer ---------- */
+function startTimer(duration, display, warning) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+    display.textContent = minutes + ":" + seconds;
+    
+    // Show warning when less than 5 minutes remain
+    if (timer === 5 * 60) {
+      document.getElementById(warning).style.display = 'block';
+    }
+    
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
+    }
+  }, 1000);
+  
+  // Store interval ID so we can clear it later
+  window[`timerInterval${display.id.slice(-1)}`] = interval;
+}
+
+// Start timers for all chapters
+startTimer(20 * 60, document.getElementById("timer1"), "time-warning1");
+startTimer(20 * 60, document.getElementById("timer2"), "time-warning2");
+startTimer(20 * 60, document.getElementById("timer3"), "time-warning3");
+
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background: #1a2a6c;
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    
+    section {
+      padding: 25px;
+      margin: 25px auto;
+      max-width: 900px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    h2 {
+      background: linear-gradient(to right, #1a2a6c, #b21f1f);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    
+    .question {
+      background: #f9f9f9;
+      padding: 18px;
+      margin: 18px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #1a2a6c;
+    }
+    
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a2a6c;
+      font-size: 1.1rem;
+    }
+    
+    .options label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px 15px;
+      background: #f0f8ff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid #d1e7ff;
+    }
+    
+    .options label:hover {
+      background: #e1efff;
+      border-color: #1a2a6c;
+    }
+    
+    .options input[type='radio'] {
+      margin-right: 10px;
+    }
+    
+    button {
+      background: #1a2a6c;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 15px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+    
+    button:hover {
+      background: #2a3a7c;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background: #e3f2fd;
+      border-radius: 8px;
+      border-left: 5px solid #2196f3;
+    }
+    
+    .timer {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #b71c1c;
+      margin: 15px 0;
+      padding: 10px;
+      background: #fff3e0;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px dashed #ff5722;
+    }
+    
+    .answer {
+      display: none;
+      margin-top: 15px;
+      color: #2e7d32;
+      font-weight: bold;
+      padding: 10px;
+      background: #e8f5e9;
+      border-radius: 6px;
+    }
+    
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #444;
+      padding: 12px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      border-left: 3px solid #78909c;
+    }
+    
+    .score-display {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #1a2a6c;
+      margin-bottom: 15px;
+    }
+    
+    .chapter-info {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .show-answer-btn {
+      background: #388e3c;
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+    
+    .show-answer-btn:hover {
+      background: #4caf50;
+    }
+    
+    .time-warning {
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+      display: none;
+      padding: 8px;
+      background: #ffebee;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <h2>Chapter 4: Animal Kingdom</h2>
+  <div class="timer" id="timer4">20:00</div>
+  <div class="time-warning" id="time-warning4">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz4"></form>
+  <button onclick="submitQuiz('quiz4','result4',answers4);">Submit Quiz</button>
+  <div id="result4" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 5: Morphology of Flowering Plants</h2>
+  <div class="timer" id="timer5">20:00</div>
+  <div class="time-warning" id="time-warning5">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz5"></form>
+  <button onclick="submitQuiz('quiz5','result5',answers5);">Submit Quiz</button>
+  <div id="result5" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 6: Anatomy of Flowering Plants</h2>
+  <div class="timer" id="timer6">20:00</div>
+  <div class="time-warning" id="time-warning6">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz6"></form>
+  <button onclick="submitQuiz('quiz6','result6',answers6);">Submit Quiz</button>
+  <div id="result6" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 7: Structural Organization in Animals</h2>
+  <div class="timer" id="timer7">20:00</div>
+  <div class="time-warning" id="time-warning7">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz7"></form>
+  <button onclick="submitQuiz('quiz7','result7',answers7);">Submit Quiz</button>
+  <div id="result7" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data for NEET Biology Chapters 4-7 ---------- */
+const q4 = [
+  {q:"Which of the following animals has a true coelom?",o:["Ascaris", "Nereis", "Planaria", "Taenia"],a:1,exp:"Nereis (an annelid) has a true coelom, which is a fluid-filled body cavity completely lined by mesoderm."},
+  {q:"Radial symmetry is typically found in:",o:["Annelids and arthropods", "Echinoderms and coelenterates", "Molluscs and reptiles", "Birds and mammals"],a:1,exp:"Radial symmetry is found in animals like echinoderms (adult starfish) and coelenterates (jellyfish, hydra) where body parts are arranged around a central axis."},
+  {q:"Which of the following is NOT a characteristic feature of phylum Chordata?",o:["Presence of notochord", "Dorsal hollow nerve cord", "Ventral heart", "Pharyngeal gill slits"],a:2,exp:"Ventral heart is not exclusive to chordates. All chordates have a notochord, dorsal hollow nerve cord, and pharyngeal gill slits at some stage of life."},
+  {q:"Which phylum is characterized by the presence of spicules?",o:["Porifera", "Cnidaria", "Platyhelminthes", "Annelida"],a:0,exp:"Porifera (sponges) have spicules that form their skeleton."},
+  {q:"Metameric segmentation is a characteristic feature of:",o:["Annelida", "Mollusca", "Echinodermata", "Platyhelminthes"],a:0,exp:"Annelids exhibit metameric segmentation where the body is divided into similar segments."},
+  {q:"Which of the following is a diploblastic animal?",o:["Hydra", "Earthworm", "Cockroach", "Human"],a:0,exp:"Hydra (phylum Cnidaria) is diploblastic with two germ layers - ectoderm and endoderm."},
+  {q:"The largest phylum in the animal kingdom is:",o:["Mollusca", "Arthropoda", "Chordata", "Annelida"],a:1,exp:"Arthropoda is the largest phylum with over 80% of all known animal species."},
+  {q:"Which of the following is not a vertebrate?",o:["Amphioxus", "Shark", "Frog", "Lizard"],a:0,exp:"Amphioxus (lancelet) is a chordate but not a vertebrate as it lacks a vertebral column."},
+  {q:"The excretory organs of platyhelminthes are:",o:["Flame cells", "Nephridia", "Malpighian tubules", "Green glands"],a:0,exp:"Flame cells are the excretory structures in platyhelminthes."},
+  {q:"Which class of chordates has a four-chambered heart?",o:["Amphibia", "Reptilia", "Aves", "Mammalia"],a:3,exp:"Mammals and birds have four-chambered hearts, but among the options, mammals are listed."},
+  {q:"Which of the following is not an arthropod?",o:["Spider", "Scorpion", "Crab", "Nereis"],a:3,exp:"Nereis is an annelid, not an arthropod."},
+  {q:"The body cavity of nematodes is called:",o:["Coelom", "Pseudocoelom", "Haemocoel", "Acoelom"],a:1,exp:"Nematodes have a pseudocoelom, a fluid-filled cavity between the mesoderm and endoderm."},
+  {q:"Which of the following is a cold-blooded animal?",o:["Whale", "Bat", "Turtle", "Sparrow"],a:2,exp:"Turtles are reptiles and are cold-blooded (ectothermic)."},
+  {q:"The respiratory organs of insects are:",o:["Gills", "Lungs", "Tracheae", "Skin"],a:2,exp:"Insects respire through a network of tubes called tracheae."},
+  {q:"Which of the following is not a feature of mammals?",o:["Mammary glands", "Hair", "External ears", "Laying eggs"],a:3,exp:"Most mammals give birth to young ones, except monotremes like platypus which lay eggs."},
+  {q:"The canal system is a characteristic feature of:",o:["Sponges", "Coelenterates", "Flatworms", "Roundworms"],a:0,exp:"Sponges (Porifera) have a unique canal system for water circulation."},
+  {q:"Which of the following is an example of cephalochordata?",o:["Herdmania", "Amphioxus", "Balanoglossus", "Petromyzon"],a:1,exp:"Amphioxus (lancelet) belongs to cephalochordata."},
+  {q:"Cnidoblasts are found in:",o:["Porifera", "Cnidaria", "Platyhelminthes", "Annelida"],a:1,exp:"Cnidoblasts (stinging cells) are characteristic of cnidarians."},
+  {q:"Which of the following is not a cartilaginous fish?",o:["Shark", "Ray", "Scoliodon", "Rohu"],a:3,exp:"Rohu is a bony fish, not cartilaginous."},
+  {q:"The excretory organs of annelids are:",o:["Flame cells", "Nephridia", "Malpighian tubules", "Kidneys"],a:1,exp:"Nephridia are the excretory organs in annelids."}
+];
+
+const q5 = [
+  {q:"The technical term for the edible part of coconut is:",o:["Endocarp", "Endosperm", "Cotyledon", "Embryo"],a:1,exp:"The white edible part of coconut is the endosperm which is nuclear in origin and provides nourishment to the developing embryo."},
+  {q:"Which of the following is a modified stem?",o:["Carrot", "Sweet potato", "Potato", "Radish"],a:2,exp:"Potato is a modified stem (tuber) that stores food and has buds (eyes) that can grow into new plants."},
+  {q:"The placenta is attached to the fetus by:",o:["Chorion", "Umbilical cord", "Amnion", "Allantois"],a:1,exp:"The umbilical cord connects the fetus to the placenta, allowing for the exchange of nutrients, oxygen, and waste products."},
+  {q:"Which of the following is a taproot system?",o:["Wheat", "Rice", "Maize", "Mustard"],a:3,exp:"Mustard has a taproot system with a main root and lateral branches, while others have fibrous roots."},
+  {q:"The inflorescence of sunflower is:",o:["Raceme", "Spike", "Capitulum", "Corymb"],a:2,exp:"Sunflower has a capitulum type of inflorescence with florets arranged on a flattened receptacle."},
+  {q:"Which plant has a pinnately compound leaf?",o:["Neem", "Silk cotton", "Cucumber", "Peepal"],a:0,exp:"Neem has pinnately compound leaves with leaflets arranged on either side of the rachis."},
+  {q:"The edible part of mango is:",o:["Mesocarp", "Endocarp", "Epicarp", "Seed"],a:0,exp:"The fleshy edible part of mango is the mesocarp."},
+  {q:"Which of the following is not a stem modification?",o:["Potato", "Ginger", "Carrot", "Onion"],a:2,exp:"Carrot is a modified root, while others are modified stems."},
+  {q:"The venation in monocot leaves is:",o:["Reticulate", "Parallel", "Both", "None"],a:1,exp:"Monocot leaves typically have parallel venation."},
+  {q:"Which of the following is a drupe?",o:["Tomato", "Pea", "Mango", "Orange"],a:2,exp:"Mango is a drupe with a stony endocarp."},
+  {q:"The root cap is absent in:",o:["Hydrophytes", "Xerophytes", "Mesophytes", "Epiphytes"],a:0,exp:"Hydrophytes (aquatic plants) often lack root caps as they don't need protection while growing in water."},
+  {q:"Pneumatophores are found in:",o:["Mangrove plants", "Desert plants", "Epiphytes", "Parasites"],a:0,exp:"Mangrove plants have pneumatophores (respiratory roots) for gaseous exchange."},
+  {q:"Which of the following is not a part of the gynoecium?",o:["Stigma", "Style", "Ovary", "Anther"],a:3,exp:"Anther is part of the androecium (male reproductive structure)."},
+  {q:"The condition where both male and female flowers are present on the same plant is called:",o:["Monoecious", "Dioecious", "Bisexual", "Unisexual"],a:0,exp:"Monoecious plants have both male and female flowers on the same individual."},
+  {q:"Which plant has valvate aestivation?",o:["Calotropis", "Bean", "Cassia", "China rose"],a:0,exp:"Calotropis has valvate aestivation where sepals or petals just touch each other at the margins."},
+  {q:"The seed in which endosperm is completely consumed by the embryo is called:",o:["Albuminous", "Exalbuminous", "Perisperm", "Hilum"],a:1,exp:"Exalbuminous seeds have no residual endosperm as it's completely consumed during development."},
+  {q:"Which of the following is a dry indehiscent fruit?",o:["Capsule", "Legume", "Caryopsis", "Siliqua"],a:2,exp:"Caryopsis (grain) is a dry indehiscent fruit where the pericarp is fused with the seed coat."},
+  {q:"The family characterized by pentamerous flowers and gynoecium with many carpels is:",o:["Fabaceae", "Solanaceae", "Liliaceae", "Brassicaceae"],a:2,exp:"Liliaceae typically has pentamerous flowers and superior ovary with many carpels."},
+  {q:"Which of the following is not a characteristic of Fabaceae?",o:["Tap root system", "Pinnately compound leaves", "Racemose inflorescence", "Trimerous flowers"],a:3,exp:"Fabaceae typically has pentamerous flowers, not trimerous."},
+  {q:"The technical term for the arrangement of ovules in the ovary is:",o:["Placentation", "Aestivation", "Venation", "Phyllotaxy"],a:0,exp:"Placentation refers to the arrangement of ovules within the ovary."}
+];
+
+const q6 = [
+  {q:"The apical meristem is responsible for:",o:["Primary growth", "Secondary growth", "Both", "None"],a:0,exp:"Apical meristem is responsible for primary growth (increase in length)."},
+  {q:"Which of the following is a simple tissue?",o:["Xylem", "Phloem", "Parenchyma", "Epidermis"],a:2,exp:"Parenchyma is a simple tissue composed of only one type of cells."},
+  {q:"The commercial cork is obtained from:",o:["Cork cambium", "Vascular cambium", "Apical meristem", "Intercalary meristem"],a:0,exp:"Cork is produced by the cork cambium (phellogen)."},
+  {q:"Which of the following is not a component of xylem?",o:["Tracheids", "Vessels", "Companion cells", "Xylem fibers"],a:2,exp:"Companion cells are part of phloem, not xylem."},
+  {q:"The tissue responsible for the conduction of food in plants is:",o:["Xylem", "Phloem", "Cambium", "Parenchyma"],a:1,exp:"Phloem conducts organic nutrients (food) from leaves to other parts."},
+  {q:"Which of the following is a dead cell at maturity?",o:["Parenchyma", "Collenchyma", "Sclerenchyma", "Meristem"],a:2,exp:"Sclerenchyma cells are dead at maturity and provide mechanical support."},
+  {q:"The casparian strip is present in:",o:["Endodermis", "Epidermis", "Pericycle", "Cortex"],a:0,exp:"The casparian strip is a band of suberin in the endodermal cells of roots."},
+  {q:"Which of the following is not a characteristic of meristematic tissue?",o:["Thin cell walls", "Dense cytoplasm", "Large vacuoles", "Active cell division"],a:2,exp:"Meristematic cells have small vacuoles or lack them altogether."},
+  {q:"The vascular bundles in dicot stem are:",o:["Closed", "Open", "Radial", "None"],a:1,exp:"Dicot stems have open vascular bundles with cambium."},
+  {q:"Which of the following is not a function of parenchyma?",o:["Storage", "Photosynthesis", "Mechanical support", "Secretion"],a:2,exp:"Mechanical support is provided by collenchyma and sclerenchyma, not parenchyma."},
+  {q:"The periderm includes:",o:["Cork only", "Cork and cork cambium", "Cork, cork cambium and secondary cortex", "All of these"],a:2,exp:"Periderm consists of cork (phellem), cork cambium (phellogen), and secondary cortex (phelloderm)."},
+  {q:"Which of the following has lenticels?",o:["Roots", "Stems", "Leaves", "Flowers"],a:1,exp:"Lenticels are porous structures in the bark of stems for gaseous exchange."},
+  {q:"The tissue between xylem and phloem in a vascular bundle is called:",o:["Cambium", "Pith", "Cortex", "Pericycle"],a:0,exp:"Cambium is the meristematic tissue between xylem and phloem."},
+  {q:"Which of the following is not a feature of monocot stem?",o:["Scattered vascular bundles", "No secondary growth", "Large pith", "Well-defined cortex"],a:3,exp:"Monocot stems lack well-defined cortex and pith."},
+  {q:"The stomatal apparatus consists of:",o:["Guard cells only", "Guard cells and stomatal pore", "Guard cells, stomatal pore and subsidiary cells", "All of these"],a:2,exp:"Stomatal apparatus includes guard cells, stomatal pore, and subsidiary cells."},
+  {q:"Which of the following is not a characteristic of collenchyma?",o:["Living cells", "Thickened corners", "Provides mechanical support", "Dead at maturity"],a:3,exp:"Collenchyma cells are living at maturity, unlike sclerenchyma."},
+  {q:"The vascular bundles in roots are:",o:["Conjoint", "Radial", "Closed", "Open"],a:1,exp:"Roots have radial vascular bundles with xylem and phloem on different radii."},
+  {q:"Which of the following is not a part of the bark?",o:["Cork", "Cork cambium", "Secondary phloem", "Secondary xylem"],a:3,exp:"Bark includes all tissues outside the vascular cambium, excluding secondary xylem."},
+  {q:"The quiescent center is found in:",o:["Root apex", "Shoot apex", "Cambium", "Cork cambium"],a:0,exp:"Root apex has a quiescent center with slowly dividing cells."},
+  {q:"Which of the following is not a function of epidermis?",o:["Protection", "Gas exchange", "Water absorption", "Photosynthesis"],a:3,exp:"Epidermis does not perform photosynthesis; that function is mainly for mesophyll cells in leaves."}
+];
+
+const q7 = [
+  {q:"Which of the following is not a type of epithelial tissue?",o:["Squamous", "Cuboidal", "Columnar", "Areolar"],a:3,exp:"Areolar is a type of connective tissue, not epithelial tissue."},
+  {q:"The matrix of blood is called:",o:["Plasma", "Serum", "Lymph", "Hemoglobin"],a:0,exp:"Plasma is the liquid matrix of blood in which blood cells are suspended."},
+  {q:"Which of the following is not a function of connective tissue?",o:["Binding", "Support", "Protection", "Conduction of impulses"],a:3,exp:"Conduction of impulses is the function of nervous tissue."},
+  {q:"The protein present in cartilage is:",o:["Chondrin", "Ossein", "Collagen", "Keratin"],a:0,exp:"Chondrin is the protein matrix of cartilage."},
+  {q:"Which of the following is a voluntary muscle?",o:["Smooth muscle", "Cardiac muscle", "Skeletal muscle", "All of these"],a:2,exp:"Skeletal muscle is under voluntary control, while smooth and cardiac muscles are involuntary."},
+  {q:"The neuron that carries impulses from receptors to CNS is called:",o:["Motor neuron", "Sensory neuron", "Interneuron", "Associative neuron"],a:1,exp:"Sensory (afferent) neurons carry impulses from receptors to the central nervous system."},
+  {q:"Which of the following is not a component of areolar tissue?",o:["Fibroblasts", "Macrophages", "Mast cells", "Chondrocytes"],a:3,exp:"Chondrocytes are cells found in cartilage, not areolar tissue."},
+  {q:"The study of tissues is called:",o:["Cytology", "Histology", "Anatomy", "Morphology"],a:1,exp:"Histology is the study of tissues."},
+  {q:"Which of the following is not a characteristic of epithelial tissue?",o:["Cells are tightly packed", "Basement membrane is present", "Rich blood supply", "Forms covering or lining"],a:2,exp:"Epithelial tissue is avascular (lacks blood vessels)."},
+  {q:"The protein present in bones is:",o:["Chondrin", "Ossein", "Collagen", "Keratin"],a:1,exp:"Ossein is the organic matrix of bone."},
+  {q:"Which of the following is not a type of connective tissue?",o:["Blood", "Bone", "Cartilage", "Muscle"],a:3,exp:"Muscle is a separate type of tissue, not connective tissue."},
+  {q:"The cell that produces antibodies is:",o:["Lymphocyte", "Monocyte", "Neutrophil", "Eosinophil"],a:0,exp:"Lymphocytes (B-cells) produce antibodies."},
+  {q:"Which of the following is not a function of adipose tissue?",o:["Storage of fat", "Insulation", "Formation of blood cells", "Cushioning"],a:2,exp:"Formation of blood cells is the function of bone marrow."},
+  {q:"The junction between two neurons is called:",o:["Synapse", "Dendrite", "Axon", "Node of Ranvier"],a:0,exp:"Synapse is the junction where neurons communicate."},
+  {q:"Which of the following is not a characteristic of cardiac muscle?",o:["Striated", "Multinucleated", "Involuntary", "Branching fibers"],a:1,exp:"Cardiac muscle cells are uninucleated, not multinucleated."},
+  {q:"The tissue that forms the inner lining of blood vessels is:",o:["Squamous epithelium", "Cuboidal epithelium", "Columnar epithelium", "Stratified epithelium"],a:0,exp:"Squamous epithelium forms the lining of blood vessels and other surfaces."},
+  {q:"Which of the following is not a granulocyte?",o:["Neutrophil", "Eosinophil", "Basophil", "Monocyte"],a:3,exp:"Monocyte is an agranulocyte (lacks granules in cytoplasm)."},
+  {q:"The tissue that stores calcium and phosphorus is:",o:["Cartilage", "Bone", "Blood", "Adipose tissue"],a:1,exp:"Bone stores minerals like calcium and phosphorus."},
+  {q:"Which of the following is not a function of neuroglia?",o:["Support neurons", "Phagocytosis", "Conduction of impulses", "Form myelin sheath"],a:2,exp:"Conduction of impulses is the function of neurons, not neuroglia."},
+  {q:"The protein present in hair and nails is:",o:["Collagen", "Keratin", "Elastin", "Myosin"],a:1,exp:"Keratin is the tough, waterproof protein found in hair, nails, and the outer layer of skin."}
+];
+
+/* ---------- Answers ---------- */
+const answers4 = q4.map(x => x.a);
+const answers5 = q5.map(x => x.a);
+const answers6 = q6.map(x => x.a);
+const answers7 = q7.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `
+      <div class="question-text"><b>Q${i+1}.</b> ${item.q}</div>
+      <div class="options">
+        ${item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("")}
+      </div>
+      <div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>
+      <div class="explanation">Explanation: ${item.exp}</div>
+      <button type="button" class="show-answer-btn" onclick="showAnswer(this)">Show Answer</button>
+    `;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q4, "quiz4");
+loadQuestions(q5, "quiz5");
+loadQuestions(q6, "quiz6");
+loadQuestions(q7, "quiz7");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0;
+  let out = `<div class="score-display">Score: ${score}/${ansArr.length}</div>`;
+  
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
+    }
+  });
+  
+  // Update score
+  out = out.replace(`Score: 0/${ansArr.length}`, `Score: ${score}/${ansArr.length}`);
+  
+  document.getElementById(resId).innerHTML = out;
+  
+  // Stop the timer for this chapter
+  clearInterval(window[`timerInterval${formId.slice(-1)}`]);
+}
+
+function qAns(formId) {
+  if (formId === "quiz4") return q4;
+  if (formId === "quiz5") return q5;
+  if (formId === "quiz6") return q6;
+  if (formId === "quiz7") return q7;
+}
+
+/* ---------- Timer ---------- */
+function startTimer(duration, display, warning) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+    display.textContent = minutes + ":" + seconds;
+    
+    // Show warning when less than 5 minutes remain
+    if (timer === 5 * 60) {
+      document.getElementById(warning).style.display = 'block';
+    }
+    
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
+    }
+  }, 1000);
+  
+  // Store interval ID so we can clear it later
+  window[`timerInterval${display.id.slice(-1)}`] = interval;
+}
+
+// Start timers for all chapters
+startTimer(20 * 60, document.getElementById("timer4"), "time-warning4");
+startTimer(20 * 60, document.getElementById("timer5"), "time-warning5");
+startTimer(20 * 60, document.getElementById("timer6"), "time-warning6");
+startTimer(20 * 60, document.getElementById("timer7"), "time-warning7");
+
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background: #1a2a6c;
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    
+    section {
+      padding: 25px;
+      margin: 25px auto;
+      max-width: 900px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    h2 {
+      background: linear-gradient(to right, #1a2a6c, #b21f1f);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    
+    .question {
+      background: #f9f9f9;
+      padding: 18px;
+      margin: 18px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #1a2a6c;
+    }
+    
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a2a6c;
+      font-size: 1.1rem;
+    }
+    
+    .options label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px 15px;
+      background: #f0f8ff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid #d1e7ff;
+    }
+    
+    .options label:hover {
+      background: #e1efff;
+      border-color: #1a2a6c;
+    }
+    
+    .options input[type='radio'] {
+      margin-right: 10px;
+    }
+    
+    button {
+      background: #1a2a6c;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 15px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+    
+    button:hover {
+      background: #2a3a7c;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background: #e3f2fd;
+      border-radius: 8px;
+      border-left: 5px solid #2196f3;
+    }
+    
+    .timer {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #b71c1c;
+      margin: 15px 0;
+      padding: 10px;
+      background: #fff3e0;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px dashed #ff5722;
+    }
+    
+    .answer {
+      display: none;
+      margin-top: 15px;
+      color: #2e7d32;
+      font-weight: bold;
+      padding: 10px;
+      background: #e8f5e9;
+      border-radius: 6px;
+    }
+    
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #444;
+      padding: 12px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      border-left: 3px solid #78909c;
+    }
+    
+    .score-display {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #1a2a6c;
+      margin-bottom: 15px;
+    }
+    
+    .chapter-info {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .show-answer-btn {
+      background: #388e3c;
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+    
+    .show-answer-btn:hover {
+      background: #4caf50;
+    }
+    
+    .time-warning {
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+      display: none;
+      padding: 8px;
+      background: #ffebee;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <h2>Chapter 8: Cell - The Unit of Life</h2>
+  <div class="timer" id="timer8">20:00</div>
+  <div class="time-warning" id="time-warning8">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz8"></form>
+  <button onclick="submitQuiz('quiz8','result8',answers8);">Submit Quiz</button>
+  <div id="result8" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 9: Biomolecules</h2>
+  <div class="timer" id="timer9">20:00</div>
+  <div class="time-warning" id="time-warning9">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz9"></form>
+  <button onclick="submitQuiz('quiz9','result9',answers9);">Submit Quiz</button>
+  <div id="result9" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 10: Cell Cycle and Cell Division</h2>
+  <div class="timer" id="timer10">20:00</div>
+  <div class="time-warning" id="time-warning10">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz10"></form>
+  <button onclick="submitQuiz('quiz10','result10',answers10);">Submit Quiz</button>
+  <div id="result10" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 11: Transport in Plants</h2>
+  <div class="timer" id="timer11">20:00</div>
+  <div class="time-warning" id="time-warning11">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz11"></form>
+  <button onclick="submitQuiz('quiz11','result11',answers11);">Submit Quiz</button>
+  <div id="result11" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 12: Mineral Nutrition</h2>
+  <div class="timer" id="timer12">20:00</div>
+  <div class="time-warning" id="time-warning12">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz12"></form>
+  <button onclick="submitQuiz('quiz12','result12',answers12);">Submit Quiz</button>
+  <div id="result12" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data for NEET Biology Chapters 8-12 ---------- */
+const q8 = [
+  {q:"Who discovered the cell?",o:["Robert Hooke", "Leeuwenhoek", "Robert Brown", "Schleiden"],a:0,exp:"Robert Hooke discovered cells in 1665 while examining a thin slice of cork."},
+  {q:"Which of the following is not a part of the cell theory?",o:["All living organisms are composed of cells", "Cell is the basic unit of life", "All cells have a nucleus", "All cells arise from pre-existing cells"],a:2,exp:"Not all cells have a nucleus; prokaryotic cells lack a well-defined nucleus."},
+  {q:"The powerhouses of the cell are:",o:["Mitochondria", "Chloroplasts", "Ribosomes", "Lysosomes"],a:0,exp:"Mitochondria are called the powerhouses of the cell as they produce ATP through cellular respiration."},
+  {q:"Which organelle is involved in protein synthesis?",o:["Ribosomes", "Golgi apparatus", "Lysosomes", "Vacuoles"],a:0,exp:"Ribosomes are the sites of protein synthesis in the cell."},
+  {q:"The fluid mosaic model explains the structure of:",o:["Cell wall", "Plasma membrane", "Nucleus", "Endoplasmic reticulum"],a:1,exp:"The fluid mosaic model describes the structure of the plasma membrane with proteins embedded in a phospholipid bilayer."},
+  {q:"Which of the following is not a function of the Golgi apparatus?",o:["Packaging of materials", "Formation of lysosomes", "Protein synthesis", "Formation of secretory vesicles"],a:2,exp:"Protein synthesis occurs in ribosomes, not the Golgi apparatus."},
+  {q:"The suicidal bags of the cell are:",o:["Mitochondria", "Lysosomes", "Ribosomes", "Peroxisomes"],a:1,exp:"Lysosomes are called suicidal bags as they contain digestive enzymes that can break down cellular components."},
+  {q:"Which of the following is present in plant cells but absent in animal cells?",o:["Mitochondria", "Plastids", "Ribosomes", "Endoplasmic reticulum"],a:1,exp:"Plastids, including chloroplasts, are present only in plant cells."},
+  {q:"The nucleus was discovered by:",o:["Robert Hooke", "Leeuwenhoek", "Robert Brown", "Schleiden"],a:2,exp:"Robert Brown discovered the nucleus in 1831."},
+  {q:"Which of the following is not a function of the endoplasmic reticulum?",o:["Lipid synthesis", "Protein synthesis", "Detoxification", "ATP production"],a:3,exp:"ATP production occurs in mitochondria, not the endoplasmic reticulum."},
+  {q:"The cell organelle involved in forming cilia and flagella is:",o:["Centrosome", "Golgi apparatus", "Nucleolus", "Lysosome"],a:0,exp:"Centrosome contains centrioles that form the basal bodies of cilia and flagella."},
+  {q:"Which of the following is not a part of the endomembrane system?",o:["Endoplasmic reticulum", "Golgi apparatus", "Mitochondria", "Lysosomes"],a:2,exp:"Mitochondria are not part of the endomembrane system."},
+  {q:"The function of ribosomes is:",o:["Photosynthesis", "Protein synthesis", "Lipid synthesis", "Respiration"],a:1,exp:"Ribosomes are the sites of protein synthesis."},
+  {q:"Which of the following is not a function of vacuoles?",o:["Storage", "Waste disposal", "Maintaining turgor pressure", "ATP synthesis"],a:3,exp:"ATP synthesis occurs in mitochondria, not vacuoles."},
+  {q:"The cell wall of plants is made up of:",o:["Chitin", "Cellulose", "Peptidoglycan", "Protein"],a:1,exp:"The plant cell wall is primarily composed of cellulose."},
+  {q:"Which of the following is not a function of the plasma membrane?",o:["Transport of substances", "Cell recognition", "Energy transduction", "Protein synthesis"],a:3,exp:"Protein synthesis occurs in ribosomes, not the plasma membrane."},
+  {q:"The organelle involved in intracellular digestion is:",o:["Mitochondria", "Lysosome", "Golgi apparatus", "Endoplasmic reticulum"],a:1,exp:"Lysosomes contain digestive enzymes for intracellular digestion."},
+  {q:"Which of the following is not a feature of prokaryotic cells?",o:["Absence of membrane-bound organelles", "Presence of nucleoid", "Presence of cell wall", "Presence of nuclear membrane"],a:3,exp:"Prokaryotic cells lack a nuclear membrane; their DNA is in the nucleoid region."},
+  {q:"The function of chloroplast is:",o:["Respiration", "Photosynthesis", "Protein synthesis", "Lipid synthesis"],a:1,exp:"Chloroplasts are the sites of photosynthesis in plant cells."},
+  {q:"Which of the following is not a component of the cytoskeleton?",o:["Microtubules", "Microfilaments", "Intermediate filaments", "Plasmodesmata"],a:3,exp:"Plasmodesmata are channels between plant cells, not part of the cytoskeleton."}
+];
+
+const q9 = [
+  {q:"Which of the following is not a biomolecule?",o:["Protein", "Nucleic acid", "Carbohydrate", "Plastic"],a:3,exp:"Plastic is a synthetic polymer, not a biomolecule produced by living organisms."},
+  {q:"The most abundant biomolecule on earth is:",o:["Protein", "Nucleic acid", "Carbohydrate", "Lipid"],a:2,exp:"Carbohydrates, particularly cellulose, are the most abundant biomolecules on earth."},
+  {q:"The building blocks of proteins are:",o:["Nucleotides", "Monosaccharides", "Amino acids", "Fatty acids"],a:2,exp:"Proteins are polymers of amino acids."},
+  {q:"Which of the following is not a polysaccharide?",o:["Starch", "Glycogen", "Cellulose", "Glucose"],a:3,exp:"Glucose is a monosaccharide, not a polysaccharide."},
+  {q:"Enzymes are:",o:["Carbohydrates", "Lipids", "Proteins", "Nucleic acids"],a:2,exp:"Most enzymes are proteins, though some are RNA molecules (ribozymes)."},
+  {q:"The primary structure of a protein refers to:",o:["Sequence of amino acids", "Alpha-helix formation", "Beta-pleated sheets", "Three-dimensional folding"],a:0,exp:"The primary structure is the linear sequence of amino acids in a polypeptide chain."},
+  {q:"Which of the following is not a function of lipids?",o:["Energy storage", "Insulation", "Formation of enzymes", "Component of cell membranes"],a:2,exp:"Enzymes are primarily proteins, not lipids."},
+  {q:"DNA contains:",o:["Adenine, guanine, cytosine, thymine", "Adenine, guanine, cytosine, uracil", "Glucose, fructose, galactose", "Saturated and unsaturated fatty acids"],a:0,exp:"DNA contains adenine, guanine, cytosine, and thymine as nitrogenous bases."},
+  {q:"The bond between two amino acids is called:",o:["Glycosidic bond", "Peptide bond", "Phosphodiester bond", "Ester bond"],a:1,exp:"A peptide bond forms between the carboxyl group of one amino acid and the amino group of another."},
+  {q:"Which of the following is not a function of carbohydrates?",o:["Energy source", "Structural component", "Cell recognition", "Enzyme catalysis"],a:3,exp:"Enzyme catalysis is primarily performed by proteins, not carbohydrates."},
+  {q:"The most abundant protein in the animal world is:",o:["Hemoglobin", "Collagen", "Keratin", "Albumin"],a:1,exp:"Collagen is the most abundant protein in animals, found in connective tissues."},
+  {q:"RNA contains:",o:["Adenine, guanine, cytosine, thymine", "Adenine, guanine, cytosine, uracil", "Ribose sugar", "Both b and c"],a:3,exp:"RNA contains adenine, guanine, cytosine, and uracil, and has ribose sugar."},
+  {q:"Which of the following is a secondary protein structure?",o:["Sequence of amino acids", "Alpha-helix", "Globular shape", "Multiple polypeptide chains"],a:1,exp:"Alpha-helix is a common secondary structure formed by hydrogen bonding."},
+  {q:"The storage polysaccharide in plants is:",o:["Starch", "Glycogen", "Cellulose", "Chitin"],a:0,exp:"Starch is the storage polysaccharide in plants."},
+  {q:"The storage polysaccharide in animals is:",o:["Starch", "Glycogen", "Cellulose", "Chitin"],a:1,exp:"Glycogen is the storage polysaccharide in animals."},
+  {q:"Which of the following is not a lipid?",o:["Triglyceride", "Phospholipid", "Cholesterol", "Insulin"],a:3,exp:"Insulin is a protein hormone, not a lipid."},
+  {q:"The bond between two nucleotides is called:",o:["Glycosidic bond", "Peptide bond", "Phosphodiester bond", "Ester bond"],a:2,exp:"A phosphodiester bond links nucleotides in nucleic acids."},
+  {q:"Which of the following is not a function of nucleic acids?",o:["Storage of genetic information", "Transmission of genetic information", "Protein synthesis", "Energy storage"],a:3,exp:"Energy storage is primarily the function of carbohydrates and lipids."},
+  {q:"Enzymes function by:",o:["Lowering activation energy", "Increasing activation energy", "Changing equilibrium", "Consuming energy"],a:0,exp:"Enzymes catalyze reactions by lowering the activation energy required."},
+  {q:"The most abundant mineral in the human body is:",o:["Iron", "Calcium", "Sodium", "Phosphorus"],a:1,exp:"Calcium is the most abundant mineral in the human body, primarily in bones and teeth."}
+];
+
+const q10 = [
+  {q:"The sequence of events by which a cell duplicates its genome and divides into two daughter cells is called:",o:["Cell cycle", "Cell division", "Cytokinesis", "Karyokinesis"],a:0,exp:"The cell cycle includes all events from cell formation to cell division."},
+  {q:"Which phase of the cell cycle is the longest?",o:["G1 phase", "S phase", "G2 phase", "M phase"],a:0,exp:"G1 phase is typically the longest phase of the cell cycle."},
+  {q:"DNA replication occurs during:",o:["G1 phase", "S phase", "G2 phase", "M phase"],a:1,exp:"DNA synthesis (replication) occurs during the S phase of the cell cycle."},
+  {q:"The division of cytoplasm is called:",o:["Karyokinesis", "Cytokinesis", "Mitosis", "Meiosis"],a:1,exp:"Cytokinesis is the division of the cytoplasm following nuclear division."},
+  {q:"Which of the following is not a stage of mitosis?",o:["Prophase", "Metaphase", "Interphase", "Telophase"],a:2,exp:"Interphase is not a stage of mitosis; it's the preparatory phase before mitosis."},
+  {q:"The stage of mitosis where chromosomes align at the equator is:",o:["Prophase", "Metaphase", "Anaphase", "Telophase"],a:1,exp:"During metaphase, chromosomes align at the equatorial plate."},
+  {q:"The stage of mitosis where chromosomes separate and move to opposite poles is:",o:["Prophase", "Metaphase", "Anaphase", "Telophase"],a:2,exp:"During anaphase, sister chromatids separate and move to opposite poles."},
+  {q:"Meiosis results in:",o:["Diploid cells", "Haploid cells", "Triploid cells", "Polyploid cells"],a:1,exp:"Meiosis produces haploid gametes from diploid cells."},
+  {q:"Crossing over occurs during:",o:["Prophase I of meiosis", "Metaphase I of meiosis", "Anaphase I of meiosis", "Prophase of mitosis"],a:0,exp:"Crossing over occurs during prophase I of meiosis."},
+  {q:"The number of chromosomes is reduced to half during:",o:["Mitosis", "Meiosis I", "Meiosis II", "Cytokinesis"],a:1,exp:"The reduction in chromosome number occurs during meiosis I."},
+  {q:"Which of the following is not a function of mitosis?",o:["Growth", "Repair", "Asexual reproduction", "Genetic variation"],a:3,exp:"Genetic variation is primarily achieved through meiosis, not mitosis."},
+  {q:"The resting phase of the cell cycle is:",o:["G0 phase", "G1 phase", "S phase", "G2 phase"],a:0,exp:"G0 phase is the quiescent stage where cells are not preparing for division."},
+  {q:"Synapsis occurs during:",o:["Prophase I of meiosis", "Metaphase I of meiosis", "Anaphase I of meiosis", "Prophase of mitosis"],a:0,exp:"Synapsis (pairing of homologous chromosomes) occurs during prophase I of meiosis."},
+  {q:"Which of the following is not a characteristic of meiosis?",o:["Two divisions", "Formation of four daughter cells", "Daughter cells identical to parent cell", "Reduction in chromosome number"],a:2,exp:"In meiosis, daughter cells are genetically different from the parent cell due to crossing over and independent assortment."},
+  {q:"The structure that holds sister chromatids together is called:",o:["Centromere", "Centriole", "Kinetochore", "Spindle fiber"],a:0,exp:"The centromere is the region where sister chromatids are joined together."},
+  {q:"Which of the following is not a checkpoints in the cell cycle?",o:["G1/S checkpoint", "G2/M checkpoint", "M checkpoint", "G0 checkpoint"],a:3,exp:"There is no specific G0 checkpoint; the main checkpoints are G1/S, G2/M, and M."},
+  {q:"Cell division is initiated by:",o:["CDK", "Cyclin", "MPF", "All of these"],a:3,exp:"Cell division is regulated by cyclins, cyclin-dependent kinases (CDKs), and M-phase promoting factor (MPF)."},
+  {q:"Which of the following is not a difference between mitosis and meiosis?",o:["Number of divisions", "Number of daughter cells", "DNA replication", "Genetic composition of daughter cells"],a:2,exp:"DNA replication occurs once in both mitosis and meiosis."},
+  {q:"The phase between two meiotic divisions is called:",o:["Interphase", "Interkinesis", "Cytokinesis", "Karyokinesis"],a:1,exp:"Interkinesis is the short period between meiosis I and meiosis II."},
+  {q:"Cancer cells are characterized by:",o:["Uncontrolled cell division", "Contact inhibition", "Normal cell cycle regulation", "Programmed cell death"],a:0,exp:"Cancer cells divide uncontrollably due to loss of cell cycle regulation."}
+];
+
+const q11 = [
+  {q:"The process of movement of water across a semipermeable membrane is called:",o:["Diffusion", "Osmosis", "Active transport", "Facilitated diffusion"],a:1,exp:"Osmosis is the movement of water molecules across a semipermeable membrane from a region of higher water concentration to lower water concentration."},
+  {q:"Which of the following is not a type of passive transport?",o:["Diffusion", "Osmosis", "Facilitated diffusion", "Ion pumps"],a:3,exp:"Ion pumps require energy and are a form of active transport, not passive transport."},
+  {q:"The movement of molecules from a region of higher concentration to lower concentration is called:",o:["Diffusion", "Osmosis", "Active transport", "Facilitated diffusion"],a:0,exp:"Diffusion is the movement of molecules down their concentration gradient."},
+  {q:"Which of the following is not a function of the root system in plants?",o:["Anchorage", "Absorption of water", "Photosynthesis", "Storage of food"],a:2,exp:"Photosynthesis occurs primarily in leaves, not roots."},
+  {q:"The water potential of pure water is:",o:["Zero", "One", "Negative", "Positive"],a:0,exp:"By convention, the water potential of pure water at atmospheric pressure is zero."},
+  {q:"Which of the following has the highest water potential?",o:["Pure water", "Dilute solution", "Concentrated solution", "Sea water"],a:0,exp:"Pure water has the highest water potential (zero), and solutes lower the water potential."},
+  {q:"The process by which water is lost from aerial parts of plants is called:",o:["Transpiration", "Guttation", "Evaporation", "Respiration"],a:0,exp:"Transpiration is the loss of water vapor from aerial parts of plants, mainly through stomata."},
+  {q:"Which of the following is not a factor affecting transpiration?",o:["Light", "Temperature", "Wind speed", "Soil type"],a:3,exp:"Soil type affects water absorption but not transpiration directly."},
+  {q:"The cohesion-tension theory explains:",o:["Phloem transport", "Xylem transport", "Active transport", "Osmosis"],a:1,exp:"The cohesion-tension theory explains the ascent of sap in xylem vessels."},
+  {q:"Which of the following is not a function of transpiration?",o:["Cooling effect", "Mineral absorption", "Maintenance of shape", "Water movement"],a:2,exp:"Maintenance of shape is due to turgor pressure, not directly to transpiration."},
+  {q:"The pressure flow hypothesis explains:",o:["Xylem transport", "Phloem transport", "Active transport", "Osmosis"],a:1,exp:"The pressure flow hypothesis explains the translocation of organic compounds in phloem."},
+  {q:"Which of the following is not a type of transpiration?",o:["Cuticular", "Lenticular", "Stomatal", "Vascular"],a:3,exp:"The three types of transpiration are stomatal, cuticular, and lenticular."},
+  {q:"The phenomenon of exudation of water droplets from hydathodes is called:",o:["Transpiration", "Guttation", "Bleeding", "Evaporation"],a:1,exp:"Guttation is the exudation of water droplets from hydathodes, usually at night."},
+  {q:"Which of the following is not a characteristic of facilitated diffusion?",o:["Requires carrier proteins", "Down the concentration gradient", "Requires energy", "Specific"],a:2,exp:"Facilitated diffusion does not require energy; it occurs down the concentration gradient."},
+  {q:"The movement of molecules against the concentration gradient is called:",o:["Diffusion", "Osmosis", "Active transport", "Facilitated diffusion"],a:2,exp:"Active transport moves molecules against their concentration gradient and requires energy."},
+  {q:"Which of the following is not a component of the apoplast pathway?",o:["Cell walls", "Intercellular spaces", "Cytoplasm", "Vessels"],a:2,exp:"Cytoplasm is part of the symplast pathway, not the apoplast pathway."},
+  {q:"The casparian strip is present in:",o:["Endodermis", "Epidermis", "Pericycle", "Cortex"],a:0,exp:"The casparian strip is a band of suberin in the endodermal cells of roots."},
+  {q:"Which of the following is not a function of root pressure?",o:["Pushing water up xylem", "Guttation", "Bleeding", "Photosynthesis"],a:3,exp:"Photosynthesis occurs in leaves and is not related to root pressure."},
+  {q:"The process of loading of sucrose into phloem is:",o:["Passive", "Active", "Both active and passive", "None of these"],a:1,exp:"Sucrose loading into phloem is an active process that requires energy."},
+  {q:"Which of the following is not a method to measure transpiration?",o:["Potometer", "Porometer", "Auxanometer", "Cobalt chloride method"],a:2,exp:"Auxanometer measures growth, not transpiration."}
+];
+
+const q12 = [
+  {q:"Which of the following is not an essential element for plants?",o:["Carbon", "Hydrogen", "Oxygen", "Sodium"],a:3,exp:"Sodium is not considered an essential element for most plants, though it may be beneficial for some."},
+  {q:"The technique of growing plants in a nutrient solution is called:",o:["Hydroponics", "Aeroponics", "Hydrotropism", "Geotropism"],a:0,exp:"Hydroponics is the technique of growing plants in a nutrient solution without soil."},
+  {q:"Which of the following is a macronutrient?",o:["Iron", "Manganese", "Nitrogen", "Zinc"],a:2,exp:"Nitrogen is a macronutrient required by plants in large quantities."},
+  {q:"Which of the following is a micronutrient?",o:["Calcium", "Magnesium", "Phosphorus", "Copper"],a:3,exp:"Copper is a micronutrient required by plants in small quantities."},
+  {q:"Chlorosis is caused by the deficiency of:",o:["Nitrogen", "Magnesium", "Iron", "All of these"],a:3,exp:"Chlorosis (yellowing of leaves) can be caused by deficiency of nitrogen, magnesium, iron, and other nutrients."},
+  {q:"Which element is a component of chlorophyll?",o:["Iron", "Magnesium", "Calcium", "Potassium"],a:1,exp:"Magnesium is the central atom in the chlorophyll molecule."},
+  {q:"Which element is a component of nucleic acids?",o:["Phosphorus", "Sulfur", "Calcium", "Potassium"],a:0,exp:"Phosphorus is a component of nucleic acids (DNA and RNA)."},
+  {q:"Necrosis is caused by the deficiency of:",o:["Calcium", "Magnesium", "Potassium", "All of these"],a:3,exp:"Necrosis (death of tissues) can be caused by deficiency of calcium, magnesium, potassium, and other nutrients."},
+  {q:"Which element is required for nitrogen fixation?",o:["Molybdenum", "Copper", "Zinc", "Manganese"],a:0,exp:"Molybdenum is required for nitrogen fixation by nitrogen-fixing bacteria."},
+  {q:"Which of the following is not a function of potassium?",o:["Opening and closing of stomata", "Activation of enzymes", "Protein synthesis", "Component of chlorophyll"],a:3,exp:"Potassium is not a component of chlorophyll; magnesium is."},
+  {q:"Which element is required for water splitting in photosynthesis?",o:["Manganese", "Chlorine", "Both a and b", "Zinc"],a:2,exp:"Both manganese and chlorine are required for water splitting in photosystem II."},
+  {q:"The deficiency of which element causes little leaf disease?",o:["Zinc", "Copper", "Boron", "Molybdenum"],a:0,exp:"Zinc deficiency causes little leaf disease in plants."},
+  {q:"Which element is a component of vitamin B12?",o:["Cobalt", "Nickel", "Silicon", "Sodium"],a:0,exp:"Cobalt is a component of vitamin B12, which is important for nitrogen fixation."},
+  {q:"Which element is required for cell wall formation?",o:["Calcium", "Boron", "Both a and b", "Potassium"],a:2,exp:"Both calcium (in middle lamella) and boron (for cell wall integrity) are required for cell wall formation."},
+  {q:"The process of conversion of atmospheric nitrogen into ammonia is called:",o:["Nitrogen fixation", "Nitrification", "Denitrification", "Ammonification"],a:0,exp:"Nitrogen fixation is the conversion of atmospheric nitrogen into ammonia."},
+  {q:"Which of the following is not a nitrogen-fixing organism?",o:["Rhizobium", "Azotobacter", "Nostoc", "Nitrosomonas"],a:3,exp:"Nitrosomonas is involved in nitrification, not nitrogen fixation."},
+  {q:"The process of conversion of ammonia to nitrite is called:",o:["Nitrogen fixation", "Nitrification", "Denitrification", "Ammonification"],a:1,exp:"Nitrification is the conversion of ammonia to nitrite and then to nitrate."},
+  {q:"Which element is required for pollen germination?",o:["Boron", "Calcium", "Potassium", "All of these"],a:3,exp:"Boron, calcium, and potassium are all important for pollen germination and tube growth."},
+  {q:"The deficiency of which element causes whiptail disease in cauliflower?",o:["Molybdenum", "Copper", "Zinc", "Manganese"],a:0,exp:"Molybdenum deficiency causes whiptail disease in cauliflower."},
+  {q:"Which element is required for the synthesis of auxins?",o:["Zinc", "Copper", "Manganese", "Chlorine"],a:0,exp:"Zinc is required for the synthesis of auxins, important plant growth hormones."}
+];
+
+/* ---------- Answers ---------- */
+const answers8 = q8.map(x => x.a);
+const answers9 = q9.map(x => x.a);
+const answers10 = q10.map(x => x.a);
+const answers11 = q11.map(x => x.a);
+const answers12 = q12.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `
+      <div class="question-text"><b>Q${i+1}.</b> ${item.q}</div>
+      <div class="options">
+        ${item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("")}
+      </div>
+      <div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>
+      <div class="explanation">Explanation: ${item.exp}</div>
+      <button type="button" class="show-answer-btn" onclick="showAnswer(this)">Show Answer</button>
+    `;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q8, "quiz8");
+loadQuestions(q9, "quiz9");
+loadQuestions(q10, "quiz10");
+loadQuestions(q11, "quiz11");
+loadQuestions(q12, "quiz12");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0;
+  let out = `<div class="score-display">Score: ${score}/${ansArr.length}</div>`;
+  
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
+    }
+  });
+  
+  // Update score
+  out = out.replace(`Score: 0/${ansArr.length}`, `Score: ${score}/${ansArr.length}`);
+  
+  document.getElementById(resId).innerHTML = out;
+  
+  // Stop the timer for this chapter
+  clearInterval(window[`timerInterval${formId.slice(-1)}`]);
+}
+
+function qAns(formId) {
+  if (formId === "quiz8") return q8;
+  if (formId === "quiz9") return q9;
+  if (formId === "quiz10") return q10;
+  if (formId === "quiz11") return q11;
+  if (formId === "quiz12") return q12;
+}
+
+/* ---------- Timer ---------- */
+function startTimer(duration, display, warning) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+    display.textContent = minutes + ":" + seconds;
+    
+    // Show warning when less than 5 minutes remain
+    if (timer === 5 * 60) {
+      document.getElementById(warning).style.display = 'block';
+    }
+    
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
+    }
+  }, 1000);
+  
+  // Store interval ID so we can clear it later
+  window[`timerInterval${display.id.slice(-1)}`] = interval;
+}
+
+// Start timers for all chapters
+startTimer(20 * 60, document.getElementById("timer8"), "time-warning8");
+startTimer(20 * 60, document.getElementById("timer9"), "time-warning9");
+startTimer(20 * 60, document.getElementById("timer10"), "time-warning10");
+startTimer(20 * 60, document.getElementById("timer11"), "time-warning11");
+startTimer(20 * 60, document.getElementById("timer12"), "time-warning12");
+
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEET Biology Quiz Chapters 13–16</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background: #1a2a6c;
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    
+    section {
+      padding: 25px;
+      margin: 25px auto;
+      max-width: 900px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    h2 {
+      background: linear-gradient(to right, #1a2a6c, #b21f1f);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    
+    .question {
+      background: #f9f9f9;
+      padding: 18px;
+      margin: 18px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #1a2a6c;
+    }
+    
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a2a6c;
+      font-size: 1.1rem;
+    }
+    
+    .options label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px 15px;
+      background: #f0f8ff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid #d1e7ff;
+    }
+    
+    .options label:hover {
+      background: #e1efff;
+      border-color: #1a2a6c;
+    }
+    
+    .options input[type='radio'] {
+      margin-right: 10px;
+    }
+    
+    button {
+      background: #1a2a6c;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 15px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+    
+    button:hover {
+      background: #2a3a7c;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background: #e3f2fd;
+      border-radius: 8px;
+      border-left: 5px solid #2196f3;
+    }
+    
+    .timer {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #b71c1c;
+      margin: 15px 0;
+      padding: 10px;
+      background: #fff3e0;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px dashed #ff5722;
+    }
+    
+    .answer {
+      display: none;
+      margin-top: 15px;
+      color: #2e7d32;
+      font-weight: bold;
+      padding: 10px;
+      background: #e8f5e9;
+      border-radius: 6px;
+    }
+    
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #444;
+      padding: 12px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      border-left: 3px solid #78909c;
+    }
+    
+    .score-display {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #1a2a6c;
+      margin-bottom: 15px;
+    }
+    
+    .chapter-info {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .show-answer-btn {
+      background: #388e3c;
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+    
+    .show-answer-btn:hover {
+      background: #4caf50;
+    }
+    
+    .time-warning {
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+      display: none;
+      padding: 8px;
+      background: #ffebee;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>NEET Biology Quiz (Chapters 13–16)</h1>
+  <p class="subtitle">Each chapter quiz has 20 questions | Time Limit: 20 minutes per chapter</p>
+</header>
+
+<section>
+  <h2>Chapter 13: Photosynthesis in Higher Plants</h2>
+  <div class="timer" id="timer13">20:00</div>
+  <div class="time-warning" id="time-warning13">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz13"></form>
+  <button onclick="submitQuiz('quiz13','result13',answers13);">Submit Quiz</button>
+  <div id="result13" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 14: Respiration in Plants</h2>
+  <div class="timer" id="timer14">20:00</div>
+  <div class="time-warning" id="time-warning14">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz14"></form>
+  <button onclick="submitQuiz('quiz14','result14',answers14);">Submit Quiz</button>
+  <div id="result14" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 15: Plant Growth and Development</h2>
+  <div class="timer" id="timer15">20:00</div>
+  <div class="time-warning" id="time-warning15">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz15"></form>
+  <button onclick="submitQuiz('quiz15','result15',answers15);">Submit Quiz</button>
+  <div id="result15" class="result"></div>
+</section>
+
+<section>
+  <h2>Chapter 16: Digestion and Absorption</h2>
+  <div class="timer" id="timer16">20:00</div>
+  <div class="time-warning" id="time-warning16">Warning: Less than 5 minutes remaining!</div>
+  <form id="quiz16"></form>
+  <button onclick="submitQuiz('quiz16','result16',answers16);">Submit Quiz</button>
+  <div id="result16" class="result"></div>
+</section>
+
+<script>
+/* ---------- Questions Data for NEET Biology Chapters 13-16 ---------- */
+const q13 = [
+  {q:"The process of photosynthesis converts:",o:["Light energy to chemical energy", "Chemical energy to light energy", "Light energy to mechanical energy", "Chemical energy to mechanical energy"],a:0,exp:"Photosynthesis converts light energy into chemical energy stored in glucose."},
+  {q:"Which pigment is directly involved in light reactions of photosynthesis?",o:["Chlorophyll a", "Chlorophyll b", "Xanthophyll", "Carotene"],a:0,exp:"Chlorophyll a is the primary pigment that directly participates in light reactions."},
+  {q:"The site of light reaction in photosynthesis is:",o:["Stroma", "Grana", "Cytoplasm", "Mitochondria"],a:1,exp:"Light reactions occur in the grana (thylakoid membranes) of chloroplasts."},
+  {q:"The main product of the light reaction is:",o:["Glucose", "ATP and NADPH", "Oxygen and water", "Carbon dioxide"],a:1,exp:"Light reactions produce ATP and NADPH, which are used in the dark reactions."},
+  {q:"The Calvin cycle occurs in:",o:["Grana", "Stroma", "Cytoplasm", "Mitochondria"],a:1,exp:"The Calvin cycle (dark reaction) occurs in the stroma of chloroplasts."},
+  {q:"The first stable product of C3 cycle is:",o:["PGA", "PGAL", "RuBP", "OAA"],a:0,exp:"3-phosphoglyceric acid (PGA) is the first stable product in C3 plants."},
+  {q:"Photorespiration occurs in:",o:["C3 plants", "C4 plants", "CAM plants", "All plants"],a:0,exp:"Photorespiration is particularly problematic in C3 plants under hot and dry conditions."},
+  {q:"The primary CO2 acceptor in C4 plants is:",o:["RuBP", "PEP", "PGA", "OAA"],a:1,exp:"Phosphoenolpyruvate (PEP) is the primary CO2 acceptor in C4 plants."},
+  {q:"Which of the following is not a requirement for photosynthesis?",o:["Chlorophyll", "Light", "CO2", "O2"],a:3,exp:"Oxygen is a product of photosynthesis, not a requirement."},
+  {q:"The enzyme involved in carbon fixation in C3 plants is:",o:["PEP carboxylase", "RuBisCO", "Catalase", "Amylase"],a:1,exp:"Ribulose bisphosphate carboxylase-oxygenase (RuBisCO) fixes CO2 in C3 plants."},
+  {q:"The number of ATP molecules required for the production of one glucose molecule in C3 plants is:",o:["18", "30", "36", "48"],a:1,exp:"C3 plants require 18 ATP molecules to produce one glucose molecule."},
+  {q:"Kranz anatomy is characteristic of:",o:["C3 plants", "C4 plants", "CAM plants", "All plants"],a:1,exp:"Kranz anatomy with bundle sheath cells is characteristic of C4 plants."},
+  {q:"The wavelength of light most effective in photosynthesis is:",o:["Green", "Blue", "Yellow", "Orange"],a:1,exp:"Blue light (around 430-450 nm) is most effective for photosynthesis."},
+  {q:"The process of splitting of water during photosynthesis is called:",o:["Photolysis", "Hydrolysis", "Glycolysis", "Phosphorylation"],a:0,exp:"Photolysis of water occurs in photosystem II, releasing oxygen."},
+  {q:"Which of the following is not a product of light reaction?",o:["ATP", "NADPH", "O2", "Glucose"],a:3,exp:"Glucose is produced in the dark reaction, not the light reaction."},
+  {q:"The scientist who discovered the light-independent reactions is:",o:["Melvin Calvin", "Robert Hill", "Jan Ingenhousz", "Joseph Priestley"],a:0,exp:"Melvin Calvin discovered the Calvin cycle (light-independent reactions)."},
+  {q:"CAM plants are adapted to:",o:["Aquatic environments", "Temperate regions", "Xerophytic conditions", "Parasitic life"],a:2,exp:"CAM plants are adapted to xerophytic (dry) conditions."},
+  {q:"The first step of the Calvin cycle is:",o:["Reduction", "Carboxylation", "Regeneration", "Phosphorylation"],a:1,exp:"Carboxylation of RuBP is the first step of the Calvin cycle."},
+  {q:"Which of the following is not an accessory pigment?",o:["Chlorophyll b", "Carotene", "Xanthophyll", "Chlorophyll a"],a:3,exp:"Chlorophyll a is the primary pigment, not an accessory pigment."},
+  {q:"The phenomenon of Emerson enhancement effect demonstrates:",o:["Cyclic photophosphorylation", "Non-cyclic photophosphorylation", "Cooperation of two photosystems", "Photorespiration"],a:2,exp:"The Emerson enhancement effect demonstrated the cooperation of PS I and PS II."}
+];
+
+const q14 = [
+  {q:"The ultimate source of energy for all living organisms is:",o:["ATP", "Glucose", "Sun", "Oxygen"],a:2,exp:"The sun is the ultimate source of energy for almost all living organisms through photosynthesis."},
+  {q:"The complete oxidation of glucose yields:",o:["2 ATP", "36 ATP", "38 ATP", "40 ATP"],a:2,exp:"Complete oxidation of one glucose molecule yields 36-38 ATP molecules."},
+  {q:"Glycolysis occurs in:",o:["Cytoplasm", "Mitochondria", "Chloroplast", "Nucleus"],a:0,exp:"Glycolysis occurs in the cytoplasm of the cell."},
+  {q:"The end product of glycolysis is:",o:["Pyruvate", "Acetyl CoA", "Citric acid", "Glucose"],a:0,exp:"Glycolysis converts glucose to pyruvate."},
+  {q:"The Krebs cycle occurs in:",o:["Cytoplasm", "Mitochondrial matrix", "Inner mitochondrial membrane", "Outer mitochondrial membrane"],a:1,exp:"The Krebs cycle occurs in the mitochondrial matrix."},
+  {q:"The final electron acceptor in aerobic respiration is:",o:["NAD+", "FAD", "Oxygen", "Cytochrome"],a:2,exp:"Oxygen is the final electron acceptor in the electron transport chain."},
+  {q:"The number of ATP molecules produced from one NADH molecule is:",o:["1", "2", "3", "4"],a:2,exp:"Each NADH molecule produces approximately 3 ATP molecules."},
+  {q:"Fermentation occurs in:",o:["Presence of oxygen", "Absence of oxygen", "Both", "None"],a:1,exp:"Fermentation is an anaerobic process that occurs in the absence of oxygen."},
+  {q:"The respiratory quotient (RQ) for carbohydrates is:",o:["0.7", "1.0", "0.9", "Infinity"],a:1,exp:"RQ for carbohydrates is 1.0 as equal amounts of CO2 and O2 are involved."},
+  {q:"Which of the following is not a product of Krebs cycle?",o:["ATP", "NADH", "FADH2", "Pyruvate"],a:3,exp:"Pyruvate is the substrate for Krebs cycle, not a product."},
+  {q:"The enzyme that catalyzes the conversion of pyruvate to acetyl CoA is:",o:["Pyruvate dehydrogenase", "Hexokinase", "Phosphofructokinase", "Succinate dehydrogenase"],a:0,exp:"Pyruvate dehydrogenase complex converts pyruvate to acetyl CoA."},
+  {q:"The number of CO2 molecules released in one turn of Krebs cycle is:",o:["1", "2", "3", "4"],a:1,exp:"Two CO2 molecules are released per turn of the Krebs cycle."},
+  {q:"Oxidative phosphorylation occurs in:",o:["Cytoplasm", "Mitochondrial matrix", "Inner mitochondrial membrane", "Outer mitochondrial membrane"],a:2,exp:"Oxidative phosphorylation occurs in the inner mitochondrial membrane."},
+  {q:"Which of the following is not involved in the electron transport chain?",o:["NADH", "FADH2", "ATP synthase", "PEP carboxylase"],a:3,exp:"PEP carboxylase is involved in C4 photosynthesis, not respiration."},
+  {q:"The RQ value for fats is:",o:["0.7", "1.0", "0.9", "Infinity"],a:0,exp:"RQ for fats is less than 1 (typically 0.7) as more oxygen is consumed."},
+  {q:"The process of ATP synthesis using proton gradient is called:",o:["Substrate-level phosphorylation", "Oxidative phosphorylation", "Photophosphorylation", "Chemiosmosis"],a:3,exp:"Chemiosmosis is the process of ATP synthesis using a proton gradient."},
+  {q:"Which of the following is not a product of fermentation?",o:["Lactic acid", "Ethanol", "CO2", "Pyruvate"],a:3,exp:"Pyruvate is the substrate for fermentation, not a product."},
+  {q:"The number of ATP molecules produced directly in glycolysis is:",o:["2", "4", "6", "8"],a:0,exp:"Glycolysis produces a net gain of 2 ATP molecules per glucose molecule."},
+  {q:"The compound that enters the Krebs cycle is:",o:["Pyruvate", "Acetyl CoA", "Oxaloacetate", "Citric acid"],a:1,exp:"Acetyl CoA combines with oxaloacetate to form citric acid, entering the Krebs cycle."},
+  {q:"The respiratory quotient (RQ) is calculated as:",o:["CO2 produced / O2 consumed", "O2 consumed / CO2 produced", "ATP produced / Glucose consumed", "Glucose consumed / ATP produced"],a:0,exp:"RQ = Volume of CO2 evolved / Volume of O2 consumed."}
+];
+
+const q15 = [
+  {q:"The growth in plants is:",o:["Limited", "Unlimited", "Both", "None"],a:1,exp:"Plants show unlimited growth throughout their life due to meristematic tissues."},
+  {q:"The phase of growth that includes cell division is:",o:["Formative phase", "Elongation phase", "Maturation phase", "All of these"],a:0,exp:"The formative phase includes cell division in meristematic regions."},
+  {q:"The plant hormone responsible for cell elongation is:",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:0,exp:"Auxins promote cell elongation in plants."},
+  {q:"Which hormone promotes fruit ripening?",o:["Ethylene", "Cytokinin", "Abscisic acid", "Gibberellin"],a:0,exp:"Ethylene promotes fruit ripening and senescence."},
+  {q:"The hormone that promotes stomatal closure during water stress is:",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:3,exp:"Abscisic acid (ABA) promotes stomatal closure during water stress."},
+  {q:"Which hormone is known as the stress hormone?",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:3,exp:"Abscisic acid is called the stress hormone as it helps plants cope with stress."},
+  {q:"The phenomenon of bending towards light in plants is called:",o:["Geotropism", "Phototropism", "Thigmotropism", "Hydrotropism"],a:1,exp:"Phototropism is the growth response toward light."},
+  {q:"Which hormone promotes seed dormancy?",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:3,exp:"Abscisic acid promotes seed dormancy."},
+  {q:"The hormone that breaks seed dormancy is:",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:1,exp:"Gibberellins break seed dormancy and promote germination."},
+  {q:"Which hormone promotes cell division?",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:2,exp:"Cytokinins promote cell division in plants."},
+  {q:"The phenomenon of flowering in response to day length is called:",o:["Vernalization", "Photoperiodism", "Phototropism", "Thermoperiodism"],a:1,exp:"Photoperiodism is the response to day/night length for flowering."},
+  {q:"Plants that flower when day length is longer than critical period are called:",o:["Short-day plants", "Long-day plants", "Day-neutral plants", "Intermediate-day plants"],a:1,exp:"Long-day plants flower when day length exceeds a critical period."},
+  {q:"The process of subjecting seeds to low temperature to promote flowering is called:",o:["Vernalization", "Photoperiodism", "Phototropism", "Thermoperiodism"],a:0,exp:"Vernalization is the cold treatment that promotes flowering."},
+  {q:"Which of the following is not a plant growth regulator?",o:["Auxin", "Gibberellin", "Cytokinin", "Starch"],a:3,exp:"Starch is a carbohydrate, not a plant growth regulator."},
+  {q:"The hormone that promotes apical dominance is:",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:0,exp:"Auxins promote apical dominance (suppression of lateral buds)."},
+  {q:"Which hormone delays senescence?",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:2,exp:"Cytokinins delay senescence (aging) in plants."},
+  {q:"The phenomenon of growth movement in response to touch is called:",o:["Geotropism", "Phototropism", "Thigmotropism", "Hydrotropism"],a:2,exp:"Thigmotropism is the growth response to touch or contact."},
+  {q:"Which hormone promotes bolting in plants?",o:["Auxin", "Gibberellin", "Cytokinin", "Abscisic acid"],a:1,exp:"Gibberellins promote bolting (rapid stem elongation) in plants."},
+  {q:"The hormone that promotes fruit growth is:",o:["Auxin", "Gibberellin", "Cytokinin", "All of these"],a:3,exp:"Auxins, gibberellins, and cytokinins all promote fruit growth."},
+  {q:"The phenomenon of growth movement in response to gravity is called:",o:["Geotropism", "Phototropism", "Thigmotropism", "Hydrotropism"],a:0,exp:"Geotropism (gravitropism) is the growth response to gravity."}
+];
+
+const q16 = [
+  {q:"The process of breaking down complex food into simpler forms is called:",o:["Digestion", "Absorption", "Assimilation", "Egestion"],a:0,exp:"Digestion is the process of breaking down complex food molecules into simpler forms."},
+  {q:"Which of the following is not a part of the human digestive system?",o:["Mouth", "Stomach", "Liver", "Kidney"],a:3,exp:"Kidney is part of the excretory system, not the digestive system."},
+  {q:"The enzyme present in saliva is:",o:["Ptyalin", "Pepsin", "Trypsin", "Lipase"],a:0,exp:"Saliva contains ptyalin (salivary amylase) that breaks down starch."},
+  {q:"The pH of gastric juice is:",o:["Alkaline", "Neutral", "Acidic", "Variable"],a:2,exp:"Gastric juice is highly acidic with a pH of about 1.5-3.5 due to HCl."},
+  {q:"The enzyme pepsin digests:",o:["Carbohydrates", "Proteins", "Fats", "Nucleic acids"],a:1,exp:"Pepsin breaks down proteins into peptides in the stomach."},
+  {q:"Bile is produced by:",o:["Liver", "Gallbladder", "Pancreas", "Small intestine"],a:0,exp:"Bile is produced by the liver and stored in the gallbladder."},
+  {q:"The function of bile is to:",o:["Emulsify fats", "Digest proteins", "Digest carbohydrates", "Absorb nutrients"],a:0,exp:"Bile salts emulsify fats, increasing surface area for enzyme action."},
+  {q:"The site of complete digestion in humans is:",o:["Mouth", "Stomach", "Small intestine", "Large intestine"],a:2,exp:"The small intestine is where complete digestion of all food components occurs."},
+  {q:"Trypsin is secreted by:",o:["Salivary glands", "Gastric glands", "Pancreas", "Intestinal glands"],a:2,exp:"Trypsin is secreted by the pancreas as trypsinogen, which is activated in the small intestine."},
+  {q:"Villi are present in:",o:["Stomach", "Small intestine", "Large intestine", "All of these"],a:1,exp:"Villi are finger-like projections in the small intestine that increase surface area for absorption."},
+  {q:"The process of taking in digested food into blood is called:",o:["Digestion", "Absorption", "Assimilation", "Egestion"],a:1,exp:"Absorption is the process of moving digested food into blood or lymph."},
+  {q:"Which of the following is not a function of the large intestine?",o:["Absorption of water", "Absorption of minerals", "Formation of feces", "Digestion of proteins"],a:3,exp:"Protein digestion is completed in the small intestine, not the large intestine."},
+  {q:"The enzyme that digests milk protein casein is:",o:["Pepsin", "Trypsin", "Rennin", "Amylase"],a:2,exp:"Rennin (chymosin) digests casein, the milk protein."},
+  {q:"The wave-like movement of the alimentary canal is called:",o:["Peristalsis", "Digestion", "Absorption", "Circulation"],a:0,exp:"Peristalsis is the wave-like muscular contractions that move food through the digestive tract."},
+  {q:"Which of the following is not a digestive gland?",o:["Liver", "Pancreas", "Salivary gland", "Thyroid gland"],a:3,exp:"Thyroid gland is an endocrine gland, not a digestive gland."},
+  {q:"The final product of protein digestion is:",o:["Glucose", "Fatty acids", "Amino acids", "Glycerol"],a:2,exp:"Proteins are broken down into amino acids during digestion."},
+  {q:"The final product of carbohydrate digestion is:",o:["Glucose", "Fatty acids", "Amino acids", "Glycerol"],a:0,exp:"Carbohydrates are broken down into monosaccharides like glucose."},
+  {q:"The final product of fat digestion is:",o:["Glucose", "Fatty acids and glycerol", "Amino acids", "Nucleotides"],a:1,exp:"Fats are broken down into fatty acids and glycerol."},
+  {q:"The enzyme that digests starch is:",o:["Pepsin", "Trypsin", "Amylase", "Lipase"],a:2,exp:"Amylase digests starch into maltose and other disaccharides."},
+  {q:"The process of elimination of undigested food is called:",o:["Digestion", "Absorption", "Assimilation", "Egestion"],a:3,exp:"Egestion is the elimination of undigested food material as feces."}
+];
+
+/* ---------- Answers ---------- */
+const answers13 = q13.map(x => x.a);
+const answers14 = q14.map(x => x.a);
+const answers15 = q15.map(x => x.a);
+const answers16 = q16.map(x => x.a);
+
+/* ---------- Insert Questions ---------- */
+function loadQuestions(qset, formId) {
+  const form = document.getElementById(formId);
+  qset.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `
+      <div class="question-text"><b>Q${i+1}.</b> ${item.q}</div>
+      <div class="options">
+        ${item.o.map((opt, j) => `<label><input type='radio' name='${formId}q${i}' value='${j}'> ${opt}</label>`).join("")}
+      </div>
+      <div class="answer">✅ Correct Answer: ${item.o[item.a]}</div>
+      <div class="explanation">Explanation: ${item.exp}</div>
+      <button type="button" class="show-answer-btn" onclick="showAnswer(this)">Show Answer</button>
+    `;
+    form.appendChild(div);
+  });
+}
+loadQuestions(q13, "quiz13");
+loadQuestions(q14, "quiz14");
+loadQuestions(q15, "quiz15");
+loadQuestions(q16, "quiz16");
+
+/* ---------- Submit & Evaluate ---------- */
+function submitQuiz(formId, resId, ansArr) {
+  const form = document.getElementById(formId);
+  let score = 0;
+  let out = `<div class="score-display">Score: ${score}/${ansArr.length}</div>`;
+  
+  ansArr.forEach((ans, i) => {
+    const chosen = form.querySelector(`input[name='${formId}q${i}']:checked`);
+    if (chosen && parseInt(chosen.value) === ans) {
+      score++;
+      out += `<p>Q${i+1}: ✅ Correct (${qAns(formId)[i].exp})</p>`;
+    } else {
+      out += `<p>Q${i+1}: ❌ Wrong. Correct: ${qAns(formId)[i].o[ans]} | ${qAns(formId)[i].exp}</p>`;
+    }
+  });
+  
+  // Update score
+  out = out.replace(`Score: 0/${ansArr.length}`, `Score: ${score}/${ansArr.length}`);
+  
+  document.getElementById(resId).innerHTML = out;
+  
+  // Stop the timer for this chapter
+  clearInterval(window[`timerInterval${formId.slice(-1)}`]);
+}
+
+function qAns(formId) {
+  if (formId === "quiz13") return q13;
+  if (formId === "quiz14") return q14;
+  if (formId === "quiz15") return q15;
+  if (formId === "quiz16") return q16;
+}
+
+/* ---------- Timer ---------- */
+function startTimer(duration, display, warning) {
+  let timer = duration, minutes, seconds;
+  const interval = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+    display.textContent = minutes + ":" + seconds;
+    
+    // Show warning when less than 5 minutes remain
+    if (timer === 5 * 60) {
+      document.getElementById(warning).style.display = 'block';
+    }
+    
+    if (--timer < 0) {
+      display.textContent = "Time Up!";
+      clearInterval(interval);
+      document.getElementById(display.id.replace("timer", "quiz")).querySelectorAll('input').forEach(input => input.disabled = true);
+    }
+  }, 1000);
+  
+  // Store interval ID so we can clear it later
+  window[`timerInterval${display.id.slice(-1)}`] = interval;
+}
+
+// Start timers for all chapters
+startTimer(20 * 60, document.getElementById("timer13"), "time-warning13");
+startTimer(20 * 60, document.getElementById("timer14"), "time-warning14");
+startTimer(20 * 60, document.getElementById("timer15"), "time-warning15");
+startTimer(20 * 60, document.getElementById("timer16"), "time-warning16");
+
+/* ---------- Show Answer ---------- */
+function showAnswer(button) {
+  const questionDiv = button.parentElement;
+  questionDiv.querySelector('.answer').style.display = 'block';
+  questionDiv.querySelector('.explanation').style.display = 'block';
+  button.style.display = 'none';
+}
+</script>
 </body>
 </html>
