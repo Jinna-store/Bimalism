@@ -776,9 +776,340 @@
                     <ul>
                         <li><i class="fas fa-envelope"></i> info@bimalsim01@gmail.com</li>
                         <li>created by Aalif and Dharunesh of Achariya 9th</li>
+                        <li>inspired by our class teacher mr.Kagesararao Sir</li>
                     </ul>
                 </div>
             </div>
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bimalism Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .feedback-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .feedback-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .feedback-container label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    .feedback-container input, 
+    .feedback-container textarea, 
+    .feedback-container button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .feedback-container textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    .feedback-container button {
+      background: linear-gradient(45deg, #4cafef, #2b7de9);
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .feedback-container button:hover {
+      background: linear-gradient(45deg, #2b7de9, #4cafef);
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: green;
+      font-weight: bold;
+    }
+
+    /* Admin Panel Styles */
+    .admin-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .admin-link a {
+      color: #2b7de9;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .admin-link a:hover {
+      text-decoration: underline;
+    }
+
+    .admin-panel {
+      display: none;
+      max-width: 800px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .admin-panel h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .login-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .feedback-list {
+      margin-top: 20px;
+    }
+
+    .feedback-item {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+
+    .feedback-item:last-child {
+      border-bottom: none;
+    }
+
+    .feedback-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .feedback-name {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .feedback-email {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .feedback-date {
+      color: #999;
+      font-size: 12px;
+    }
+
+    .feedback-message {
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .logout-btn {
+      background: #f44336;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      background: #9e9e9e;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .no-feedback {
+      text-align: center;
+      color: #999;
+      font-style: italic;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="feedback-container" id="feedbackContainer">
+    <h2>Feedback</h2>
+    <form id="feedbackForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="message">Your Feedback</label>
+      <textarea id="message" placeholder="Write your feedback here..." required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+    <div class="success-message" id="successMessage">✅ Thank you for your feedback!</div>
+    
+    <div class="admin-link">
+      <a href="#" id="adminAccess">Admin Access</a>
+    </div>
+  </div>
+
+  <div class="admin-panel" id="adminPanel">
+    <button class="back-btn" id="backButton">← Back</button>
+    <h2>Admin Panel</h2>
+    
+    <div id="loginForm" class="login-form">
+      <label for="adminPassword">Password</label>
+      <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+      <button id="loginButton">Login</button>
+      <div id="loginError" style="color: red; text-align: center; display: none; margin-top: 10px;">
+        Invalid password. Please try again.
+      </div>
+    </div>
+    
+    <div id="adminDashboard" style="display: none;">
+      <button class="logout-btn" id="logoutButton">Logout</button>
+      <h3>Submitted Feedback</h3>
+      
+      <div id="feedbackList" class="feedback-list">
+        <div class="no-feedback" id="noFeedback">No feedback submitted yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Store feedback in localStorage
+    if (!localStorage.getItem('feedbackEntries')) {
+      localStorage.setItem('feedbackEntries', JSON.stringify([]));
+    }
+
+    // Handle form submission
+    document.getElementById("feedbackForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+      const date = new Date().toLocaleString();
+      
+      // Create feedback object
+      const feedback = {
+        name,
+        email,
+        message,
+        date
+      };
+      
+      // Save to localStorage
+      const entries = JSON.parse(localStorage.getItem('feedbackEntries'));
+      entries.push(feedback);
+      localStorage.setItem('feedbackEntries', JSON.stringify(entries));
+      
+      // Show success message
+      document.getElementById("feedbackForm").style.display = "none";
+      document.getElementById("successMessage").style.display = "block";
+      
+      // Reset form
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("message").value = "";
+    });
+
+    // Admin panel functionality
+    document.getElementById("adminAccess").addEventListener("click", function(e) {
+      e.preventDefault();
+      document.getElementById("feedbackContainer").style.display = "none";
+      document.getElementById("adminPanel").style.display = "block";
+    });
+
+    document.getElementById("backButton").addEventListener("click", function() {
+      document.getElementById("adminPanel").style.display = "none";
+      document.getElementById("feedbackContainer").style.display = "block";
+      document.getElementById("loginError").style.display = "none";
+      document.getElementById("adminPassword").value = "";
+    });
+
+    document.getElementById("loginButton").addEventListener("click", function() {
+      const password = document.getElementById("adminPassword").value;
+      
+      if (password === "gbda.41") {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("adminDashboard").style.display = "block";
+        loadFeedback();
+      } else {
+        document.getElementById("loginError").style.display = "block";
+      }
+    });
+
+    document.getElementById("logoutButton").addEventListener("click", function() {
+      document.getElementById("adminDashboard").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+      document.getElementById("adminPassword").value = "";
+    });
+
+    function loadFeedback() {
+      const entries = JSON.parse(localStorage.getItem('feedbackEntries'));
+      const feedbackList = document.getElementById("feedbackList");
+      const noFeedback = document.getElementById("noFeedback");
+      
+      feedbackList.innerHTML = "";
+      
+      if (entries.length === 0) {
+        noFeedback.style.display = "block";
+        return;
+      }
+      
+      noFeedback.style.display = "none";
+      
+      // Display feedback in reverse chronological order (newest first)
+      entries.slice().reverse().forEach(entry => {
+        const feedbackItem = document.createElement("div");
+        feedbackItem.className = "feedback-item";
+        
+        feedbackItem.innerHTML = `
+          <div class="feedback-header">
+            <div>
+              <span class="feedback-name">${entry.name}</span>
+              <span class="feedback-email">(${entry.email})</span>
+            </div>
+            <span class="feedback-date">${entry.date}</span>
+          </div>
+          <div class="feedback-message">${entry.message}</div>
+        `;
+        
+        feedbackList.appendChild(feedbackItem);
+      });
+    }
+  </script>
+
+</body>
+</html>
             <div class="copyright">
                 <p>&copy; 2023 BimalSim Education. All rights reserved.</p>
             </div>
@@ -838,6 +1169,7 @@
     </script>
 </body>
 </html>
+
 
 
 
