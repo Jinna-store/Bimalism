@@ -781,6 +781,7 @@
                 </div>
             </div>
             <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -954,6 +955,13 @@
       font-style: italic;
       padding: 20px;
     }
+    
+    .storage-info {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
@@ -977,6 +985,10 @@
     <div class="admin-link">
       <a href="#" id="adminAccess">Admin Access</a>
     </div>
+    
+    <div class="storage-info">
+      Feedback is stored for 30 days
+    </div>
   </div>
 
   <div class="admin-panel" id="adminPanel">
@@ -995,6 +1007,7 @@
     <div id="adminDashboard" style="display: none;">
       <button class="logout-btn" id="logoutButton">Logout</button>
       <h3>Submitted Feedback</h3>
+      <div class="storage-info">Feedback is automatically deleted after 30 days</div>
       
       <div id="feedbackList" class="feedback-list">
         <div class="no-feedback" id="noFeedback">No feedback submitted yet.</div>
@@ -1003,9 +1016,27 @@
   </div>
 
   <script>
-    // Store feedback in localStorage
+    // Initialize feedback storage if not exists
     if (!localStorage.getItem('feedbackEntries')) {
       localStorage.setItem('feedbackEntries', JSON.stringify([]));
+    }
+
+    // Function to clean up expired feedback (older than 30 days)
+    function cleanupExpiredFeedback() {
+      const entries = JSON.parse(localStorage.getItem('feedbackEntries'));
+      const now = new Date();
+      const thirtyDaysAgo = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000)); // 30 days ago
+      
+      // Filter out entries older than 30 days
+      const validEntries = entries.filter(entry => {
+        const entryDate = new Date(entry.timestamp);
+        return entryDate > thirtyDaysAgo;
+      });
+      
+      // Save the filtered entries back to localStorage
+      localStorage.setItem('feedbackEntries', JSON.stringify(validEntries));
+      
+      return validEntries;
     }
 
     // Handle form submission
@@ -1016,18 +1047,22 @@
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const message = document.getElementById("message").value;
-      const date = new Date().toLocaleString();
+      const timestamp = new Date().toISOString(); // Store as ISO string for easier date comparison
+      const displayDate = new Date().toLocaleString();
       
       // Create feedback object
       const feedback = {
         name,
         email,
         message,
-        date
+        timestamp,
+        displayDate
       };
       
-      // Save to localStorage
-      const entries = JSON.parse(localStorage.getItem('feedbackEntries'));
+      // Clean up expired entries first
+      const entries = cleanupExpiredFeedback();
+      
+      // Add new feedback
       entries.push(feedback);
       localStorage.setItem('feedbackEntries', JSON.stringify(entries));
       
@@ -1074,7 +1109,8 @@
     });
 
     function loadFeedback() {
-      const entries = JSON.parse(localStorage.getItem('feedbackEntries'));
+      // Clean up expired entries before loading
+      const entries = cleanupExpiredFeedback();
       const feedbackList = document.getElementById("feedbackList");
       const noFeedback = document.getElementById("noFeedback");
       
@@ -1092,90 +1128,31 @@
         const feedbackItem = document.createElement("div");
         feedbackItem.className = "feedback-item";
         
+        // Calculate days remaining until expiration
+        const entryDate = new Date(entry.timestamp);
+        const expirationDate = new Date(entryDate.getTime() + (30 * 24 * 60 * 60 * 1000));
+        const now = new Date();
+        const daysRemaining = Math.ceil((expirationDate - now) / (1000 * 60 * 60 * 24));
+        
         feedbackItem.innerHTML = `
           <div class="feedback-header">
             <div>
               <span class="feedback-name">${entry.name}</span>
               <span class="feedback-email">(${entry.email})</span>
             </div>
-            <span class="feedback-date">${entry.date}</span>
+            <span class="feedback-date">${entry.displayDate}</span>
           </div>
           <div class="feedback-message">${entry.message}</div>
+          <div class="feedback-date">Expires in ${daysRemaining} days</div>
         `;
         
         feedbackList.appendChild(feedbackItem);
       });
     }
+    
+    // Clean up expired feedback on page load
+    cleanupExpiredFeedback();
   </script>
 
 </body>
 </html>
-            <div class="copyright">
-                <p>&copy; 2023 BimalSim Education. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Simple animation for elements when they come into view
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.animated');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            animatedElements.forEach(element => {
-                element.style.opacity = 0;
-                element.style.transition = 'opacity 0.5s ease-in-out';
-                observer.observe(element);
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        // Close mobile menu if open
-                        navLinks.classList.remove('active');
-                        
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
