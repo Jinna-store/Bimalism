@@ -781,88 +781,149 @@
                 </div>
             </div>
             <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bimalism Feedback</title>
+  <title>Bimalism Feedback - Cross Device</title>
   <style>
+    :root {
+      --primary: #2b7de9;
+      --primary-light: #4cafef;
+      --secondary: #f44336;
+      --text: #333;
+      --text-light: #666;
+      --border: #ddd;
+      --success: #4CAF50;
+      --error: #f44336; /* Added for error messages */
+    }
+    
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       margin: 0;
-      padding: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .feedback-container {
-      max-width: 400px;
-      margin: 50px auto;
+      max-width: 500px;
+      margin: 30px auto;
       background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .feedback-container:hover {
+      transform: translateY(-5px);
     }
 
     .feedback-container h2 {
       text-align: center;
+      margin-bottom: 25px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 28px;
+    }
+
+    .form-group {
       margin-bottom: 20px;
-      color: #333;
     }
 
     .feedback-container label {
-      font-weight: bold;
+      font-weight: 600;
       display: block;
-      margin-bottom: 6px;
-      color: #444;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 15px;
     }
 
     .feedback-container input, 
-    .feedback-container textarea, 
-    .feedback-container button {
+    .feedback-container textarea {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 12px 15px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      transition: border 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .feedback-container input:focus, 
+    .feedback-container textarea:focus {
+      outline: none;
+      border-color: var(--primary);
     }
 
     .feedback-container textarea {
-      resize: none;
-      height: 120px;
+      resize: vertical;
+      min-height: 120px;
+      font-family: inherit;
     }
 
-    .feedback-container button {
-      background: linear-gradient(45deg, #4cafef, #2b7de9);
+    .submit-btn {
+      background: linear-gradient(45deg, var(--primary-light), var(--primary));
       color: white;
-      font-weight: bold;
+      font-weight: 600;
       border: none;
+      padding: 14px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 10px;
     }
 
-    .feedback-container button:hover {
-      background: linear-gradient(45deg, #2b7de9, #4cafef);
+    .submit-btn:hover {
+      background: linear-gradient(45deg, var(--primary), var(--primary-light));
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(43, 125, 233, 0.3);
     }
 
     .success-message {
       display: none;
       text-align: center;
-      color: green;
-      font-weight: bold;
+      color: var(--success);
+      font-weight: 600;
+      padding: 15px;
+      background: rgba(76, 175, 80, 0.1);
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .error-message {
+      display: none;
+      text-align: center;
+      color: var(--error);
+      font-weight: 600;
+      padding: 15px;
+      background: rgba(244, 67, 54, 0.1);
+      border-radius: 10px;
+      margin-top: 20px;
     }
 
     /* Admin Panel Styles */
     .admin-link {
       text-align: center;
-      margin-top: 15px;
+      margin-top: 20px;
     }
 
     .admin-link a {
-      color: #2b7de9;
+      color: var(--primary);
       text-decoration: none;
-      font-size: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .admin-link a:hover {
@@ -871,18 +932,19 @@
 
     .admin-panel {
       display: none;
-      max-width: 800px;
-      margin: 50px auto;
       background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin: 30px auto;
     }
 
     .admin-panel h2 {
       text-align: center;
-      margin-bottom: 20px;
-      color: #333;
+      margin-bottom: 25px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 28px;
     }
 
     .login-form {
@@ -891,268 +953,622 @@
     }
 
     .feedback-list {
-      margin-top: 20px;
+      margin-top: 25px;
     }
 
     .feedback-item {
-      border-bottom: 1px solid #eee;
-      padding: 15px 0;
+      border-left: 4px solid var(--primary);
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: transform 0.2s ease;
     }
 
-    .feedback-item:last-child {
-      border-bottom: none;
+    .feedback-item:hover {
+      transform: translateX(5px);
     }
 
     .feedback-header {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .feedback-name {
-      font-weight: bold;
-      color: #333;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 18px;
     }
 
     .feedback-email {
-      color: #666;
-      font-size: 14px;
+      color: var(--text-light);
+      font-size: 15px;
     }
 
     .feedback-date {
-      color: #999;
-      font-size: 12px;
+      color: var(--text-light);
+      font-size: 14px;
     }
 
     .feedback-message {
-      color: #444;
-      line-height: 1.5;
+      color: var(--text);
+      line-height: 1.6;
+      margin: 10px 0;
+      white-space: pre-wrap;
+    }
+
+    .feedback-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .logout-btn {
-      background: #f44336;
+      background: var(--secondary);
       color: white;
       border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-bottom: 20px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: #d32f2f;
     }
 
     .back-btn {
-      background: #9e9e9e;
+      background: #757575;
       color: white;
       border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-bottom: 20px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #616161;
+    }
+
+    .refresh-btn {
+      background: var(--success);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .refresh-btn:hover {
+      background: #388E3C;
     }
 
     .no-feedback {
       text-align: center;
-      color: #999;
+      color: var(--text-light);
       font-style: italic;
-      padding: 20px;
+      padding: 40px 20px;
+      background: #f9f9f9;
+      border-radius: 10px;
     }
     
     .storage-info {
       text-align: center;
-      font-size: 12px;
-      color: #777;
-      margin-top: 15px;
+      font-size: 14px;
+      color: var(--text-light);
+      margin: 15px 0;
+    }
+    
+    .sync-status {
+      text-align: center;
+      font-size: 14px;
+      color: var(--success);
+      margin: 10px 0;
+      padding: 8px;
+      background: rgba(76, 175, 80, 0.1);
+      border-radius: 8px;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 5px 0;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .feedback-container, .admin-panel {
+        margin: 15px;
+        padding: 20px;
+      }
+      
+      .feedback-header {
+        flex-direction: column;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="feedback-container" id="feedbackContainer">
+      <h2>📝 Feedback Form</h2>
+      <form id="feedbackForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Your Feedback</label>
+          <textarea id="message" placeholder="Write your feedback here..." required></textarea>
+        </div>
 
-  <div class="feedback-container" id="feedbackContainer">
-    <h2>Feedback</h2>
-    <form id="feedbackForm">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" placeholder="Enter your name" required>
-
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Enter your email" required>
-
-      <label for="message">Your Feedback</label>
-      <textarea id="message" placeholder="Write your feedback here..." required></textarea>
-
-      <button type="submit">Submit</button>
-    </form>
-    <div class="success-message" id="successMessage">✅ Thank you for your feedback!</div>
-    
-    <div class="admin-link">
-      <a href="#" id="adminAccess">Admin Access</a>
-    </div>
-    
-    <div class="storage-info">
-      Feedback is stored for 30 days
-    </div>
-  </div>
-
-  <div class="admin-panel" id="adminPanel">
-    <button class="back-btn" id="backButton">← Back</button>
-    <h2>Admin Panel</h2>
-    
-    <div id="loginForm" class="login-form">
-      <label for="adminPassword">Password</label>
-      <input type="password" id="adminPassword" placeholder="Enter admin password" required>
-      <button id="loginButton">Login</button>
-      <div id="loginError" style="color: red; text-align: center; display: none; margin-top: 10px;">
-        Invalid password. Please try again.
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+      </form>
+      <div class="success-message" id="successMessage">
+        ✅ Thank you for your feedback! It has been stored securely.
+      </div>
+      <div class="error-message" id="errorMessage">
+        ❌ Error submitting feedback. Please try again.
+      </div>
+      
+      <div class="admin-link">
+        <a href="#" id="adminAccess">🔐 Admin Access</a>
+      </div>
+      
+      <div class="storage-info">
+        Feedback is stored locally for 30 days
       </div>
     </div>
-    
-    <div id="adminDashboard" style="display: none;">
-      <button class="logout-btn" id="logoutButton">Logout</button>
-      <h3>Submitted Feedback</h3>
-      <div class="storage-info">Feedback is automatically deleted after 30 days</div>
+
+    <div class="admin-panel" id="adminPanel">
+      <div class="action-buttons">
+        <button class="back-btn" id="backButton">← Back to Form</button>
+        <div>
+          <button class="refresh-btn" id="refreshButton">🔄 Refresh</button>
+          <button class="logout-btn" id="logoutButton">Logout</button>
+        </div>
+      </div>
       
-      <div id="feedbackList" class="feedback-list">
-        <div class="no-feedback" id="noFeedback">No feedback submitted yet.</div>
+      <h2>📊 Admin Dashboard</h2>
+      
+      <div id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="adminPassword">Admin Password</label>
+          <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+        </div>
+        <button type="button" id="loginButton" class="submit-btn">Login</button>
+        <div id="loginError" style="color: red; text-align: center; display: none; margin-top: 15px;">
+          ❌ Invalid password. Please try again.
+        </div>
+      </div>
+      
+      <div id="adminDashboard" style="display: none;">
+        <div class="stats" id="statsContainer">
+          <div class="stat-card">
+            <div class="stat-value" id="totalFeedback">0</div>
+            <div class="stat-label">Total Feedback</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="todayFeedback">0</div>
+            <div class="stat-label">Today's Feedback</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="activeDevices">0</div>
+            <div class="stat-label">Active Devices</div>
+          </div>
+        </div>
+        
+        <div class="sync-status" id="syncStatus">Last synced: Just now</div>
+        
+        <h3>All Feedback</h3>
+        <div class="storage-info">Feedback from this device is shown here</div>
+        
+        <div id="feedbackList" class="feedback-list">
+          <div class="no-feedback" id="noFeedback">No feedback submitted yet.</div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Initialize feedback storage if not exists
-    if (!localStorage.getItem('feedbackEntries')) {
-      localStorage.setItem('feedbackEntries', JSON.stringify([]));
-    }
-
-    // Function to clean up expired feedback (older than 30 days)
-    function cleanupExpiredFeedback() {
-      const entries = JSON.parse(localStorage.getItem('feedbackEntries'));
-      const now = new Date();
-      const thirtyDaysAgo = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000)); // 30 days ago
-      
-      // Filter out entries older than 30 days
-      const validEntries = entries.filter(entry => {
-        const entryDate = new Date(entry.timestamp);
-        return entryDate > thirtyDaysAgo;
-      });
-      
-      // Save the filtered entries back to localStorage
-      localStorage.setItem('feedbackEntries', JSON.stringify(validEntries));
-      
-      return validEntries;
-    }
-
-    // Handle form submission
-    document.getElementById("feedbackForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      
-      // Get form values
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
-      const timestamp = new Date().toISOString(); // Store as ISO string for easier date comparison
-      const displayDate = new Date().toLocaleString();
-      
-      // Create feedback object
-      const feedback = {
-        name,
-        email,
-        message,
-        timestamp,
-        displayDate
-      };
-      
-      // Clean up expired entries first
-      const entries = cleanupExpiredFeedback();
-      
-      // Add new feedback
-      entries.push(feedback);
-      localStorage.setItem('feedbackEntries', JSON.stringify(entries));
-      
-      // Show success message
-      document.getElementById("feedbackForm").style.display = "none";
-      document.getElementById("successMessage").style.display = "block";
-      
-      // Reset form
-      document.getElementById("name").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("message").value = "";
-    });
-
-    // Admin panel functionality
-    document.getElementById("adminAccess").addEventListener("click", function(e) {
-      e.preventDefault();
-      document.getElementById("feedbackContainer").style.display = "none";
-      document.getElementById("adminPanel").style.display = "block";
-    });
-
-    document.getElementById("backButton").addEventListener("click", function() {
-      document.getElementById("adminPanel").style.display = "none";
-      document.getElementById("feedbackContainer").style.display = "block";
-      document.getElementById("loginError").style.display = "none";
-      document.getElementById("adminPassword").value = "";
-    });
-
-    document.getElementById("loginButton").addEventListener("click", function() {
-      const password = document.getElementById("adminPassword").value;
-      
-      if (password === "gbda.41") {
-        document.getElementById("loginForm").style.display = "none";
-        document.getElementById("adminDashboard").style.display = "block";
-        loadFeedback();
-      } else {
-        document.getElementById("loginError").style.display = "block";
+    // Enhanced feedback system with IndexedDB for local storage
+    class FeedbackSystem {
+      constructor() {
+        this.dbName = 'BimalismFeedbackDB';
+        this.dbVersion = 1;
+        this.storeName = 'feedback';
+        this.adminPassword = 'gbda.41'; // SECURITY WARNING: Hardcoding passwords is insecure
+        this.db = null;
+        this.initPromise = this.init(); // Store the init promise
       }
-    });
-
-    document.getElementById("logoutButton").addEventListener("click", function() {
-      document.getElementById("adminDashboard").style.display = "none";
-      document.getElementById("loginForm").style.display = "block";
-      document.getElementById("adminPassword").value = "";
-    });
-
-    function loadFeedback() {
-      // Clean up expired entries before loading
-      const entries = cleanupExpiredFeedback();
-      const feedbackList = document.getElementById("feedbackList");
-      const noFeedback = document.getElementById("noFeedback");
       
-      feedbackList.innerHTML = "";
+      // Initialize the database
+      async init() {
+        return new Promise((resolve, reject) => {
+          const request = indexedDB.open(this.dbName, this.dbVersion);
+          
+          request.onerror = () => {
+            console.error('Database failed to open');
+            reject(new Error('Failed to open database'));
+          };
+          
+          request.onsuccess = () => {
+            this.db = request.result;
+            console.log('Database opened successfully');
+            resolve(this.db);
+          };
+          
+          request.onupgradeneeded = (e) => {
+            this.db = e.target.result;
+            if (!this.db.objectStoreNames.contains(this.storeName)) {
+              const store = this.db.createObjectStore(this.storeName, { keyPath: 'id', autoIncrement: true });
+              store.createIndex('timestamp', 'timestamp', { unique: false });
+              store.createIndex('email', 'email', { unique: false });
+            }
+          };
+        });
+      }
       
-      if (entries.length === 0) {
-        noFeedback.style.display = "block";
+      // Ensure database is initialized before operations
+      async ensureDb() {
+        if (!this.db) {
+          await this.initPromise;
+        }
+        if (!this.db) {
+          throw new Error('Database initialization failed');
+        }
+      }
+      
+      // Add feedback to database
+      async addFeedback(feedback) {
+        await this.ensureDb();
+        return new Promise((resolve, reject) => {
+          const transaction = this.db.transaction([this.storeName], 'readwrite');
+          const store = transaction.objectStore(this.storeName);
+          
+          // Add device info
+          feedback.deviceInfo = this.getDeviceInfo();
+          feedback.timestamp = new Date().toISOString();
+          feedback.displayDate = new Date().toLocaleString();
+          
+          const request = store.add(feedback);
+          
+          request.onsuccess = () => {
+            console.log('Feedback added successfully');
+            resolve(request.result);
+          };
+          
+          request.onerror = () => {
+            console.error('Error adding feedback:', request.error);
+            reject(new Error('Failed to add feedback: ' + request.error.message));
+          };
+        });
+      }
+      
+      // Get all feedback from database
+      async getAllFeedback() {
+        await this.ensureDb();
+        return new Promise((resolve, reject) => {
+          const transaction = this.db.transaction([this.storeName], 'readonly');
+          const store = transaction.objectStore(this.storeName);
+          const index = store.index('timestamp');
+          const request = index.getAll();
+          
+          request.onsuccess = () => {
+            resolve(request.result);
+          };
+          
+          request.onerror = () => {
+            console.error('Error retrieving feedback:', request.error);
+            reject(new Error('Failed to retrieve feedback: ' + request.error.message));
+          };
+        });
+      }
+      
+      // Delete a single feedback entry by ID
+      async deleteFeedback(id) {
+        await this.ensureDb();
+        return new Promise((resolve, reject) => {
+          const transaction = this.db.transaction([this.storeName], 'readwrite');
+          const store = transaction.objectStore(this.storeName);
+          const request = store.delete(id);
+          
+          request.onsuccess = () => {
+            resolve();
+          };
+          
+          request.onerror = () => {
+            console.error('Error deleting feedback:', request.error);
+            reject(new Error('Failed to delete feedback: ' + request.error.message));
+          };
+        });
+      }
+      
+      // Clean up expired feedback (older than 30 days)
+      async cleanupExpiredFeedback() {
+        const allFeedback = await this.getAllFeedback();
+        const now = new Date();
+        const thirtyDaysAgo = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000));
+        
+        const expiredIds = allFeedback
+          .filter(feedback => new Date(feedback.timestamp) < thirtyDaysAgo)
+          .map(feedback => feedback.id);
+        
+        // Delete only expired feedback
+        const deletePromises = expiredIds.map(id => this.deleteFeedback(id));
+        await Promise.all(deletePromises);
+        
+        // Return remaining feedback
+        return allFeedback.filter(feedback => new Date(feedback.timestamp) >= thirtyDaysAgo);
+      }
+      
+      // Get device information
+      getDeviceInfo() {
+        return {
+          userAgent: navigator.userAgent,
+          platform: navigator.platform,
+          language: navigator.language,
+          screen: `${screen.width}x${screen.height}`,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        };
+      }
+      
+      // Format device info for display
+      formatDeviceInfo(deviceInfo) {
+        if (!deviceInfo) return 'Unknown device';
+        
+        let browser = 'Unknown Browser';
+        if (deviceInfo.userAgent.includes('Chrome')) browser = 'Chrome';
+        else if (deviceInfo.userAgent.includes('Firefox')) browser = 'Firefox';
+        else if (deviceInfo.userAgent.includes('Safari')) browser = 'Safari';
+        else if (deviceInfo.userAgent.includes('Edge')) browser = 'Edge';
+        
+        let os = 'Unknown OS';
+        if (deviceInfo.userAgent.includes('Windows')) os = 'Windows';
+        else if (deviceInfo.userAgent.includes('Mac')) os = 'Mac';
+        else if (deviceInfo.userAgent.includes('Linux')) os = 'Linux';
+        else if (deviceInfo.userAgent.includes('Android')) os = 'Android';
+        else if (deviceInfo.userAgent.includes('iOS')) os = 'iOS';
+        
+        return `${browser} on ${os} (${deviceInfo.screen})`;
+      }
+      
+      // Calculate statistics
+      calculateStats(feedback) {
+        const now = new Date();
+        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        
+        const todayFeedback = feedback.filter(f => {
+          const feedbackDate = new Date(f.timestamp);
+          return feedbackDate >= todayStart;
+        }).length;
+        
+        const devices = new Set();
+        feedback.forEach(f => {
+          if (f.deviceInfo) {
+            devices.add(JSON.stringify(f.deviceInfo));
+          }
+        });
+        
+        return {
+          total: feedback.length,
+          today: todayFeedback,
+          devices: devices.size
+        };
+      }
+    }
+
+    // Initialize the feedback system
+    const feedbackSystem = new FeedbackSystem();
+    
+    // DOM ready
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Wait for database to initialize
+      try {
+        await feedbackSystem.initPromise;
+      } catch (error) {
+        console.error('Failed to initialize database:', error);
+        showErrorMessage('Failed to initialize the application. Please try refreshing the page.');
         return;
       }
       
-      noFeedback.style.display = "none";
-      
-      // Display feedback in reverse chronological order (newest first)
-      entries.slice().reverse().forEach(entry => {
-        const feedbackItem = document.createElement("div");
-        feedbackItem.className = "feedback-item";
+      // Handle form submission
+      document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
         
-        // Calculate days remaining until expiration
-        const entryDate = new Date(entry.timestamp);
-        const expirationDate = new Date(entryDate.getTime() + (30 * 24 * 60 * 60 * 1000));
-        const now = new Date();
-        const daysRemaining = Math.ceil((expirationDate - now) / (1000 * 60 * 60 * 24));
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
         
-        feedbackItem.innerHTML = `
-          <div class="feedback-header">
-            <div>
-              <span class="feedback-name">${entry.name}</span>
-              <span class="feedback-email">(${entry.email})</span>
-            </div>
-            <span class="feedback-date">${entry.displayDate}</span>
-          </div>
-          <div class="feedback-message">${entry.message}</div>
-          <div class="feedback-date">Expires in ${daysRemaining} days</div>
-        `;
+        const feedback = { name, email, message };
         
-        feedbackList.appendChild(feedbackItem);
+        try {
+          await feedbackSystem.addFeedback(feedback);
+          
+          // Show success message and reset form
+          document.getElementById("feedbackForm").style.display = "none";
+          document.getElementById("successMessage").style.display = "block";
+          document.getElementById("errorMessage").style.display = "none";
+          
+          document.getElementById("name").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("message").value = "";
+        } catch (error) {
+          console.error('Error submitting feedback:', error);
+          showErrorMessage(error.message);
+        }
       });
-    }
-    
-    // Clean up expired feedback on page load
-    cleanupExpiredFeedback();
-  </script>
 
+      // Admin panel functionality
+      document.getElementById("adminAccess").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("feedbackContainer").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+      });
+
+      document.getElementById("backButton").addEventListener("click", function() {
+        document.getElementById("adminPanel").style.display = "none";
+        document.getElementById("feedbackContainer").style.display = "block";
+        document.getElementById("loginError").style.display = "none";
+        document.getElementById("adminPassword").value = "";
+        document.getElementById("feedbackForm").style.display = "block";
+        document.getElementById("successMessage").style.display = "none";
+        document.getElementById("errorMessage").style.display = "none";
+      });
+
+      document.getElementById("loginButton").addEventListener("click", async function() {
+        const password = document.getElementById("adminPassword").value;
+        
+        if (password === feedbackSystem.adminPassword) {
+          document.getElementById("loginForm").style.display = "none";
+          document.getElementById("adminDashboard").style.display = "block";
+          document.getElementById("loginError").style.display = "none";
+          await loadFeedback();
+        } else {
+          document.getElementById("loginError").style.display = "block";
+        }
+      });
+
+      document.getElementById("logoutButton").addEventListener("click", function() {
+        document.getElementById("adminDashboard").style.display = "none";
+        document.getElementById("loginForm").style.display = "block";
+        document.getElementById("adminPassword").value = "";
+        document.getElementById("loginError").style.display = "none";
+      });
+
+      document.getElementById("refreshButton").addEventListener("click", async function() {
+        await loadFeedback();
+      });
+
+      async function loadFeedback() {
+        try {
+          const entries = await feedbackSystem.cleanupExpiredFeedback();
+          const feedbackList = document.getElementById("feedbackList");
+          const noFeedback = document.getElementById("noFeedback");
+          
+          feedbackList.innerHTML = "";
+          
+          if (entries.length === 0) {
+            noFeedback.style.display = "block";
+            document.getElementById('totalFeedback').textContent = '0';
+            document.getElementById('todayFeedback').textContent = '0';
+            document.getElementById('activeDevices').textContent = '0';
+            updateSyncStatus();
+            return;
+          }
+          
+          noFeedback.style.display = "none";
+          
+          const stats = feedbackSystem.calculateStats(entries);
+          document.getElementById('totalFeedback').textContent = stats.total;
+          document.getElementById('todayFeedback').textContent = stats.today;
+          document.getElementById('activeDevices').textContent = stats.devices;
+          
+          entries.slice().reverse().forEach(entry => {
+            const feedbackItem = document.createElement("div");
+            feedbackItem.className = "feedback-item";
+            
+            const entryDate = new Date(entry.timestamp);
+            const expirationDate = new Date(entryDate.getTime() + (30 * 24 * 60 * 60 * 1000));
+            const now = new Date();
+            const daysRemaining = Math.ceil((expirationDate - now) / (1000 * 60 * 60 * 24));
+            
+            feedbackItem.innerHTML = `
+              <div class="feedback-header">
+                <div>
+                  <span class="feedback-name">${entry.name}</span>
+                  <span class="feedback-email">(${entry.email})</span>
+                </div>
+                <span class="feedback-date">${entry.displayDate}</span>
+              </div>
+              <div class="feedback-message">${entry.message}</div>
+              <div class="feedback-meta">
+                <div>Expires in ${daysRemaining} days</div>
+                <div>From: ${feedbackSystem.formatDeviceInfo(entry.deviceInfo)}</div>
+              </div>
+            `;
+            
+            feedbackList.appendChild(feedbackItem);
+          });
+          
+          updateSyncStatus();
+        } catch (error) {
+          console.error('Error loading feedback:', error);
+          showErrorMessage('Failed to load feedback: ' + error.message);
+        }
+      }
+      
+      function updateSyncStatus() {
+        const now = new Date();
+        document.getElementById('syncStatus').textContent = `Last synced: ${now.toLocaleTimeString()}`;
+      }
+      
+      function showErrorMessage(message) {
+        const errorMessage = document.getElementById("errorMessage");
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+        setTimeout(() => {
+          errorMessage.style.display = "none";
+        }, 5000); // Hide after 5 seconds
+      }
+      
+      // Auto-refresh data every 60 seconds when admin panel is open
+      setInterval(async function() {
+        if (document.getElementById('adminDashboard').style.display === 'block') {
+          await loadFeedback();
+        }
+      }, 60000); // Increased to 60 seconds for efficiency
+    });
+  </script>
 </body>
 </html>
