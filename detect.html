@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6fc7;
+            --danger-color: #ff6b6b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body.dark {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #3b5aa6;
+        }
+
+        .btn-neet {
+            background: var(--danger-color);
+        }
+
+        .btn-neet:hover {
+            background: #ee5253;
+        }
+
+        .btn-clear {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-clear:hover {
+            background: #d0d0d0;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark .popup-content {
+            background: #2a2a3a;
+            color: #e0e0e0;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .popup-content .setting-item {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .popup-content .setting-info {
+            flex: 2;
+        }
+
+        .popup-content .setting-info h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .popup-content .setting-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        body.dark .popup-content .setting-info p {
+            color: #aaa;
+        }
+
+        .popup-content .setting-control {
+            flex: 1;
+            text-align: right;
+        }
+
+        .popup-content .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .popup-content .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .popup-content .radio-option input {
+            width: auto;
+        }
+
+        .popup-content select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 14px;
+        }
+
+        body.dark .popup-content select {
+            border-color: #555;
+            background: #3a3a4a;
+            color: #e0e0e0;
+        }
+
+        .popup-content .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .popup-content .btn {
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        body.dark footer {
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .popup-content {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup" id="userPopup" style="display: none;" role="dialog" aria-labelledby="popupTitle" aria-modal="true">
+        <div class="popup-content">
+            <h2 id="popupTitle">User Verification</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Are you Hariharan?</h3>
+                    <p>Please confirm your identity</p>
+                </div>
+                <div class="setting-control">
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="isHariharanYes" name="isHariharan" value="yes" aria-label="Yes, I am Hariharan">
+                            <label for="isHariharanYes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="isHariharanNo" name="isHariharan" value="no" aria-label="No, I am not Hariharan">
+                            <label for="isHariharanNo">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="setting-item hidden" id="popupGradeSection">
+                <div class="setting-info">
+                    <h3>Grade</h3>
+                    <p>Select your grade</p>
+                </div>
+                <div class="setting-control">
+                    <select id="popupGrade" aria-label="Select your grade">
+                        <option value="">Select Grade</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+            </div>
+            <div class="setting-item hidden" id="popupAchariyaSection">
+                <div class="setting-info">
+                    <h3>Are you from Achariya Karaikal?</h3>
+                    <p>Confirm your school</p>
+                </div>
+                <div class="setting-control">
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="achariyaYes" name="achariya" value="yes" aria-label="Yes, from Achariya Karaikal">
+                            <label for="achariyaYes">Yes</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="achariyaNo" name="achariya" value="no" aria-label="No, not from Achariya Karaikal">
+                            <label for="achariyaNo">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="error-message" id="errorMessage" role="alert"></div>
+            <div class="button-group">
+                <button type="button" class="btn" id="submitPopupBtn" onclick="submitPopup()" disabled>Submit</button>
+                <button type="button" class="btn btn-clear" onclick="cancelPopup()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <h1><i class="fas fa-graduation-cap"></i> NEET Portal</h1>
+        <p>Welcome to the NEET preparation platform</p>
+    </header>
+
+    <div class="container">
+        <h2>Access NEET Resources</h2>
+        <button class="btn btn-neet" onclick="checkUser()">Access NEET</button>
+        <button class="btn btn-clear" onclick="clearFormData()">Clear Form Data</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Student Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let isSubmitting = false;
+
+        // Check if user is blocked on page load
+        window.onload = function() {
+            if (localStorage.getItem('isBlocked') === 'true') {
+                window.location.href = 'blocked.html';
+            }
+        };
+
+        // Show popup when NEET button is clicked
+        function checkUser() {
+            if (!localStorage.getItem('formSubmitted')) {
+                document.getElementById('userPopup').style.display = 'flex';
+                document.getElementById('isHariharanYes').focus();
+                updateSubmitButtonState();
+            } else {
+                window.location.href = 'neet.html';
+            }
+        }
+
+        // Enable/disable submit button based on form completion
+        function updateSubmitButtonState() {
+            const isHariharan = document.querySelector('input[name="isHariharan"]:checked')?.value;
+            const grade = document.getElementById('popupGrade').value;
+            const isAchariya = document.querySelector('input[name="achariya"]:checked')?.value;
+            const submitBtn = document.getElementById('submitPopupBtn');
+
+            submitBtn.disabled = !isHariharan || (isHariharan === 'yes' && !grade) || (isHariharan === 'yes' && grade === '9' && !isAchariya);
+        }
+
+        // Popup logic: Show/hide grade and Achariya sections
+        document.querySelectorAll('input[name="isHariharan"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const gradeSection = document.getElementById('popupGradeSection');
+                gradeSection.classList.toggle('hidden', this.value !== 'yes');
+                if (this.value !== 'yes') {
+                    document.getElementById('popupGrade').value = '';
+                    document.getElementById('popupAchariyaSection').classList.add('hidden');
+                    document.querySelectorAll('input[name="achariya"]').forEach(r => r.checked = false);
+                }
+                document.getElementById('errorMessage').style.display = 'none';
+                updateSubmitButtonState();
+            });
+        });
+
+        document.getElementById('popupGrade').addEventListener('change', function() {
+            const achariyaSection = document.getElementById('popupAchariyaSection');
+            achariyaSection.classList.toggle('hidden', this.value !== '9');
+            if (this.value !== '9') {
+                document.querySelectorAll('input[name="achariya"]').forEach(r => r.checked = false);
+            }
+            document.getElementById('errorMessage').style.display = 'none';
+            updateSubmitButtonState();
+        });
+
+        document.querySelectorAll('input[name="achariya"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('errorMessage').style.display = 'none';
+                updateSubmitButtonState();
+            });
+        });
+
+        // Submit popup
+        function submitPopup() {
+            if (isSubmitting) return;
+            isSubmitting = true;
+            document.getElementById('submitPopupBtn').disabled = true;
+
+            const isHariharan = document.querySelector('input[name="isHariharan"]:checked')?.value;
+            const grade = document.getElementById('popupGrade').value;
+            const isAchariya = document.querySelector('input[name="achariya"]:checked')?.value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (!isHariharan) {
+                errorMessage.textContent = 'Please confirm if you are Hariharan.';
+                errorMessage.style.display = 'block';
+                isSubmitting = false;
+                updateSubmitButtonState();
+                return;
+            }
+
+            if (isHariharan === 'yes' && !grade) {
+                errorMessage.textContent = 'Please select your grade.';
+                errorMessage.style.display = 'block';
+                isSubmitting = false;
+                updateSubmitButtonState();
+                return;
+            }
+
+            if (isHariharan === 'yes' && grade === '9' && !isAchariya) {
+                errorMessage.textContent = 'Please confirm if you are from Achariya Karaikal.';
+                errorMessage.style.display = 'block';
+                isSubmitting = false;
+                updateSubmitButtonState();
+                return;
+            }
+
+            if (isHariharan === 'yes' && grade === '9' && isAchariya === 'yes') {
+                localStorage.setItem('isBlocked', 'true');
+                alert('Sorry, you are not allowed to access this website.');
+                window.location.href = 'blocked.html';
+                return;
+            }
+
+            localStorage.setItem('formSubmitted', 'true');
+            document.getElementById('userPopup').style.display = 'none';
+            window.location.href = 'neet.html';
+        }
+
+        // Cancel popup
+        function cancelPopup() {
+            document.getElementById('userPopup').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.querySelectorAll('input[name="isHariharan"]').forEach(r => r.checked = false);
+            document.getElementById('popupGrade').value = '';
+            document.getElementById('popupGradeSection').classList.add('hidden');
+            document.querySelectorAll('input[name="achariya"]').forEach(r => r.checked = false);
+            document.getElementById('popupAchariyaSection').classList.add('hidden');
+            document.getElementById('submitPopupBtn').disabled = true;
+        }
+
+        // Clear form data
+        function clearFormData() {
+            if (confirm('Are you sure you want to clear all form data? This will allow you to re-submit the verification form.')) {
+                localStorage.clear();
+                alert('Form data cleared. You can now re-submit the verification form.');
+                window.location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
