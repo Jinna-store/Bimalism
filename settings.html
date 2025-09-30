@@ -181,7 +181,7 @@
             transform: translateX(26px);
         }
         
-        select, input[type="range"], input[type="text"], input[type="date"] {
+        select, input[type="range"], input[type="text"], input[type="date"], input[type="number"] {
             width: 100%;
             padding: 8px;
             border-radius: 5px;
@@ -190,7 +190,7 @@
             font-size: 14px;
         }
         
-        body.dark select, body.dark input[type="range"], body.dark input[type="text"], body.dark input[type="date"] {
+        body.dark select, body.dark input[type="range"], body.dark input[type="text"], body.dark input[type="date"], body.dark input[type="number"] {
             border-color: #555;
             background: #3a3a4a;
             color: #e0e0e0;
@@ -340,7 +340,7 @@
         }
         
         body.dark .success-message {
-            background: #3a3a4a;
+            background: #3a2a4a;
         }
         
         .radio-group {
@@ -476,6 +476,25 @@
                     </div>
                 </div>
                 
+                <div class="setting-item hidden" id="gradeSection">
+                    <div class="setting-info">
+                        <h3>Grade</h3>
+                        <p>Select your grade</p>
+                    </div>
+                    <div class="setting-control">
+                        <select id="grade">
+                            <option value="">Select Grade</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                </div>
+                
                 <div class="setting-item">
                     <div class="setting-info">
                         <h3>Date of Birth</h3>
@@ -485,7 +504,6 @@
                         <input type="date" id="dob">
                     </div>
                 </div>
-              
                 
                 <div class="setting-item">
                     <div class="setting-info">
@@ -572,8 +590,6 @@
                 </div>
             </div>
             
-            
-            
             <!-- Privacy & Security Settings -->
             <div class="settings-section hidden" id="privacy">
                 <h2><i class="fas fa-lock"></i> Privacy & Security</h2>
@@ -600,13 +616,7 @@
                         <button class="btn" onclick="manageCookies()">Manage Cookies</button>
                     </div>
                 </div>
-                
-              
-                </div>
-                
-                
-                
-                
+            </div>
             
             <!-- Accessibility Settings -->
             <div class="settings-section hidden" id="accessibility">
@@ -646,7 +656,7 @@
                         <p>Read our privacy policy</p>
                     </div>
                     <div class="setting-control">
-                        <button class="btn" onclick="viewPrivacyPolicy()">View Policy</button>
+                        <a href="policy.html" class="btn">View Policy</a>
                     </div>
                 </div>
             </div>
@@ -660,36 +670,49 @@
     <script>
         // Load saved settings
         window.onload = function() {
-            // Load profile data from localStorage
             const name = localStorage.getItem('name');
             const gender = localStorage.getItem('gender');
             const isStudent = localStorage.getItem('isStudent');
+            const grade = localStorage.getItem('grade');
             const dob = localStorage.getItem('dob');
-            const examPreference = localStorage.getItem('examPreference');
             const theme = localStorage.getItem('theme') || 'light';
             const fontSize = localStorage.getItem('fontSize') || '16';
             const compactMode = localStorage.getItem('compactMode') === 'true';
             const accentColor = localStorage.getItem('accentColor') || '#4a6fc7';
 
-            // Update form fields
             if (name) {
                 document.getElementById('name').value = name;
                 document.getElementById('accountName').textContent = name;
             }
             if (gender) document.querySelector(`input[name="gender"][value="${gender}"]`).checked = true;
-            if (isStudent) document.querySelector(`input[name="student"][value="${isStudent}"]`).checked = true;
+            if (isStudent) {
+                document.querySelector(`input[name="student"][value="${isStudent}"]`).checked = true;
+                if (isStudent === 'yes') {
+                    document.getElementById('gradeSection').classList.remove('hidden');
+                }
+            }
+            if (grade) document.getElementById('grade').value = grade;
             if (dob) document.getElementById('dob').value = dob;
             document.getElementById('accountEmail').textContent = 'student@example.com'; // Placeholder
             document.getElementById('themeSelect').value = theme;
             document.getElementById('fontSize').value = fontSize;
             document.getElementById('compactMode').checked = compactMode;
-            // Apply saved settings
             applyTheme(theme);
             applyFontSize(fontSize);
             applyCompactMode(compactMode);
             applyAccentColor(accentColor);
-            applyHighContrast(highContrast);
         };
+
+        // Show/hide grade section based on Achariya selection
+        document.querySelectorAll('input[name="student"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const gradeSection = document.getElementById('gradeSection');
+                gradeSection.classList.toggle('hidden', this.value !== 'yes');
+                if (this.value !== 'yes') {
+                    document.getElementById('grade').value = '';
+                }
+            });
+        });
 
         // Navigation functionality
         document.querySelectorAll('.nav-item').forEach(item => {
@@ -780,39 +803,34 @@
 
         // Save settings
         function saveSettings() {
-            const name = document.getElementById('name').value;
+            const name = document.getElementById('name').value.trim();
             const gender = document.querySelector('input[name="gender"]:checked')?.value;
             const isStudent = document.querySelector('input[name="student"]:checked')?.value;
+            const grade = document.getElementById('grade').value;
             const dob = document.getElementById('dob').value;
-            const emailNotifications = document.getElementById('emailNotifications').checked;
-            const pushNotifications = document.getElementById('pushNotifications').checked;
-            const soundEffects = document.getElementById('soundEffects').checked;
-            const notificationFrequency = document.getElementById('notificationFrequency').value;
-            const dataCollection = document.getElementById('dataCollection').checked;
-            const twoFactorAuth = document.getElementById('twoFactorAuth').checked;
-            const screenReader = document.getElementById('screenReader').checked;
-            const language = document.getElementById('languageSelect').value;
-            const timeZone = document.getElementById('timeZoneSelect').value;
 
             if (!name || !gender || !isStudent || !dob) {
                 alert('Please fill in all profile fields');
                 return;
             }
 
+            if (isStudent === 'yes' && !grade) {
+                alert('Please select your grade');
+                return;
+            }
+
+            // Check if user is Hariharan from Achariya in grade 9
+            if (name.toLowerCase() === 'hariharan' && isStudent === 'yes' && grade === '9') {
+                alert('Sorry, you are not allowed to access this website.');
+                window.location.href = 'blocked.html'; // Redirect to a blocked page
+                return;
+            }
+
             localStorage.setItem('name', name);
             localStorage.setItem('gender', gender);
             localStorage.setItem('isStudent', isStudent);
+            localStorage.setItem('grade', grade);
             localStorage.setItem('dob', dob);
-            localStorage.setItem('grade', '9'); // Fixed as per popup.html
-            localStorage.setItem('emailNotifications', emailNotifications);
-            localStorage.setItem('pushNotifications', pushNotifications);
-            localStorage.setItem('soundEffects', soundEffects);
-            localStorage.setItem('notificationFrequency', notificationFrequency);
-            localStorage.setItem('dataCollection', dataCollection);
-            localStorage.setItem('twoFactorAuth', twoFactorAuth);
-            localStorage.setItem('screenReader', screenReader);
-            localStorage.setItem('language', language);
-            localStorage.setItem('timeZone', timeZone);
             localStorage.setItem('formSubmitted', 'true');
 
             document.getElementById('accountName').textContent = name;
@@ -827,22 +845,16 @@
             const name = localStorage.getItem('name') || '';
             const gender = localStorage.getItem('gender');
             const isStudent = localStorage.getItem('isStudent');
+            const grade = localStorage.getItem('grade') || '';
             const dob = localStorage.getItem('dob') || '';
             document.getElementById('name').value = name;
             if (gender) document.querySelector(`input[name="gender"][value="${gender}"]`).checked = true;
-            if (isStudent) document.querySelector(`input[name="student"][value="${isStudent}"]`).checked = true;
+            if (isStudent) {
+                document.querySelector(`input[name="student"][value="${isStudent}"]`).checked = true;
+                document.getElementById('gradeSection').classList.toggle('hidden', isStudent !== 'yes');
+            }
+            document.getElementById('grade').value = grade;
             document.getElementById('dob').value = dob;
-        }
-
-        // Exam preference
-        function setExamPreference(exam) {
-            localStorage.setItem('examPreference', exam);
-            localStorage.setItem('formSubmitted', 'true');
-            document.getElementById('successMessage').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('successMessage').style.display = 'none';
-                window.location.href = exam === 'NEET' ? 'neet.html' : 'jee.html';
-            }, 1000);
         }
 
         // Clear form data
@@ -854,8 +866,10 @@
             }
         }
 
-      
-        
+        // Placeholder for manageCookies
+        function manageCookies() {
+            alert('Cookie management functionality to be implemented.');
+        }
     </script>
 </body>
 </html>
