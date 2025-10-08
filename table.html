@@ -3,85 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NEET & JEE Question Papers Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: #1a3c6e;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #4a6583;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .exam-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .exam-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid #1a73e8;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.12);
+        }
+
+        .exam-card.neet {
+            border-top-color: #e53935;
+        }
+
+        .exam-card.jee {
+            border-top-color: #0d8e3f;
+        }
+
+        .exam-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #1a73e8;
+        }
+
+        .exam-card.neet .exam-icon {
+            color: #e53935;
+        }
+
+        .exam-card.jee .exam-icon {
+            color: #0d8e3f;
+        }
+
+        .exam-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #1a3c6e;
+        }
+
+        .exam-card p {
+            color: #5c6f87;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1a73e8;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .exam-card.neet .btn {
+            background: #e53935;
+        }
+
+        .exam-card.jee .btn {
+            background: #0d8e3f;
+        }
+
+        .btn:hover {
+            background: #0d5bb9;
+        }
+
+        .exam-card.neet .btn:hover {
+            background: #c62828;
+        }
+
+        .exam-card.jee .btn:hover {
+            background: #0a6b2f;
+        }
+
+        .papers-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1a3c6e;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeef5;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 12px;
+            font-size: 1.6rem;
+        }
+
+        .papers-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .papers-table th {
+            background: #f1f7ff;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #1a3c6e;
+            border-bottom: 2px solid #e1e8f0;
+        }
+
+        .papers-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eaeef5;
+        }
+
+        .papers-table tr:hover {
+            background: #f9fbff;
+        }
+
+        .download-link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .download-link:hover {
+            color: #0d5bb9;
+            text-decoration: underline;
+        }
+
+        .download-link i {
+            margin-right: 8px;
+        }
+
+        .solutions-link {
+            color: #e53935;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .solutions-link:hover {
+            color: #c62828;
+            text-decoration: underline;
+        }
+
+        .solutions-link i {
+            margin-right: 8px;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a73e8;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            color: #5c6f87;
+            font-size: 0.95rem;
+            border-top: 1px solid #e1e8f0;
+            margin-top: 30px;
+        }
+
+        .coming-soon {
+            color: #888;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .exam-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .exam-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .papers-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-</body>
-</html>
+    <div class="container">
+        <header>
+            <h1>NEET & JEE Question Papers Portal</h1>
+            <p>Access previous year question papers and detailed solutions for NEET and JEE Main examinations</p>
+        </header>
 
-<title>NEET Paper E1</title>
-<style>
-  body {
-    font-family: "Poppins", sans-serif;
-    background: #f8f9fc;
-    margin: 0;
-    padding: 50px;
-    display: flex;
-    justify-content: center;
-  }
+        <div class="exam-cards">
+            <div class="exam-card neet">
+                <div class="exam-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <h2>NEET Papers</h2>
+                <p>Previous year question papers with answer keys and solutions for NEET UG examination</p>
+                <a href="#neet-papers" class="btn">View Papers</a>
+            </div>
 
-  table {
-    width: 60%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
-  }
+            <div class="exam-card jee">
+                <div class="exam-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h2>JEE Papers</h2>
+                <p>Previous year question papers with answer keys and solutions for JEE Main examination</p>
+                <a href="#jee-papers" class="btn">View Papers</a>
+            </div>
+        </div>
 
-  th, td {
-    text-align: left;
-    padding: 16px 20px;
-  }
+        <section id="neet-papers" class="papers-section">
+            <h2 class="section-title">
+                <i class="fas fa-stethoscope"></i> NEET Question Papers
+            </h2>
+            <table class="papers-table">
+                <thead>
+                    <tr>
+                        <th>Paper Code</th>
+                        <th>Question Paper PDF</th>
+                        <th>Solutions PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>NEET 2023 <span class="year-badge">Latest</span></td>
+                        <td><a href="neet-2023qp.pdf" class="download-link"><i class="fas fa-download"></i> Download Paper</a></td>
+                        <td><a href="neet-2023a.pdf" class="solutions-link"><i class="fas fa-file-alt"></i> View Solutions</a></td>
+                    </tr>
+                    <tr>
+                        <td>NEET 2022</td>
+                        <td><a href="2022-qp.pdf" class="download-link"><i class="fas fa-download"></i> Download Paper</a></td>
+                        <td><a href="2022-qp.html" class="solutions-link"><i class="fas fa-file-alt"></i> View Solutions</a></td>
+                    </tr>
+                    <tr>
+                        <td>NEET 2021</td>
+                        <td colspan="2" class="coming-soon">Coming Soon</td>
+                    </tr>
+                    <tr>
+                        <td>NEET 2020</td>
+                        <td colspan="2" class="coming-soon">Coming Soon</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-  th {
-    background: #e8f0ff;
-    color: #222;
-    font-weight: 600;
-    font-size: 16px;
-  }
+        <section id="jee-papers" class="papers-section">
+            <h2 class="section-title">
+                <i class="fas fa-calculator"></i> JEE Main Question Papers
+            </h2>
+            <table class="papers-table">
+                <thead>
+                    <tr>
+                        <th>Paper Code</th>
+                        <th>Question Paper PDF</th>
+                        <th>Solutions PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>JEE Main 2024 <span class="year-badge">Latest</span></td>
+                        <td><a href="JEE-2024.PDF.pdf" class="download-link"><i class="fas fa-download"></i> Download Paper</a></td>
+                        <td><a href="JEE-2024-SOLUTIONS.pdf" class="solutions-link"><i class="fas fa-file-alt"></i> View Solutions</a></td>
+                    </tr>
+                    <tr>
+                        <td>JEE Main 2023</td>
+                        <td><a href="jee-2023 (1).pdf" class="download-link"><i class="fas fa-download"></i> Download Paper</a></td>
+                        <td><a href="jee-2023 (1).pdf" class="solutions-link"><i class="fas fa-file-alt"></i> View Solutions</a></td>
+                    </tr>
+                    <tr>
+                        <td>JEE Main 2022</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>JEE Main 2021</td>
+                        <td colspan="2" class="coming-soon">Coming Soon</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-  td {
-    border-top: 1px solid #ddd;
-    font-size: 15px;
-  }
+        <footer>
+            <p>© 2023 NEET & JEE Question Papers Portal | Educational Resource for Aspiring Medical and Engineering Students</p>
+        </footer>
+    </div>
 
-  a {
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  a.download {
-    color: #0077ff;
-  }
-
-  a.solutions {
-    color: #ff0000;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-</style>
-</head>
-<body>
-
-<table>
-  <thead>
-    <tr>
-      <th>NEET Paper Code</th>
-      <th>Question Paper PDF</th>
-      <th>Solutions PDF</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>E1</td>
-      <td><a href="neet-2023qp.pdf" class="download">Download PDF</a></td>
-      <td><a href="neet-2023a.pdf" class="solutions">Check Solutions</a></td>
-    </tr>
-  </tbody>
-</table>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
