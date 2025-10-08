@@ -668,6 +668,21 @@
     </footer>
 
     <script>
+        // Enhanced user blocking function
+        function isBlockedUser(name, isStudent, grade) {
+            if (!name || !isStudent || !grade) return false;
+            
+            // Normalize the name for comparison
+            const normalizedName = name.toLowerCase().replace(/[^a-z]/g, '');
+            
+            // Check if the user matches the blocked criteria
+            const isHariharan = normalizedName.includes('hariharan');
+            const isFromAchariya = isStudent === 'yes';
+            const isGrade9 = grade === '9';
+            
+            return isHariharan && isFromAchariya && isGrade9;
+        }
+
         // Load saved settings
         window.onload = function() {
             const name = localStorage.getItem('name');
@@ -679,6 +694,13 @@
             const fontSize = localStorage.getItem('fontSize') || '16';
             const compactMode = localStorage.getItem('compactMode') === 'true';
             const accentColor = localStorage.getItem('accentColor') || '#4a6fc7';
+
+            // Check if current user is blocked
+            if (isBlockedUser(name, isStudent, grade)) {
+                alert('Dogs are not allowed.');
+                window.location.href = 'index.html'; // Redirect to a blocked page
+                return;
+            }
 
             if (name) {
                 document.getElementById('name').value = name;
@@ -693,7 +715,6 @@
             }
             if (grade) document.getElementById('grade').value = grade;
             if (dob) document.getElementById('dob').value = dob;
-            document.getElementById('accountEmail').textContent = 'student@example.com'; // Placeholder
             document.getElementById('themeSelect').value = theme;
             document.getElementById('fontSize').value = fontSize;
             document.getElementById('compactMode').checked = compactMode;
@@ -819,10 +840,10 @@
                 return;
             }
 
-            // Check if user is Hariharan from Achariya in grade 9
-            if (name.toLowerCase() === 'hariharan' && isStudent === 'yes' && grade === '9') {
-                alert('Sorry, you are not allowed to access this website.');
-                window.location.href = 'blocked.html'; // Redirect to a blocked page
+            // Check if user is blocked using enhanced function
+            if (isBlockedUser(name, isStudent, grade)) {
+                alert('Dogs are not allowed.');
+                window.location.href = 'index.html'; // Redirect to a blocked page
                 return;
             }
 
