@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics: Thermal Properties of Matter Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #b71c1c, #c62828, #d32f2f);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        header {
+            background: linear-gradient(to right, #b71c1c, #c62828);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .heat-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ff9800, #ff5722, transparent 70%);
+            border-radius: 50%;
+            top: 20px;
+            right: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .thermometer {
+            position: absolute;
+            width: 20px;
+            height: 80px;
+            background: #f5f5f5;
+            border: 2px solid #333;
+            border-radius: 10px;
+            bottom: 20px;
+            left: 40px;
+            overflow: hidden;
+        }
+        
+        .mercury {
+            position: absolute;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, #e53935, #f44336);
+            bottom: 0;
+            animation: rise 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+        }
+        
+        @keyframes rise {
+            0% { height: 30%; }
+            100% { height: 80%; }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #b71c1c, #c62828);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 1rem;
+            color: #b71c1c;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background-color: #e9e9e9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option.selected {
+            background-color: #ffebee;
+            border-color: #b71c1c;
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #b71c1c;
+            color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        #prev-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        #next-btn {
+            background: linear-gradient(to right, #b71c1c, #c62828);
+            color: white;
+        }
+        
+        #next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+            border-left: 5px solid #b71c1c;
+        }
+        
+        .explanation-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #b71c1c;
+        }
+        
+        .results-container {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+        
+        .score {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #b71c1c, #c62828);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0;
+        }
+        
+        .score-text {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        #restart-btn {
+            background: linear-gradient(to right, #b71c1c, #c62828);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        #restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .formula-highlight {
+            background-color: #ffebee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        .thermal-principle {
+            background-color: #fff3e0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ff9800;
+            font-style: italic;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .quiz-info {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .heat-decoration, .thermometer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="heat-decoration"></div>
+            <div class="thermometer">
+                <div class="mercury"></div>
+            </div>
+            <h1>Physics: Thermal Properties</h1>
+            <div class="subtitle">Test your knowledge of heat, temperature, and thermal properties of matter</div>
+        </header>
+        
+        <div class="quiz-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="progress-text">
+                    <span>Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
+                    <span>Score: <span id="score">0</span>/20</span>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-number">Question 1</div>
+                <div class="question-text" id="question-text">Question text will appear here</div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be inserted here by JavaScript -->
+                </div>
+                
+                <div class="explanation" id="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div id="explanation-text"></div>
+                </div>
+                
+                <div class="button-container">
+                    <button id="prev-btn" disabled>Previous</button>
+                    <button id="next-btn">Next</button>
+                </div>
+                
+                <div class="quiz-info">
+                    <div>Topic: Thermal Properties of Matter</div>
+                    <div>Level: Intermediate</div>
+                </div>
+            </div>
+            
+            <div class="results-container" id="results-container">
+                <h2>Quiz Completed!</h2>
+                <div class="score" id="final-score">0/20</div>
+                <div class="score-text" id="score-text">Well done!</div>
+                <button id="restart-btn">Restart Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const thermalQuiz = [
+            {q:"Heat is a form of:",o:["Energy","Matter","Force","Mass"],a:0,exp:"Heat is the transfer of thermal energy between systems."},
+            {q:"The SI unit of temperature is:",o:["Kelvin","Celsius","Fahrenheit","Joule"],a:0,exp:"Kelvin (K) is the SI base unit of temperature."},
+            {q:"The specific heat capacity of water is:",o:["4186 J/kg·K","1000 J/kg·K","2100 J/kg·K","500 J/kg·K"],a:0,exp:"Water has a high specific heat capacity of 4186 J/kg·K."},
+            {q:"Thermal expansion occurs because:",o:["Particles vibrate more","Particles get larger","Chemical bonds break","Mass increases"],a:0,exp:"Heating increases particle vibration, increasing average separation."},
+            {q:"The coefficient of linear expansion is:",o:["Per Kelvin","Per Joule","Per Newton","Dimensionless"],a:0,exp:"Coefficient of linear expansion has units K⁻¹."},
+            {q:"The first law of thermodynamics is based on:",o:["Conservation of energy","Conservation of mass","Entropy increase","Heat flow"],a:0,exp:"ΔU = Q - W, where U is internal energy."},
+            {q:"The triple point of water is:",o:["0.01°C","0°C","100°C","273.15 K"],a:0,exp:"Triple point occurs at 0.01°C (273.16 K) where all three phases coexist."},
+            {q:"Conduction heat transfer occurs through:",o:["Direct contact","Fluid movement","Electromagnetic waves","Vacuum"],a:0,exp:"Conduction requires physical contact between objects."},
+            {q:"The ideal gas law is:",o:["PV = nRT","P = ρgh","F = ma","E = mc²"],a:0,exp:"PV = nRT relates pressure, volume, and temperature for ideal gases."},
+            {q:"Black body radiation is:",o:["Perfect absorber/emitter","Only absorbs","Only emits","Transparent"],a:0,exp:"A black body absorbs all radiation and is a perfect emitter."},
+            {q:"The Stefan-Boltzmann constant value is:",o:["5.67 × 10⁻⁸ W/m²K⁴","6.67 × 10⁻¹¹ Nm²/kg²","1.38 × 10⁻²³ J/K","6.02 × 10²³ mol⁻¹"],a:0,exp:"σ = 5.67 × 10⁻⁸ W/m²K⁴ for radiation power."},
+            {q:"The principle behind a thermometer is:",o:["Thermal expansion","Pressure change","Electrical resistance","Magnetic properties"],a:0,exp:"Most thermometers use thermal expansion of liquids or metals."},
+            {q:"Latent heat of fusion is the heat required to:",o:["Melt a solid","Vaporize a liquid","Heat a gas","Expand a metal"],a:0,exp:"Latent heat of fusion changes solid to liquid at constant temperature."},
+            {q:"The thermal conductivity of copper is:",o:["High","Low","Zero","Negative"],a:0,exp:"Copper has high thermal conductivity, making it good for heat transfer."},
+            {q:"The zeroth law of thermodynamics defines:",o:["Temperature","Pressure","Volume","Energy"],a:0,exp:"If A = B and B = C thermally, then A = C (temperature equality)."},
+            {q:"The mechanical equivalent of heat is:",o:["4.186 J/cal","9.8 m/s²","6.67 × 10⁻¹¹ Nm²/kg²","3 × 10⁸ m/s"],a:0,exp:"1 calorie = 4.186 joules, relating heat and mechanical work."},
+            {q:"A bimetallic strip bends when heated because:",o:["Different expansion coefficients","Magnetic effects","Electrical currents","Pressure changes"],a:0,exp:"Different metals expand at different rates, causing bending."},
+            {q:"The greenhouse effect is primarily due to:",o:["Infrared absorption","Visible light absorption","UV radiation","Radio waves"],a:0,exp:"Greenhouse gases absorb and re-emit infrared radiation."},
+            {q:"The specific heat capacity of a substance is:",o:["Property of material","Same for all materials","Always constant","Depends on pressure only"],a:0,exp:"Specific heat capacity varies with material type."},
+            {q:"Newton's law of cooling states that rate of cooling is proportional to:",o:["Temperature difference","Surface area","Time","Mass"],a:0,exp:"dT/dt ∝ (T - T₀), where T₀ is ambient temperature."}
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(thermalQuiz.length).fill(null);
+        
+        // DOM elements
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const explanation = document.getElementById('explanation');
+        const explanationText = document.getElementById('explanation-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progress = document.getElementById('progress');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScore = document.getElementById('final-score');
+        const scoreText = document.getElementById('score-text');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = thermalQuiz.length;
+            loadQuestion();
+        }
+        
+        // Load current question
+        function loadQuestion() {
+            const question = thermalQuiz[currentQuestion];
+            questionText.textContent = question.q;
+            currentQuestionEl.textContent = currentQuestion + 1;
+            
+            // Update progress bar
+            progress.style.width = `${((currentQuestion) / thermalQuiz.length) * 100}%`;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create new options
+            question.o.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                const optionLetter = document.createElement('div');
+                optionLetter.classList.add('option-letter');
+                optionLetter.textContent = String.fromCharCode(65 + index); // A, B, C, D
+                
+                const optionText = document.createElement('div');
+                optionText.textContent = option;
+                
+                optionElement.appendChild(optionLetter);
+                optionElement.appendChild(optionText);
+                
+                // If user has already selected this option
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                    
+                    // Show if correct/incorrect after answer
+                    if (userAnswers[currentQuestion] !== null) {
+                        if (index === question.a) {
+                            optionElement.classList.add('correct');
+                        } else {
+                            optionElement.classList.add('incorrect');
+                        }
+                    }
+                }
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Show explanation if answer has been selected
+            if (userAnswers[currentQuestion] !== null) {
+                explanation.style.display = 'block';
+                explanationText.textContent = question.exp;
+            } else {
+                explanation.style.display = 'none';
+            }
+            
+            // Update button states
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === thermalQuiz.length - 1) {
+                nextBtn.textContent = 'Finish';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+            
+            // Update score
+            scoreEl.textContent = score;
+        }
+        
+        // Select an option
+        function selectOption(index) {
+            // If already answered, don't allow changing
+            if (userAnswers[currentQuestion] !== null) return;
+            
+            // Mark selected option
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            options[index].classList.add('selected');
+            
+            // Store user's answer
+            userAnswers[currentQuestion] = index;
+            
+            // Check if correct
+            const question = thermalQuiz[currentQuestion];
+            if (index === question.a) {
+                options[index].classList.add('correct');
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                options[index].classList.add('incorrect');
+                // Also show correct answer
+                options[question.a].classList.add('correct');
+            }
+            
+            // Show explanation
+            explanation.style.display = 'block';
+            explanationText.textContent = question.exp;
+        }
+        
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < thermalQuiz.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+        
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+        
+        // Show final results
+        function showResults() {
+            document.querySelector('.question-container').style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            finalScore.textContent = `${score}/${thermalQuiz.length}`;
+            
+            // Set score message
+            if (score === thermalQuiz.length) {
+                scoreText.textContent = "Perfect! You're a thermal physics expert!";
+            } else if (score >= thermalQuiz.length * 0.8) {
+                scoreText.textContent = "Excellent! You have a strong grasp of thermal properties!";
+            } else if (score >= thermalQuiz.length * 0.6) {
+                scoreText.textContent = "Good job! You understand the fundamentals of heat and temperature!";
+            } else if (score >= thermalQuiz.length * 0.4) {
+                scoreText.textContent = "Not bad! Keep practicing thermal physics problems!";
+            } else {
+                scoreText.textContent = "Keep studying! Thermal properties are fundamental to physics!";
+            }
+            
+            // Update progress bar to 100%
+            progress.style.width = '100%';
+        }
+        
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(thermalQuiz.length).fill(null);
+            
+            document.querySelector('.question-container').style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            loadQuestion();
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+        
+        // Initialize the quiz
+        initQuiz();
+    </script>
+</body>
+</html>
