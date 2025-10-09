@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0d47a1, #1565c0, #1976d2);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        header {
+            background: linear-gradient(to right, #0d47a1, #1565c0);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #0d47a1, #1565c0);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 1rem;
+            color: #0d47a1;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background-color: #e9e9e9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option.selected {
+            background-color: #d1e7ff;
+            border-color: #0d47a1;
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #0d47a1;
+            color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        #prev-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        #next-btn {
+            background: linear-gradient(to right, #0d47a1, #1565c0);
+            color: white;
+        }
+        
+        #next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+            border-left: 5px solid #0d47a1;
+        }
+        
+        .explanation-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0d47a1;
+        }
+        
+        .results-container {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+        
+        .score {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #0d47a1, #1565c0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0;
+        }
+        
+        .score-text {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        #restart-btn {
+            background: linear-gradient(to right, #0d47a1, #1565c0);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        #restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .formula-highlight {
+            background-color: #e3f2fd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        .newton-law {
+            background-color: #e8f5e9;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4caf50;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .quiz-info {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Chapter: 5 Laws of Motion</h1>
+            <div class="subtitle">Test your knowledge of Newton's Laws, Forces, and Momentum</div>
+        </header>
+        
+        <div class="quiz-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="progress-text">
+                    <span>Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
+                    <span>Score: <span id="score">0</span>/20</span>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-number">Question 1</div>
+                <div class="question-text" id="question-text">Question text will appear here</div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be inserted here by JavaScript -->
+                </div>
+                
+                <div class="explanation" id="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div id="explanation-text"></div>
+                </div>
+                
+                <div class="button-container">
+                    <button id="prev-btn" disabled>Previous</button>
+                    <button id="next-btn">Next</button>
+                </div>
+                
+                <div class="quiz-info">
+                    <div>Topic: Newton's Laws of Motion</div>
+                    <div>Level: Intermediate</div>
+                </div>
+            </div>
+            
+            <div class="results-container" id="results-container">
+                <h2>Quiz Completed!</h2>
+                <div class="score" id="final-score">0/20</div>
+                <div class="score-text" id="score-text">Well done!</div>
+                <button id="restart-btn">Restart Quiz</button>
+                <button id="back-to-home-btn"><a href="neet.html">Back to Home</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const q5 = [
+            {q:"Newton's First Law is also called:",o:["Law of Inertia","Law of Force","Law of Action-Reaction","Law of Momentum"],a:0,exp:"Newton's First Law states objects remain at rest or in uniform motion unless acted upon by a force."},
+            {q:"Force is defined as:",o:["Mass × Acceleration","Mass × Velocity","Momentum × Time","Weight × Gravity"],a:0,exp:"Force = mass × acceleration (F = ma)."},
+            {q:"Newton's Second Law relates:",o:["Force and velocity","Force and acceleration","Force and momentum","Force and energy"],a:1,exp:"F = ma relates force to acceleration."},
+            {q:"Newton's Third Law states:",o:["Action = Reaction","F = ma","Inertia","Conservation of momentum"],a:0,exp:"For every action, there is an equal and opposite reaction."},
+            {q:"The SI unit of force is:",o:["Newton","Joule","Watt","Pascal"],a:0,exp:"Newton (N) is the SI unit of force."},
+            {q:"Momentum is defined as:",o:["Mass × Velocity","Force × Time","Mass × Acceleration","Energy × Time"],a:0,exp:"Momentum = mass × velocity (p = mv)."},
+            {q:"Impulse is equal to:",o:["Change in momentum","Force × Distance","Mass × Velocity","Energy × Time"],a:0,exp:"Impulse = force × time = change in momentum."},
+            {q:"Friction opposes:",o:["Relative motion","Absolute motion","Gravitational force","Electromagnetic force"],a:0,exp:"Friction acts to oppose relative motion between surfaces."},
+            {q:"The law of conservation of momentum applies when:",o:["No external force","Constant velocity","Constant acceleration","No friction"],a:0,exp:"Momentum is conserved with no external forces."},
+            {q:"Inertia depends on:",o:["Velocity","Mass","Acceleration","Force"],a:1,exp:"Inertia is the property of mass resisting change in motion."},
+            {q:"A body remains at rest due to:",o:["Inertia","Friction","Gravity","All"],a:0,exp:"Inertia keeps a body at rest unless acted upon."},
+            {q:"The force of friction depends on:",o:["Surface area","Normal force","Velocity","Acceleration"],a:1,exp:"Friction depends on normal force and surface nature."},
+            {q:"Centripetal force in circular motion is provided by:",o:["Tension/Gravity/Friction","Velocity","Acceleration","Momentum"],a:0,exp:"Centripetal force can be tension, gravity, or friction."},
+            {q:"The coefficient of friction is:",o:["Dimensionless","Has unit N","Has unit m/s²","Has unit kg"],a:0,exp:"Coefficient of friction is a dimensionless quantity."},
+            {q:"Weight is a:",o:["Scalar","Vector","Constant","Dimensionless"],a:1,exp:"Weight is a force (vector) = mg."},
+            {q:"An object's acceleration is zero when:",o:["Net force is zero","Velocity is zero","Momentum is zero","Mass is zero"],a:0,exp:"Zero net force means zero acceleration (Newton's First Law)."},
+            {q:"Which is a contact force?",o:["Gravity","Magnetic","Friction","Electrostatic"],a:2,exp:"Friction requires contact between surfaces."},
+            {q:"The unit of impulse is:",o:["kg m/s","N m","Joule","Watt"],a:0,exp:"Impulse has units of momentum (kg m/s)."},
+            {q:"Newton's laws are valid in:",o:["Inertial frames","Non-inertial frames","Both","None"],a:0,exp:"Newton's laws apply in inertial (non-accelerating) frames."},
+            {q:"A rocket works on the principle of:",o:["Conservation of momentum","Conservation of energy","Inertia","Friction"],a:0,exp:"Rocket propulsion is based on conservation of momentum."}
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(q5.length).fill(null);
+        
+        // DOM elements
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const explanation = document.getElementById('explanation');
+        const explanationText = document.getElementById('explanation-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progress = document.getElementById('progress');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScore = document.getElementById('final-score');
+        const scoreText = document.getElementById('score-text');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = q5.length;
+            loadQuestion();
+        }
+        
+        // Load current question
+        function loadQuestion() {
+            const question = q5[currentQuestion];
+            questionText.textContent = question.q;
+            currentQuestionEl.textContent = currentQuestion + 1;
+            
+            // Update progress bar
+            progress.style.width = `${((currentQuestion) / q5.length) * 100}%`;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create new options
+            question.o.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                const optionLetter = document.createElement('div');
+                optionLetter.classList.add('option-letter');
+                optionLetter.textContent = String.fromCharCode(65 + index); // A, B, C, D
+                
+                const optionText = document.createElement('div');
+                optionText.textContent = option;
+                
+                optionElement.appendChild(optionLetter);
+                optionElement.appendChild(optionText);
+                
+                // If user has already selected this option
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                    
+                    // Show if correct/incorrect after answer
+                    if (userAnswers[currentQuestion] !== null) {
+                        if (index === question.a) {
+                            optionElement.classList.add('correct');
+                        } else {
+                            optionElement.classList.add('incorrect');
+                        }
+                    }
+                }
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Show explanation if answer has been selected
+            if (userAnswers[currentQuestion] !== null) {
+                explanation.style.display = 'block';
+                explanationText.textContent = question.exp;
+            } else {
+                explanation.style.display = 'none';
+            }
+            
+            // Update button states
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === q5.length - 1) {
+                nextBtn.textContent = 'Finish';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+            
+            // Update score
+            scoreEl.textContent = score;
+        }
+        
+        // Select an option
+        function selectOption(index) {
+            // If already answered, don't allow changing
+            if (userAnswers[currentQuestion] !== null) return;
+            
+            // Mark selected option
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            options[index].classList.add('selected');
+            
+            // Store user's answer
+            userAnswers[currentQuestion] = index;
+            
+            // Check if correct
+            const question = q5[currentQuestion];
+            if (index === question.a) {
+                options[index].classList.add('correct');
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                options[index].classList.add('incorrect');
+                // Also show correct answer
+                options[question.a].classList.add('correct');
+            }
+            
+            // Show explanation
+            explanation.style.display = 'block';
+            explanationText.textContent = question.exp;
+        }
+        
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < q5.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+        
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+        
+        // Show final results
+        function showResults() {
+            document.querySelector('.question-container').style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            finalScore.textContent = `${score}/${q5.length}`;
+            
+            // Set score message
+            if (score === q5.length) {
+                scoreText.textContent = "Perfect! You're a Newtonian physics expert!";
+            } else if (score >= q5.length * 0.8) {
+                scoreText.textContent = "Excellent! You have a strong grasp of Newton's Laws!";
+            } else if (score >= q5.length * 0.6) {
+                scoreText.textContent = "Good job! You understand the fundamentals of forces and motion!";
+            } else if (score >= q5.length * 0.4) {
+                scoreText.textContent = "Not bad! Keep practicing Newton's Laws!";
+            } else {
+                scoreText.textContent = "Keep studying! Newton's Laws are fundamental to physics!";
+            }
+            
+            // Update progress bar to 100%
+            progress.style.width = '100%';
+        }
+        
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(q5.length).fill(null);
+            
+            document.querySelector('.question-container').style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            loadQuestion();
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+        
+        // Initialize the quiz
+        initQuiz();
+    </script>
+</body>
+</html>

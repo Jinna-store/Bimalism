@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 1rem;
+            color: #b21f1f;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+        
+        .option:hover {
+            background-color: #e9e9e9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option.selected {
+            background-color: #d1e7ff;
+            border-color: #1a2a6c;
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        #prev-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        #next-btn {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+        }
+        
+        #next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+            border-left: 5px solid #1a2a6c;
+        }
+        
+        .explanation-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        .results-container {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+        
+        .score {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0;
+        }
+        
+        .score-text {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        #restart-btn {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        #restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Chapter: 1 Modern Physical World</h1>
+            <div class="subtitle">Test your knowledge of physics fundamentals</div>
+        </header>
+        
+        <div class="quiz-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="progress-text">
+                    <span>Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
+                    <span>Score: <span id="score">0</span>/20</span>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-number">Question 1</div>
+                <div class="question-text" id="question-text">Question text will appear here</div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be inserted here by JavaScript -->
+                </div>
+                
+                <div class="explanation" id="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div id="explanation-text"></div>
+                </div>
+                
+                <div class="button-container">
+                    <button id="prev-btn" disabled>Previous</button>
+                    <button id="next-btn">Next</button>
+                </div>
+            </div>
+            
+            <div class="results-container" id="results-container">
+                <h2>Quiz Completed!</h2>
+                <div class="score" id="final-score">0/20</div>
+                <div class="score-text" id="score-text">Well done!</div>
+                <button id="restart-btn">Restart Quiz</button>
+                <button id="back-to-home-btn"><a href="neet.html">Back to Home</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const q1 = [
+            {q:"Who is known as the Father of Modern Physics?",o:["Newton","Einstein","Galileo","Faraday"],a:1,exp:"Einstein developed relativity and revolutionized physics."},
+            {q:"Which branch of physics deals with celestial bodies?",o:["Mechanics","Astronomy","Optics","Electrodynamics"],a:1,exp:"Astronomy studies planets, stars, and the universe."},
+            {q:"Physics is based mainly on:",o:["Experiments","Philosophy","Art","Myth"],a:0,exp:"Physics relies on experiments and observation."},
+            {q:"SI was adopted in the year:",o:["1960","1948","1954","1971"],a:0,exp:"SI system adopted in 1960 by CGPM."},
+            {q:"Which is not a fundamental force?",o:["Gravitational","Electromagnetic","Friction","Strong nuclear"],a:2,exp:"Friction is not fundamental; it's electromagnetic in nature."},
+            {q:"Which Indian physicist gave Raman effect?",o:["C.V. Raman","S.N. Bose","H.J. Bhabha","Jagadish Chandra Bose"],a:0,exp:"C.V. Raman got Nobel Prize for Raman effect."},
+            {q:"Which force binds nucleus?",o:["Electromagnetic","Weak","Strong nuclear","Gravitational"],a:2,exp:"Strong nuclear force binds protons and neutrons."},
+            {q:"Relativity was proposed by:",o:["Einstein","Newton","Planck","Bohr"],a:0,exp:"Einstein proposed special & general relativity."},
+            {q:"Quantum theory originator:",o:["Planck","Einstein","Bohr","Schrödinger"],a:0,exp:"Max Planck introduced quantum theory in 1900."},
+            {q:"The scope of physics is:",o:["Limited to mechanics","Covers all natural phenomena","Only astronomy","Only biology"],a:1,exp:"Physics explains all natural phenomena."},
+            {q:"Technology is application of:",o:["Art","Biology","Physics","Chemistry"],a:2,exp:"Technology is applied physics and engineering."},
+            {q:"Universe originated from:",o:["Steady State","Big Bang","Black Hole","Nebula"],a:1,exp:"The Big Bang theory explains origin of universe."},
+            {q:"Weak nuclear force is responsible for:",o:["Beta decay","Gamma radiation","Strong bonding","Gravity"],a:0,exp:"Weak force governs beta decay."},
+            {q:"Who discovered radioactivity?",o:["Curie","Rutherford","Becquerel","Einstein"],a:2,exp:"Henri Becquerel discovered radioactivity in 1896."},
+            {q:"What is not physics?",o:["Thermodynamics","Astrology","Electrodynamics","Mechanics"],a:1,exp:"Astrology is not a branch of physics."},
+            {q:"Modern physics started with:",o:["Relativity & Quantum Mechanics","Mechanics","Astrology","Alchemy"],a:0,exp:"Relativity and quantum theory mark modern physics."},
+            {q:"Who discovered electron?",o:["Thomson","Rutherford","Bohr","Curie"],a:0,exp:"J.J. Thomson discovered the electron."},
+            {q:"Which deals with light?",o:["Optics","Mechanics","Nuclear","Solid state"],a:0,exp:"Optics is study of light phenomena."},
+            {q:"First Nobel Prize in Physics (1901) went to:",o:["Planck","Röntgen","Curie","Einstein"],a:1,exp:"Röntgen for X-rays in 1901."},
+            {q:"Physics & society link is through:",o:["Art","Technology","Myth","Religion"],a:1,exp:"Physics leads to technology for society."}
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(q1.length).fill(null);
+        
+        // DOM elements
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const explanation = document.getElementById('explanation');
+        const explanationText = document.getElementById('explanation-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progress = document.getElementById('progress');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScore = document.getElementById('final-score');
+        const scoreText = document.getElementById('score-text');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = q1.length;
+            loadQuestion();
+        }
+        
+        // Load current question
+        function loadQuestion() {
+            const question = q1[currentQuestion];
+            questionText.textContent = question.q;
+            currentQuestionEl.textContent = currentQuestion + 1;
+            
+            // Update progress bar
+            progress.style.width = `${((currentQuestion) / q1.length) * 100}%`;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create new options
+            question.o.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.textContent = option;
+                
+                // If user has already selected this option
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                    
+                    // Show if correct/incorrect after answer
+                    if (userAnswers[currentQuestion] !== null) {
+                        if (index === question.a) {
+                            optionElement.classList.add('correct');
+                        } else {
+                            optionElement.classList.add('incorrect');
+                        }
+                    }
+                }
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Show explanation if answer has been selected
+            if (userAnswers[currentQuestion] !== null) {
+                explanation.style.display = 'block';
+                explanationText.textContent = question.exp;
+            } else {
+                explanation.style.display = 'none';
+            }
+            
+            // Update button states
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === q1.length - 1) {
+                nextBtn.textContent = 'Finish';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+            
+            // Update score
+            scoreEl.textContent = score;
+        }
+        
+        // Select an option
+        function selectOption(index) {
+            // If already answered, don't allow changing
+            if (userAnswers[currentQuestion] !== null) return;
+            
+            // Mark selected option
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            options[index].classList.add('selected');
+            
+            // Store user's answer
+            userAnswers[currentQuestion] = index;
+            
+            // Check if correct
+            const question = q1[currentQuestion];
+            if (index === question.a) {
+                options[index].classList.add('correct');
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                options[index].classList.add('incorrect');
+                // Also show correct answer
+                options[question.a].classList.add('correct');
+            }
+            
+            // Show explanation
+            explanation.style.display = 'block';
+            explanationText.textContent = question.exp;
+        }
+        
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < q1.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+        
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+        
+        // Show final results
+        function showResults() {
+            document.querySelector('.question-container').style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            finalScore.textContent = `${score}/${q1.length}`;
+            
+            // Set score message
+            if (score === q1.length) {
+                scoreText.textContent = "Perfect! You're a physics genius!";
+            } else if (score >= q1.length * 0.8) {
+                scoreText.textContent = "Excellent! You have a strong grasp of physics!";
+            } else if (score >= q1.length * 0.6) {
+                scoreText.textContent = "Good job! You know your physics fundamentals!";
+            } else if (score >= q1.length * 0.4) {
+                scoreText.textContent = "Not bad! Keep learning more about physics!";
+            } else {
+                scoreText.textContent = "Keep studying! Physics is fascinating!";
+            }
+            
+            // Update progress bar to 100%
+            progress.style.width = '100%';
+        }
+        
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(q1.length).fill(null);
+            
+            document.querySelector('.question-container').style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            loadQuestion();
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+        
+        // Initialize the quiz
+        initQuiz();
+    </script>
+</body>
+</html>
