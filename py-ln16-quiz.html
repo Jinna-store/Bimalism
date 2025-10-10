@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #4a148c, #6a1b9a, #8e24aa);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a148c, #6a1b9a);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .electrostatic-animation {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .charge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            background: #ffeb3b;
+            box-shadow: 0 0 20px #ffeb3b;
+            animation: charge-pulse 2s ease-in-out infinite;
+        }
+        
+        .field-line {
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: #ffeb3b;
+            opacity: 0;
+            animation: field-flow 3s linear infinite;
+        }
+        
+        .field-line:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .field-line:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        @keyframes charge-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px #ffeb3b; }
+            50% { transform: scale(1.1); box-shadow: 0 0 30px #ffeb3b; }
+        }
+        
+        @keyframes field-flow {
+            0% { transform: translateX(0px) rotate(45deg); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateX(80px) rotate(45deg); opacity: 0; }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #4a148c, #6a1b9a);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 1rem;
+            color: #4a148c;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background-color: #e9e9e9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option.selected {
+            background-color: #f3e5f5;
+            border-color: #4a148c;
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #4a148c;
+            color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        #prev-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        #next-btn {
+            background: linear-gradient(to right, #4a148c, #6a1b9a);
+            color: white;
+        }
+        
+        #next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+            border-left: 5px solid #4a148c;
+        }
+        
+        .explanation-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #4a148c;
+        }
+        
+        .results-container {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+        
+        .score {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #4a148c, #6a1b9a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0;
+        }
+        
+        .score-text {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        #restart-btn {
+            background: linear-gradient(to right, #4a148c, #6a1b9a);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        #restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .formula-highlight {
+            background-color: #f3e5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        .electrostatic-law {
+            background-color: #e8eaf6;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #5c6bc0;
+            font-style: italic;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .quiz-info {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .electrostatic-animation {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="electrostatic-animation">
+                <div class="charge"></div>
+                <div class="field-line"></div>
+                <div class="field-line"></div>
+                <div class="field-line"></div>
+            </div>
+            <h1>Chapter : 16 Electrostatics</h1>
+            <div class="subtitle">Test your knowledge of electric charges, fields, and potentials</div>
+        </header>
+        
+        <div class="quiz-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="progress-text">
+                    <span>Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
+                    <span>Score: <span id="score">0</span>/20</span>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-number">Question 1</div>
+                <div class="question-text" id="question-text">Question text will appear here</div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be inserted here by JavaScript -->
+                </div>
+                
+                <div class="explanation" id="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div id="explanation-text"></div>
+                </div>
+                
+                <div class="button-container">
+                    <button id="prev-btn" disabled>Previous</button>
+                    <button id="next-btn">Next</button>
+                </div>
+                
+                <div class="quiz-info">
+                    <div>Topic: Electrostatics</div>
+                    <div>Level: Advanced</div>
+                </div>
+            </div>
+            
+            <div class="results-container" id="results-container">
+                <h2>Quiz Completed!</h2>
+                <div class="score" id="final-score">0/20</div>
+                <div class="score-text" id="score-text">Well done!</div>
+                <button id="restart-btn">Restart Quiz</button>
+                <button id="back-to-home-btn"><a href="neet.html">Back to Home</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const electrostaticsQuiz = [
+            {
+                q: "Coulomb's Law describes the force between:",
+                o: ["Two point charges", "Current-carrying wires", "Magnetic poles", "Massive objects"],
+                a: 0,
+                exp: "Coulomb's Law states that the electrostatic force between two point charges is directly proportional to the product of their charges and inversely proportional to the square of the distance between them."
+            },
+            {
+                q: "What is the SI unit of electric charge?",
+                o: ["Coulomb", "Volt", "Ampere", "Farad"],
+                a: 0,
+                exp: "The coulomb (C) is the SI unit of electric charge. One coulomb is equal to the charge of approximately 6.242 × 10¹⁸ electrons."
+            },
+            {
+                q: "Like charges ______ each other, while unlike charges ______ each other.",
+                o: ["Repel, attract", "Attract, repel", "Repel, repel", "Attract, attract"],
+                a: 0,
+                exp: "According to the fundamental principle of electrostatics, like charges (positive-positive or negative-negative) repel each other, while unlike charges (positive-negative) attract each other."
+            },
+            {
+                q: "The electric field inside a charged hollow conductor is:",
+                o: ["Zero", "Uniform", "Infinite", "Maximum at the center"],
+                a: 0,
+                exp: "In electrostatic conditions, the electric field inside a charged hollow conductor is zero. This is known as the Faraday cage effect."
+            },
+            {
+                q: "What is the relationship between electric field (E) and electric potential (V)?",
+                o: ["E = -dV/dx", "E = V/d", "E = QV", "E = V²"],
+                a: 0,
+                exp: "The electric field is the negative gradient of the electric potential: E = -∇V. In one dimension, this becomes E = -dV/dx."
+            },
+            {
+                q: "Gauss's Law relates the electric flux through a closed surface to:",
+                o: ["The charge enclosed", "The potential difference", "The field strength", "The surface area"],
+                a: 0,
+                exp: "Gauss's Law states that the net electric flux through any closed surface is equal to 1/ε₀ times the net charge enclosed by that surface."
+            },
+            {
+                q: "What is the value of the permittivity of free space (ε₀)?",
+                o: ["8.85 × 10⁻¹² C²/N·m²", "9 × 10⁹ N·m²/C²", "1.6 × 10⁻¹⁹ C", "6.67 × 10⁻¹¹ N·m²/kg²"],
+                a: 0,
+                exp: "The permittivity of free space ε₀ = 8.85 × 10⁻¹² C²/N·m². This constant appears in Coulomb's Law and Gauss's Law."
+            },
+            {
+                q: "The work done in moving a charge in an electric field depends on:",
+                o: ["The path taken", "Only the endpoints", "The speed of movement", "The time taken"],
+                a: 1,
+                exp: "The electrostatic force is conservative, so the work done in moving a charge between two points depends only on the endpoints, not the path taken."
+            },
+            {
+                q: "What is electric potential energy?",
+                o: ["Energy due to position in an electric field", "Energy of moving charges", "Energy stored in capacitors", "Energy of electric currents"],
+                a: 0,
+                exp: "Electric potential energy is the energy a charged particle possesses due to its position in an electric field. It's analogous to gravitational potential energy."
+            },
+            {
+                q: "The capacitance of a parallel-plate capacitor is directly proportional to:",
+                o: ["The area of plates", "The distance between plates", "The charge on plates", "The potential difference"],
+                a: 0,
+                exp: "For a parallel-plate capacitor, C = ε₀A/d, where A is the plate area and d is the separation. Thus, capacitance is directly proportional to plate area."
+            },
+            {
+                q: "What happens to the capacitance when a dielectric is inserted between capacitor plates?",
+                o: ["It increases", "It decreases", "It becomes zero", "It remains the same"],
+                a: 0,
+                exp: "Inserting a dielectric between capacitor plates increases the capacitance by a factor equal to the dielectric constant (κ) of the material: C = κC₀."
+            },
+            {
+                q: "The electric field due to a point charge varies with distance as:",
+                o: ["1/r²", "1/r", "r", "r²"],
+                a: 0,
+                exp: "According to Coulomb's Law, the electric field due to a point charge is E = kQ/r², so it follows an inverse square law with distance."
+            },
+            {
+                q: "What is equipotential surface?",
+                o: ["Surface where potential is constant", "Surface where field is constant", "Surface where charge is constant", "Surface where flux is constant"],
+                a: 0,
+                exp: "An equipotential surface is a surface on which the electric potential is the same at every point. Electric field lines are always perpendicular to equipotential surfaces."
+            },
+            {
+                q: "The principle of superposition in electrostatics states that:",
+                o: ["Net force is vector sum of individual forces", "Chances add algebraically", "Fields cancel each other", "Potential is always zero"],
+                a: 0,
+                exp: "The principle of superposition states that the net force on a charge due to other charges is the vector sum of the individual forces exerted by each charge."
+            },
+            {
+                q: "What is electrostatic shielding?",
+                o: ["Blocking electric fields with conductors", "Increasing field strength", "Reducing potential", "Storing charge"],
+                a: 0,
+                exp: "Electrostatic shielding refers to the phenomenon where a conductor blocks external electric fields from reaching its interior, as in a Faraday cage."
+            },
+            {
+                q: "The electric potential at infinity is usually taken as:",
+                o: ["Zero", "Infinite", "One volt", "Undefined"],
+                a: 0,
+                exp: "In electrostatics, the electric potential is usually defined such that it is zero at infinity, providing a convenient reference point."
+            },
+            {
+                q: "What is the effect on force between two charges when distance is halved?",
+                o: ["Force becomes 4 times", "Force becomes 2 times", "Force becomes half", "Force becomes quarter"],
+                a: 0,
+                exp: "According to Coulomb's Law, F ∝ 1/r². If distance is halved (r → r/2), force becomes 1/(1/2)² = 4 times the original force."
+            },
+            {
+                q: "The dielectric constant of vacuum is:",
+                o: ["1", "0", "8.85", "Infinite"],
+                a: 0,
+                exp: "The dielectric constant (relative permittivity) of vacuum is defined as 1. For other materials, it's the ratio of their permittivity to that of vacuum."
+            },
+            {
+                q: "Electric field lines:",
+                o: ["Never cross each other", "Always cross each other", "Are always circular", "Are always straight"],
+                a: 0,
+                exp: "Electric field lines never cross each other because at any point, the electric field has only one direction. Crossing would imply two different directions at the same point."
+            },
+            {
+                q: "What is the relationship between 1 electron-volt and joules?",
+                o: ["1 eV = 1.6 × 10⁻¹⁹ J", "1 eV = 1 J", "1 eV = 1.6 × 10¹⁹ J", "1 eV = 9 × 10⁹ J"],
+                a: 0,
+                exp: "1 electron-volt (eV) is the energy gained by an electron when accelerated through a potential difference of 1 volt. 1 eV = 1.6 × 10⁻¹⁹ J."
+            }
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(electrostaticsQuiz.length).fill(null);
+        
+        // DOM elements
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const explanation = document.getElementById('explanation');
+        const explanationText = document.getElementById('explanation-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progress = document.getElementById('progress');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScore = document.getElementById('final-score');
+        const scoreText = document.getElementById('score-text');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = electrostaticsQuiz.length;
+            loadQuestion();
+        }
+        
+        // Load current question
+        function loadQuestion() {
+            const question = electrostaticsQuiz[currentQuestion];
+            questionText.textContent = question.q;
+            currentQuestionEl.textContent = currentQuestion + 1;
+            
+            // Update progress bar
+            progress.style.width = `${((currentQuestion) / electrostaticsQuiz.length) * 100}%`;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create new options
+            question.o.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                const optionLetter = document.createElement('div');
+                optionLetter.classList.add('option-letter');
+                optionLetter.textContent = String.fromCharCode(65 + index); // A, B, C, D
+                
+                const optionText = document.createElement('div');
+                optionText.textContent = option;
+                
+                optionElement.appendChild(optionLetter);
+                optionElement.appendChild(optionText);
+                
+                // If user has already selected this option
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                    
+                    // Show if correct/incorrect after answer
+                    if (userAnswers[currentQuestion] !== null) {
+                        if (index === question.a) {
+                            optionElement.classList.add('correct');
+                        } else {
+                            optionElement.classList.add('incorrect');
+                        }
+                    }
+                }
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Show explanation if answer has been selected
+            if (userAnswers[currentQuestion] !== null) {
+                explanation.style.display = 'block';
+                explanationText.textContent = question.exp;
+            } else {
+                explanation.style.display = 'none';
+            }
+            
+            // Update button states
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === electrostaticsQuiz.length - 1) {
+                nextBtn.textContent = 'Finish';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+            
+            // Update score
+            scoreEl.textContent = score;
+        }
+        
+        // Select an option
+        function selectOption(index) {
+            // If already answered, don't allow changing
+            if (userAnswers[currentQuestion] !== null) return;
+            
+            // Mark selected option
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            options[index].classList.add('selected');
+            
+            // Store user's answer
+            userAnswers[currentQuestion] = index;
+            
+            // Check if correct
+            const question = electrostaticsQuiz[currentQuestion];
+            if (index === question.a) {
+                options[index].classList.add('correct');
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                options[index].classList.add('incorrect');
+                // Also show correct answer
+                options[question.a].classList.add('correct');
+            }
+            
+            // Show explanation
+            explanation.style.display = 'block';
+            explanationText.textContent = question.exp;
+        }
+        
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < electrostaticsQuiz.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+        
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+        
+        // Show final results
+        function showResults() {
+            document.querySelector('.question-container').style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            finalScore.textContent = `${score}/${electrostaticsQuiz.length}`;
+            
+            // Set score message
+            if (score === electrostaticsQuiz.length) {
+                scoreText.textContent = "Perfect! You're an electrostatics expert!";
+            } else if (score >= electrostaticsQuiz.length * 0.8) {
+                scoreText.textContent = "Excellent! You have a strong grasp of electrostatic principles!";
+            } else if (score >= electrostaticsQuiz.length * 0.6) {
+                scoreText.textContent = "Good job! You understand the fundamentals of electrostatics!";
+            } else if (score >= electrostaticsQuiz.length * 0.4) {
+                scoreText.textContent = "Not bad! Keep practicing electrostatics problems!";
+            } else {
+                scoreText.textContent = "Keep studying! Electrostatics is fundamental to understanding electricity!";
+            }
+            
+            // Update progress bar to 100%
+            progress.style.width = '100%';
+        }
+        
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(electrostaticsQuiz.length).fill(null);
+            
+            document.querySelector('.question-container').style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            loadQuestion();
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+        
+        // Initialize the quiz
+        initQuiz();
+    </script>
+</body>
+</html>
