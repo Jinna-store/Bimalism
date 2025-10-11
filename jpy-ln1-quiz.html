@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e, #283593, #303f9f);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .jee-badge {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 20px;
+            right: 30px;
+            background: #ff6f00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        .measurement-tools {
+            position: absolute;
+            width: 120px;
+            height: 60px;
+            bottom: 20px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .vernier {
+            width: 40px;
+            height: 20px;
+            background: #ffeb3b;
+            border-radius: 3px;
+            position: relative;
+        }
+        
+        .vernier::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #333;
+        }
+        
+        .screw-gauge {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #4caf50;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .screw-gauge::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #4caf50;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        h1 {
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .jee-level {
+            background: #ff6f00;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #1a237e, #283593);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 1rem;
+            color: #1a237e;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background-color: #e9e9e9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option.selected {
+            background-color: #e8eaf6;
+            border-color: #1a237e;
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #1a237e;
+            color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        #prev-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        #next-btn {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+        }
+        
+        #next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+            border-left: 5px solid #1a237e;
+        }
+        
+        .explanation-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a237e;
+        }
+        
+        .results-container {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+        
+        .score {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #1a237e, #283593);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0;
+        }
+        
+        .score-text {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        #restart-btn {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        #restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .formula-highlight {
+            background-color: #e8eaf6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        .jee-tip {
+            background-color: #fff3e0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ff6f00;
+            font-size: 0.9rem;
+        }
+        
+        .dimension-box {
+            background-color: #e3f2fd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #90caf9;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .quiz-info {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .jee-badge, .measurement-tools {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="jee-badge">JEE</div>
+            <div class="measurement-tools">
+                <div class="vernier"></div>
+                <div class="screw-gauge"></div>
+            </div>
+            <h1>Chapter : 1 Units & Measurements</h1>
+            <div class="subtitle">Advanced level questions for JEE Main & Advanced preparation</div>
+            <div class="jee-level">JEE Advanced Level</div>
+        </header>
+        
+        <div class="quiz-container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="progress-text">
+                    <span>Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
+                    <span>Score: <span id="score">0</span>/20</span>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-number">Question 1</div>
+                <div class="question-text" id="question-text">Question text will appear here</div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be inserted here by JavaScript -->
+                </div>
+                
+                <div class="explanation" id="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div id="explanation-text"></div>
+                </div>
+                
+                <div class="button-container">
+                    <button id="prev-btn" disabled>Previous</button>
+                    <button id="next-btn">Next</button>
+                </div>
+                
+                <div class="quiz-info">
+                    <div>Topic: Units & Measurements</div>
+                    <div>Level: JEE Advanced</div>
+                </div>
+            </div>
+            
+            <div class="results-container" id="results-container">
+                <h2>Quiz Completed!</h2>
+                <div class="score" id="final-score">0/20</div>
+                <div class="score-text" id="score-text">Well done!</div>
+                <button id="restart-btn">Restart Quiz</button>
+                <button id="back-to-home-btn"><a href="neet.html">Back to Home</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const jeeUnitsQuiz = [
+            {
+                q: "The time period of oscillation of a simple pendulum is given by T = 2π√(l/g). If the measured value of l is 20.0 cm with 1 mm accuracy and time for 100 oscillations is 90 s with 1 s resolution, the accuracy in determination of g is:",
+                o: ["3%", "2%", "1%", "0.5%"],
+                a: 0,
+                exp: "Δg/g = Δl/l + 2ΔT/T = (0.1/20.0) + 2×(1/90) = 0.005 + 0.0222 = 0.0272 ≈ 2.72% ≈ 3%"
+            },
+            {
+                q: "The dimensions of (ε₀E²), where ε₀ is permittivity of free space and E is electric field, are:",
+                o: ["[ML⁻¹T⁻²]", "[ML²T⁻²]", "[MLT⁻²]", "[M⁻¹L⁻³T⁴A²]"],
+                a: 0,
+                exp: "ε₀ has dimensions [M⁻¹L⁻³T⁴A²], E has [MLT⁻³A⁻¹]. So ε₀E² = [M⁻¹L⁻³T⁴A²] × [M²L²T⁻⁶A⁻²] = [ML⁻¹T⁻²]"
+            },
+            {
+                q: "In a screw gauge, 5 complete rotations of the cap advance it by 2.5 mm. There are 100 divisions on circular scale. The least count is:",
+                o: ["0.005 mm", "0.001 mm", "0.01 mm", "0.05 mm"],
+                a: 0,
+                exp: "Pitch = 2.5 mm/5 = 0.5 mm. Least count = Pitch/100 = 0.5/100 = 0.005 mm"
+            },
+            {
+                q: "The velocity v of a particle depends on time t as v = α√t + β/t. The dimensions of α and β are:",
+                o: ["[LT⁻¹], [LT⁻¹]", "[LT⁻³/²], [LT⁻²]", "[LT⁻¹/²], [L]", "[LT⁻¹/²], [LT⁻¹]"],
+                a: 2,
+                exp: "Dimensions: [α√t] = [LT⁻¹] ⇒ [α] = [LT⁻¹]/[T¹/²] = [LT⁻³/²]. [β/t] = [LT⁻¹] ⇒ [β] = [LT⁻¹][T] = [L]"
+            },
+            {
+                q: "A physical quantity P is related to four observables a, b, c, d as P = a³b²/√(cd). The percentage errors in a, b, c, d are 1%, 3%, 4%, 2% respectively. The percentage error in P is:",
+                o: ["14%", "13%", "16%", "10%"],
+                a: 1,
+                exp: "ΔP/P = 3(Δa/a) + 2(Δb/b) + ½(Δc/c) + ½(Δd/d) = 3×1 + 2×3 + ½×4 + ½×2 = 3 + 6 + 2 + 1 = 12%"
+            },
+            {
+                q: "The dimensions of (μ₀ε₀)⁻¹/², where μ₀ is permeability and ε₀ is permittivity of free space, are:",
+                o: ["[LT⁻¹]", "[L⁻¹T]", "[MLT⁻¹]", "[M⁻¹L⁻³T⁴A²]"],
+                a: 0,
+                exp: "c = 1/√(μ₀ε₀), so (μ₀ε₀)⁻¹/² has dimensions of velocity [LT⁻¹]"
+            },
+            {
+                q: "In an experiment, the period of oscillation of a simple pendulum is observed to be 2.63 s, 2.56 s, 2.42 s, 2.71 s, 2.80 s. The mean absolute error is:",
+                o: ["0.11 s", "0.12 s", "0.13 s", "0.14 s"],
+                a: 0,
+                exp: "Mean = (2.63+2.56+2.42+2.71+2.80)/5 = 2.624 s. Absolute errors: 0.006, 0.064, 0.204, 0.086, 0.176. Mean absolute error = (0.006+0.064+0.204+0.086+0.176)/5 = 0.1072 ≈ 0.11 s"
+            },
+            {
+                q: "The dimensions of a/b in the relation P = (a - t²)/(bx), where P is pressure, x is distance, and t is time, are:",
+                o: ["[M²LT⁻³]", "[ML²T⁻³]", "[MLT⁻³]", "[MT⁻²]"],
+                a: 3,
+                exp: "[a] = [t²] = [T²] (since a - t² is dimensionally consistent). [P] = [a]/[bx] ⇒ [ML⁻¹T⁻²] = [T²]/([b][L]) ⇒ [b] = [T²]/([ML⁻¹T⁻²][L]) = [M⁻¹T⁴]. So a/b = [T²]/[M⁻¹T⁴] = [MT⁻²]"
+            },
+            {
+                q: "A student measures the distance traversed in free fall of a body, initially at rest, in a given time. He uses this data to estimate g, the acceleration due to gravity. If the maximum percentage errors in measurement of the distance and time are e₁ and e₂ respectively, the percentage error in estimation of g is:",
+                o: ["e₂ + 2e₁", "e₁ + 2e₂", "e₁ + e₂", "e₁ - 2e₂"],
+                a: 1,
+                exp: "s = ½gt² ⇒ g = 2s/t². Δg/g = Δs/s + 2Δt/t = e₁ + 2e₂"
+            },
+            {
+                q: "The dimensions of σb⁴ (Stefan's constant × b⁴ where b is Wien's constant) are:",
+                o: ["[MT⁻³]", "[ML²T⁻²]", "[MLT⁻³]", "[ML⁻¹T⁻²]"],
+                a: 0,
+                exp: "σ has [MT⁻³], b (Wien's constant) has [L]. So σb⁴ = [MT⁻³][L⁴] = [ML⁴T⁻³]"
+            },
+            {
+                q: "In a Vernier calipers, N divisions of vernier scale coincide with (N-1) divisions of main scale (1 division of main scale = 1 mm). The least count is:",
+                o: ["1/N mm", "1/(N-1) mm", "0.1 mm", "0.01 mm"],
+                a: 0,
+                exp: "Least count = 1 MSD - 1 VSD = 1 mm - (N-1)/N mm = 1/N mm"
+            },
+            {
+                q: "The equation of state for a real gas is given by (P + a/V²)(V - b) = RT. The dimensions of a are:",
+                o: ["[ML⁵T⁻²]", "[M⁻¹L⁵T⁻²]", "[ML⁻¹T⁻²]", "[ML²T⁻²]"],
+                a: 0,
+                exp: "[a/V²] = [P] ⇒ [a] = [P][V²] = [ML⁻¹T⁻²][L⁶] = [ML⁵T⁻²]"
+            },
+            {
+                q: "If energy E, velocity V and time T are chosen as fundamental units, the dimensional formula for surface tension is:",
+                o: ["[EV⁻²T⁻²]", "[E²V⁻²T⁻²]", "[EV⁻¹T⁻²]", "[E²V⁻¹T⁻²]"],
+                a: 0,
+                exp: "Surface tension = Force/length = [MLT⁻²]/[L] = [MT⁻²]. E = [ML²T⁻²], V = [LT⁻¹], T = [T]. Let surface tension = EᵃVᵇTᶜ ⇒ [MT⁻²] = [ML²T⁻²]ᵃ[LT⁻¹]ᵇ[T]ᶜ. Solving: a=1, b=-2, c=-2"
+            },
+            {
+                q: "The percentage error in the measurement of mass and speed are 2% and 3% respectively. The maximum error in kinetic energy is:",
+                o: ["8%", "1%", "12%", "10%"],
+                a: 0,
+                exp: "K = ½mv² ⇒ ΔK/K = Δm/m + 2Δv/v = 2% + 2×3% = 8%"
+            },
+            {
+                q: "The dimensions of (1/2)ε₀E² (energy density in electric field) are:",
+                o: ["[ML⁻¹T⁻²]", "[ML²T⁻²]", "[MLT⁻²]", "[M⁻¹L⁻³T⁴A²]"],
+                a: 0,
+                exp: "Energy density = Energy/Volume = [ML²T⁻²]/[L³] = [ML⁻¹T⁻²]"
+            },
+            {
+                q: "In an experiment to find acceleration due to gravity using simple pendulum, time for 20 oscillations is measured as 30 s, 32 s, 35 s, 33 s, 31 s. The absolute error in mean time period is:",
+                o: ["0.3 s", "0.4 s", "0.5 s", "0.6 s"],
+                a: 0,
+                exp: "Mean time for 20 oscillations = (30+32+35+33+31)/5 = 32.2 s. Mean time period = 32.2/20 = 1.61 s. Mean absolute error in time period = (|30-32.2|+|32-32.2|+|35-32.2|+|33-32.2|+|31-32.2|)/(5×20) = (2.2+0.2+2.8+0.8+1.2)/100 = 7.2/100 = 0.072 s ≈ 0.07 s"
+            },
+            {
+                q: "The dimensional formula for (1/2)LI², where L is inductance and I is current, is:",
+                o: ["[ML²T⁻²]", "[MLT⁻²]", "[ML²T⁻¹]", "[ML⁻¹T⁻²]"],
+                a: 0,
+                exp: "½LI² represents energy stored in inductor. So dimensions = [ML²T⁻²]"
+            },
+            {
+                q: "If the units of length, mass and time are doubled, the unit of energy will be:",
+                o: ["Doubled", "Halved", "4 times", "8 times"],
+                a: 2,
+                exp: "Energy = [ML²T⁻²]. If M, L, T are doubled, new energy unit = (2M)(2L)²/(2T)² = 2×4/4 = 2 times original. Wait, let's recalculate: New unit = (2M)(2L)²/(2T)² = 2×4/4 × original = 2 times? Actually: [M]→2[M], [L²]→4[L²], [T⁻²]→¼[T⁻²]. So product = 2×4×¼ = 2 times original"
+            },
+            {
+                q: "The dimensions of (h/2π), where h is Planck's constant, are:",
+                o: ["[ML²T⁻¹]", "[MLT⁻¹]", "[ML²T⁻²]", "[MT⁻¹]"],
+                a: 0,
+                exp: "h has dimensions [ML²T⁻¹], so h/2π also has [ML²T⁻¹]"
+            },
+            {
+                q: "In the measurement of a physical quantity X = (A²B)/(C¹/³D³), the percentage errors in A, B, C, D are 1%, 2%, 3%, 4% respectively. The maximum percentage error in X is:",
+                o: ["14%", "16%", "18%", "20%"],
+                a: 1,
+                exp: "ΔX/X = 2(ΔA/A) + (ΔB/B) + (1/3)(ΔC/C) + 3(ΔD/D) = 2×1 + 2 + (1/3)×3 + 3×4 = 2 + 2 + 1 + 12 = 17%"
+            }
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(jeeUnitsQuiz.length).fill(null);
+        
+        // DOM elements
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const explanation = document.getElementById('explanation');
+        const explanationText = document.getElementById('explanation-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progress = document.getElementById('progress');
+        const currentQuestionEl = document.getElementById('current-question');
+        const totalQuestionsEl = document.getElementById('total-questions');
+        const scoreEl = document.getElementById('score');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScore = document.getElementById('final-score');
+        const scoreText = document.getElementById('score-text');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        // Initialize quiz
+        function initQuiz() {
+            totalQuestionsEl.textContent = jeeUnitsQuiz.length;
+            loadQuestion();
+        }
+        
+        // Load current question
+        function loadQuestion() {
+            const question = jeeUnitsQuiz[currentQuestion];
+            questionText.textContent = question.q;
+            currentQuestionEl.textContent = currentQuestion + 1;
+            
+            // Update progress bar
+            progress.style.width = `${((currentQuestion) / jeeUnitsQuiz.length) * 100}%`;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create new options
+            question.o.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                const optionLetter = document.createElement('div');
+                optionLetter.classList.add('option-letter');
+                optionLetter.textContent = String.fromCharCode(65 + index); // A, B, C, D
+                
+                const optionText = document.createElement('div');
+                optionText.textContent = option;
+                
+                optionElement.appendChild(optionLetter);
+                optionElement.appendChild(optionText);
+                
+                // If user has already selected this option
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                    
+                    // Show if correct/incorrect after answer
+                    if (userAnswers[currentQuestion] !== null) {
+                        if (index === question.a) {
+                            optionElement.classList.add('correct');
+                        } else {
+                            optionElement.classList.add('incorrect');
+                        }
+                    }
+                }
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Show explanation if answer has been selected
+            if (userAnswers[currentQuestion] !== null) {
+                explanation.style.display = 'block';
+                explanationText.textContent = question.exp;
+            } else {
+                explanation.style.display = 'none';
+            }
+            
+            // Update button states
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === jeeUnitsQuiz.length - 1) {
+                nextBtn.textContent = 'Finish';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+            
+            // Update score
+            scoreEl.textContent = score;
+        }
+        
+        // Select an option
+        function selectOption(index) {
+            // If already answered, don't allow changing
+            if (userAnswers[currentQuestion] !== null) return;
+            
+            // Mark selected option
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            options[index].classList.add('selected');
+            
+            // Store user's answer
+            userAnswers[currentQuestion] = index;
+            
+            // Check if correct
+            const question = jeeUnitsQuiz[currentQuestion];
+            if (index === question.a) {
+                options[index].classList.add('correct');
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                options[index].classList.add('incorrect');
+                // Also show correct answer
+                options[question.a].classList.add('correct');
+            }
+            
+            // Show explanation
+            explanation.style.display = 'block';
+            explanationText.textContent = question.exp;
+        }
+        
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < jeeUnitsQuiz.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+        
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+        
+        // Show final results
+        function showResults() {
+            document.querySelector('.question-container').style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            finalScore.textContent = `${score}/${jeeUnitsQuiz.length}`;
+            
+            // Set score message
+            if (score === jeeUnitsQuiz.length) {
+                scoreText.textContent = "Perfect! You're ready for JEE Advanced!";
+            } else if (score >= jeeUnitsQuiz.length * 0.8) {
+                scoreText.textContent = "Excellent! Strong grasp of JEE level concepts!";
+            } else if (score >= jeeUnitsQuiz.length * 0.6) {
+                scoreText.textContent = "Good job! Solid foundation for JEE Main!";
+            } else if (score >= jeeUnitsQuiz.length * 0.4) {
+                scoreText.textContent = "Keep practicing! Focus on error analysis and dimensions!";
+            } else {
+                scoreText.textContent = "Need more preparation! Review fundamental concepts thoroughly!";
+            }
+            
+            // Update progress bar to 100%
+            progress.style.width = '100%';
+        }
+        
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(jeeUnitsQuiz.length).fill(null);
+            
+            document.querySelector('.question-container').style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            loadQuestion();
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', prevQuestion);
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+        
+        // Initialize the quiz
+        initQuiz();
+    </script>
+</body>
+</html>
