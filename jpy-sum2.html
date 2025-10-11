@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion in a Straight Line - Complete Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e, #283593, #303f9f);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .quiz-badge {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: #ff6f00;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .chapter-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #ff6f00;
+        }
+        
+        h2 {
+            color: #1a237e;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff6f00;
+            font-size: 2rem;
+        }
+        
+        h3 {
+            color: #283593;
+            margin: 30px 0 20px 0;
+            font-size: 1.5rem;
+        }
+        
+        h4 {
+            color: #3949ab;
+            margin: 25px 0 15px 0;
+            font-size: 1.2rem;
+        }
+        
+        .concept-box {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #1a237e;
+        }
+        
+        .formula-box {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #ff6f00;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .example-box {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .jee-tip {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+            font-weight: 600;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: #1a237e;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #1a237e;
+        }
+        
+        .quick-summary {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #7b1fa2;
+        }
+        
+        .practice-section {
+            background: #e8f5e8;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .problem {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .solution {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .toggle-btn {
+            background: #1a237e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #283593;
+            transform: translateY(-2px);
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .graph-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .graph {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="quiz-badge"><a href="motion-straight-line-quiz.html" style="color: white; text-decoration: none;">Take Quiz</a></div>
+            <h1>MOTION IN A STRAIGHT LINE</h1>
+            <div class="subtitle">Complete Chapter Summary | JEE Physics</div>
+        </div>
+        
+        <div class="content">
+            <!-- Introduction Section -->
+            <div class="chapter-section">
+                <h2>1.1 Introduction to Motion</h2>
+                
+                <div class="concept-box">
+                    <p><strong>Mechanics</strong> is the branch of physics that deals with the motion of objects. It has three branches:</p>
+                    <ul>
+                        <li><strong>Statics:</strong> Study of objects at rest</li>
+                        <li><strong>Kinematics:</strong> Description of motion without considering its cause</li>
+                        <li><strong>Dynamics:</strong> Study of motion in relation to forces</li>
+                    </ul>
+                </div>
+                
+                <h3>Rest and Motion</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Rest</h4>
+                        <p>An object is at rest if its position does not change with respect to its surroundings with time.</p>
+                        <p><strong>Examples:</strong> Book on a table, person sitting on a chair</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Motion</h4>
+                        <p>An object is in motion if its position continuously changes with respect to its surroundings.</p>
+                        <p><strong>Examples:</strong> Moving train, flowing water, walking person</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Types of Motion -->
+            <div class="chapter-section">
+                <h2>1.2 Types of Motion</h2>
+                
+                <h3>Based on Path</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Rectilinear Motion</h4>
+                        <p>Motion along a straight line</p>
+                        <p><strong>Example:</strong> Sliding body on an inclined plane</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Circular Motion</h4>
+                        <p>Motion along a circular path</p>
+                        <p><strong>Example:</strong> Stone tied to a string whirled in a circle</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Oscillatory Motion</h4>
+                        <p>To and fro motion about a fixed point</p>
+                        <p><strong>Example:</strong> Simple pendulum</p>
+                    </div>
+                </div>
+                
+                <h3>Based on Dimensions</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>One-Dimensional (1D)</h4>
+                        <p>Only one coordinate needed to specify position</p>
+                        <p>Object moves along a straight line</p>
+                        <p><strong>Example:</strong> Boy running on a straight road</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Two-Dimensional (2D)</h4>
+                        <p>Two coordinates needed to specify position</p>
+                        <p>Object moves in a plane</p>
+                        <p><strong>Example:</strong> Satellite revolving around Earth</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Three-Dimensional (3D)</h4>
+                        <p>Three coordinates needed to specify position</p>
+                        <p>Object moves in space</p>
+                        <p><strong>Example:</strong> Butterfly flying in a garden</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point Object -->
+            <div class="chapter-section">
+                <h2>1.3 Point Object</h2>
+                
+                <div class="concept-box">
+                    <p>An object is considered a <strong>point object</strong> if its size is much smaller than the distance it moves in a reasonable time.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Examples</h4>
+                    <ul>
+                        <li>A train on a journey of several hundred kilometers</li>
+                        <li>Earth for studying its motion around the Sun</li>
+                        <li>A railway carriage moving between stations</li>
+                    </ul>
+                    <p><strong>Non-example:</strong> A spinning cricket ball that turns sharply on hitting the ground</p>
+                </div>
+            </div>
+
+            <!-- Scalar and Vector Quantities -->
+            <div class="chapter-section">
+                <h2>1.4 Scalar and Vector Quantities</h2>
+                
+                <table>
+                    <tr>
+                        <th>Scalar Quantities</th>
+                        <th>Vector Quantities</th>
+                    </tr>
+                    <tr>
+                        <td>Only magnitude required</td>
+                        <td>Both magnitude and direction required</td>
+                    </tr>
+                    <tr>
+                        <td>Examples: Mass, length, time, speed</td>
+                        <td>Examples: Displacement, velocity, acceleration</td>
+                    </tr>
+                    <tr>
+                        <td>Follow ordinary algebra</td>
+                        <td>Follow vector algebra</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Position, Path Length and Displacement -->
+            <div class="chapter-section">
+                <h2>1.5 Position, Path Length and Displacement</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Position</h4>
+                        <p>The point where an object is situated</p>
+                        <p>Determined by coordinate axes</p>
+                        <p>Can be positive or negative</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Path Length (Distance)</h4>
+                        <p>Total length of path covered by an object</p>
+                        <p>Always positive</p>
+                        <p>Scalar quantity</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Displacement</h4>
+                        <p>Change in position in a particular direction</p>
+                        <p>Can be positive, negative or zero</p>
+                        <p>Vector quantity</p>
+                    </div>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Displacement: Δx = x₂ - x₁</strong>
+                </div>
+                
+                <div class="jee-tip">
+                    <strong>JEE TIP:</strong> The magnitude of displacement may or may not be equal to path length. For a course of motion, displacement can be zero but path length is never zero.
+                </div>
+            </div>
+
+            <!-- Speed and Velocity -->
+            <div class="chapter-section">
+                <h2>1.6 Speed and Velocity</h2>
+                
+                <table>
+                    <tr>
+                        <th>Speed</th>
+                        <th>Velocity</th>
+                    </tr>
+                    <tr>
+                        <td>Distance covered per unit time</td>
+                        <td>Displacement per unit time</td>
+                    </tr>
+                    <tr>
+                        <td>Speed = Distance / Time</td>
+                        <td>Velocity = Displacement / Time</td>
+                    </tr>
+                    <tr>
+                        <td>Scalar quantity</td>
+                        <td>Vector quantity</td>
+                    </tr>
+                    <tr>
+                        <td>Always positive</td>
+                        <td>Can be positive, negative or zero</td>
+                    </tr>
+                </table>
+                
+                <h3>Types of Speed and Velocity</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Uniform Speed/Velocity</h4>
+                        <p>Equal distances/displacements covered in equal time intervals</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Non-uniform Speed/Velocity</h4>
+                        <p>Unequal distances/displacements covered in equal time intervals</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Average Speed/Velocity</h4>
+                        <p>Total distance/displacement divided by total time</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Instantaneous Speed/Velocity</h4>
+                        <p>Speed/velocity at a particular instant</p>
+                    </div>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Average Speed: v<sub>av</sub> = Total distance / Total time</strong><br>
+                    <strong>Average Velocity: v<sub>av</sub> = Δx / Δt</strong><br>
+                    <strong>Instantaneous Velocity: v<sub>i</sub> = lim<sub>Δt→0</sub> (Δx/Δt) = dx/dt</strong>
+                </div>
+            </div>
+
+            <!-- Acceleration -->
+            <div class="chapter-section">
+                <h2>1.7 Acceleration</h2>
+                
+                <div class="concept-box">
+                    <p><strong>Acceleration</strong> is the rate of change of velocity with time.</p>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Acceleration: a = (v - u) / t</strong><br>
+                    <strong>Average Acceleration: a<sub>av</sub> = Δv / Δt</strong><br>
+                    <strong>Instantaneous Acceleration: a<sub>inst</sub> = lim<sub>Δt→0</sub> (Δv/Δt) = dv/dt</strong>
+                </div>
+                
+                <h3>Types of Acceleration</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Uniform Acceleration</h4>
+                        <p>Equal changes in velocity in equal time intervals</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Non-uniform Acceleration</h4>
+                        <p>Unequal changes in velocity in equal time intervals</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Positive Acceleration</h4>
+                        <p>Velocity increases with time</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Negative Acceleration (Retardation)</h4>
+                        <p>Velocity decreases with time</p>
+                    </div>
+                </div>
+                
+                <div class="jee-tip">
+                    <strong>NOTE:</strong> Acceleration can result from a change in speed (magnitude), a change in direction, or both.
+                </div>
+            </div>
+
+            <!-- Kinematic Equations -->
+            <div class="chapter-section">
+                <h2>1.8 Kinematic Equations for Uniformly Accelerated Motion</h2>
+                
+                <div class="formula-box">
+                    <strong>1. Velocity-Time Relation: v = u + at</strong><br>
+                    <strong>2. Position-Time Relation: s = ut + ½at²</strong><br>
+                    <strong>3. Position-Velocity Relation: v² = u² + 2as</strong>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Displacement in nth second: s<sub>n</sub> = u + a/2 (2n - 1)</strong>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Example: Car Acceleration</h4>
+                    <p>A car starts from rest and accelerates at 2 m/s² for 10 seconds. Find its final velocity and distance covered.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>u = 0, a = 2 m/s², t = 10 s</p>
+                    <p>v = u + at = 0 + 2×10 = 20 m/s</p>
+                    <p>s = ut + ½at² = 0 + ½×2×100 = 100 m</p>
+                </div>
+            </div>
+
+            <!-- Motion Under Gravity -->
+            <div class="chapter-section">
+                <h2>1.9 Motion Under Gravity</h2>
+                
+                <div class="concept-box">
+                    <p>When an object is thrown upwards or falls towards Earth, its motion is called <strong>motion under gravity</strong>.</p>
+                    <p>Acceleration due to gravity (g) = 9.8 m/s² (approximately 10 m/s² for calculations)</p>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Equations of motion under gravity:</strong><br>
+                    <strong>v = u ± gt</strong><br>
+                    <strong>h = ut ± ½gt²</strong><br>
+                    <strong>v² = u² ± 2gh</strong>
+                </div>
+                
+                <div class="jee-tip">
+                    <strong>CONVENTION:</strong> For upward motion, g is negative. For downward motion, g is positive.
+                </div>
+                
+                <div class="example-box">
+                    <h4>Example: Ball Thrown Upwards</h4>
+                    <p>A ball is thrown vertically upwards with 20 m/s from ground. Find maximum height and time to return.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>At maximum height, v = 0</p>
+                    <p>v² = u² + 2as ⇒ 0 = 400 - 2×10×h ⇒ h = 20 m</p>
+                    <p>Time to reach max height: v = u + at ⇒ 0 = 20 - 10t ⇒ t = 2 s</p>
+                    <p>Total time of flight = 2 × 2 = 4 s</p>
+                </div>
+            </div>
+
+            <!-- Graphs -->
+            <div class="chapter-section">
+                <h2>1.10 Graphical Analysis of Motion</h2>
+                
+                <h3>Position-Time Graphs</h3>
+                
+                <div class="graph-container">
+                    <p><strong>Interpretation:</strong> Slope gives velocity</p>
+                    <ul>
+                        <li>Straight line: Uniform velocity</li>
+                        <li>Curved line: Non-uniform velocity</li>
+                        <li>Horizontal line: Zero velocity (at rest)</li>
+                    </ul>
+                </div>
+                
+                <h3>Velocity-Time Graphs</h3>
+                
+                <div class="graph-container">
+                    <p><strong>Interpretation:</strong></p>
+                    <ul>
+                        <li>Slope gives acceleration</li>
+                        <li>Area under curve gives displacement</li>
+                        <li>Straight line: Uniform acceleration</li>
+                        <li>Curved line: Non-uniform acceleration</li>
+                        <li>Horizontal line: Zero acceleration (uniform velocity)</li>
+                    </ul>
+                </div>
+                
+                <h3>Acceleration-Time Graphs</h3>
+                
+                <div class="graph-container">
+                    <p><strong>Interpretation:</strong> Area under curve gives change in velocity</p>
+                </div>
+            </div>
+
+            <!-- Relative Motion -->
+            <div class="chapter-section">
+                <h2>1.11 Relative Motion</h2>
+                
+                <div class="concept-box">
+                    <p><strong>Relative velocity</strong> is the velocity of one object as observed from another object.</p>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Relative velocity of A with respect to B: v<sub>AB</sub> = v<sub>A</sub> - v<sub>B</sub></strong>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Example: Two Trains</h4>
+                    <p>Two trains A and B are moving in the same direction with speeds 72 km/h and 54 km/h respectively. Find the relative velocity of A with respect to B.</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>v<sub>A</sub> = 72 km/h = 20 m/s</p>
+                    <p>v<sub>B</sub> = 54 km/h = 15 m/s</p>
+                    <p>v<sub>AB</sub> = v<sub>A</sub> - v<sub>B</sub> = 20 - 15 = 5 m/s</p>
+                </div>
+            </div>
+
+            <!-- Quick Summary -->
+            <div class="chapter-section">
+                <h2>Quick Formula Sheet</h2>
+                
+                <div class="quick-summary">
+                    <h3>Essential Formulas</h3>
+                    <ul>
+                        <li><strong>Displacement:</strong> Δx = x₂ - x₁</li>
+                        <li><strong>Average velocity:</strong> v<sub>av</sub> = Δx / Δt</li>
+                        <li><strong>Average speed:</strong> v<sub>av</sub> = Total distance / Total time</li>
+                        <li><strong>Instantaneous velocity:</strong> v = dx/dt</li>
+                        <li><strong>Acceleration:</strong> a = dv/dt</li>
+                        <li><strong>Kinematic equations:</strong> v = u + at, s = ut + ½at², v² = u² + 2as</li>
+                        <li><strong>Displacement in nth second:</strong> s<sub>n</sub> = u + a/2 (2n - 1)</li>
+                        <li><strong>Relative velocity:</strong> v<sub>AB</sub> = v<sub>A</sub> - v<sub>B</sub></li>
+                    </ul>
+                </div>
+                
+                <div class="jee-tip">
+                    <strong>EXAM STRATEGY:</strong> Always draw diagrams for motion problems. For graphs, remember slope gives velocity (x-t) or acceleration (v-t), and area gives displacement (v-t). Pay attention to signs (+/-) for direction.
+                </div>
+            </div>
+
+            <!-- Practice Problems -->
+            <div class="practice-section">
+                <h2>Practice Problems</h2>
+                
+                <div class="problem">
+                    <h4>Problem 1: Displacement and Distance</h4>
+                    <p>A boy moves from -20 m to +40 m, then turns and moves to -50 m. Find the displacement and distance covered.</p>
+                    <button class="toggle-btn" onclick="toggleSolution(1)">Show Solution</button>
+                    <div class="solution" id="solution1">
+                        <strong>Solution:</strong><br>
+                        Distance = Path length = |40 - (-20)| + |(-50) - 40| = 60 + 90 = 150 m<br>
+                        Displacement = Final position - Initial position = (-50) - (-20) = -30 m
+                    </div>
+                </div>
+                
+                <div class="problem">
+                    <h4>Problem 2: Kinematic Equations</h4>
+                    <p>A car accelerates from 10 m/s to 30 m/s in 5 seconds. Find the acceleration and distance covered.</p>
+                    <button class="toggle-btn" onclick="toggleSolution(2)">Show Solution</button>
+                    <div class="solution" id="solution2">
+                        <strong>Solution:</strong><br>
+                        u = 10 m/s, v = 30 m/s, t = 5 s<br>
+                        a = (v - u)/t = (30 - 10)/5 = 4 m/s²<br>
+                        s = ut + ½at² = 10×5 + ½×4×25 = 50 + 50 = 100 m
+                    </div>
+                </div>
+                
+                <div class="problem">
+                    <h4>Problem 3: Motion Under Gravity</h4>
+                    <p>A ball is thrown vertically upwards with 25 m/s from a building 50 m high. Find the maximum height reached and time to hit the ground.</p>
+                    <button class="toggle-btn" onclick="toggleSolution(3)">Show Solution</button>
+                    <div class="solution" id="solution3">
+                        <strong>Solution:</strong><br>
+                        Maximum height above building: h = u²/(2g) = 625/(2×10) = 31.25 m<br>
+                        Total height = 50 + 31.25 = 81.25 m<br>
+                        Time to reach max height: t₁ = u/g = 25/10 = 2.5 s<br>
+                        Time to fall from max height: s = ½gt² ⇒ 81.25 = ½×10×t₂² ⇒ t₂ = 4.03 s<br>
+                        Total time = t₁ + t₂ = 2.5 + 4.03 = 6.53 s
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle solutions
+        function toggleSolution(problemNum) {
+            const solution = document.getElementById('solution' + problemNum);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === 'none' || solution.style.display === '') {
+                solution.style.display = 'block';
+                button.textContent = 'Hide Solution';
+            } else {
+                solution.style.display = 'none';
+                button.textContent = 'Show Solution';
+            }
+        }
+        
+        // Initialize all solutions as hidden
+        document.addEventListener('DOMContentLoaded', function() {
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('solution' + i).style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
