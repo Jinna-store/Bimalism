@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEE Chapter 1 Summary</title>
+    <title>Units and Measurement - Complete Summary</title>
     <style>
         * {
             margin: 0;
@@ -17,6 +17,7 @@
             color: #333;
             min-height: 100vh;
             padding: 20px;
+            line-height: 1.7;
         }
         
         .container {
@@ -36,7 +37,7 @@
             position: relative;
         }
         
-        .jee-badge {
+        .quiz-badge {
             position: absolute;
             top: 20px;
             right: 30px;
@@ -59,84 +60,16 @@
             margin-bottom: 10px;
         }
         
-        .chapter-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            display: inline-block;
-        }
-        
-        .content-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            min-height: 100vh;
-        }
-        
-        .sidebar {
-            background: #f8f9fa;
-            padding: 30px 20px;
-            border-right: 3px solid #e3f2fd;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .nav-section {
-            margin-bottom: 30px;
-        }
-        
-        .nav-title {
-            font-weight: 700;
-            color: #1a237e;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #ff6f00;
-            font-size: 1.1rem;
-        }
-        
-        .nav-item {
-            padding: 12px 15px;
-            margin: 5px 0;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-            font-size: 0.95rem;
-        }
-        
-        .nav-item:hover {
-            background: #e3f2fd;
-            transform: translateX(5px);
-            border-left-color: #1a237e;
-        }
-        
-        .nav-item.active {
-            background: #1a237e;
-            color: white;
-            border-left-color: #ff6f00;
-        }
-        
-        .main-content {
+        .content {
             padding: 40px;
-            max-height: 100vh;
-            overflow-y: auto;
         }
         
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .content-section.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .chapter-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #ff6f00;
         }
         
         h2 {
@@ -222,14 +155,14 @@
             background: #f5f5f5;
         }
         
-        .dimension-grid {
+        .comparison-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin: 25px 0;
         }
         
-        .dimension-card {
+        .comparison-card {
             background: white;
             padding: 20px;
             border-radius: 10px;
@@ -237,7 +170,7 @@
             border-left: 4px solid #1a237e;
         }
         
-        .practice-question {
+        .quick-summary {
             background: #f3e5f5;
             padding: 25px;
             border-radius: 10px;
@@ -245,39 +178,44 @@
             border-left: 4px solid #7b1fa2;
         }
         
-        .quick-nav {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
+        .practice-section {
+            background: #e8f5e8;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .problem {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .solution {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .toggle-btn {
             background: #1a237e;
             color: white;
-            padding: 15px 20px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            z-index: 1000;
             font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s ease;
         }
         
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6f00, #1a237e);
-            transform-origin: left;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-            z-index: 1001;
-        }
-        
-        code {
-            background: #f5f5f5;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
+        .toggle-btn:hover {
+            background: #283593;
+            transform: translateY(-2px);
         }
         
         ul, ol {
@@ -285,520 +223,771 @@
         }
         
         li {
-            margin: 8px 0;
+            margin: 10px 0;
         }
         
-        .interactive-demo {
-            background: #f0f4ff;
-            padding: 25px;
-            border-radius: 10px;
-            margin: 25px 0;
-            text-align: center;
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
         }
         
-        .demo-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+        .prefix-table {
+            font-size: 0.9rem;
         }
         
-        .demo-btn {
-            padding: 10px 20px;
-            background: #1a237e;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .dimension-table {
+            font-size: 0.85rem;
         }
         
-        .demo-btn:hover {
-            background: #283593;
-            transform: translateY(-2px);
-        }
-        
-        @media (max-width: 968px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                display: none;
-            }
-            
+        @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .prefix-table, .dimension-table {
+                font-size: 0.7rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progress-bar"></div>
-    
     <div class="container">
         <div class="header">
-            <div class="jee-badge">JEE ADVANCED</div>
-            <h1>UNITS & MEASUREMENTS</h1>
-            <div class="subtitle">Complete Chapter 1 Mastery Guide | JEE Physics</div>
-            <div class="chapter-info">
-                <strong>Comprehensive Summary with Formulas, Examples & Practice Problems</strong>
-            </div>
+            <div class="quiz-badge"><a href="units-dimensions-quiz.html" style="color: white; text-decoration: none;">Take Quiz</a></div>
+            <h1>UNITS, DIMENSIONS AND MEASUREMENT</h1>
+            <div class="subtitle">Complete Chapter 1 Summary | JEE Physics</div>
         </div>
         
-        <div class="content-grid">
-            <div class="sidebar">
-                <div class="nav-section">
-                    <div class="nav-title">CORE CONCEPTS</div>
-                    <div class="nav-item active" data-target="physical-quantities">Physical Quantities</div>
-                    <div class="nav-item" data-target="si-units">SI Units System</div>
-                    <div class="nav-item" data-target="dimensional-analysis">Dimensional Analysis</div>
-                    <div class="nav-item" data-target="measurement-instruments">Measurement & Instruments</div>
+        <div class="content">
+            <!-- Introduction Section -->
+            <div class="chapter-section">
+                <h2>1.1 Physical Quantity</h2>
+                
+                <div class="concept-box">
+                    <p>A quantity which can be measured and by which various physical happenings can be explained and expressed in form of laws is called a <strong>physical quantity</strong>.</p>
+                    <p>Examples: Length, mass, time, force, etc.</p>
+                    <p>Non-examples: Happiness, sorrow (cannot be measured)</p>
                 </div>
                 
-                <div class="nav-section">
-                    <div class="nav-title">ADVANCED TOPICS</div>
-                    <div class="nav-item" data-target="error-analysis">Error Analysis</div>
-                    <div class="nav-item" data-target="vernier-screw">Vernier & Screw Gauge</div>
-                    <div class="nav-item" data-target="jee-problem-solving"><a href="jpy-ln1-quiz.html">JEE Problem Solving</a></div>
+                <div class="formula-box">
+                    <strong>Physical quantity (Q) = Magnitude × Unit = n × u</strong>
+                    <br><br>
+                    Where:<br>
+                    n = numerical value<br>
+                    u = unit<br>
+                    <br>
+                    <strong>n ∝ 1/u</strong> (inverse relationship)
                 </div>
                 
-                <div class="nav-section">
-                    <div class="nav-title">QUICK REFERENCE</div>
-                    <div class="nav-item" data-target="formula-sheet">Formula Sheet</div>
-                    <div class="nav-item" data-target="practice-questions">Practice Questions</div>
+                <div class="example-box">
+                    <h4>Example</h4>
+                    <p>10 meter means a length which is ten times the unit of length 1 meter.</p>
+                    <p>Here 10 is the numerical value and meter is the unit.</p>
                 </div>
             </div>
-            
-            <div class="main-content">
-                <!-- Physical Quantities Section -->
-                <div class="content-section active" id="physical-quantities">
-                    <h2>Physical Quantities</h2>
-                    
-                    <div class="concept-box">
-                        <h3>Definition and Classification</h3>
-                        <p><strong>Physical quantities</strong> are measurable properties of physical systems that can be quantified by measurement and expressed as the product of a numerical value and a unit.</p>
+
+            <!-- Types of Physical Quantities -->
+            <div class="chapter-section">
+                <h2>1.2 Types of Physical Quantities</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Ratio (Numerical Value Only)</h4>
+                        <p>No unit required</p>
+                        <ul>
+                            <li>Relative density</li>
+                            <li>Refractive index</li>
+                            <li>Strain</li>
+                        </ul>
+                        <p><strong>Exception:</strong> Angle (requires unit: degrees or radians)</p>
                     </div>
-                    
-                    <h3>Fundamental Quantities (Base Quantities)</h3>
-                    <p>These are independent quantities that cannot be defined in terms of other physical quantities:</p>
-                    
-                    <table>
-                        <tr>
-                            <th>Quantity</th>
-                            <th>SI Unit</th>
-                            <th>Symbol</th>
-                            <th>Dimension</th>
-                        </tr>
-                        <tr>
-                            <td>Length</td>
-                            <td>meter</td>
-                            <td>m</td>
-                            <td>[L]</td>
-                        </tr>
-                        <tr>
-                            <td>Mass</td>
-                            <td>kilogram</td>
-                            <td>kg</td>
-                            <td>[M]</td>
-                        </tr>
-                        <tr>
-                            <td>Time</td>
-                            <td>second</td>
-                            <td>s</td>
-                            <td>[T]</td>
-                        </tr>
-                        <tr>
-                            <td>Electric Current</td>
-                            <td>ampere</td>
-                            <td>A</td>
-                            <td>[I]</td>
-                        </tr>
-                        <tr>
-                            <td>Temperature</td>
-                            <td>kelvin</td>
-                            <td>K</td>
-                            <td>[θ]</td>
-                        </tr>
-                        <tr>
-                            <td>Amount of Substance</td>
-                            <td>mole</td>
-                            <td>mol</td>
-                            <td>[N]</td>
-                        </tr>
-                        <tr>
-                            <td>Luminous Intensity</td>
-                            <td>candela</td>
-                            <td>cd</td>
-                            <td>[J]</td>
-                        </tr>
-                    </table>
-                    
-                    <h3>Derived Quantities</h3>
-                    <p>These are defined in terms of fundamental quantities through mathematical relationships:</p>
-                    
-                    <div class="dimension-grid">
-                        <div class="dimension-card">
-                            <strong>Velocity</strong><br>
-                            v = displacement/time<br>
-                            Dimension: [LT⁻¹]<br>
-                            SI Unit: m/s
-                        </div>
-                        <div class="dimension-card">
-                            <strong>Acceleration</strong><br>
-                            a = velocity/time<br>
-                            Dimension: [LT⁻²]<br>
-                            SI Unit: m/s²
-                        </div>
-                        <div class="dimension-card">
-                            <strong>Force</strong><br>
-                            F = mass × acceleration<br>
-                            Dimension: [MLT⁻²]<br>
-                            SI Unit: newton (N)
-                        </div>
-                        <div class="dimension-card">
-                            <strong>Energy</strong><br>
-                            E = force × distance<br>
-                            Dimension: [ML²T⁻²]<br>
-                            SI Unit: joule (J)
-                        </div>
+                    <div class="comparison-card">
+                        <h4>Scalar (Magnitude Only)</h4>
+                        <p>No direction</p>
+                        <ul>
+                            <li>Length</li>
+                            <li>Time</li>
+                            <li>Work</li>
+                            <li>Energy</li>
+                        </ul>
+                        <p>Follow ordinary laws of addition</p>
                     </div>
-                    
-                    <div class="jee-tip">
-                        <strong>JEE TIP:</strong> Always remember that dimensions represent the nature of physical quantity, while units represent its magnitude. Dimensions are independent of the system of units used.
+                    <div class="comparison-card">
+                        <h4>Vector (Magnitude & Direction)</h4>
+                        <p>Has direction</p>
+                        <ul>
+                            <li>Displacement</li>
+                            <li>Velocity</li>
+                            <li>Acceleration</li>
+                            <li>Force</li>
+                        </ul>
+                        <p>Follow vector laws of addition</p>
                     </div>
                 </div>
                 
-                <!-- SI Units System Section -->
-                <div class="content-section" id="si-units">
-                    <h2>SI Units System</h2>
-                    
-                    <div class="concept-box">
-                        <h3>International System of Units</h3>
-                        <p>The SI system provides a coherent system of units for international scientific communication. All SI units are based on fundamental constants of nature since the 2019 redefinition.</p>
+                <div class="jee-tip">
+                    <strong>JEE TIP:</strong> Some quantities like moment of inertia are neither scalar nor vector - they are tensors.
+                </div>
+            </div>
+
+            <!-- Fundamental and Derived Quantities -->
+            <div class="chapter-section">
+                <h2>1.3 Fundamental and Derived Quantities</h2>
+                
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Definition</th>
+                        <th>Examples</th>
+                    </tr>
+                    <tr>
+                        <td>Fundamental Quantities</td>
+                        <td>Independent quantities that don't require other quantities for definition</td>
+                        <td>Length, Mass, Time (in mechanics)</td>
+                    </tr>
+                    <tr>
+                        <td>Derived Quantities</td>
+                        <td>Expressed in terms of fundamental quantities</td>
+                        <td>Area, Volume, Velocity, Force</td>
+                    </tr>
+                </table>
+                
+                <div class="jee-tip">
+                    <strong>NOTE:</strong> The choice of fundamental quantities is arbitrary. In mechanics, any three quantities can be chosen as fundamental.
+                </div>
+            </div>
+
+            <!-- Systems of Units -->
+            <div class="chapter-section">
+                <h2>1.4 Systems of Units</h2>
+                
+                <table>
+                    <tr>
+                        <th>System</th>
+                        <th>Fundamental Units</th>
+                        <th>Also Known As</th>
+                    </tr>
+                    <tr>
+                        <td>CGS System</td>
+                        <td>cm, gram, second</td>
+                        <td>Gaussian System</td>
+                    </tr>
+                    <tr>
+                        <td>MKS System</td>
+                        <td>meter, kilogram, second</td>
+                        <td>Giorgi System</td>
+                    </tr>
+                    <tr>
+                        <td>FPS System</td>
+                        <td>foot, pound, second</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>SI System</td>
+                        <td>7 fundamental units</td>
+                        <td>International System</td>
+                    </tr>
+                </table>
+                
+                <h3>SI Fundamental Units</h3>
+                <table>
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Unit Name</th>
+                        <th>Symbol</th>
+                    </tr>
+                    <tr>
+                        <td>Length</td>
+                        <td>metre</td>
+                        <td>m</td>
+                    </tr>
+                    <tr>
+                        <td>Mass</td>
+                        <td>kilogram</td>
+                        <td>kg</td>
+                    </tr>
+                    <tr>
+                        <td>Time</td>
+                        <td>second</td>
+                        <td>s</td>
+                    </tr>
+                    <tr>
+                        <td>Electric Current</td>
+                        <td>ampere</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>Temperature</td>
+                        <td>kelvin</td>
+                        <td>K</td>
+                    </tr>
+                    <tr>
+                        <td>Amount of Substance</td>
+                        <td>mole</td>
+                        <td>mol</td>
+                    </tr>
+                    <tr>
+                        <td>Luminous Intensity</td>
+                        <td>candela</td>
+                        <td>cd</td>
+                    </tr>
+                </table>
+                
+                <div class="jee-tip">
+                    <strong>Supplementary Units:</strong> Radian (rad) for plane angle, Steradian (sr) for solid angle
+                </div>
+            </div>
+
+            <!-- SI Prefixes -->
+            <div class="chapter-section">
+                <h2>1.5 SI Prefixes</h2>
+                
+                <table class="prefix-table">
+                    <tr>
+                        <th>Power of 10</th>
+                        <th>Prefix</th>
+                        <th>Symbol</th>
+                    </tr>
+                    <tr>
+                        <td>10¹⁸</td>
+                        <td>exa</td>
+                        <td>E</td>
+                    </tr>
+                    <tr>
+                        <td>10¹⁵</td>
+                        <td>peta</td>
+                        <td>P</td>
+                    </tr>
+                    <tr>
+                        <td>10¹²</td>
+                        <td>tera</td>
+                        <td>T</td>
+                    </tr>
+                    <tr>
+                        <td>10⁹</td>
+                        <td>giga</td>
+                        <td>G</td>
+                    </tr>
+                    <tr>
+                        <td>10⁶</td>
+                        <td>mega</td>
+                        <td>M</td>
+                    </tr>
+                    <tr>
+                        <td>10³</td>
+                        <td>kilo</td>
+                        <td>k</td>
+                    </tr>
+                    <tr>
+                        <td>10²</td>
+                        <td>hecto</td>
+                        <td>h</td>
+                    </tr>
+                    <tr>
+                        <td>10¹</td>
+                        <td>deca</td>
+                        <td>da</td>
+                    </tr>
+                    <tr>
+                        <td>10⁻¹</td>
+                        <td>deci</td>
+                        <td>d</td>
+                    </tr>
+                    <tr>
+                        <td>10⁻²</td>
+                        <td>centi</td>
+                        <td>c</td>
+                    </tr>
+                    <tr>
+                        <td>10⁻³</td>
+                        <td>milli</td>
+                        <td>m</td>
+                    </tr>
+                    <tr>
+                        <td>10⁻⁶</td>
+                        <td>micro</td>
+                        <td>μ</td>
+                    </tr>
+                    <tr>
+                        <td>10⁻⁹</td>
+                        <td>nano</td>
+                        <td>n</td>
+                    </tr>
+                    <tr>
+                        <td>10⁻¹²</td>
+                        <td>pico</td>
+                        <td>p</td>
+                    </tr>
+                    <tr>
+                        <td>10⁻¹⁵</td>
+                        <td>femto</td>
+                        <td>f</td>
+                    </tr>
+                    <tr>
+                        <td>10⁻¹⁸</td>
+                        <td>atto</td>
+                        <td>a</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Standards -->
+            <div class="chapter-section">
+                <h2>1.6 Standards of Length, Mass and Time</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Length</h4>
+                        <p><strong>Standard:</strong> Distance traveled by light in vacuum in 1/299,792,458 seconds</p>
+                        <p><strong>Previous:</strong> 1,650,763.73 wavelengths of Kr-86 radiation</p>
                     </div>
-                    
-                    <h3>SI Base Units - Modern Definitions</h3>
-                    <table>
-                        <tr>
-                            <th>Quantity</th>
-                            <th>Unit</th>
-                            <th>Symbol</th>
-                            <th>Definition (2019)</th>
-                        </tr>
-                        <tr>
-                            <td>Length</td>
-                            <td>meter</td>
-                            <td>m</td>
-                            <td>Distance light travels in 1/299,792,458 seconds</td>
-                        </tr>
-                        <tr>
-                            <td>Mass</td>
-                            <td>kilogram</td>
-                            <td>kg</td>
-                            <td>Defined by fixing Planck's constant h</td>
-                        </tr>
-                        <tr>
-                            <td>Time</td>
-                            <td>second</td>
-                            <td>s</td>
-                            <td>Duration of 9,192,631,770 periods of Cs-133 radiation</td>
-                        </tr>
-                    </table>
-                    
-                    <h3>SI Prefixes</h3>
-                    <div class="formula-box">
-                        <strong>Common SI Prefixes:</strong><br><br>
-                        Tera (T) = 10¹² &nbsp;&nbsp; Giga (G) = 10⁹ &nbsp;&nbsp; Mega (M) = 10⁶ &nbsp;&nbsp; Kilo (k) = 10³<br>
-                        Centi (c) = 10⁻² &nbsp;&nbsp; Milli (m) = 10⁻³ &nbsp;&nbsp; Micro (μ) = 10⁻⁶ &nbsp;&nbsp; Nano (n) = 10⁻⁹
+                    <div class="comparison-card">
+                        <h4>Mass</h4>
+                        <p><strong>Standard:</strong> Platinum-iridium alloy cylinder at International Bureau of Weights and Measures</p>
+                        <p><strong>Atomic scale:</strong> 5.0188 × 10²⁵ atoms of C-12</p>
                     </div>
-                    
-                    <div class="example-box">
-                        <h3>Example: Unit Conversion</h3>
-                        <p><strong>Problem:</strong> Convert 5.6 × 10⁻⁷ m to nanometers.</p>
-                        <p><strong>Solution:</strong><br>
-                        1 nm = 10⁻⁹ m<br>
-                        5.6 × 10⁻⁷ m = 5.6 × 10⁻⁷ / 10⁻⁹ = 560 nm</p>
+                    <div class="comparison-card">
+                        <h4>Time</h4>
+                        <p><strong>Standard:</strong> 9,192,631,770 vibrations of Cs-133 atom radiation</p>
+                        <p>Corresponds to transition between hyperfine levels</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practical Units -->
+            <div class="chapter-section">
+                <h2>1.7 Practical Units</h2>
+                
+                <h3>Length</h3>
+                <ul>
+                    <li>1 fermi = 1 fm = 10⁻¹⁵ m</li>
+                    <li>1 X-ray unit = 1 XU = 10⁻¹³ m</li>
+                    <li>1 angstrom = 1 Å = 10⁻¹⁰ m</li>
+                    <li>1 micron = 1 μm = 10⁻⁶ m</li>
+                    <li>1 astronomical unit = 1 A.U. = 1.5 × 10¹¹ m</li>
+                    <li>1 light year = 1 ly = 9.46 × 10¹⁵ m</li>
+                    <li>1 parsec = 1 pc = 3.26 light years</li>
+                </ul>
+                
+                <h3>Mass</h3>
+                <ul>
+                    <li>Chandra Shekhar unit: 1 CSU = 1.4 solar masses = 2.8 × 10³⁰ kg</li>
+                    <li>1 metric tonne = 1000 kg</li>
+                    <li>1 quintal = 100 kg</li>
+                    <li>1 atomic mass unit = 1 amu = 1.67 × 10⁻²⁷ kg</li>
+                </ul>
+                
+                <h3>Time</h3>
+                <ul>
+                    <li>1 solar year = 365.25 average solar days</li>
+                    <li>1 lunar month = 27.3 days</li>
+                    <li>1 solar day = time for Earth's rotation relative to Sun</li>
+                    <li>1 sidereal day = time for Earth's rotation relative to distant stars</li>
+                    <li>1 shake = 10⁻⁸ s</li>
+                </ul>
+            </div>
+
+            <!-- Dimensions -->
+            <div class="chapter-section">
+                <h2>1.8 Dimensions of Physical Quantities</h2>
+                
+                <div class="concept-box">
+                    <p><strong>Dimensions</strong> represent the powers to which fundamental quantities must be raised to express a given physical quantity.</p>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>Example: Force</strong><br>
+                    Force = mass × acceleration<br>
+                    = mass × (length/time²)<br>
+                    = mass × length × time⁻²<br>
+                    <strong>[Force] = [MLT⁻²]</strong>
+                </div>
+                
+                <h3>1.9 Important Dimensions in Physics</h3>
+                
+                <h4>Mechanics</h4>
+                <table class="dimension-table">
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Dimension</th>
+                    </tr>
+                    <tr>
+                        <td>Velocity</td>
+                        <td>[M⁰L¹T⁻¹]</td>
+                    </tr>
+                    <tr>
+                        <td>Acceleration</td>
+                        <td>[M⁰L¹T⁻²]</td>
+                    </tr>
+                    <tr>
+                        <td>Force</td>
+                        <td>[M¹L¹T⁻²]</td>
+                    </tr>
+                    <tr>
+                        <td>Work/Energy</td>
+                        <td>[M¹L²T⁻²]</td>
+                    </tr>
+                    <tr>
+                        <td>Power</td>
+                        <td>[M¹L²T⁻³]</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure</td>
+                        <td>[M¹L⁻¹T⁻²]</td>
+                    </tr>
+                    <tr>
+                        <td>Angular momentum</td>
+                        <td>[M¹L²T⁻¹]</td>
+                    </tr>
+                    <tr>
+                        <td>Gravitational constant</td>
+                        <td>[M⁻¹L³T⁻²]</td>
+                    </tr>
+                </table>
+                
+                <h4>Heat</h4>
+                <table class="dimension-table">
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Dimension</th>
+                    </tr>
+                    <tr>
+                        <td>Temperature</td>
+                        <td>[M⁰L⁰T⁰θ¹]</td>
+                    </tr>
+                    <tr>
+                        <td>Heat</td>
+                        <td>[M¹L²T⁻²]</td>
+                    </tr>
+                    <tr>
+                        <td>Specific heat</td>
+                        <td>[M⁰L²T⁻²θ⁻¹]</td>
+                    </tr>
+                    <tr>
+                        <td>Thermal conductivity</td>
+                        <td>[M¹L¹T⁻³θ⁻¹]</td>
+                    </tr>
+                    <tr>
+                        <td>Planck's constant</td>
+                        <td>[M¹L²T⁻¹]</td>
+                    </tr>
+                </table>
+                
+                <h4>Electricity & Magnetism</h4>
+                <table class="dimension-table">
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Dimension</th>
+                    </tr>
+                    <tr>
+                        <td>Electric charge</td>
+                        <td>[M⁰L⁰T¹A¹]</td>
+                    </tr>
+                    <tr>
+                        <td>Electric potential</td>
+                        <td>[M¹L²T⁻³A⁻¹]</td>
+                    </tr>
+                    <tr>
+                        <td>Resistance</td>
+                        <td>[M¹L²T⁻³A⁻²]</td>
+                    </tr>
+                    <tr>
+                        <td>Capacitance</td>
+                        <td>[M⁻¹L⁻²T⁴A²]</td>
+                    </tr>
+                    <tr>
+                        <td>Magnetic field</td>
+                        <td>[M¹L⁰T⁻²A⁻¹]</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Same Dimensions -->
+            <div class="chapter-section">
+                <h2>1.10 Quantities Having Same Dimensions</h2>
+                
+                <table>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Quantities</th>
+                    </tr>
+                    <tr>
+                        <td>[M⁰L⁰T⁻¹]</td>
+                        <td>Frequency, angular frequency, angular velocity, velocity gradient</td>
+                    </tr>
+                    <tr>
+                        <td>[M¹L²T⁻²]</td>
+                        <td>Work, energy, torque, moment of force</td>
+                    </tr>
+                    <tr>
+                        <td>[M¹L⁻¹T⁻²]</td>
+                        <td>Pressure, stress, Young's modulus, energy density</td>
+                    </tr>
+                    <tr>
+                        <td>[M¹L¹T⁻¹]</td>
+                        <td>Momentum, impulse</td>
+                    </tr>
+                    <tr>
+                        <td>[M⁰L⁰T⁰]</td>
+                        <td>Strain, refractive index, relative density, angle</td>
+                    </tr>
+                    <tr>
+                        <td>[M¹L²T⁻¹]</td>
+                        <td>Angular momentum, Planck's constant</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Dimensional Analysis Applications -->
+            <div class="chapter-section">
+                <h2>1.11 Applications of Dimensional Analysis</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Finding Units</h4>
+                        <p>Replace M, L, T with fundamental units to find derived units</p>
+                        <p><strong>Example:</strong> Work = Force × Displacement</p>
+                        <p>[W] = [ML²T⁻²]</p>
+                        <p>CGS: g cm²/s² (erg)</p>
+                        <p>SI: kg m²/s² (joule)</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Finding Dimensions</h4>
+                        <p>Use formulas to find dimensions of constants</p>
+                        <p><strong>Example:</strong> Gravitational constant</p>
+                        <p>F = Gm₁m₂/r²</p>
+                        <p>[G] = [M⁻¹L³T⁻²]</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Unit Conversion</h4>
+                        <p>n₂ = n₁ [M₁/M₂]ᵃ [L₁/L₂]ᵇ [T₁/T₂]ᶜ</p>
+                        <p><strong>Example:</strong> 1 N = 10⁵ dyne</p>
                     </div>
                 </div>
                 
-                <!-- Dimensional Analysis Section -->
-                <div class="content-section" id="dimensional-analysis">
-                    <h2>Dimensional Analysis</h2>
-                    
-                    <div class="concept-box">
-                        <h3>Principle of Homogeneity</h3>
-                        <p>For an equation to be physically correct, all terms must have the same dimensions.</p>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Checking Equations</h4>
+                        <p>Principle of homogeneity: All terms must have same dimensions</p>
+                        <p><strong>Example:</strong> s = ut + ½at²</p>
+                        <p>[L] = [LT⁻¹][T] + [LT⁻²][T²]</p>
+                        <p>[L] = [L] + [L] ✓</p>
                     </div>
-                    
-                    <div class="formula-box">
-                        If: A = B + C + D<br>
-                        Then: [A] = [B] = [C] = [D]
+                    <div class="comparison-card">
+                        <h4>Deriving Relations</h4>
+                        <p>Assume relation and find powers using dimensional analysis</p>
+                        <p><strong>Example:</strong> Time period of pendulum</p>
+                        <p>T = k√(l/g)</p>
                     </div>
-                    
-                    <h3>Applications</h3>
+                </div>
+            </div>
+
+            <!-- Limitations -->
+            <div class="chapter-section">
+                <h2>1.12 Limitations of Dimensional Analysis</h2>
+                
+                <ul>
+                    <li><strong>Non-uniqueness:</strong> Same dimensions for different quantities (work, energy, torque)</li>
+                    <li><strong>Dimensionless constants:</strong> Cannot determine values like 1/2, 2π, etc.</li>
+                    <li><strong>Limited to product functions:</strong> Cannot derive relations like s = ut + ½at² or y = a sin ωt</li>
+                    <li><strong>More than 3 variables:</strong> Cannot derive if more than 3 physical quantities involved</li>
+                    <li><strong>Same dimensions:</strong> Cannot derive if two quantities have same dimensions</li>
+                </ul>
+            </div>
+
+            <!-- Significant Figures -->
+            <div class="chapter-section">
+                <h2>1.13 Significant Figures</h2>
+                
+                <h3>Rules for Counting Significant Figures</h3>
+                <ol>
+                    <li><strong>All non-zero digits are significant:</strong> 42.3 (3 sig fig), 243.4 (4 sig fig)</li>
+                    <li><strong>Zeros between non-zero digits are significant:</strong> 5.03 (3 sig fig), 5.604 (4 sig fig)</li>
+                    <li><strong>Leading zeros are NOT significant:</strong> 0.543 (3 sig fig), 0.006 (1 sig fig)</li>
+                    <li><strong>Trailing zeros ARE significant:</strong> 4.330 (4 sig fig), 343.000 (6 sig fig)</li>
+                    <li><strong>Exponential notation:</strong> Numerical portion gives significant figures</li>
+                </ol>
+                
+                <h3>1.14 Rounding Off</h3>
+                <ul>
+                    <li><strong>Digit &lt; 5:</strong> Preceding digit unchanged (7.82 → 7.8)</li>
+                    <li><strong>Digit &gt; 5:</strong> Preceding digit raised by one (6.87 → 6.9)</li>
+                    <li><strong>Digit = 5 followed by non-zero:</strong> Preceding digit raised by one (16.351 → 16.4)</li>
+                    <li><strong>Digit = 5 followed by zeros, preceding even:</strong> Unchanged (3.250 → 3.2)</li>
+                    <li><strong>Digit = 5 followed by zeros, preceding odd:</strong> Raised by one (3.750 → 3.8)</li>
+                </ul>
+                
+                <h3>1.15 Calculations with Significant Figures</h3>
+                <ul>
+                    <li><strong>Addition/Subtraction:</strong> Report to least number of decimal places</li>
+                    <li><strong>Multiplication/Division:</strong> Report to least number of significant figures</li>
+                </ul>
+                
+                <h3>1.16 Order of Magnitude</h3>
+                <p>Power of 10 when number is expressed in scientific notation</p>
+                <ul>
+                    <li>Speed of light: 3 × 10⁸ m/s ≈ 10⁸ m/s (order = 8)</li>
+                    <li>Electron mass: 9.1 × 10⁻³¹ kg ≈ 10⁻³⁰ kg (order = -30)</li>
+                </ul>
+            </div>
+
+            <!-- Errors -->
+            <div class="chapter-section">
+                <h2>1.17 Errors of Measurement</h2>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Absolute Error</h4>
+                        <p>Δa = |aₘ - a|</p>
+                        <p>Difference between true value and measured value</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Mean Absolute Error</h4>
+                        <p>Δā = (|Δa₁| + |Δa₂| + ... + |Δaₙ|)/n</p>
+                        <p>Arithmetic mean of absolute errors</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Relative Error</h4>
+                        <p>Δā/aₘ</p>
+                        <p>Ratio of mean absolute error to mean value</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Percentage Error</h4>
+                        <p>(Δā/aₘ) × 100%</p>
+                        <p>Relative error expressed as percentage</p>
+                    </div>
+                </div>
+                
+                <h3>1.18 Propagation of Errors</h3>
+                
+                <table>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Formula</th>
+                        <th>Error Propagation</th>
+                    </tr>
+                    <tr>
+                        <td>Addition</td>
+                        <td>x = a + b</td>
+                        <td>Δx = ±(Δa + Δb)</td>
+                    </tr>
+                    <tr>
+                        <td>Subtraction</td>
+                        <td>x = a - b</td>
+                        <td>Δx = ±(Δa + Δb)</td>
+                    </tr>
+                    <tr>
+                        <td>Multiplication</td>
+                        <td>x = a × b</td>
+                        <td>Δx/x = ±(Δa/a + Δb/b)</td>
+                    </tr>
+                    <tr>
+                        <td>Division</td>
+                        <td>x = a/b</td>
+                        <td>Δx/x = ±(Δa/a + Δb/b)</td>
+                    </tr>
+                    <tr>
+                        <td>Power</td>
+                        <td>x = aⁿ/bᵐ</td>
+                        <td>Δx/x = ±(nΔa/a + mΔb/b)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Quick Summary -->
+            <div class="chapter-section">
+                <h2>Quick Formula Sheet</h2>
+                
+                <div class="quick-summary">
+                    <h3>Essential Formulas</h3>
                     <ul>
-                        <li>Checking dimensional consistency of equations</li>
-                        <li>Deriving relationships between physical quantities</li>
-                        <li>Converting units between different systems</li>
+                        <li><strong>Physical quantity:</strong> Q = n × u</li>
+                        <li><strong>Unit conversion:</strong> n₂ = n₁ [M₁/M₂]ᵃ [L₁/L₂]ᵇ [T₁/T₂]ᶜ</li>
+                        <li><strong>Dimensional formula:</strong> [MᵃLᵇTᶜ]</li>
+                        <li><strong>Principle of homogeneity:</strong> All terms must have same dimensions</li>
+                        <li><strong>Absolute error:</strong> Δa = |aₘ - a|</li>
+                        <li><strong>Mean absolute error:</strong> Δā = Σ|Δaᵢ|/n</li>
+                        <li><strong>Relative error:</strong> Δā/aₘ</li>
+                        <li><strong>Percentage error:</strong> (Δā/aₘ) × 100%</li>
                     </ul>
-                    
-                    <div class="example-box">
-                        <h3>Example: Dimensional Analysis</h3>
-                        <p><strong>Problem:</strong> Check if T = 2π√(l/g) is dimensionally correct.</p>
-                        <p><strong>Solution:</strong><br>
-                        LHS: [T] = [T]<br>
-                        RHS: [2π√(l/g)] = [√([L]/[LT⁻²])] = [√(T²)] = [T]<br>
-                        Equation is dimensionally correct.</p>
-                    </div>
-                    
-                    <div class="jee-tip">
-                        <strong>JEE TIP:</strong> Dimensional analysis cannot determine dimensionless constants or trigonometric relations.
+                </div>
+                
+                <div class="jee-tip">
+                    <strong>EXAM STRATEGY:</strong> Always check dimensional homogeneity in derivations. For error analysis, identify the quantity with maximum power as it contributes most to error. Practice unit conversions regularly.
+                </div>
+            </div>
+
+            <!-- Practice Problems -->
+            <div class="practice-section">
+                <h2>Practice Problems</h2>
+                
+                <div class="problem">
+                    <h4>Problem 1: Dimensional Analysis</h4>
+                    <p>Find the dimensions of Y in the equation X = 3YZ², where X has dimensions of capacitance and Z has dimensions of magnetic field.</p>
+                    <button class="toggle-btn" onclick="toggleSolution(1)">Show Solution</button>
+                    <div class="solution" id="solution1">
+                        <strong>Solution:</strong><br>
+                        [X] = [M⁻¹L⁻²T⁴A²] (capacitance)<br>
+                        [Z] = [MT⁻²A⁻¹] (magnetic field)<br>
+                        [Y] = [X]/[Z²] = [M⁻¹L⁻²T⁴A²]/[M²T⁻⁴A⁻²] = [M⁻³L⁻²T⁸A⁴]
                     </div>
                 </div>
                 
-                <!-- Error Analysis Section -->
-                <div class="content-section" id="error-analysis">
-                    <h2>Error Analysis</h2>
-                    
-                    <h3>Types of Errors</h3>
-                    <table>
-                        <tr>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Example</th>
-                        </tr>
-                        <tr>
-                            <td>Systematic Error</td>
-                            <td>Consistent, reproducible error</td>
-                            <td>Zero error in instruments</td>
-                        </tr>
-                        <tr>
-                            <td>Random Error</td>
-                            <td>Unpredictable fluctuations</td>
-                            <td>Parallax error in reading</td>
-                        </tr>
-                    </table>
-                    
-                    <h3>Error Propagation Formulas</h3>
-                    <div class="formula-box">
-                        <strong>Addition/Subtraction:</strong> ΔZ = ΔA + ΔB<br>
-                        <strong>Multiplication/Division:</strong> ΔZ/Z = ΔA/A + ΔB/B<br>
-                        <strong>Power:</strong> ΔZ/Z = n(ΔA/A)
-                    </div>
-                    
-                    <div class="example-box">
-                        <h3>Example: Error Propagation</h3>
-                        <p><strong>Problem:</strong> T = 2π√(l/g). Errors in l and g are 2% and 3%. Find error in T.</p>
-                        <p><strong>Solution:</strong><br>
-                        ΔT/T = ½(Δl/l) + ½(Δg/g) = ½(2%) + ½(3%) = 2.5%</p>
+                <div class="problem">
+                    <h4>Problem 2: Unit Conversion</h4>
+                    <p>Convert 1 MW power to a system having basic units: mass = 10 kg, length = 1 dm, time = 1 minute.</p>
+                    <button class="toggle-btn" onclick="toggleSolution(2)">Show Solution</button>
+                    <div class="solution" id="solution2">
+                        <strong>Solution:</strong><br>
+                        [P] = [ML²T⁻³]<br>
+                        n₂ = n₁ [M₁/M₂]¹ [L₁/L₂]² [T₁/T₂]⁻³<br>
+                        = 10⁶ [1 kg/10 kg]¹ [1 m/0.1 m]² [1 s/60 s]⁻³<br>
+                        = 10⁶ × 0.1 × 100 × 216000 = 2.16 × 10¹² units
                     </div>
                 </div>
                 
-                <!-- Vernier & Screw Gauge Section -->
-                <div class="content-section" id="vernier-screw">
-                    <h2>Vernier Calipers & Screw Gauge</h2>
-                    
-                    <div class="comparison-table">
-                        <div class="dimension-card">
-                            <h3>Vernier Calipers</h3>
-                            <p><strong>Least Count:</strong> 0.1 mm (typically)</p>
-                            <p><strong>Formula:</strong> LC = 1 MSD - 1 VSD</p>
-                            <p><strong>Reading:</strong> MSR + (VSR × LC)</p>
-                        </div>
-                        <div class="dimension-card">
-                            <h3>Screw Gauge</h3>
-                            <p><strong>Least Count:</strong> 0.01 mm (typically)</p>
-                            <p><strong>Formula:</strong> LC = Pitch / divisions</p>
-                            <p><strong>Reading:</strong> LSR + (CSR × LC)</p>
-                        </div>
+                <div class="problem">
+                    <h4>Problem 3: Error Analysis</h4>
+                    <p>The resistance R = V/I where V = 100 ± 5 volts and I = 10 ± 0.2 amperes. Find the percentage error in R.</p>
+                    <button class="toggle-btn" onclick="toggleSolution(3)">Show Solution</button>
+                    <div class="solution" id="solution3">
+                        <strong>Solution:</strong><br>
+                        ΔR/R × 100 = (ΔV/V × 100) + (ΔI/I × 100)<br>
+                        = (5/100 × 100) + (0.2/10 × 100)<br>
+                        = 5% + 2% = 7%
                     </div>
-                    
-                    <div class="interactive-demo">
-                        <h3>Zero Error Demonstration</h3>
-                        <div class="demo-controls">
-                            <button class="demo-btn" onclick="showZeroError('positive')">Positive Zero Error</button>
-                            <button class="demo-btn" onclick="showZeroError('negative')">Negative Zero Error</button>
-                            <button class="demo-btn" onclick="showZeroError('none')">No Zero Error</button>
-                        </div>
-                        <div id="zeroErrorDemo">
-                            <p>Select a zero error type to see the demonstration</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Formula Sheet Section -->
-                <div class="content-section" id="formula-sheet">
-                    <h2>Formula Sheet</h2>
-                    
-                    <div class="formula-box">
-                        <h3>Key Formulas - Units & Measurements</h3>
-                        <br>
-                        <strong>Least Count (Vernier):</strong> LC = 1 MSD - 1 VSD<br>
-                        <strong>Least Count (Screw Gauge):</strong> LC = Pitch / N<br>
-                        <strong>Percentage Error:</strong> (Δa/a) × 100%<br>
-                        <strong>Error in Sum:</strong> ΔZ = ΔA + ΔB<br>
-                        <strong>Error in Product:</strong> ΔZ/Z = ΔA/A + ΔB/B<br>
-                        <strong>Error in Power:</strong> ΔZ/Z = n(ΔA/A)
-                    </div>
-                    
-                    <h3>Dimension Formulas</h3>
-                    <table>
-                        <tr>
-                            <th>Quantity</th>
-                            <th>Dimension</th>
-                            <th>SI Unit</th>
-                        </tr>
-                        <tr>
-                            <td>Velocity</td>
-                            <td>[LT⁻¹]</td>
-                            <td>m/s</td>
-                        </tr>
-                        <tr>
-                            <td>Acceleration</td>
-                            <td>[LT⁻²]</td>
-                            <td>m/s²</td>
-                        </tr>
-                        <tr>
-                            <td>Force</td>
-                            <td>[MLT⁻²]</td>
-                            <td>N</td>
-                        </tr>
-                        <tr>
-                            <td>Energy</td>
-                            <td>[ML²T⁻²]</td>
-                            <td>J</td>
-                        </tr>
-                        <tr>
-                            <td>Power</td>
-                            <td>[ML²T⁻³]</td>
-                            <td>W</td>
-                        </tr>
-                    </table>
-                </div>
-                
-                <!-- Practice Questions Section -->
-                <div class="content-section" id="practice-questions">
-                    <h2>JEE Practice Questions</h2>
-                    <div class="practice-question">
-                        <h4>Question 1</h4>
-                        <p>The period of oscillation of a simple pendulum is T = 2π√(l/g). The measured value of l is 20.0 cm with 1 mm accuracy and time for 100 oscillations is 90 s with 1 s resolution. The accuracy in determination of g is:</p>
-                        <button class="demo-btn" onclick="toggleAnswer(1)">Show Answer</button>
-                        <div id="answer1" style="display: none; margin-top: 15px; background: #e8f5e8; padding: 15px; border-radius: 5px;">
-                            <strong>Answer:</strong> 3%<br>
-                            <strong>Solution:</strong> Δg/g = Δl/l + 2ΔT/T = (0.1/20.0) + 2×(1/90) = 0.005 + 0.0222 = 0.0272 ≈ 2.72% ≈ 3%
-                        </div>
-                    </div>
-                    
-                    <div class="practice-question">
-                        <h4>Question 2</h4>
-                        <p>A screw gauge has a pitch of 1 mm and 100 divisions on circular scale. In measuring the diameter of a wire, the main scale reads 3 mm and the 45th division coincides with the reference line. If there is no zero error, the diameter of the wire is:</p>
-                        <button class="demo-btn" onclick="toggleAnswer(2)">Show Answer</button>
-                        <div id="answer2" style="display: none; margin-top: 15px; background: #e8f5e8; padding: 15px; border-radius: 5px;">
-                            <strong>Answer:</strong> 3.45 mm<br>
-                            <strong>Solution:</strong> LC = 1/100 = 0.01 mm, Reading = 3 + (45 × 0.01) = 3.45 mm
-                        </div>
-                    </div>
-                    
-                    <div class="jee-tip">
-                        <strong>EXAM STRATEGY:</strong> Always show your working clearly. Even if the final answer is wrong, you can get partial credit for correct methodology. Manage your time - spend about 2-3 minutes per question in JEE Main.
-                    </div>
-                </div>
-                
-                <!-- Quick Navigation -->
-                <div class="quick-nav" onclick="scrollToTop()">
-                    ↑ Top
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Navigation functionality
-        const navItems = document.querySelectorAll('.nav-item');
-        const contentSections = document.querySelectorAll('.content-section');
-        const progressBar = document.getElementById('progress-bar');
-        
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Remove active class from all items
-                navItems.forEach(nav => nav.classList.remove('active'));
-                contentSections.forEach(section => section.classList.remove('active'));
-                
-                // Add active class to clicked item
-                item.classList.add('active');
-                
-                // Show corresponding section
-                const target = item.getAttribute('data-target');
-                document.getElementById(target).classList.add('active');
-                
-                // Scroll to top
-                document.querySelector('.main-content').scrollTop = 0;
-            });
-        });
-        
-        // Progress bar update
-        document.querySelector('.main-content').addEventListener('scroll', () => {
-            const content = document.querySelector('.main-content');
-            const scrollTop = content.scrollTop;
-            const scrollHeight = content.scrollHeight - content.clientHeight;
-            const progress = scrollTop / scrollHeight;
-            progressBar.style.transform = `scaleX(${progress})`;
-        });
-        
-        function scrollToTop() {
-            document.querySelector('.main-content').scrollTop = 0;
-        }
-        
-        // Zero Error Demo
-        function showZeroError(type) {
-            const demo = document.getElementById('zeroErrorDemo');
-            let content = '';
+        // Toggle solutions
+        function toggleSolution(problemNum) {
+            const solution = document.getElementById('solution' + problemNum);
+            const button = solution.previousElementSibling;
             
-            switch(type) {
-                case 'positive':
-                    content = `
-                        <h4>Positive Zero Error</h4>
-                        <p>Zero of vernier is to the RIGHT of main scale zero</p>
-                        <p><strong>Correction:</strong> Subtract zero error from reading</p>
-                        <p><strong>Example:</strong> If zero error = +0.02 cm and observed reading = 2.46 cm, then correct reading = 2.46 - 0.02 = 2.44 cm</p>
-                    `;
-                    break;
-                case 'negative':
-                    content = `
-                        <h4>Negative Zero Error</h4>
-                        <p>Zero of vernier is to the LEFT of main scale zero</p>
-                        <p><strong>Correction:</strong> Add zero error to reading</p>
-                        <p><strong>Example:</strong> If zero error = -0.02 cm and observed reading = 2.46 cm, then correct reading = 2.46 + 0.02 = 2.48 cm</p>
-                    `;
-                    break;
-                case 'none':
-                    content = `
-                        <h4>No Zero Error</h4>
-                        <p>Zero marks coincide perfectly when jaws are closed</p>
-                        <p><strong>Correction:</strong> No correction needed</p>
-                        <p><strong>Example:</strong> Observed reading is the actual measurement</p>
-                    `;
-                    break;
-            }
-            
-            demo.innerHTML = content;
-        }
-        
-        // Toggle answers for practice questions
-        function toggleAnswer(questionNum) {
-            const answer = document.getElementById('answer' + questionNum);
-            if (answer.style.display === 'none') {
-                answer.style.display = 'block';
+            if (solution.style.display === 'none' || solution.style.display === '') {
+                solution.style.display = 'block';
+                button.textContent = 'Hide Solution';
             } else {
-                answer.style.display = 'none';
+                solution.style.display = 'none';
+                button.textContent = 'Show Solution';
             }
         }
         
-        // Initialize
-        progressBar.style.transform = 'scaleX(0)';
-        showZeroError('none');
+        // Initialize all solutions as hidden
+        document.addEventListener('DOMContentLoaded', function() {
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('solution' + i).style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
