@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEE Quiz</title>
+    <title>Physics and Measurement Quiz</title>
     <style>
         * {
             margin: 0;
@@ -13,384 +13,253 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a237e, #283593, #303f9f);
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             color: #333;
+            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 900px;
-            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            margin: 20px 0;
         }
         
         header {
-            background: linear-gradient(to right, #1a237e, #283593);
+            background: linear-gradient(to right, #1a2a6c, #283593);
             color: white;
-            padding: 30px 20px;
+            padding: 25px 30px;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .jee-badge {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            top: 20px;
-            right: 30px;
-            background: #ff6f00;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
-            animation: pulse 2s infinite;
-        }
-        
-        .measurement-tools {
-            position: absolute;
-            width: 120px;
-            height: 60px;
-            bottom: 20px;
-            right: 30px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .vernier {
-            width: 40px;
-            height: 20px;
-            background: #ffeb3b;
-            border-radius: 3px;
-            position: relative;
-        }
-        
-        .vernier::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #333;
-        }
-        
-        .screw-gauge {
-            width: 30px;
-            height: 30px;
-            border: 2px solid #4caf50;
-            border-radius: 50%;
-            position: relative;
-        }
-        
-        .screw-gauge::before {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            border: 2px solid #4caf50;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
         
         h1 {
-            font-size: 2.3rem;
+            font-size: 2.4rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .subtitle {
             font-size: 1.2rem;
             opacity: 0.9;
-            margin-bottom: 10px;
         }
         
-        .jee-level {
-            background: #ff6f00;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-top: 10px;
+        .timer-container {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-home {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .btn-home:hover {
+            background: #388e3c;
+        }
+        
+        .btn-submit {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #1976d2;
+        }
+        
+        .btn-reset {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #f57c00;
+        }
+        
+        .progress-container {
+            padding: 15px 30px;
+            background: #e3f2fd;
+            border-bottom: 1px solid #bbdefb;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #4caf50;
+            width: 5%;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-weight: 500;
         }
         
         .quiz-container {
             padding: 30px;
         }
         
-        .progress-container {
+        .question {
             margin-bottom: 30px;
-        }
-        
-        .progress-bar {
-            height: 12px;
-            background-color: #e0e0e0;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(to right, #1a237e, #283593);
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .question-container {
-            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 5px solid #1a2a6c;
         }
         
         .question-number {
-            font-size: 1rem;
-            color: #1a237e;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 5px;
+            color: #1a2a6c;
+            margin-bottom: 10px;
         }
         
         .question-text {
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.2rem;
             margin-bottom: 20px;
-            line-height: 1.4;
+            font-weight: 500;
         }
         
-        .options-container {
+        .options {
             display: grid;
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: 1fr;
+            gap: 12px;
         }
         
         .option {
-            padding: 15px 20px;
-            background-color: #f5f5f5;
-            border-radius: 10px;
+            padding: 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            font-weight: 500;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
+            gap: 12px;
         }
         
         .option:hover {
-            background-color: #e9e9e9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            border-color: #1a2a6c;
+            background: #f0f4ff;
         }
         
         .option.selected {
-            background-color: #e8eaf6;
-            border-color: #1a237e;
+            border-color: #1a2a6c;
+            background: #e3f2fd;
         }
         
-        .option.correct {
-            background-color: #d4edda;
-            border-color: #28a745;
+        .option input {
+            transform: scale(1.2);
         }
         
-        .option.incorrect {
-            background-color: #f8d7da;
-            border-color: #dc3545;
-        }
-        
-        .option-letter {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background-color: #1a237e;
-            color: white;
-            border-radius: 50%;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-        
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-        
-        #prev-btn {
-            background-color: #6c757d;
-            color: white;
-        }
-        
-        #prev-btn:hover:not(:disabled) {
-            background-color: #5a6268;
-            transform: translateY(-2px);
-        }
-        
-        #next-btn {
-            background: linear-gradient(to right, #1a237e, #283593);
-            color: white;
-        }
-        
-        #next-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        
-        .explanation {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+        .result-container {
             display: none;
-            border-left: 5px solid #1a237e;
-        }
-        
-        .explanation-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #1a237e;
-        }
-        
-        .results-container {
+            padding: 40px;
             text-align: center;
-            padding: 40px 20px;
-            display: none;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            color: #1a2a6c;
+            margin-bottom: 20px;
         }
         
         .score {
-            font-size: 4rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #1a237e, #283593);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4caf50;
             margin: 20px 0;
         }
         
-        .score-text {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #555;
+        .result-details {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        #restart-btn {
-            background: linear-gradient(to right, #1a237e, #283593);
-            color: white;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-        }
-        
-        #restart-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .quiz-info {
+        .detail-item {
+            padding: 15px;
+            background: #f5f5f5;
+            margin-bottom: 10px;
+            border-radius: 8px;
             display: flex;
             justify-content: space-between;
+        }
+        
+        .correct {
+            border-left: 5px solid #4caf50;
+        }
+        
+        .incorrect {
+            border-left: 5px solid #f44336;
+        }
+        
+        .review-btn {
+            background: #9c27b0;
+            color: white;
             margin-top: 20px;
-            font-size: 0.9rem;
-            color: #666;
         }
         
-        .formula-highlight {
-            background-color: #e8eaf6;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
+        .review-btn:hover {
+            background: #7b1fa2;
         }
         
-        .jee-tip {
-            background-color: #fff3e0;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border-left: 4px solid #ff6f00;
-            font-size: 0.9rem;
-        }
-        
-        .dimension-box {
-            background-color: #e3f2fd;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border: 1px solid #90caf9;
-            font-family: 'Courier New', monospace;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 10px;
+        @media (max-width: 768px) {
+            .timer-container {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+                display: inline-block;
             }
             
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .quiz-container {
-                padding: 20px;
-            }
-            
-            .question-text {
-                font-size: 1.2rem;
-            }
-            
-            .button-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            button {
-                width: 100%;
-            }
-            
-            .quiz-info {
+            .nav-buttons {
                 flex-direction: column;
                 gap: 10px;
-                text-align: center;
             }
             
-            .jee-badge, .measurement-tools {
-                display: none;
+            .btn {
+                justify-content: center;
             }
         }
     </style>
@@ -398,369 +267,355 @@
 <body>
     <div class="container">
         <header>
-            <div class="jee-badge">JEE</div>
-            <div class="measurement-tools">
-                <div class="vernier"></div>
-                <div class="screw-gauge"></div>
+            <h1>Physics and Measurement Quiz</h1>
+            <p class="subtitle">Test your knowledge of units, dimensions, and measurement principles</p>
+            <div class="timer-container">
+                Time Left: <span id="timer">20:00</span>
             </div>
-            <h1>Chapter : 1 Units & Measurements</h1>
-            <div class="subtitle">Advanced level questions for JEE Main & Advanced preparation</div>
-            <div class="jee-level">JEE Advanced Level</div>
         </header>
         
-        <div class="quiz-container">
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress" id="progress"></div>
-                </div>
-                <div class="progress-text">
-                    <span>Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
-                    <span>Score: <span id="score">0</span>/20</span>
-                </div>
+        <div class="nav-buttons">
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <div>
+                <button class="btn btn-reset" onclick="resetQuiz()">
+                    Reset Quiz
+                </button>
+                <button class="btn btn-submit" onclick="submitQuiz()">
+                    Submit Answers
+                </button>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="quiz-progress"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progress: <span id="progress-text">1</span>/20</span>
+                <span id="answered-count">0 questions answered</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-content">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="result-container" id="result-content">
+            <h2 class="result-title">Quiz Results</h2>
+            <div class="score" id="score">0/20</div>
+            <p id="result-message"></p>
+            
+            <div class="result-details" id="result-details">
+                <!-- Result details will be inserted here -->
             </div>
             
-            <div class="question-container">
-                <div class="question-number">Question 1</div>
-                <div class="question-text" id="question-text">Question text will appear here</div>
-                
-                <div class="options-container" id="options-container">
-                    <!-- Options will be inserted here by JavaScript -->
-                </div>
-                
-                <div class="explanation" id="explanation">
-                    <div class="explanation-title">Explanation:</div>
-                    <div id="explanation-text"></div>
-                </div>
-                
-                <div class="button-container">
-                    <button id="prev-btn" disabled>Previous</button>
-                    <button id="next-btn">Next</button>
-                </div>
-                
-                <div class="quiz-info">
-                    <div>Topic: Units & Measurements</div>
-                    <div>Level: JEE Advanced</div>
-                </div>
-            </div>
-            
-            <div class="results-container" id="results-container">
-                <h2>Quiz Completed!</h2>
-                <div class="score" id="final-score">0/20</div>
-                <div class="score-text" id="score-text">Well done!</div>
-                <button id="restart-btn">Restart Quiz</button>
-                <button id="back-to-home-btn"><a href="neet.html">Back to Home</a></button>
-            </div>
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span><a href="jee.html">Back to Home</a>
+            </button>
+            <button class="btn review-btn" onclick="resetQuiz()">
+                Take Quiz Again
+            </button>
         </div>
     </div>
 
     <script>
-        const jeeUnitsQuiz = [
+        // Quiz questions based on Physics and Measurement
+        const quizQuestions = [
             {
-                q: "The time period of oscillation of a simple pendulum is given by T = 2π√(l/g). If the measured value of l is 20.0 cm with 1 mm accuracy and time for 100 oscillations is 90 s with 1 s resolution, the accuracy in determination of g is:",
-                o: ["3%", "2%", "1%", "0.5%"],
-                a: 0,
-                exp: "Δg/g = Δl/l + 2ΔT/T = (0.1/20.0) + 2×(1/90) = 0.005 + 0.0222 = 0.0272 ≈ 2.72% ≈ 3%"
+                question: "What is the SI unit of luminous intensity?",
+                options: ["Candela", "Lumen", "Lux", "Watt"],
+                correct: 0
             },
             {
-                q: "The dimensions of (ε₀E²), where ε₀ is permittivity of free space and E is electric field, are:",
-                o: ["[ML⁻¹T⁻²]", "[ML²T⁻²]", "[MLT⁻²]", "[M⁻¹L⁻³T⁴A²]"],
-                a: 0,
-                exp: "ε₀ has dimensions [M⁻¹L⁻³T⁴A²], E has [MLT⁻³A⁻¹]. So ε₀E² = [M⁻¹L⁻³T⁴A²] × [M²L²T⁻⁶A⁻²] = [ML⁻¹T⁻²]"
+                question: "Which of the following has the same dimensions as work?",
+                options: ["Torque", "Power", "Force", "Pressure"],
+                correct: 0
             },
             {
-                q: "In a screw gauge, 5 complete rotations of the cap advance it by 2.5 mm. There are 100 divisions on circular scale. The least count is:",
-                o: ["0.005 mm", "0.001 mm", "0.01 mm", "0.05 mm"],
-                a: 0,
-                exp: "Pitch = 2.5 mm/5 = 0.5 mm. Least count = Pitch/100 = 0.5/100 = 0.005 mm"
+                question: "The dimensional formula for force is:",
+                options: ["[MLT⁻²]", "[ML²T⁻²]", "[MLT⁻¹]", "[M⁰LT⁻²]"],
+                correct: 0
             },
             {
-                q: "The velocity v of a particle depends on time t as v = α√t + β/t. The dimensions of α and β are:",
-                o: ["[LT⁻¹], [LT⁻¹]", "[LT⁻³/²], [LT⁻²]", "[LT⁻¹/²], [L]", "[LT⁻¹/²], [LT⁻¹]"],
-                a: 2,
-                exp: "Dimensions: [α√t] = [LT⁻¹] ⇒ [α] = [LT⁻¹]/[T¹/²] = [LT⁻³/²]. [β/t] = [LT⁻¹] ⇒ [β] = [LT⁻¹][T] = [L]"
+                question: "Which physical quantity has the dimensional formula [ML²T⁻¹]?",
+                options: ["Planck's constant", "Angular momentum", "Both A and B", "Impulse"],
+                correct: 2
             },
             {
-                q: "A physical quantity P is related to four observables a, b, c, d as P = a³b²/√(cd). The percentage errors in a, b, c, d are 1%, 3%, 4%, 2% respectively. The percentage error in P is:",
-                o: ["14%", "13%", "16%", "10%"],
-                a: 1,
-                exp: "ΔP/P = 3(Δa/a) + 2(Δb/b) + ½(Δc/c) + ½(Δd/d) = 3×1 + 2×3 + ½×4 + ½×2 = 3 + 6 + 2 + 1 = 12%"
+                question: "What is the dimensional formula for the universal gas constant?",
+                options: ["[ML²T⁻²K⁻¹mol⁻¹]", "[MLT⁻²K⁻¹]", "[ML²T⁻²]", "[ML²T⁻¹K⁻¹]"],
+                correct: 0
             },
             {
-                q: "The dimensions of (μ₀ε₀)⁻¹/², where μ₀ is permeability and ε₀ is permittivity of free space, are:",
-                o: ["[LT⁻¹]", "[L⁻¹T]", "[MLT⁻¹]", "[M⁻¹L⁻³T⁴A²]"],
-                a: 0,
-                exp: "c = 1/√(μ₀ε₀), so (μ₀ε₀)⁻¹/² has dimensions of velocity [LT⁻¹]"
+                question: "Which of the following is a dimensionless quantity?",
+                options: ["Strain", "Stress", "Force", "Velocity"],
+                correct: 0
             },
             {
-                q: "In an experiment, the period of oscillation of a simple pendulum is observed to be 2.63 s, 2.56 s, 2.42 s, 2.71 s, 2.80 s. The mean absolute error is:",
-                o: ["0.11 s", "0.12 s", "0.13 s", "0.14 s"],
-                a: 0,
-                exp: "Mean = (2.63+2.56+2.42+2.71+2.80)/5 = 2.624 s. Absolute errors: 0.006, 0.064, 0.204, 0.086, 0.176. Mean absolute error = (0.006+0.064+0.204+0.086+0.176)/5 = 0.1072 ≈ 0.11 s"
+                question: "The least count of an instrument represents:",
+                options: ["The smallest measurement it can make", "Its maximum range", "Its accuracy", "Its precision"],
+                correct: 0
             },
             {
-                q: "The dimensions of a/b in the relation P = (a - t²)/(bx), where P is pressure, x is distance, and t is time, are:",
-                o: ["[M²LT⁻³]", "[ML²T⁻³]", "[MLT⁻³]", "[MT⁻²]"],
-                a: 3,
-                exp: "[a] = [t²] = [T²] (since a - t² is dimensionally consistent). [P] = [a]/[bx] ⇒ [ML⁻¹T⁻²] = [T²]/([b][L]) ⇒ [b] = [T²]/([ML⁻¹T⁻²][L]) = [M⁻¹T⁴]. So a/b = [T²]/[M⁻¹T⁴] = [MT⁻²]"
+                question: "Which of the following has dimensions different from the others?",
+                options: ["Work", "Energy", "Torque", "Power"],
+                correct: 3
             },
             {
-                q: "A student measures the distance traversed in free fall of a body, initially at rest, in a given time. He uses this data to estimate g, the acceleration due to gravity. If the maximum percentage errors in measurement of the distance and time are e₁ and e₂ respectively, the percentage error in estimation of g is:",
-                o: ["e₂ + 2e₁", "e₁ + 2e₂", "e₁ + e₂", "e₁ - 2e₂"],
-                a: 1,
-                exp: "s = ½gt² ⇒ g = 2s/t². Δg/g = Δs/s + 2Δt/t = e₁ + 2e₂"
+                question: "The dimensional formula for surface tension is:",
+                options: ["[MT⁻²]", "[MLT⁻²]", "[ML²T⁻²]", "[ML⁻¹T⁻²]"],
+                correct: 0
             },
             {
-                q: "The dimensions of σb⁴ (Stefan's constant × b⁴ where b is Wien's constant) are:",
-                o: ["[MT⁻³]", "[ML²T⁻²]", "[MLT⁻³]", "[ML⁻¹T⁻²]"],
-                a: 0,
-                exp: "σ has [MT⁻³], b (Wien's constant) has [L]. So σb⁴ = [MT⁻³][L⁴] = [ML⁴T⁻³]"
+                question: "Which application is NOT a use of dimensional analysis?",
+                options: ["Checking dimensional correctness", "Converting units between systems", "Finding numerical constants", "Measuring least count"],
+                correct: 3
             },
             {
-                q: "In a Vernier calipers, N divisions of vernier scale coincide with (N-1) divisions of main scale (1 division of main scale = 1 mm). The least count is:",
-                o: ["1/N mm", "1/(N-1) mm", "0.1 mm", "0.01 mm"],
-                a: 0,
-                exp: "Least count = 1 MSD - 1 VSD = 1 mm - (N-1)/N mm = 1/N mm"
+                question: "What is the SI unit of amount of substance?",
+                options: ["Mole", "Gram", "Kilogram", "Avogadro"],
+                correct: 0
             },
             {
-                q: "The equation of state for a real gas is given by (P + a/V²)(V - b) = RT. The dimensions of a are:",
-                o: ["[ML⁵T⁻²]", "[M⁻¹L⁵T⁻²]", "[ML⁻¹T⁻²]", "[ML²T⁻²]"],
-                a: 0,
-                exp: "[a/V²] = [P] ⇒ [a] = [P][V²] = [ML⁻¹T⁻²][L⁶] = [ML⁵T⁻²]"
+                question: "Which pair has the same dimensions?",
+                options: ["Work and Torque", "Force and Pressure", "Energy and Power", "Velocity and Acceleration"],
+                correct: 0
             },
             {
-                q: "If energy E, velocity V and time T are chosen as fundamental units, the dimensional formula for surface tension is:",
-                o: ["[EV⁻²T⁻²]", "[E²V⁻²T⁻²]", "[EV⁻¹T⁻²]", "[E²V⁻¹T⁻²]"],
-                a: 0,
-                exp: "Surface tension = Force/length = [MLT⁻²]/[L] = [MT⁻²]. E = [ML²T⁻²], V = [LT⁻¹], T = [T]. Let surface tension = EᵃVᵇTᶜ ⇒ [MT⁻²] = [ML²T⁻²]ᵃ[LT⁻¹]ᵇ[T]ᶜ. Solving: a=1, b=-2, c=-2"
+                question: "The dimensional formula for Planck's constant is:",
+                options: ["[ML²T⁻¹]", "[MLT⁻¹]", "[ML²T⁻²]", "[MLT⁻²]"],
+                correct: 0
             },
             {
-                q: "The percentage error in the measurement of mass and speed are 2% and 3% respectively. The maximum error in kinetic energy is:",
-                o: ["8%", "1%", "12%", "10%"],
-                a: 0,
-                exp: "K = ½mv² ⇒ ΔK/K = Δm/m + 2Δv/v = 2% + 2×3% = 8%"
+                question: "Which of the following is a fundamental unit?",
+                options: ["Newton", "Joule", "Second", "Pascal"],
+                correct: 2
             },
             {
-                q: "The dimensions of (1/2)ε₀E² (energy density in electric field) are:",
-                o: ["[ML⁻¹T⁻²]", "[ML²T⁻²]", "[MLT⁻²]", "[M⁻¹L⁻³T⁴A²]"],
-                a: 0,
-                exp: "Energy density = Energy/Volume = [ML²T⁻²]/[L³] = [ML⁻¹T⁻²]"
+                question: "What is the dimensional formula for impulse?",
+                options: ["[MLT⁻¹]", "[MLT⁻²]", "[ML²T⁻¹]", "[ML²T⁻²]"],
+                correct: 0
             },
             {
-                q: "In an experiment to find acceleration due to gravity using simple pendulum, time for 20 oscillations is measured as 30 s, 32 s, 35 s, 33 s, 31 s. The absolute error in mean time period is:",
-                o: ["0.3 s", "0.4 s", "0.5 s", "0.6 s"],
-                a: 0,
-                exp: "Mean time for 20 oscillations = (30+32+35+33+31)/5 = 32.2 s. Mean time period = 32.2/20 = 1.61 s. Mean absolute error in time period = (|30-32.2|+|32-32.2|+|35-32.2|+|33-32.2|+|31-32.2|)/(5×20) = (2.2+0.2+2.8+0.8+1.2)/100 = 7.2/100 = 0.072 s ≈ 0.07 s"
+                question: "Which physical quantity has dimensions [M⁰L⁰T⁰]?",
+                options: ["Strain", "Stress", "Force", "Velocity"],
+                correct: 0
             },
             {
-                q: "The dimensional formula for (1/2)LI², where L is inductance and I is current, is:",
-                o: ["[ML²T⁻²]", "[MLT⁻²]", "[ML²T⁻¹]", "[ML⁻¹T⁻²]"],
-                a: 0,
-                exp: "½LI² represents energy stored in inductor. So dimensions = [ML²T⁻²]"
+                question: "The dimensional formula for angular velocity is:",
+                options: ["[M⁰L⁰T⁻¹]", "[MLT⁻¹]", "[ML²T⁻²]", "[MLT⁻²]"],
+                correct: 0
             },
             {
-                q: "If the units of length, mass and time are doubled, the unit of energy will be:",
-                o: ["Doubled", "Halved", "4 times", "8 times"],
-                a: 2,
-                exp: "Energy = [ML²T⁻²]. If M, L, T are doubled, new energy unit = (2M)(2L)²/(2T)² = 2×4/4 = 2 times original. Wait, let's recalculate: New unit = (2M)(2L)²/(2T)² = 2×4/4 × original = 2 times? Actually: [M]→2[M], [L²]→4[L²], [T⁻²]→¼[T⁻²]. So product = 2×4×¼ = 2 times original"
+                question: "What is the SI unit of electric current?",
+                options: ["Ampere", "Volt", "Ohm", "Coulomb"],
+                correct: 0
             },
             {
-                q: "The dimensions of (h/2π), where h is Planck's constant, are:",
-                o: ["[ML²T⁻¹]", "[MLT⁻¹]", "[ML²T⁻²]", "[MT⁻¹]"],
-                a: 0,
-                exp: "h has dimensions [ML²T⁻¹], so h/2π also has [ML²T⁻¹]"
+                question: "Which of the following has dimensions of [ML⁻¹T⁻²]?",
+                options: ["Pressure", "Force", "Energy", "Power"],
+                correct: 0
             },
             {
-                q: "In the measurement of a physical quantity X = (A²B)/(C¹/³D³), the percentage errors in A, B, C, D are 1%, 2%, 3%, 4% respectively. The maximum percentage error in X is:",
-                o: ["14%", "16%", "18%", "20%"],
-                a: 1,
-                exp: "ΔX/X = 2(ΔA/A) + (ΔB/B) + (1/3)(ΔC/C) + 3(ΔD/D) = 2×1 + 2 + (1/3)×3 + 3×4 = 2 + 2 + 1 + 12 = 17%"
+                question: "The dimensional formula for the gravitational constant is:",
+                options: ["[M⁻¹L³T⁻²]", "[MLT⁻²]", "[ML²T⁻²]", "[M⁰L³T⁻²]"],
+                correct: 0
             }
         ];
 
         // Quiz state
         let currentQuestion = 0;
-        let score = 0;
-        let userAnswers = new Array(jeeUnitsQuiz.length).fill(null);
-        
-        // DOM elements
-        const questionText = document.getElementById('question-text');
-        const optionsContainer = document.getElementById('options-container');
-        const explanation = document.getElementById('explanation');
-        const explanationText = document.getElementById('explanation-text');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const progress = document.getElementById('progress');
-        const currentQuestionEl = document.getElementById('current-question');
-        const totalQuestionsEl = document.getElementById('total-questions');
-        const scoreEl = document.getElementById('score');
-        const resultsContainer = document.getElementById('results-container');
-        const finalScore = document.getElementById('final-score');
-        const scoreText = document.getElementById('score-text');
-        const restartBtn = document.getElementById('restart-btn');
-        
-        // Initialize quiz
-        function initQuiz() {
-            totalQuestionsEl.textContent = jeeUnitsQuiz.length;
-            loadQuestion();
+        let userAnswers = Array(quizQuestions.length).fill(null);
+        let timeLeft = 20 * 60; // 20 minutes in seconds
+        let timerInterval;
+        let quizSubmitted = false;
+
+        // Initialize the quiz
+        function initializeQuiz() {
+            displayQuestion();
+            startTimer();
+            updateProgress();
         }
-        
-        // Load current question
-        function loadQuestion() {
-            const question = jeeUnitsQuiz[currentQuestion];
-            questionText.textContent = question.q;
-            currentQuestionEl.textContent = currentQuestion + 1;
+
+        // Display current question
+        function displayQuestion() {
+            const quizContent = document.getElementById('quiz-content');
+            const question = quizQuestions[currentQuestion];
             
-            // Update progress bar
-            progress.style.width = `${((currentQuestion) / jeeUnitsQuiz.length) * 100}%`;
-            
-            // Clear previous options
-            optionsContainer.innerHTML = '';
-            
-            // Create new options
-            question.o.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.classList.add('option');
-                
-                const optionLetter = document.createElement('div');
-                optionLetter.classList.add('option-letter');
-                optionLetter.textContent = String.fromCharCode(65 + index); // A, B, C, D
-                
-                const optionText = document.createElement('div');
-                optionText.textContent = option;
-                
-                optionElement.appendChild(optionLetter);
-                optionElement.appendChild(optionText);
-                
-                // If user has already selected this option
-                if (userAnswers[currentQuestion] === index) {
-                    optionElement.classList.add('selected');
-                    
-                    // Show if correct/incorrect after answer
-                    if (userAnswers[currentQuestion] !== null) {
-                        if (index === question.a) {
-                            optionElement.classList.add('correct');
-                        } else {
-                            optionElement.classList.add('incorrect');
-                        }
-                    }
-                }
-                
-                optionElement.addEventListener('click', () => selectOption(index));
-                optionsContainer.appendChild(optionElement);
+            let optionsHTML = '';
+            question.options.forEach((option, index) => {
+                const isChecked = userAnswers[currentQuestion] === index ? 'checked' : '';
+                optionsHTML += `
+                    <label class="option ${isChecked ? 'selected' : ''}">
+                        <input type="radio" name="answer" value="${index}" ${isChecked} 
+                               onchange="selectAnswer(${index})">
+                        ${option}
+                    </label>
+                `;
             });
             
-            // Show explanation if answer has been selected
-            if (userAnswers[currentQuestion] !== null) {
-                explanation.style.display = 'block';
-                explanationText.textContent = question.exp;
-            } else {
-                explanation.style.display = 'none';
-            }
-            
-            // Update button states
-            prevBtn.disabled = currentQuestion === 0;
-            
-            if (currentQuestion === jeeUnitsQuiz.length - 1) {
-                nextBtn.textContent = 'Finish';
-            } else {
-                nextBtn.textContent = 'Next';
-            }
-            
-            // Update score
-            scoreEl.textContent = score;
+            quizContent.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${quizQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                    <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <button class="btn btn-submit" onclick="nextQuestion()">
+                        ${currentQuestion === quizQuestions.length - 1 ? 'Finish' : 'Next'} →
+                    </button>
+                </div>
+            `;
         }
-        
-        // Select an option
-        function selectOption(index) {
-            // If already answered, don't allow changing
-            if (userAnswers[currentQuestion] !== null) return;
-            
-            // Mark selected option
-            const options = document.querySelectorAll('.option');
-            options.forEach(option => option.classList.remove('selected'));
-            options[index].classList.add('selected');
-            
-            // Store user's answer
-            userAnswers[currentQuestion] = index;
-            
-            // Check if correct
-            const question = jeeUnitsQuiz[currentQuestion];
-            if (index === question.a) {
-                options[index].classList.add('correct');
-                score++;
-                scoreEl.textContent = score;
-            } else {
-                options[index].classList.add('incorrect');
-                // Also show correct answer
-                options[question.a].classList.add('correct');
-            }
-            
-            // Show explanation
-            explanation.style.display = 'block';
-            explanationText.textContent = question.exp;
+
+        // Select an answer
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestion] = answerIndex;
+            document.querySelectorAll('.option').forEach((opt, idx) => {
+                if (idx === answerIndex) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+            updateProgress();
         }
-        
+
         // Navigate to next question
         function nextQuestion() {
-            if (currentQuestion < jeeUnitsQuiz.length - 1) {
+            if (currentQuestion < quizQuestions.length - 1) {
                 currentQuestion++;
-                loadQuestion();
+                displayQuestion();
             } else {
-                showResults();
+                submitQuiz();
             }
         }
-        
+
         // Navigate to previous question
-        function prevQuestion() {
+        function previousQuestion() {
             if (currentQuestion > 0) {
                 currentQuestion--;
-                loadQuestion();
+                displayQuestion();
             }
         }
-        
-        // Show final results
-        function showResults() {
-            document.querySelector('.question-container').style.display = 'none';
-            resultsContainer.style.display = 'block';
+
+        // Update progress bar and counter
+        function updateProgress() {
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            const progress = (answered / quizQuestions.length) * 100;
             
-            finalScore.textContent = `${score}/${jeeUnitsQuiz.length}`;
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = answered;
+            document.getElementById('answered-count').textContent = `${answered} of ${quizQuestions.length} questions answered`;
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
             
-            // Set score message
-            if (score === jeeUnitsQuiz.length) {
-                scoreText.textContent = "Perfect! You're ready for JEE Advanced!";
-            } else if (score >= jeeUnitsQuiz.length * 0.8) {
-                scoreText.textContent = "Excellent! Strong grasp of JEE level concepts!";
-            } else if (score >= jeeUnitsQuiz.length * 0.6) {
-                scoreText.textContent = "Good job! Solid foundation for JEE Main!";
-            } else if (score >= jeeUnitsQuiz.length * 0.4) {
-                scoreText.textContent = "Keep practicing! Focus on error analysis and dimensions!";
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeLeft < 300) { // 5 minutes
+                document.getElementById('timer').style.color = '#ff5252';
+            }
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            if (quizSubmitted) return;
+            
+            quizSubmitted = true;
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            let resultDetails = '';
+            
+            quizQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                
+                if (isCorrect) score++;
+                
+                resultDetails += `
+                    <div class="detail-item ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div>
+                            <strong>Q${index + 1}:</strong> ${question.question}<br>
+                            <span>Your answer: ${userAnswer !== null ? question.options[userAnswer] : 'Not answered'}</span><br>
+                            <span>Correct answer: ${question.options[question.correct]}</span>
+                        </div>
+                        <div>${isCorrect ? '✓' : '✗'}</div>
+                    </div>
+                `;
+            });
+            
+            // Display results
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('result-content').style.display = 'block';
+            document.getElementById('score').textContent = `${score}/${quizQuestions.length}`;
+            document.getElementById('result-details').innerHTML = resultDetails;
+            
+            // Result message based on score
+            let message = '';
+            if (score >= 18) {
+                message = 'Excellent! You have a strong understanding of Physics and Measurement.';
+            } else if (score >= 14) {
+                message = 'Good job! You have a good grasp of the concepts.';
+            } else if (score >= 10) {
+                message = 'Not bad! Review the material to improve your understanding.';
             } else {
-                scoreText.textContent = "Need more preparation! Review fundamental concepts thoroughly!";
+                message = 'Keep studying! Review the Physics and Measurement concepts thoroughly.';
             }
             
-            // Update progress bar to 100%
-            progress.style.width = '100%';
+            document.getElementById('result-message').textContent = message;
         }
-        
-        // Restart quiz
-        function restartQuiz() {
+
+        // Reset the quiz
+        function resetQuiz() {
             currentQuestion = 0;
-            score = 0;
-            userAnswers = new Array(jeeUnitsQuiz.length).fill(null);
+            userAnswers = Array(quizQuestions.length).fill(null);
+            timeLeft = 20 * 60;
+            quizSubmitted = false;
             
-            document.querySelector('.question-container').style.display = 'block';
-            resultsContainer.style.display = 'none';
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('result-content').style.display = 'none';
             
-            loadQuestion();
+            clearInterval(timerInterval);
+            initializeQuiz();
         }
-        
-        // Event listeners
-        prevBtn.addEventListener('click', prevQuestion);
-        nextBtn.addEventListener('click', nextQuestion);
-        restartBtn.addEventListener('click', restartQuiz);
-        
-        // Initialize the quiz
-        initQuiz();
+
+        // Navigate to home page
+        function goToHome() {
+            // In a real application, this would redirect to jee.html
+            // For this example, we'll just show an alert
+            alert("Redirecting to JEE Home Page (jee.html)");
+            // window.location.href = "jee.html";
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initializeQuiz;
     </script>
 </body>
 </html>
