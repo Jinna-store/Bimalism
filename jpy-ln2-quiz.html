@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEE Quiz</title>
+    <title>Kinematics Quiz</title>
     <style>
         * {
             margin: 0;
@@ -13,79 +13,33 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a237e, #283593, #303f9f);
+            background: linear-gradient(135deg, #1a237e, #b21f1f, #fdbb2d);
             color: #333;
+            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 800px;
-            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            margin: 20px 0;
         }
         
         header {
             background: linear-gradient(to right, #1a237e, #283593);
             color: white;
-            padding: 30px 20px;
+            padding: 25px 30px;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .motion-animation {
-            position: absolute;
-            width: 120px;
-            height: 80px;
-            top: 30px;
-            right: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .moving-object {
-            width: 40px;
-            height: 40px;
-            background: #ff9800;
-            border-radius: 50%;
-            position: absolute;
-            animation: linear-motion 3s ease-in-out infinite;
-        }
-        
-        .velocity-arrow {
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: #4caf50;
-            top: 20px;
-            left: -30px;
-            animation: velocity-indicator 2s linear infinite;
-        }
-        
-        @keyframes linear-motion {
-            0%, 100% { transform: translateX(-40px); }
-            50% { transform: translateX(40px); }
-        }
-        
-        @keyframes velocity-indicator {
-            0% { transform: translateX(0px); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(80px); opacity: 0; }
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .subtitle {
@@ -93,256 +47,219 @@
             opacity: 0.9;
         }
         
-        .quiz-container {
-            padding: 30px;
+        .timer-container {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-home {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .btn-home:hover {
+            background: #388e3c;
+        }
+        
+        .btn-submit {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #1976d2;
+        }
+        
+        .btn-reset {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #f57c00;
         }
         
         .progress-container {
-            margin-bottom: 30px;
+            padding: 15px 30px;
+            background: #e3f2fd;
+            border-bottom: 1px solid #bbdefb;
         }
         
         .progress-bar {
             height: 10px;
-            background-color: #e0e0e0;
+            background: #e0e0e0;
             border-radius: 5px;
             overflow: hidden;
         }
         
         .progress {
             height: 100%;
-            background: linear-gradient(to right, #1a237e, #283593);
-            width: 0%;
-            transition: width 0.5s ease;
+            background: #4caf50;
+            width: 5%;
+            transition: width 0.5s;
         }
         
         .progress-text {
             display: flex;
             justify-content: space-between;
-            margin-top: 10px;
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .question-container {
-            margin-bottom: 30px;
-        }
-        
-        .question-number {
-            font-size: 1rem;
-            color: #1a237e;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .question-text {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        
-        .options-container {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .option {
-            padding: 15px 20px;
-            background-color: #f5f5f5;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            margin-top: 8px;
             font-weight: 500;
-            display: flex;
-            align-items: center;
         }
         
-        .option:hover {
-            background-color: #e9e9e9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        .quiz-container {
+            padding: 30px;
         }
         
-        .option.selected {
-            background-color: #e8eaf6;
-            border-color: #1a237e;
-        }
-        
-        .option.correct {
-            background-color: #d4edda;
-            border-color: #28a745;
-        }
-        
-        .option.incorrect {
-            background-color: #f8d7da;
-            border-color: #dc3545;
-        }
-        
-        .option-letter {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background-color: #1a237e;
-            color: white;
-            border-radius: 50%;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-        
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-        
-        #prev-btn {
-            background-color: #6c757d;
-            color: white;
-        }
-        
-        #prev-btn:hover:not(:disabled) {
-            background-color: #5a6268;
-            transform: translateY(-2px);
-        }
-        
-        #next-btn {
-            background: linear-gradient(to right, #1a237e, #283593);
-            color: white;
-        }
-        
-        #next-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        
-        .explanation {
-            background-color: #f8f9fa;
+        .question {
+            margin-bottom: 30px;
             padding: 20px;
+            background: #f9f9f9;
             border-radius: 10px;
-            margin-top: 20px;
-            display: none;
             border-left: 5px solid #1a237e;
         }
         
-        .explanation-title {
+        .question-number {
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 10px;
             color: #1a237e;
+            margin-bottom: 10px;
         }
         
-        .results-container {
-            text-align: center;
-            padding: 40px 20px;
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .option:hover {
+            border-color: #1a237e;
+            background: #f0f4ff;
+        }
+        
+        .option.selected {
+            border-color: #1a237e;
+            background: #e3f2fd;
+        }
+        
+        .option input {
+            transform: scale(1.2);
+        }
+        
+        .result-container {
             display: none;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
         }
         
         .score {
-            font-size: 4rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #1a237e, #283593);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4caf50;
             margin: 20px 0;
         }
         
-        .score-text {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #555;
+        .result-details {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        #restart-btn {
-            background: linear-gradient(to right, #1a237e, #283593);
-            color: white;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-        }
-        
-        #restart-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .quiz-info {
+        .detail-item {
+            padding: 15px;
+            background: #f5f5f5;
+            margin-bottom: 10px;
+            border-radius: 8px;
             display: flex;
             justify-content: space-between;
+        }
+        
+        .correct {
+            border-left: 5px solid #4caf50;
+        }
+        
+        .incorrect {
+            border-left: 5px solid #f44336;
+        }
+        
+        .review-btn {
+            background: #9c27b0;
+            color: white;
             margin-top: 20px;
-            font-size: 0.9rem;
-            color: #666;
         }
         
-        .formula-highlight {
-            background-color: #e8eaf6;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
+        .review-btn:hover {
+            background: #7b1fa2;
         }
         
-        .motion-law {
-            background-color: #e3f2fd;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border-left: 4px solid #1976d2;
-            font-style: italic;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 10px;
+        @media (max-width: 768px) {
+            .timer-container {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+                display: inline-block;
             }
             
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .quiz-container {
-                padding: 20px;
-            }
-            
-            .question-text {
-                font-size: 1.2rem;
-            }
-            
-            .button-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            button {
-                width: 100%;
-            }
-            
-            .quiz-info {
+            .nav-buttons {
                 flex-direction: column;
                 gap: 10px;
-                text-align: center;
             }
             
-            .motion-animation {
-                display: none;
+            .btn {
+                justify-content: center;
             }
         }
     </style>
@@ -350,367 +267,455 @@
 <body>
     <div class="container">
         <header>
-            <div class="motion-animation">
-                <div class="moving-object"></div>
-                <div class="velocity-arrow"></div>
+            <h1>Kinematics Quiz</h1>
+            <p class="subtitle">Test your knowledge of motion, velocity, acceleration, and projectile motion</p>
+            <div class="timer-container">
+                Time Left: <span id="timer">20:00</span>
             </div>
-            <h1>Chapter 2: Motion in a Straight Line</h1>
-            <div class="subtitle">JEE Physics Chapter 2 Quiz - Test your kinematics knowledge</div>
         </header>
         
-        <div class="quiz-container">
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress" id="progress"></div>
-                </div>
-                <div class="progress-text">
-                    <span>Question <span id="current-question">1</span> of <span id="total-questions">20</span></span>
-                    <span>Score: <span id="score">0</span>/20</span>
-                </div>
+        <div class="nav-buttons">
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <div>
+                <button class="btn btn-reset" onclick="resetQuiz()">
+                    Reset Quiz
+                </button>
+                <button class="btn btn-submit" onclick="submitQuiz()">
+                    Submit Answers
+                </button>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="quiz-progress"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progress: <span id="progress-text">1</span>/20</span>
+                <span id="answered-count">0 questions answered</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-content">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="result-container" id="result-content">
+            <h2 class="result-title">Quiz Results</h2>
+            <div class="score" id="score">0/20</div>
+            <p id="result-message"></p>
+            
+            <div class="result-details" id="result-details">
+                <!-- Result details will be inserted here -->
             </div>
             
-            <div class="question-container">
-                <div class="question-number">Question 1</div>
-                <div class="question-text" id="question-text">Question text will appear here</div>
-                
-                <div class="options-container" id="options-container">
-                    <!-- Options will be inserted here by JavaScript -->
-                </div>
-                
-                <div class="explanation" id="explanation">
-                    <div class="explanation-title">Explanation:</div>
-                    <div id="explanation-text"></div>
-                </div>
-                
-                <div class="button-container">
-                    <button id="prev-btn" disabled>Previous</button>
-                    <button id="next-btn">Next</button>
-                </div>
-                
-                <div class="quiz-info">
-                    <div>Topic: Motion in Straight Line</div>
-                    <div>Level: JEE Advanced</div>
-                </div>
-            </div>
-            
-            <div class="results-container" id="results-container">
-                <h2>Quiz Completed!</h2>
-                <div class="score" id="final-score">0/20</div>
-                <div class="score-text" id="score-text">Well done!</div>
-                <button id="restart-btn">Restart Quiz</button>
-                <button id="back-to-home-btn"><a href="jee.html">Back to Home</a></button>
-            </div>
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <button class="btn review-btn" onclick="resetQuiz()">
+                Take Quiz Again
+            </button>
         </div>
     </div>
 
     <script>
-        const motionQuiz = [
+        // Quiz questions based on Kinematics
+        const quizQuestions = [
             {
-                q: "A particle moves along a straight line with velocity v = 3t² - 12t + 9 m/s. The distance traveled in the first 4 seconds is:",
-                o: ["16 m", "20 m", "24 m", "28 m"],
-                a: 1,
-                exp: "Distance = ∫|v|dt from 0 to 4. First find when v=0: 3t²-12t+9=0 ⇒ t=1s, 3s. Calculate area: ∫₀¹(9-12t+3t²)dt + ∫₁³(12t-9-3t²)dt + ∫₃⁴(3t²-12t+9)dt = 20 m"
+                question: "What is the definition of displacement?",
+                options: [
+                    "The total distance traveled by an object",
+                    "The difference between final and initial position",
+                    "The rate of change of position",
+                    "The shortest path between two points"
+                ],
+                correct: 1
             },
             {
-                q: "The position-time graph for a particle moving along x-axis is shown. The maximum speed occurs at:",
-                o: ["t = 1 s", "t = 2 s", "t = 3 s", "t = 4 s"],
-                a: 2,
-                exp: "Speed is the magnitude of slope of position-time graph. The steepest slope occurs at t = 3 s."
+                question: "What is the formula for average velocity?",
+                options: [
+                    "v = Δx/Δt",
+                    "v = dx/dt",
+                    "v = x/t",
+                    "v = a*t"
+                ],
+                correct: 0
             },
             {
-                q: "A car accelerates from rest at 2 m/s² for time T, then decelerates at 4 m/s² until it stops. If total time is 9 seconds, find T:",
-                o: ["3 s", "4 s", "5 s", "6 s"],
-                a: 3,
-                exp: "Let T be acceleration time. Velocity after acceleration: v = 2T. Deceleration time = v/4 = T/2. Total time T + T/2 = 9 ⇒ T = 6 s"
+                question: "Instantaneous velocity is defined as:",
+                options: [
+                    "The average velocity over a long time interval",
+                    "The limit of average velocity as Δt approaches zero",
+                    "The maximum velocity an object can achieve",
+                    "The velocity at the starting point"
+                ],
+                correct: 1
             },
             {
-                q: "A ball is thrown vertically upward with speed 20 m/s from the top of a tower of height 100 m. The time taken to hit the ground is:",
-                o: ["2 s", "4 s", "6 s", "8 s"],
-                a: 2,
-                exp: "Using s = ut + ½at²: -100 = 20t - 5t² ⇒ t² - 4t - 20 = 0 ⇒ t = 6 s (positive root)"
+                question: "For an object at rest, which of the following is true?",
+                options: [
+                    "Displacement is zero",
+                    "Velocity is constant and non-zero",
+                    "Acceleration is always negative",
+                    "Position changes with time"
+                ],
+                correct: 0
             },
             {
-                q: "The displacement of a particle is given by x = t³ - 6t² + 9t + 3. The acceleration when velocity is zero is:",
-                o: ["6 m/s²", "-6 m/s²", "12 m/s²", "-12 m/s²"],
-                a: 1,
-                exp: "v = dx/dt = 3t² - 12t + 9 = 0 ⇒ t=1s, 3s. a = dv/dt = 6t - 12. At t=1s, a=-6 m/s²; at t=3s, a=6 m/s²"
+                question: "In motion with constant acceleration, what is the relationship between velocity and time?",
+                options: [
+                    "v = v₀ + at",
+                    "v = v₀ - at",
+                    "v = at²",
+                    "v = v₀/t"
+                ],
+                correct: 0
             },
             {
-                q: "Two trains A and B of length 400 m each are moving on parallel tracks. A at 72 km/h and B at 36 km/h in same direction. Time taken by A to completely overtake B is:",
-                o: ["40 s", "60 s", "80 s", "100 s"],
-                a: 2,
-                exp: "Relative speed = 72 - 36 = 36 km/h = 10 m/s. Total distance to cover = 400 + 400 = 800 m. Time = 800/10 = 80 s"
+                question: "Which equation describes position as a function of time for constant acceleration?",
+                options: [
+                    "x = x₀ + v₀t + ½at²",
+                    "x = v₀t",
+                    "x = ½at²",
+                    "x = x₀ + vt"
+                ],
+                correct: 0
             },
             {
-                q: "A particle starts from rest with acceleration a = 2t m/s². The velocity at t = 4 s is:",
-                o: ["8 m/s", "12 m/s", "16 m/s", "20 m/s"],
-                a: 2,
-                exp: "v = ∫a dt = ∫2t dt = t² + C. Since starts from rest, v=0 at t=0 ⇒ C=0. So v = t². At t=4s, v=16 m/s"
+                question: "In free fall motion, what is the acceleration due to gravity?",
+                options: [
+                    "Always positive",
+                    "Always negative",
+                    "Zero",
+                    "Depends on the mass"
+                ],
+                correct: 1
             },
             {
-                q: "The ratio of distances covered in 1st, 2nd, and 3rd seconds for a uniformly accelerating body starting from rest is:",
-                o: ["1:2:3", "1:3:5", "1:4:9", "1:√2:√3"],
-                a: 1,
-                exp: "Distance in nth second = u + a/2(2n-1). For u=0, ratio = 1:3:5"
+                question: "What is the time of flight for a projectile launched at angle θ with initial velocity v₀?",
+                options: [
+                    "T = v₀sinθ/g",
+                    "T = 2v₀sinθ/g",
+                    "T = v₀cosθ/g",
+                    "T = 2v₀cosθ/g"
+                ],
+                correct: 1
             },
             {
-                q: "A bullet loses 1/20 of its velocity when passing through a plank. The minimum number of planks required to stop it is:",
-                o: ["10", "11", "12", "13"],
-                a: 1,
-                exp: "If velocity becomes 19/20 after one plank, then after n planks, v = (19/20)ⁿv₀. For v=0, n→∞ but practically when (19/20)ⁿ ≈ 0. For stopping, we need n such that (19/20)ⁿv₀ ≈ 0 ⇒ n=11"
+                question: "The horizontal range of a projectile is maximum when the launch angle is:",
+                options: [
+                    "30°",
+                    "45°",
+                    "60°",
+                    "90°"
+                ],
+                correct: 1
             },
             {
-                q: "A car covers first 1/3 of distance at 30 km/h, second 1/3 at 40 km/h, and last 1/3 at 60 km/h. Average speed is:",
-                o: ["40 km/h", "42 km/h", "45 km/h", "48 km/h"],
-                a: 0,
-                exp: "Average speed = total distance/total time. Let total distance = 3d. Time = d/30 + d/40 + d/60 = d/10. Average speed = 3d/(d/10) = 30 km/h"
+                question: "What is the formula for maximum height of a projectile?",
+                options: [
+                    "H = v₀²sin²θ/(2g)",
+                    "H = v₀²sinθ/g",
+                    "H = v₀²cos²θ/(2g)",
+                    "H = 2v₀²sinθ/g"
+                ],
+                correct: 0
             },
             {
-                q: "A particle moves with velocity v = 2/x m/s. The time taken to go from x=1 to x=4 is:",
-                o: ["3 s", "4 s", "5 s", "6 s"],
-                a: 0,
-                exp: "v = dx/dt = 2/x ⇒ dt = (x/2)dx. Integrate: ∫dt = ½∫x dx from 1 to 4 ⇒ t = ¼[x²]₁⁴ = ¼(16-1) = 15/4 = 3.75 ≈ 4 s"
+                question: "In circular motion with constant speed, the acceleration is:",
+                options: [
+                    "Zero",
+                    "Tangential to the path",
+                    "Directed toward the center",
+                    "Directed away from the center"
+                ],
+                correct: 2
             },
             {
-                q: "Two bodies are thrown vertically upward with speeds 40 m/s and 60 m/s. The ratio of their maximum heights is:",
-                o: ["4:9", "2:3", "3:4", "1:2"],
-                a: 0,
-                exp: "Maximum height h = u²/2g. Ratio = (40²)/(60²) = 1600/3600 = 4:9"
+                question: "What is the relationship between linear velocity (v) and angular velocity (ω) in circular motion?",
+                options: [
+                    "v = ω/r",
+                    "v = ωr",
+                    "v = ω²r",
+                    "v = r/ω"
+                ],
+                correct: 1
             },
             {
-                q: "A particle moves according to x = 4cos(πt). The magnitude of acceleration at t=1s is:",
-                o: ["4π²", "2π²", "π²", "0"],
-                a: 0,
-                exp: "x = 4cos(πt), v = -4πsin(πt), a = -4π²cos(πt). At t=1s, a = -4π²cos(π) = 4π²"
+                question: "The centripetal acceleration for an object in circular motion is given by:",
+                options: [
+                    "a = v²/r",
+                    "a = v/r",
+                    "a = ω/r",
+                    "a = r/v"
+                ],
+                correct: 0
             },
             {
-                q: "A stone is dropped from a balloon ascending with velocity 10 m/s at height 100 m. The time taken to hit ground is:",
-                o: ["2 s", "4 s", "6 s", "8 s"],
-                a: 2,
-                exp: "Initial velocity relative to ground = -10 m/s (upward). Using s = ut + ½at²: -100 = -10t - 5t² ⇒ t² + 2t - 20 = 0 ⇒ t ≈ 4s"
+                question: "For two-dimensional motion, the x and y components:",
+                options: [
+                    "Are always equal",
+                    "Are independent of each other",
+                    "Have the same acceleration",
+                    "Must have the same velocity"
+                ],
+                correct: 1
             },
             {
-                q: "The velocity-time graph of a particle is a straight line with negative slope. The particle is:",
-                o: ["Speeding up", "Slowing down", "Moving with constant speed", "At rest"],
-                a: 1,
-                exp: "Negative slope means negative acceleration. If velocity and acceleration have opposite signs, the particle is slowing down."
+                question: "In projectile motion, the horizontal component of velocity:",
+                options: [
+                    "Increases with time",
+                    "Decreases with time",
+                    "Remains constant",
+                    "Is zero at maximum height"
+                ],
+                correct: 2
             },
             {
-                q: "A body covers 20 m in 2nd second and 40 m in 4th second of its motion. The acceleration is:",
-                o: ["5 m/s²", "10 m/s²", "15 m/s²", "20 m/s²"],
-                a: 1,
-                exp: "Distance in nth second = u + a/2(2n-1). For 2nd second: u + 3a/2 = 20. For 4th second: u + 7a/2 = 40. Subtract: 2a = 20 ⇒ a = 10 m/s²"
+                question: "The trajectory of a projectile is:",
+                options: [
+                    "A straight line",
+                    "A circle",
+                    "A parabola",
+                    "A hyperbola"
+                ],
+                correct: 2
             },
             {
-                q: "A particle moves with constant acceleration. Its velocity increases from 10 m/s to 20 m/s while covering 135 m. Time taken is:",
-                o: ["6 s", "9 s", "12 s", "15 s"],
-                a: 1,
-                exp: "Using v² = u² + 2as: 400 = 100 + 2a×135 ⇒ a = 300/270 = 10/9 m/s². Time = (v-u)/a = 10/(10/9) = 9 s"
+                question: "What does the area under a velocity-time graph represent?",
+                options: [
+                    "Acceleration",
+                    "Displacement",
+                    "Velocity",
+                    "Time"
+                ],
+                correct: 1
             },
             {
-                q: "The position x of a particle varies with time as x = t² - 6t. The distance traveled in first 6 seconds is:",
-                o: ["18 m", "20 m", "22 m", "24 m"],
-                a: 0,
-                exp: "x = t² - 6t = t(t-6). The particle changes direction at t=3s when v=0. Distance = |x(3)-x(0)| + |x(6)-x(3)| = |9-18-0| + |36-36-(-9)| = 9 + 9 = 18 m"
+                question: "For motion with constant deceleration, the displacement equation is:",
+                options: [
+                    "x = x₀ + v₀t + ½at²",
+                    "x = x₀ + v₀t - ½at²",
+                    "x = v₀t - ½at²",
+                    "x = ½at²"
+                ],
+                correct: 1
             },
             {
-                q: "A ball is dropped from height 100 m. Simultaneously, another is thrown upward from ground with speed 50 m/s. They meet at:",
-                o: ["20 m from top", "40 m from top", "60 m from top", "80 m from top"],
-                a: 3,
-                exp: "Let they meet after time t. For dropped ball: 100 - h = ½gt². For thrown ball: h = 50t - ½gt². Adding: 100 = 50t ⇒ t=2s. h = 50×2 - 5×4 = 100 - 20 = 80 m from ground, so 20 m from top."
+                question: "The tangential component of acceleration is responsible for:",
+                options: [
+                    "Change in direction",
+                    "Change in speed",
+                    "Centripetal force",
+                    "Constant velocity"
+                ],
+                correct: 1
             },
             {
-                q: "A particle starts from origin with velocity 5 m/s and acceleration 2 m/s². The average velocity in first 10 seconds is:",
-                o: ["10 m/s", "12 m/s", "15 m/s", "20 m/s"],
-                a: 2,
-                exp: "Displacement s = ut + ½at² = 5×10 + ½×2×100 = 50 + 100 = 150 m. Average velocity = total displacement/time = 150/10 = 15 m/s"
+                question: "In free fall, if air resistance is neglected, all objects:",
+                options: [
+                    "Fall with the same acceleration",
+                    "Fall with acceleration proportional to mass",
+                    "Have different accelerations",
+                    "Accelerate at different rates"
+                ],
+                correct: 0
             }
         ];
 
         // Quiz state
         let currentQuestion = 0;
-        let score = 0;
-        let userAnswers = new Array(motionQuiz.length).fill(null);
-        
-        // DOM elements
-        const questionText = document.getElementById('question-text');
-        const optionsContainer = document.getElementById('options-container');
-        const explanation = document.getElementById('explanation');
-        const explanationText = document.getElementById('explanation-text');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const progress = document.getElementById('progress');
-        const currentQuestionEl = document.getElementById('current-question');
-        const totalQuestionsEl = document.getElementById('total-questions');
-        const scoreEl = document.getElementById('score');
-        const resultsContainer = document.getElementById('results-container');
-        const finalScore = document.getElementById('final-score');
-        const scoreText = document.getElementById('score-text');
-        const restartBtn = document.getElementById('restart-btn');
-        
-        // Initialize quiz
-        function initQuiz() {
-            totalQuestionsEl.textContent = motionQuiz.length;
-            loadQuestion();
+        let userAnswers = Array(quizQuestions.length).fill(null);
+        let timeLeft = 20 * 60; // 20 minutes in seconds
+        let timerInterval;
+        let quizSubmitted = false;
+
+        // Initialize the quiz
+        function initializeQuiz() {
+            displayQuestion();
+            startTimer();
+            updateProgress();
         }
-        
-        // Load current question
-        function loadQuestion() {
-            const question = motionQuiz[currentQuestion];
-            questionText.textContent = question.q;
-            currentQuestionEl.textContent = currentQuestion + 1;
+
+        // Display current question
+        function displayQuestion() {
+            const quizContent = document.getElementById('quiz-content');
+            const question = quizQuestions[currentQuestion];
             
-            // Update progress bar
-            progress.style.width = `${((currentQuestion) / motionQuiz.length) * 100}%`;
-            
-            // Clear previous options
-            optionsContainer.innerHTML = '';
-            
-            // Create new options
-            question.o.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.classList.add('option');
-                
-                const optionLetter = document.createElement('div');
-                optionLetter.classList.add('option-letter');
-                optionLetter.textContent = String.fromCharCode(65 + index); // A, B, C, D
-                
-                const optionText = document.createElement('div');
-                optionText.textContent = option;
-                
-                optionElement.appendChild(optionLetter);
-                optionElement.appendChild(optionText);
-                
-                // If user has already selected this option
-                if (userAnswers[currentQuestion] === index) {
-                    optionElement.classList.add('selected');
-                    
-                    // Show if correct/incorrect after answer
-                    if (userAnswers[currentQuestion] !== null) {
-                        if (index === question.a) {
-                            optionElement.classList.add('correct');
-                        } else {
-                            optionElement.classList.add('incorrect');
-                        }
-                    }
-                }
-                
-                optionElement.addEventListener('click', () => selectOption(index));
-                optionsContainer.appendChild(optionElement);
+            let optionsHTML = '';
+            question.options.forEach((option, index) => {
+                const isChecked = userAnswers[currentQuestion] === index ? 'checked' : '';
+                optionsHTML += `
+                    <label class="option ${isChecked ? 'selected' : ''}">
+                        <input type="radio" name="answer" value="${index}" ${isChecked} 
+                               onchange="selectAnswer(${index})">
+                        ${option}
+                    </label>
+                `;
             });
             
-            // Show explanation if answer has been selected
-            if (userAnswers[currentQuestion] !== null) {
-                explanation.style.display = 'block';
-                explanationText.textContent = question.exp;
-            } else {
-                explanation.style.display = 'none';
-            }
-            
-            // Update button states
-            prevBtn.disabled = currentQuestion === 0;
-            
-            if (currentQuestion === motionQuiz.length - 1) {
-                nextBtn.textContent = 'Finish';
-            } else {
-                nextBtn.textContent = 'Next';
-            }
-            
-            // Update score
-            scoreEl.textContent = score;
+            quizContent.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${quizQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                    <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <button class="btn btn-submit" onclick="nextQuestion()">
+                        ${currentQuestion === quizQuestions.length - 1 ? 'Finish' : 'Next'} →
+                    </button>
+                </div>
+            `;
         }
-        
-        // Select an option
-        function selectOption(index) {
-            // If already answered, don't allow changing
-            if (userAnswers[currentQuestion] !== null) return;
-            
-            // Mark selected option
-            const options = document.querySelectorAll('.option');
-            options.forEach(option => option.classList.remove('selected'));
-            options[index].classList.add('selected');
-            
-            // Store user's answer
-            userAnswers[currentQuestion] = index;
-            
-            // Check if correct
-            const question = motionQuiz[currentQuestion];
-            if (index === question.a) {
-                options[index].classList.add('correct');
-                score++;
-                scoreEl.textContent = score;
-            } else {
-                options[index].classList.add('incorrect');
-                // Also show correct answer
-                options[question.a].classList.add('correct');
-            }
-            
-            // Show explanation
-            explanation.style.display = 'block';
-            explanationText.textContent = question.exp;
+
+        // Select an answer
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestion] = answerIndex;
+            document.querySelectorAll('.option').forEach((opt, idx) => {
+                if (idx === answerIndex) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+            updateProgress();
         }
-        
+
         // Navigate to next question
         function nextQuestion() {
-            if (currentQuestion < motionQuiz.length - 1) {
+            if (currentQuestion < quizQuestions.length - 1) {
                 currentQuestion++;
-                loadQuestion();
+                displayQuestion();
             } else {
-                showResults();
+                submitQuiz();
             }
         }
-        
+
         // Navigate to previous question
-        function prevQuestion() {
+        function previousQuestion() {
             if (currentQuestion > 0) {
                 currentQuestion--;
-                loadQuestion();
+                displayQuestion();
             }
         }
-        
-        // Show final results
-        function showResults() {
-            document.querySelector('.question-container').style.display = 'none';
-            resultsContainer.style.display = 'block';
+
+        // Update progress bar and counter
+        function updateProgress() {
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            const progress = (answered / quizQuestions.length) * 100;
             
-            finalScore.textContent = `${score}/${motionQuiz.length}`;
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = answered;
+            document.getElementById('answered-count').textContent = `${answered} of ${quizQuestions.length} questions answered`;
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
             
-            // Set score message
-            if (score === motionQuiz.length) {
-                scoreText.textContent = "Perfect! You're a kinematics expert!";
-            } else if (score >= motionQuiz.length * 0.8) {
-                scoreText.textContent = "Excellent! You have a strong grasp of motion concepts!";
-            } else if (score >= motionQuiz.length * 0.6) {
-                scoreText.textContent = "Good job! You understand the fundamentals of kinematics!";
-            } else if (score >= motionQuiz.length * 0.4) {
-                scoreText.textContent = "Not bad! Keep practicing motion problems!";
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeLeft < 300) { // 5 minutes
+                document.getElementById('timer').style.color = '#ff5252';
+            }
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            if (quizSubmitted) return;
+            
+            quizSubmitted = true;
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            let resultDetails = '';
+            
+            quizQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                
+                if (isCorrect) score++;
+                
+                resultDetails += `
+                    <div class="detail-item ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div>
+                            <strong>Q${index + 1}:</strong> ${question.question}<br>
+                            <span>Your answer: ${userAnswer !== null ? question.options[userAnswer] : 'Not answered'}</span><br>
+                            <span>Correct answer: ${question.options[question.correct]}</span>
+                        </div>
+                        <div>${isCorrect ? '✓' : '✗'}</div>
+                    </div>
+                `;
+            });
+            
+            // Display results
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('result-content').style.display = 'block';
+            document.getElementById('score').textContent = `${score}/${quizQuestions.length}`;
+            document.getElementById('result-details').innerHTML = resultDetails;
+            
+            // Result message based on score
+            let message = '';
+            if (score >= 18) {
+                message = 'Excellent! You have a strong understanding of Kinematics.';
+            } else if (score >= 14) {
+                message = 'Good job! You have a good grasp of kinematics concepts.';
+            } else if (score >= 10) {
+                message = 'Not bad! Review the material to improve your understanding.';
             } else {
-                scoreText.textContent = "Keep studying! Motion in straight line is fundamental to mechanics!";
+                message = 'Keep studying! Review the kinematics concepts thoroughly.';
             }
             
-            // Update progress bar to 100%
-            progress.style.width = '100%';
+            document.getElementById('result-message').textContent = message;
         }
-        
-        // Restart quiz
-        function restartQuiz() {
+
+        // Reset the quiz
+        function resetQuiz() {
             currentQuestion = 0;
-            score = 0;
-            userAnswers = new Array(motionQuiz.length).fill(null);
+            userAnswers = Array(quizQuestions.length).fill(null);
+            timeLeft = 20 * 60;
+            quizSubmitted = false;
             
-            document.querySelector('.question-container').style.display = 'block';
-            resultsContainer.style.display = 'none';
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('result-content').style.display = 'none';
             
-            loadQuestion();
+            clearInterval(timerInterval);
+            initializeQuiz();
         }
-        
-        // Event listeners
-        prevBtn.addEventListener('click', prevQuestion);
-        nextBtn.addEventListener('click', nextQuestion);
-        restartBtn.addEventListener('click', restartQuiz);
-        
-        // Initialize the quiz
-        initQuiz();
+
+        // Navigate to home page
+        function goToHome() {
+            // In a real application, this would redirect to jee.html
+            // For this example, we'll just show an alert
+            alert("Redirecting to JEE Home Page (jee.html)");
+            // window.location.href = "jee.html";
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initializeQuiz;
     </script>
 </body>
 </html>
