@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laws of Motion Quiz</title>
+    <title>Work, Energy & Power Quiz</title>
     <style>
         * {
             margin: 0;
@@ -267,8 +267,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>Laws of Motion Quiz</h1>
-            <p class="subtitle">Test your knowledge of Newton's Laws, Friction, and Circular Motion</p>
+            <h1>Work, Energy & Power Quiz</h1>
+            <p class="subtitle">Test your knowledge of Work, Energy Theorem, Power, and Conservation Laws</p>
             <div class="timer-container">
                 Time Left: <span id="timer">20:00</span>
             </div>
@@ -321,205 +321,205 @@
     </div>
 
     <script>
-        // Quiz questions based on Laws of Motion
+        // Quiz questions based on Work, Energy & Power
         const quizQuestions = [
             {
-                question: "According to Newton's First Law, what happens when there is no net force on an object?",
+                question: "What is the formula for work done by a constant force?",
                 options: [
-                    "It accelerates uniformly",
-                    "It comes to rest immediately",
-                    "An object at rest remains at rest, and an object in motion continues with constant velocity",
-                    "It moves in a circular path"
-                ],
-                correct: 2
-            },
-            {
-                question: "What is the mathematical expression of Newton's Second Law?",
-                options: [
-                    "F = mv",
-                    "F = ma",
-                    "F = m/a",
-                    "F = m²a"
+                    "W = F × s",
+                    "W = F s cosθ",
+                    "W = F s sinθ",
+                    "W = F/s"
                 ],
                 correct: 1
             },
             {
-                question: "Newton's Third Law states that:",
+                question: "When does friction do positive work?",
                 options: [
-                    "Action and reaction forces act on the same object",
-                    "Action and reaction forces are equal in magnitude but act in opposite directions",
-                    "Action force is always greater than reaction force",
-                    "Reaction force doesn't always exist"
+                    "Always",
+                    "Never",
+                    "When it opposes motion",
+                    "When it acts in the direction of displacement"
                 ],
-                correct: 1
+                correct: 3
             },
             {
-                question: "What is the range of static friction force?",
+                question: "The work done by gravity when a block moves upward is:",
                 options: [
-                    "0 to f_max",
-                    "Always equal to μN",
-                    "Constant value",
+                    "Positive",
+                    "Negative",
+                    "Zero",
                     "Infinite"
                 ],
+                correct: 1
+            },
+            {
+                question: "What is the Work-Energy Theorem?",
+                options: [
+                    "W = F × d",
+                    "W = ΔK",
+                    "W = P × t",
+                    "W = mgh"
+                ],
+                correct: 1
+            },
+            {
+                question: "For a variable force, the work done in an infinitesimal displacement is:",
+                options: [
+                    "dW = F × ds",
+                    "dW = F.ds",
+                    "dW = F/ds",
+                    "dW = F + ds"
+                ],
+                correct: 1
+            },
+            {
+                question: "Gravitational potential energy near Earth's surface is given by:",
+                options: [
+                    "U = ½mv²",
+                    "U = mgh",
+                    "U = ½kx²",
+                    "U = Fd"
+                ],
+                correct: 1
+            },
+            {
+                question: "Spring potential energy is calculated using:",
+                options: [
+                    "U = ½mv²",
+                    "U = mgh",
+                    "U = ½kx²",
+                    "U = F/x"
+                ],
+                correct: 2
+            },
+            {
+                question: "Total mechanical energy is defined as:",
+                options: [
+                    "E = K - U",
+                    "E = K + U",
+                    "E = U - K",
+                    "E = K × U"
+                ],
+                correct: 1
+            },
+            {
+                question: "When only conservative forces act, what is conserved?",
+                options: [
+                    "Momentum only",
+                    "Kinetic energy only",
+                    "Total mechanical energy",
+                    "Potential energy only"
+                ],
+                correct: 2
+            },
+            {
+                question: "Power is defined as:",
+                options: [
+                    "Work × time",
+                    "Force × velocity",
+                    "Rate of doing work",
+                    "Energy × distance"
+                ],
+                correct: 2
+            },
+            {
+                question: "The SI unit of power is:",
+                options: [
+                    "Joule",
+                    "Newton",
+                    "Watt",
+                    "Pascal"
+                ],
+                correct: 2
+            },
+            {
+                question: "Instantaneous power is given by:",
+                options: [
+                    "P = W/t",
+                    "P = dW/dt",
+                    "P = F.v",
+                    "Both B and C"
+                ],
+                correct: 3
+            },
+            {
+                question: "Impulse is defined as:",
+                options: [
+                    "Force × time",
+                    "Integral of force with respect to time",
+                    "Change in momentum",
+                    "Both B and C"
+                ],
+                correct: 3
+            },
+            {
+                question: "The Impulse-Momentum Theorem states:",
+                options: [
+                    "I = F.t",
+                    "I = Δp",
+                    "I = mΔv",
+                    "All of the above"
+                ],
+                correct: 3
+            },
+            {
+                question: "When net external force is zero, what is conserved?",
+                options: [
+                    "Kinetic energy",
+                    "Potential energy",
+                    "Linear momentum",
+                    "Mechanical energy"
+                ],
+                correct: 2
+            },
+            {
+                question: "In an elastic collision:",
+                options: [
+                    "Only momentum is conserved",
+                    "Only kinetic energy is conserved",
+                    "Both momentum and kinetic energy are conserved",
+                    "Neither is conserved"
+                ],
+                correct: 2
+            },
+            {
+                question: "Coefficient of restitution (e) for perfectly elastic collision is:",
+                options: [
+                    "0",
+                    "1",
+                    "Between 0 and 1",
+                    "Greater than 1"
+                ],
+                correct: 1
+            },
+            {
+                question: "For completely inelastic collision, the coefficient of restitution is:",
+                options: [
+                    "0",
+                    "1",
+                    "Between 0 and 1",
+                    "Undefined"
+                ],
                 correct: 0
             },
             {
-                question: "The formula for kinetic friction is:",
+                question: "The formula for coefficient of restitution is:",
                 options: [
-                    "f_k = μ_s N",
-                    "f_k = μ_k N",
-                    "f_k = N/μ_k",
-                    "f_k = μ_k/N"
+                    "e = (v₁ - v₂)/(u₁ - u₂)",
+                    "e = (v₂ - v₁)/(u₁ - u₂)",
+                    "e = (u₁ - u₂)/(v₁ - v₂)",
+                    "e = (v₁ + v₂)/(u₁ + u₂)"
                 ],
                 correct: 1
             },
             {
-                question: "What is the relationship between angle of repose (φ) and coefficient of static friction (μ_s)?",
+                question: "In conservation of mechanical energy, which statement is true?",
                 options: [
-                    "φ = sin⁻¹(μ_s)",
-                    "φ = cos⁻¹(μ_s)",
-                    "φ = tan⁻¹(μ_s)",
-                    "φ = μ_s"
-                ],
-                correct: 2
-            },
-            {
-                question: "The maximum value of static friction is given by:",
-                options: [
-                    "f_s(max) = μ_s N",
-                    "f_s(max) = μ_k N",
-                    "f_s(max) = N/μ_s",
-                    "f_s(max) = μ_s/N"
-                ],
-                correct: 0
-            },
-            {
-                question: "Centripetal acceleration for circular motion is given by:",
-                options: [
-                    "a = v/r",
-                    "a = v²/r",
-                    "a = r/v",
-                    "a = v²r"
-                ],
-                correct: 1
-            },
-            {
-                question: "When a body just starts moving on an inclined plane, which forces are equal?",
-                options: [
-                    "mg sinθ and normal force",
-                    "mg cosθ and friction",
-                    "mg sinθ and maximum static friction",
-                    "mg and friction"
-                ],
-                correct: 2
-            },
-            {
-                question: "The tangential acceleration in circular motion is given by:",
-                options: [
-                    "a_t = dv/dt = αr",
-                    "a_t = v²/r",
-                    "a_t = ωr",
-                    "a_t = ω²r"
-                ],
-                correct: 0
-            },
-            {
-                question: "If μ_s = 0.6, what is the angle of repose?",
-                options: [
-                    "30°",
-                    "45°",
-                    "31°",
-                    "60°"
-                ],
-                correct: 2
-            },
-            {
-                question: "For an object moving with constant speed in a circle, which statement is true?",
-                options: [
-                    "Tangential acceleration is zero",
-                    "Centripetal acceleration is zero",
-                    "Net acceleration is zero",
-                    "Velocity is constant"
-                ],
-                correct: 0
-            },
-            {
-                question: "The force of friction always acts:",
-                options: [
-                    "In the direction of motion",
-                    "Opposite to the direction of relative motion",
-                    "Perpendicular to the surface",
-                    "At 45° to the surface"
-                ],
-                correct: 1
-            },
-            {
-                question: "According to laws of friction, the maximum friction force is:",
-                options: [
-                    "Proportional to area of contact",
-                    "Independent of normal force",
-                    "Proportional to normal force",
-                    "Inversely proportional to normal force"
-                ],
-                correct: 2
-            },
-            {
-                question: "When external force F increases on a stationary object, what happens to static friction?",
-                options: [
-                    "It decreases",
-                    "It remains constant",
-                    "It increases to match F",
-                    "It becomes zero"
-                ],
-                correct: 2
-            },
-            {
-                question: "The net acceleration in circular motion is given by:",
-                options: [
-                    "a = a_r + a_t",
-                    "a = √(a_r² + a_t²)",
-                    "a = a_r × a_t",
-                    "a = a_r - a_t"
-                ],
-                correct: 1
-            },
-            {
-                question: "If a car takes a sharp turn, which force provides the centripetal force?",
-                options: [
-                    "Gravity",
-                    "Engine force",
-                    "Friction between tires and road",
-                    "Air resistance"
-                ],
-                correct: 2
-            },
-            {
-                question: "For a block on an inclined plane, the normal force is equal to:",
-                options: [
-                    "mg",
-                    "mg sinθ",
-                    "mg cosθ",
-                    "mg tanθ"
-                ],
-                correct: 2
-            },
-            {
-                question: "When does kinetic friction come into play?",
-                options: [
-                    "When objects are at rest",
-                    "When there is relative motion between surfaces",
-                    "When surfaces are perfectly smooth",
-                    "When normal force is zero"
-                ],
-                correct: 1
-            },
-            {
-                question: "The centripetal force required for circular motion is:",
-                options: [
-                    "m v²/r towards the center",
-                    "m v²/r away from center",
-                    "m v/r along tangent",
-                    "m ω along radius"
+                    "K₁ + U₁ = K₂ + U₂",
+                    "K₁ - U₁ = K₂ - U₂",
+                    "K₁ × U₁ = K₂ × U₂",
+                    "K₁/U₁ = K₂/U₂"
                 ],
                 correct: 0
             }
@@ -680,13 +680,13 @@
             // Result message based on score
             let message = '';
             if (score >= 18) {
-                message = 'Excellent! You have a strong understanding of Laws of Motion.';
+                message = 'Excellent! You have mastered Work, Energy & Power concepts.';
             } else if (score >= 14) {
-                message = 'Good job! You have a good grasp of Newtonian mechanics.';
+                message = 'Good job! You have a solid understanding of energy principles.';
             } else if (score >= 10) {
-                message = 'Not bad! Review the material to improve your understanding.';
+                message = 'Not bad! Review the concepts to improve your understanding.';
             } else {
-                message = 'Keep studying! Review the Laws of Motion concepts thoroughly.';
+                message = 'Keep studying! Focus on work-energy theorem and conservation laws.';
             }
             
             document.getElementById('result-message').textContent = message;
