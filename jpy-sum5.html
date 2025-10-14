@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Rotational Motion Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .friction-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .friction-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .friction-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .variable {
+            font-family: 'Cambria Math', serif;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .friction-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .example {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .theorem-box {
+            background-color: #f3e5f5;
+            border-left: 4px solid #7b1fa2;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .theorem-title {
+            font-weight: bold;
+            color: #6a1b9a;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .diagram {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .caption {
+            font-style: italic;
+            margin-top: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Complete Rotational Motion Summary</h1>
+            <p class="subtitle">Rotational Kinematics, Moment of Inertia, Torque, and Rolling Motion</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="kinematics">Rotational Kinematics</div>
+            <div class="nav-tab" data-tab="moment">Moment of Inertia</div>
+            <div class="nav-tab" data-tab="torque">Torque</div>
+            <div class="nav-tab" data-tab="rolling">Rolling Motion</div>
+        </div>
+        
+        <div class="content">
+            <!-- Rotational Kinematics Tab -->
+            <div class="tab-content active" id="kinematics">
+                <section class="section">
+                    <h2>1. Rotational Kinematics</h2>
+                    
+                    <div class="definition">
+                        <p>Rotational kinematics describes the motion of rotating bodies without considering the forces that cause the rotation.</p>
+                    </div>
+                    
+                    <h3>1.1 Angular Displacement</h3>
+                    <p>Angular displacement \(\theta\) is the angle through which an object rotates. It is given by:</p>
+                    <div class="formula">
+                        \[\theta = \frac{s}{r}\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\(s\) = arc length</li>
+                        <li>\(r\) = radius of the circular path</li>
+                    </ul>
+                    
+                    <h3>1.2 Angular Velocity</h3>
+                    <p>The <strong>average angular velocity</strong> of a body for a finite time interval is given by:</p>
+                    <div class="formula">
+                        \[\omega_{\text{av}} = \frac{\Delta\theta}{\Delta t} = \frac{\theta_f - \theta_i}{t_f - t_i}\]
+                    </div>
+                    
+                    <p>The <strong>instantaneous angular velocity</strong> is defined as:</p>
+                    <div class="formula">
+                        \[\omega = \lim_{\Delta t \to 0} \frac{\Delta\theta}{\Delta t} = \frac{d\theta}{dt}\]
+                    </div>
+                    
+                    <p>The unit of angular velocity is <em>radian per second</em> (rad/s).</p>
+                    
+                    <h3>1.3 Relation with Period and Frequency</h3>
+                    <p>In terms of period \(T\) and frequency \(f\), the angular velocity is given by:</p>
+                    <div class="formula">
+                        \[\omega = \frac{2\pi}{T} = 2\pi f\]
+                    </div>
+                    
+                    <h3>1.4 Relation Between Linear and Angular Speed</h3>
+                    <p>The relation between linear speed and angular speed is given by:</p>
+                    <div class="formula">
+                        \[\omega = \frac{v}{r}\]
+                        \[v = \omega r\]
+                    </div>
+                    <p>Although all particles have the same angular velocity, their speeds increase linearly with distance from the axis of rotation.</p>
+                    
+                    <h3>1.5 Equations of Rotational Kinematics</h3>
+                    <p>For constant angular acceleration, the equations of rotational kinematics are:</p>
+                    <div class="formula">
+                        \[\omega = \omega_o + \alpha t\]
+                        \[\theta = \theta_o + \omega_0 t + \frac{1}{2} \alpha t^2\]
+                        \[\omega^2 = \omega_o^2 + 2\alpha (\theta - \theta_o)\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\(\omega_o\) = initial angular velocity</li>
+                        <li>\(\omega\) = final angular velocity</li>
+                        <li>\(\theta_o\) = initial angular displacement</li>
+                        <li>\(\theta\) = final angular displacement</li>
+                        <li>\(\alpha\) = angular acceleration</li>
+                        <li>\(t\) = time</li>
+                    </ul>
+                </section>
+            </div>
+            
+            <!-- Moment of Inertia Tab -->
+            <div class="tab-content" id="moment">
+                <section class="section">
+                    <h2>2. Moment of Inertia</h2>
+                    
+                    <div class="definition">
+                        <p>Moment of inertia is a measure of an object's resistance to changes in its rotation rate. It depends on the mass distribution relative to the axis of rotation.</p>
+                    </div>
+                    
+                    <h3>2.1 Definition</h3>
+                    <p>For a <strong>discrete system</strong> of particles, the moment of inertia is defined as:</p>
+                    <div class="formula">
+                        \[I = \sum m_{i} r_i^2\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\( m_i \) = mass of the \( i^{th} \) particle</li>
+                        <li>\( r_i \) = perpendicular distance of the \( i^{th} \) particle from the axis of rotation</li>
+                    </ul>
+                    
+                    <p>For a <strong>continuous body</strong>, the moment of inertia is given by:</p>
+                    <div class="formula">
+                        \[I = \int r^2 dm\]
+                    </div>
+                    
+                    <h3>2.2 Parallel Axis Theorem</h3>
+                    <div class="theorem-box">
+                        <div class="theorem-title">Parallel Axis Theorem</div>
+                        <p>The moment of inertia of a body about an axis is equal to its moment of inertia about a parallel axis through its centre of mass plus the product of the mass of the body and the square of perpendicular distance between the two axes.</p>
+                        <div class="formula">
+                            \[I = I_{\text{cm}} + md^2\]
+                        </div>
+                        <p>Where:</p>
+                        <ul>
+                            <li>\( I_{\text{cm}} \) = Moment of inertia about the center of mass</li>
+                            <li>\( m \) = Total mass of the body</li>
+                            <li>\( d \) = Perpendicular distance between the two parallel axes</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>2.3 Perpendicular Axis Theorem</h3>
+                    <div class="theorem-box">
+                        <div class="theorem-title">Perpendicular Axis Theorem</div>
+                        <p>For a planar body (lying in the xy-plane), the moment of inertia about the z-axis is equal to the sum of the moments of inertia about the x and y axes.</p>
+                        <div class="formula">
+                            \[ I_z = I_x + I_y \]
+                        </div>
+                        <p>Where:</p>
+                        <ul>
+                            <li>\( I_x \) = Moment of inertia about the x-axis</li>
+                            <li>\( I_y \) = Moment of inertia about the y-axis</li>
+                            <li>\( I_z \) = Moment of inertia about the z-axis (perpendicular to the plane)</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>2.4 Common Moments of Inertia</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Object</th>
+                                <th>Axis of Rotation</th>
+                                <th>Moment of Inertia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Thin rod of length L</td>
+                                <td>Through center, perpendicular to length</td>
+                                <td>\( \frac{1}{12} ML^2 \)</td>
+                            </tr>
+                            <tr>
+                                <td>Thin rod of length L</td>
+                                <td>Through end, perpendicular to length</td>
+                                <td>\( \frac{1}{3} ML^2 \)</td>
+                            </tr>
+                            <tr>
+                                <td>Solid sphere of radius R</td>
+                                <td>Through center</td>
+                                <td>\( \frac{2}{5} MR^2 \)</td>
+                            </tr>
+                            <tr>
+                                <td>Hollow sphere of radius R</td>
+                                <td>Through center</td>
+                                <td>\( \frac{2}{3} MR^2 \)</td>
+                            </tr>
+                            <tr>
+                                <td>Solid cylinder of radius R</td>
+                                <td>Through central axis</td>
+                                <td>\( \frac{1}{2} MR^2 \)</td>
+                            </tr>
+                            <tr>
+                                <td>Hollow cylinder of radius R</td>
+                                <td>Through central axis</td>
+                                <td>\( MR^2 \)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            
+            <!-- Torque Tab -->
+            <div class="tab-content" id="torque">
+                <section class="section">
+                    <h2>3. Torque and Angular Momentum</h2>
+                    
+                    <h3>3.1 Torque</h3>
+                    <div class="definition">
+                        <p>Torque is a measure of the force that can cause an object to rotate about an axis. It is the rotational analog of force.</p>
+                    </div>
+                    
+                    <p>The <strong>torque</strong> of a force \( F \) that acts at a distance \( r \) from the origin is defined as:</p>
+                    <div class="formula">
+                        \[\tau = r F \sin \theta\]
+                    </div>
+                    <p>Where \( \theta \) is the angle between the position vector and the force vector.</p>
+                    
+                    <p>In vector form:</p>
+                    <div class="formula">
+                        \[\vec{\tau} = \vec{r} \times \vec{F}\]
+                    </div>
+                    
+                    <h3>3.2 Newton's Second Law for Rotation</h3>
+                    <p>Since torque is a rotational analog of force, Newton's second law for rotational motion is given by:</p>
+                    <div class="formula">
+                        \[\tau = I \alpha\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\( \tau \) = net torque</li>
+                        <li>\( I \) = moment of inertia</li>
+                        <li>\( \alpha \) = angular acceleration</li>
+                    </ul>
+                    
+                    <h3>3.3 Rotational Work and Energy</h3>
+                    <p>The <strong>rotational work</strong> done by a force about the fixed axis of rotation is defined as:</p>
+                    <div class="formula">
+                        \[W_{rot} = \int \tau d\theta\]
+                    </div>
+                    <p>Where \( \tau \) is the torque produced by the force, and \( d\theta \) is the infinitesimally small angular displacement about the axis.</p>
+                    
+                    <p>The <strong>rotational kinetic energy</strong> of a body about a fixed rotational axis is defined as:</p>
+                    <div class="formula">
+                        \[K_{rot} = \frac{1}{2} I \omega^2\]
+                    </div>
+                    <p>Where \( I \) is the moment of inertia about the axis.</p>
+                    
+                    <h3>3.4 Work-Energy Theorem for Rotation</h3>
+                    <p>In complete analog to the work-energy theorem for translational motion, it can be stated for rotational motion as:</p>
+                    <div class="formula">
+                        \[W_{rot} = \Delta K_{rot}\]
+                    </div>
+                    <p>The net rotational work done by the forces is equal to the change in rotational kinetic energy of the body.</p>
+                    
+                    <h3>3.5 Rotational Power</h3>
+                    <p>In complete analog with linear motion, the instantaneous <strong>rotational power</strong> is defined as:</p>
+                    <div class="formula">
+                        \[P_{rot} = \frac{dW_{rot}}{dt} = \tau \cdot \omega\]
+                    </div>
+                    
+                    <h3>3.6 Angular Momentum</h3>
+                    <p>Angular momentum about the origin is defined as:</p>
+                    <div class="formula">
+                        \[\vec{L} = \vec{r} \times \vec{p}\]
+                    </div>
+                    <p>The <em>magnitude</em> of angular momentum is given by:</p>
+                    <div class="formula">
+                        \[L = r p \sin \theta\]
+                    </div>
+                    <p>For a rigid body rotating about a fixed axis:</p>
+                    <div class="formula">
+                        \[L = I \omega\]
+                    </div>
+                    
+                    <h3>3.7 Conservation of Angular Momentum</h3>
+                    <div class="law-box">
+                        <div class="law-title">Conservation of Angular Momentum</div>
+                        <p>If the net external torque on a system is zero, the total angular momentum of the system remains constant.</p>
+                        <div class="formula">
+                            \[\text{If } \tau_{ext} = 0, \text{ then } \frac{dL}{dt} = 0 \text{ and } L = \text{constant}\]
+                        </div>
+                    </div>
+                    
+                    <h3>3.8 Angular Impulse</h3>
+                    <p>Angular impulse is defined as:</p>
+                    <div class="formula">
+                        \[\tau = \int \tau_{ext} dt\]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Rolling Motion Tab -->
+            <div class="tab-content" id="rolling">
+                <section class="section">
+                    <h2>4. Rolling Motion</h2>
+                    
+                    <div class="definition">
+                        <p>Rolling motion is a combination of translational motion of the center of mass and rotational motion about the center of mass.</p>
+                    </div>
+                    
+                    <h3>4.1 Pure Rolling Motion</h3>
+                    <p>In pure rolling motion (rolling without slipping), the point of contact between the rolling body and the surface is instantaneously at rest.</p>
+                    
+                    <p>The condition for pure rolling is:</p>
+                    <div class="formula">
+                        \[v_c = \omega R\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\( \omega \) = angular velocity of the wheel about its center of mass</li>
+                        <li>\( v_c \) = linear velocity of the center of mass</li>
+                        <li>\( R \) = radius of the rolling object</li>
+                    </ul>
+                    
+                    <h3>4.2 Velocity of Points on a Rolling Body</h3>
+                    <p>Since rolling is a combination of translation of the center and rotation about the center, the velocity of any point on the rim is the vector sum:</p>
+                    <div class="formula">
+                        \[\vec{v} = \vec{v_c} + \vec{v'}\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\( \vec{v_c} \) = velocity of the center of mass</li>
+                        <li>\( \vec{v'} \) = velocity of the particle with respect to center of mass</li>
+                    </ul>
+                    
+                    <h3>4.3 Kinetic Energy of a Rolling Body</h3>
+                    <p>The <em>total kinetic energy</em> of a rolling body is given by:</p>
+                    <div class="formula">
+                        \[K = \frac{1}{2} m v_c^2 + \frac{1}{2} I_c \omega^2\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\( m \) = mass of the body</li>
+                        <li>\( v_c \) = velocity of the center of mass</li>
+                        <li>\( I_c \) = moment of inertia about the center of mass</li>
+                        <li>\( \omega \) = angular velocity</li>
+                    </ul>
+                    
+                    <p>In pure rolling motion, \( v_c = \omega R \), so:</p>
+                    <div class="formula">
+                        \[K = \frac{1}{2} m (\omega R)^2 + \frac{1}{2} I_c \omega^2\]
+                        \[K = \frac{1}{2} (I_c + m R^2) \omega^2\]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>In pure rolling, the point of contact is at rest relative to the surface</li>
+                            <li>The total kinetic energy is the sum of translational and rotational kinetic energies</li>
+                            <li>For objects with different mass distributions, the fraction of energy in rotational form varies</li>
+                            <li>A solid sphere will roll faster down an incline than a hollow cylinder of the same mass and radius</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Complete Rotational Motion Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+        
+        // Render MathJax equations
+        // In a real implementation, you would include MathJax library
+        // For this example, we'll just use the LaTeX formatting as is
+    </script>
+</body>
+</html>
