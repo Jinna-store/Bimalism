@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Current Electricity Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .circuit-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .circuit-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .circuit-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .variable {
+            font-family: 'Cambria Math', serif;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .circuit-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .example {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Complete Current Electricity Summary</h1>
+            <p class="subtitle">Electric Current, Resistance, Circuits, and Electrical Instruments</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="current">Electric Current</div>
+            <div class="nav-tab" data-tab="ohms-law">Ohm's Law & Resistance</div>
+            <div class="nav-tab" data-tab="circuits">Circuits</div>
+            <div class="nav-tab" data-tab="kirchhoff">Kirchhoff's Laws</div>
+            <div class="nav-tab" data-tab="instruments">Electrical Instruments</div>
+        </div>
+        
+        <div class="content">
+            <!-- Electric Current Tab -->
+            <div class="tab-content active" id="current">
+                <section class="section">
+                    <h2>1. Electric Current</h2>
+                    
+                    <div class="definition">
+                        <p>Flow of charge is called electric current and the rate of flow of charge in a circuit represents the magnitude of the electric current in that circuit.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[I = \frac{dq}{dt}\]
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Key Points about Electric Current</div>
+                        <ul>
+                            <li>The direction of electric current is taken to be opposite to the direction of the flow of electrons</li>
+                            <li>The direction of flow of positive charge in a conductor is taken as the direction of the electric current</li>
+                            <li>Electric current is a <strong>scalar quantity</strong></li>
+                            <li>S.I. unit of electric current is <strong>coulomb/second</strong> or <strong>ampere</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <h3>1.1 Drift Velocity of Free Electrons</h3>
+                    
+                    <div class="definition">
+                        <p>The drift velocity is the velocity acquired by the electron in a direction opposite to applied electric field due to the acceleration of electron during the relaxation time.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[v_d = a\tau = \frac{eE}{m}\tau\]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>\(v_d\) = drift velocity</li>
+                        <li>\(a\) = acceleration</li>
+                        <li>\(\tau\) = relaxation time</li>
+                        <li>\(e\) = charge of electron</li>
+                        <li>\(E\) = electric field</li>
+                        <li>\(m\) = mass of electron</li>
+                    </ul>
+                    
+                    <h3>1.2 Relaxation Time</h3>
+                    
+                    <div class="definition">
+                        <p>The average time taken between two successive collisions is called relaxation time. It is represented by \(\tau\).</p>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Ohm's Law & Resistance Tab -->
+            <div class="tab-content" id="ohms-law">
+                <section class="section">
+                    <h2>2. Ohm's Law and Resistance</h2>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Ohm's Law</div>
+                        <p>If the physical conditions of a conductor (such as temperature etc.) remain same, then the potential difference across the ends of the conductor is directly proportional to the current flowing in it.</p>
+                        <div class="formula">
+                            \[V \propto I \quad \text{or} \quad V = IR\]
+                        </div>
+                        <p>Where, R is a constant, called <strong>resistance</strong> of the conductor.</p>
+                    </div>
+                    
+                    <h3>2.1 Resistance</h3>
+                    
+                    <div class="definition">
+                        <p>The resistance of a conductor is directly proportional to its length \(l\) and inversely proportional to its cross-sectional area \(A\).</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[R = \frac{\rho l}{A}\]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>\(R\) = resistance</li>
+                        <li>\(\rho\) = resistivity of the material</li>
+                        <li>\(l\) = length of conductor</li>
+                        <li>\(A\) = cross-sectional area</li>
+                    </ul>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>The SI unit of resistance is <strong>ohm</strong> (\(\Omega\))</li>
+                            <li>Resistivity (\(\rho\)) depends on the material of the conductor</li>
+                            <li>Resistance depends on temperature</li>
+                            <li>For most conductors, resistance increases with temperature</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Circuits Tab -->
+            <div class="tab-content" id="circuits">
+                <section class="section">
+                    <h2>3. Circuits with Resistors</h2>
+                    
+                    <h3>3.1 Resistors in Series</h3>
+                    
+                    <div class="definition">
+                        <p>Two resistances are said to be in <strong>series</strong> if the same current passes through both resistors.</p>
+                    </div>
+                    
+                    <div class="diagram">
+                        <p><strong>Series Combination:</strong> \(R_1\) — \(R_2\) — ... — \(R_N\)</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[R = R_1 + R_2 + \ldots + R_N = \sum_{i=1}^{N} R_i\]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Properties of Series Combination:</h4>
+                        <ul>
+                            <li>At every instant of time all circuit elements connected in a series combination carry the <strong>same current</strong></li>
+                            <li>The equivalent resistance of a series combination of resistances is <strong>always larger</strong> than any of the individual resistances</li>
+                            <li>The voltage across each resistor is proportional to its resistance</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>3.2 Resistors in Parallel</h3>
+                    
+                    <div class="definition">
+                        <p>Two resistors are said to be in <strong>parallel</strong> combination if the current splits but the voltage drop across each resistor is the same.</p>
+                    </div>
+                    
+                    <div class="diagram">
+                        <p><strong>Parallel Combination:</strong> All resistors connected between the same two points</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2} + \ldots + \frac{1}{R_N} = \sum_{i=1}^{N} \frac{1}{R_i}\]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Properties of Parallel Combination:</h4>
+                        <ul>
+                            <li>At every instant of time the <strong>potential difference</strong> across all circuit elements connected in parallel is the <strong>same</strong></li>
+                            <li>The total resistance of any parallel combination of resistors must be <strong>less than</strong> any one of the individual resistors</li>
+                            <li>The current through each resistor is inversely proportional to its resistance</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>3.3 Electromotive Force (EMF) and Internal Resistance</h3>
+                    
+                    <div class="definition">
+                        <p>When a cell produces a current \(I\), the terminal potential difference is less than the EMF due to internal resistance.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[V = E - Ir\]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>\(V\) = terminal potential difference</li>
+                        <li>\(E\) = EMF of the source</li>
+                        <li>\(r\) = internal resistance of the source</li>
+                        <li>\(I\) = current</li>
+                    </ul>
+                    
+                    <h4>Series Combination of Cells</h4>
+                    
+                    <div class="formula">
+                        \[E = E_1 + E_2 + E_3 + \ldots + E_N\]
+                        \[r = r_1 + r_2 + r_3 + \ldots + r_N\]
+                    </div>
+                    
+                    <h4>Parallel Combination of Cells</h4>
+                    
+                    <div class="formula">
+                        \[\frac{1}{r} = \frac{1}{r_1} + \frac{1}{r_2} + \frac{1}{r_3} + \ldots + \frac{1}{r_N}\]
+                    </div>
+                    <p>For identical cells: \(E_{eq} = E\) and \(r_{eq} = r/N\)</p>
+                </section>
+            </div>
+            
+            <!-- Kirchhoff's Laws Tab -->
+            <div class="tab-content" id="kirchhoff">
+                <section class="section">
+                    <h2>4. Kirchhoff's Laws</h2>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Kirchhoff's Laws are general and can be applied to any type of circuit.</div>
+                    </div>
+                    
+                    <h3>4.1 Kirchhoff's Current Law (KCL)</h3>
+                    
+                    <div class="definition">
+                        <p>At any circuit junction, the sum of the currents entering the junction must be equal to the sum of the currents leaving the junction.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[\sum I_{in} = \sum I_{out}\]
+                    </div>
+                    
+                    <div class="example">
+                        <p><strong>Example:</strong> For a junction with four currents:</p>
+                        <div class="formula">
+                            \[I_1 + I_3 = I_2 + I_4\]
+                        </div>
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Point:</h4>
+                        <p>KCL is based on the <strong>conservation of charge</strong>.</p>
+                    </div>
+                    
+                    <h3>4.2 Kirchhoff's Voltage Law (KVL)</h3>
+                    
+                    <div class="definition">
+                        <p>The sum of voltage changes across all the circuit elements found when traversing one direction around any closed circuit-loop must be zero.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[\sum V = 0\]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Point:</h4>
+                        <p>KVL is based on the <strong>conservation of energy</strong>.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <p><strong>Application:</strong> When applying KVL:</p>
+                        <ul>
+                            <li>Choose a direction to traverse the loop</li>
+                            <li>Voltage drops across resistors: \(-IR\) (when moving with current) or \(+IR\) (when moving against current)</li>
+                            <li>EMF sources: \(+E\) (when moving from - to + terminal) or \(-E\) (when moving from + to - terminal)</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Electrical Instruments Tab -->
+            <div class="tab-content" id="instruments">
+                <section class="section">
+                    <h2>5. Electrical Instruments</h2>
+                    
+                    <h3>5.1 Galvanometer</h3>
+                    
+                    <div class="definition">
+                        <p>A <strong>galvanometer</strong> detects the presence of current in the branch where it is connected.</p>
+                    </div>
+                    
+                    <ul>
+                        <li>An instrument that measures current is called an <strong>ammeter</strong></li>
+                        <li>An instrument that measures potential difference is called a <strong>voltmeter</strong></li>
+                    </ul>
+                    
+                    <h3>5.2 Conversion of Galvanometer to Ammeter</h3>
+                    
+                    <div class="definition">
+                        <p>A galvanometer may be converted into an ammeter by connecting a low resistance (called <strong>shunt</strong>) in parallel to the galvanometer.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[S = \frac{I_g G}{I - I_g}\]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>\(S\) = shunt resistance</li>
+                        <li>\(G\) = resistance of the galvanometer</li>
+                        <li>\(I_g\) = full scale deflection current of the galvanometer</li>
+                        <li>\(I\) = maximum current to be measured by the ammeter</li>
+                    </ul>
+                    
+                    <h3>5.3 Conversion of Galvanometer to Voltmeter</h3>
+                    
+                    <div class="definition">
+                        <p>A galvanometer may be converted into a voltmeter by connecting a high resistance in series with the galvanometer.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[R = \frac{V}{I_g} - G\]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>\(R\) = series resistance</li>
+                        <li>\(V\) = maximum voltage to be measured</li>
+                        <li>\(I_g\) = full scale deflection current of the galvanometer</li>
+                        <li>\(G\) = resistance of the galvanometer</li>
+                    </ul>
+                    
+                    <h3>5.4 Wheatstone Bridge</h3>
+                    
+                    <div class="definition">
+                        <p>The Wheatstone bridge provides an accurate method of determining the resistance of an unknown resistor.</p>
+                    </div>
+                    
+                    <div class="diagram">
+                        <p><strong>Wheatstone Bridge:</strong> Four resistors arranged in a diamond pattern with a galvanometer in the middle</p>
+                    </div>
+                    
+                    <p>When the bridge is balanced (no current flows through the galvanometer):</p>
+                    
+                    <div class="formula">
+                        \[\frac{R_1}{R_2} = \frac{R_4}{R_3}\]
+                    </div>
+                    
+                    <p>If \(R_3\) is the unknown resistance:</p>
+                    
+                    <div class="formula">
+                        \[R_3 = R_2 \times \frac{R_4}{R_1}\]
+                    </div>
+                    
+                    <h3>5.5 Potentiometer</h3>
+                    
+                    <div class="definition">
+                        <p>A potentiometer is an instrument that allows one to compare unknown EMF with a standard EMF. It is a null device, like the Wheatstone bridge.</p>
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Advantages of Potentiometer:</h4>
+                        <ul>
+                            <li>Measures the true EMF of a cell (unlike a voltmeter which measures terminal potential difference)</li>
+                            <li>Does not draw any current from the cell when measuring EMF</li>
+                            <li>More accurate than direct measurement with a voltmeter</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Complete Current Electricity Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

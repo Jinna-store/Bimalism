@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Kinetic Theory of Gases Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .speed-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .speed-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .speed-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .variable {
+            font-family: 'Cambria Math', serif;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .speed-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .example {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Complete Kinetic Theory of Gases Summary</h1>
+            <p class="subtitle">Kinetic Pressure, Temperature Interpretation, Gas Speeds, Internal Energy, and Specific Heats</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="kinetic">Kinetic Theory</div>
+            <div class="nav-tab" data-tab="speeds">Gas Speeds</div>
+            <div class="nav-tab" data-tab="energy">Internal Energy</div>
+            <div class="nav-tab" data-tab="specific">Specific Heats</div>
+            <div class="nav-tab" data-tab="mixture">Gas Mixtures</div>
+        </div>
+        
+        <div class="content">
+            <!-- Kinetic Theory Tab -->
+            <div class="tab-content active" id="kinetic">
+                <section class="section">
+                    <h2>1. Kinetic Theory of Gases</h2>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Kinetic Pressure</div>
+                        <div class="formula">
+                            \[P = \frac{1}{3} \rho v_{rms}^2\]
+                        </div>
+                        <p>where:</p>
+                        <ul>
+                            <li>\(P\) = pressure of the gas</li>
+                            <li>\(\rho\) = density of the gas</li>
+                            <li>\(v_{rms}\) = root mean square speed of the molecules</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Kinetic Interpretation of Temperature</div>
+                        <p>From the point of view of kinetic theory, the average kinetic energy of a molecule is:</p>
+                        <div class="formula">
+                            \[K_{av} = \frac{1}{2} m v_{rms}^2 = \frac{3}{2} kT\]
+                        </div>
+                        <p>For an ideal gas, the absolute temperature is a measure of the average translational kinetic energy of the molecules.</p>
+                        <p>Where:</p>
+                        <ul>
+                            <li>\(K_{av}\) = average kinetic energy per molecule</li>
+                            <li>\(m\) = mass of a single molecule</li>
+                            <li>\(k\) = Boltzmann constant = \(1.38 \times 10^{-23} \, \text{J/K}\)</li>
+                            <li>\(T\) = absolute temperature</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Gas Speeds Tab -->
+            <div class="tab-content" id="speeds">
+                <section class="section">
+                    <h2>2. Different Speeds of Gas Molecules</h2>
+                    
+                    <div class="definition">
+                        <p>The motion of molecules in a gas is characterized by any of the following three speeds.</p>
+                    </div>
+                    
+                    <div class="speed-types">
+                        <div class="speed-card">
+                            <div class="speed-title">(a) Root Mean Square Speed (\(v_{rms}\))</div>
+                            <div class="formula">
+                                \[v_{rms} = \sqrt{\frac{v_1^2 + v_2^2 + ... + v_N^2}{N}}\]
+                            </div>
+                            <p>Alternative expressions:</p>
+                            <div class="formula">
+                                \[v_{rms} = \sqrt{\frac{3PV}{\text{mass of gas}}} = \sqrt{\frac{3RT}{M}} = \sqrt{\frac{3kT}{m}} = \sqrt{\frac{3P}{\rho}}\]
+                            </div>
+                            <p>Where:</p>
+                            <ul>
+                                <li>\(M\) = molecular mass</li>
+                                <li>\(m\) = mass of a single molecule</li>
+                                <li>\(\rho\) = density of gas</li>
+                                <li>\(R\) = universal gas constant</li>
+                                <li>\(k\) = Boltzmann constant</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="speed-card">
+                            <div class="speed-title">(b) Most Probable Speed (\(v_{mp}\))</div>
+                            <div class="formula">
+                                \[v_{mp} = \sqrt{\frac{2RT}{M}} = \sqrt{\frac{2kT}{m}} = \sqrt{\frac{2P}{\rho}}\]
+                            </div>
+                            <p>This is the speed at which the maximum number of molecules are moving.</p>
+                        </div>
+                        
+                        <div class="speed-card">
+                            <div class="speed-title">(c) Average Speed (\(v_{av}\))</div>
+                            <div class="formula">
+                                \[v_{av} = \frac{v_1 + v_2 + ... + v_N}{N}\]
+                            </div>
+                            <p>Alternative expressions:</p>
+                            <div class="formula">
+                                \[v_{av} = \sqrt{\frac{8RT}{\pi M}} = \sqrt{\frac{8kT}{\pi m}} = \sqrt{\frac{8P}{\pi \rho}}\]
+                            </div>
+                            <p>Note: The formula in the PDF appears to have a typo with extra \(\pi\) in numerator.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>2.1 Relationship Between Different Speeds</h3>
+                    <div class="formula">
+                        \[v_{mp} : v_{av} : v_{rms} = 1 : \sqrt{\frac{8}{3\pi}} : \sqrt{\frac{3}{2}} \approx 1 : 1.128 : 1.224\]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>For a given gas at a fixed temperature: \(v_{mp} < v_{av} < v_{rms}\)</li>
+                            <li>All three speeds are directly proportional to \(\sqrt{T}\) and inversely proportional to \(\sqrt{M}\)</li>
+                            <li>Lighter gas molecules move faster than heavier ones at the same temperature</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Internal Energy Tab -->
+            <div class="tab-content" id="energy">
+                <section class="section">
+                    <h2>3. Internal Energy of an Ideal Gas</h2>
+                    
+                    <div class="definition">
+                        <p>For an ideal gas, the internal energy \(U\) depends upon temperature \(T\) only and is directly proportional to it:</p>
+                        <div class="formula">
+                            \[U \propto T\]
+                        </div>
+                    </div>
+                    
+                    <h3>3.1 Degrees of Freedom</h3>
+                    <p>Degree of freedom (\(f\)) is defined as the number of possible independent ways in which a system can have energy. The independent motions can be translational, rotational, or vibrational or any combination of them.</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type of Molecule</th>
+                                <th>Degrees of Freedom</th>
+                                <th>Explanation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Monatomic</td>
+                                <td>3</td>
+                                <td>All translational (x, y, z directions). Rotational energy is insignificant due to small moment of inertia.</td>
+                            </tr>
+                            <tr>
+                                <td>Diatomic</td>
+                                <td>5</td>
+                                <td>3 translational + 2 rotational. Examples: H₂, O₂, N₂</td>
+                            </tr>
+                            <tr>
+                                <td>Polyatomic</td>
+                                <td>6 or more</td>
+                                <td>3 translational + 3 rotational + vibrational modes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>3.2 Law of Equipartition of Energy</h3>
+                    <div class="definition">
+                        <p>According to this law, the energy of an ideal gas is equally distributed in each degree of freedom.</p>
+                    </div>
+                    <ul>
+                        <li>The average kinetic energy per degree of freedom per molecule is \(\frac{1}{2}kT\)</li>
+                        <li>The kinetic energy per degree of freedom per mole is \(\frac{1}{2}RT\)</li>
+                        <li>In general, the kinetic energy per molecule is \(\frac{1}{2}fkT\) and that per mole is \(\frac{1}{2}fRT\)</li>
+                    </ul>
+                    
+                    <div class="example">
+                        <p><strong>Example:</strong> For a monatomic gas with 3 degrees of freedom:</p>
+                        <div class="formula">
+                            \[U = \frac{3}{2}RT \quad \text{(per mole)}\]
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Specific Heats Tab -->
+            <div class="tab-content" id="specific">
+                <section class="section">
+                    <h2>4. Specific Heat and Heat Capacity</h2>
+                    
+                    <div class="definition">
+                        <p>Heat capacity is the amount of heat required to raise the temperature of a substance by 1°C (or 1K):</p>
+                        <div class="formula">
+                            \[C = \frac{Q}{\Delta T}\]
+                        </div>
+                        <p>The SI unit of heat capacity is JK⁻¹.</p>
+                    </div>
+                    
+                    <p>Specific heat is the heat capacity per unit mass:</p>
+                    <div class="formula">
+                        \[Q = mc\Delta T\]
+                    </div>
+                    <p>where \(c\) is called the specific heat of the substance.</p>
+                    
+                    <h3>4.1 Molar Specific Heats of an Ideal Gas</h3>
+                    
+                    <div class="speed-types">
+                        <div class="speed-card">
+                            <div class="speed-title">Molar Specific Heat at Constant Volume (\(C_V\))</div>
+                            <div class="formula">
+                                \[C_V = \frac{dU}{dT} = \frac{R}{\gamma - 1}\]
+                            </div>
+                            <p>Where:</p>
+                            <ul>
+                                <li>\(U\) = internal energy</li>
+                                <li>\(R\) = universal gas constant</li>
+                                <li>\(\gamma\) = adiabatic exponent (\(C_P/C_V\))</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="speed-card">
+                            <div class="speed-title">Molar Specific Heat at Constant Pressure (\(C_P\))</div>
+                            <div class="formula">
+                                \[C_P = C_V + R\]
+                            </div>
+                            <p>This relationship is known as Mayer's relation.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>4.2 Adiabatic Exponent</h3>
+                    <div class="formula">
+                        \[\gamma = \frac{C_P}{C_V}\]
+                    </div>
+                    
+                    <h3>4.3 Values for Different Types of Gases</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type of Gas</th>
+                                <th>Degrees of Freedom (f)</th>
+                                <th>\(C_V\)</th>
+                                <th>\(C_P\)</th>
+                                <th>\(\gamma\)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Monatomic</td>
+                                <td>3</td>
+                                <td>\(\frac{3}{2}R\)</td>
+                                <td>\(\frac{5}{2}R\)</td>
+                                <td>\(\frac{5}{3} \approx 1.67\)</td>
+                            </tr>
+                            <tr>
+                                <td>Diatomic</td>
+                                <td>5</td>
+                                <td>\(\frac{5}{2}R\)</td>
+                                <td>\(\frac{7}{2}R\)</td>
+                                <td>\(\frac{7}{5} = 1.4\)</td>
+                            </tr>
+                            <tr>
+                                <td>Polyatomic</td>
+                                <td>6</td>
+                                <td>\(3R\)</td>
+                                <td>\(4R\)</td>
+                                <td>\(\frac{4}{3} \approx 1.33\)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            
+            <!-- Gas Mixtures Tab -->
+            <div class="tab-content" id="mixture">
+                <section class="section">
+                    <h2>5. Mixture of Gases</h2>
+                    
+                    <div class="definition">
+                        <p>Following results are helpful for a mixture of gases with \(n_1, n_2, \ldots\) moles of different gases.</p>
+                    </div>
+                    
+                    <h3>5.1 Properties of Gas Mixtures</h3>
+                    
+                    <div class="formula">
+                        \[U_{mix} = U_1 + U_2 + \ldots\]
+                    </div>
+                    <p>Total internal energy of the mixture equals the sum of internal energies of individual gases.</p>
+                    
+                    <div class="formula">
+                        \[M_{mix} = \frac{n_1 M_1 + n_2 M_2 + \ldots}{n_1 + n_2 + \ldots}\]
+                    </div>
+                    <p>Effective molar mass of the mixture.</p>
+                    
+                    <div class="formula">
+                        \[P_{mix} = P_1 + P_2 + \ldots\]
+                    </div>
+                    <p>Dalton's law of partial pressures: Total pressure equals sum of partial pressures.</p>
+                    
+                    <h3>5.2 Specific Heats of Mixtures</h3>
+                    
+                    <div class="formula">
+                        \[(C_V)_{mix} = \frac{n_1 C_{V1} + n_2 C_{V2} + \ldots}{n_1 + n_2 + \ldots}\]
+                    </div>
+                    <p>Molar specific heat at constant volume for the mixture.</p>
+                    
+                    <div class="formula">
+                        \[(C_P)_{mix} = (C_V)_{mix} + R\]
+                    </div>
+                    <p>Mayer's relation applies to mixtures as well.</p>
+                    
+                    <div class="formula">
+                        \[\gamma_{mix} = \frac{(C_P)_{mix}}{(C_V)_{mix}}\]
+                    </div>
+                    <p>Adiabatic exponent for the mixture.</p>
+                    
+                    <div class="formula">
+                        \[\frac{n_1 + n_2 + n_3 + \ldots}{\gamma_{mix} - 1} = \frac{n_1}{\gamma_1 - 1} + \frac{n_2}{\gamma_2 - 1} + \ldots\]
+                    </div>
+                    <p>Alternative formula to calculate \(\gamma_{mix}\).</p>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Complete Kinetic Theory of Gases Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

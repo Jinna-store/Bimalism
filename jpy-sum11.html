@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Electrostatics Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .friction-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .friction-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .friction-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .variable {
+            font-family: 'Cambria Math', serif;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .friction-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .example {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .charge-distribution {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .charge-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .charge-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Complete Electrostatics Summary</h1>
+            <p class="subtitle">Charge, Coulomb's Law, Electric Field, Potential, and Capacitors</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="charge">Charge</div>
+            <div class="nav-tab" data-tab="coulomb">Coulomb's Law</div>
+            <div class="nav-tab" data-tab="field">Electric Field</div>
+            <div class="nav-tab" data-tab="potential">Electric Potential</div>
+            <div class="nav-tab" data-tab="capacitors">Capacitors</div>
+        </div>
+        
+        <div class="content">
+            <!-- Charge Tab -->
+            <div class="tab-content active" id="charge">
+                <section class="section">
+                    <h2>1. Electric Charge</h2>
+                    
+                    <div class="definition">
+                        <p>Charge is the inherent property of certain fundamental particles. It accompanies them wherever they exist. Commonly known charged particles are proton and electron.</p>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Properties of Charge</div>
+                        <ul>
+                            <li>The charge of a proton is taken as <strong>positive</strong> and that of electron is taken as <strong>negative</strong>.</li>
+                            <li>It is represented by symbol \( e \).</li>
+                            <li>\( e = 1.6 \times 10^{-19} \) coulomb</li>
+                            <li>Positive and negative sign were arbitrarily assigned by <strong>Benjamin Franklin</strong>.</li>
+                            <li>This does not mean that charge of proton is greater than charge of electron.</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>1.1 Quantization of Charge</h3>
+                    <p>Electric charges appear only in discrete amounts, it is said to be <strong>quantized</strong>.</p>
+                    
+                    <h3>1.2 Conservation of Charge</h3>
+                    <p>For an <strong>isolated system</strong>, the total charge remains constant, charge is <em>neither</em> created <em>nor</em> destroyed, and it is transferred from one body to the other.</p>
+                </section>
+            </div>
+            
+            <!-- Coulomb's Law Tab -->
+            <div class="tab-content" id="coulomb">
+                <section class="section">
+                    <h2>2. Coulomb's Law</h2>
+                    
+                    <div class="definition">
+                        <p>The force of interaction of two stationary point charges in vacuum is directly proportional to the product of these charges and inversely proportional to the square of their separation.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[F = \frac{kq_1 q_2}{r^2}\]
+                    </div>
+                    
+                    <p>Where, \( k \) is a constant which depends on the system of units. Its value in SI unit is:</p>
+                    
+                    <div class="formula">
+                        \[k = 9 \times 10^9 \, \text{Nm}^2 \text{C}^{-2}\]
+                    </div>
+                    
+                    <p>The constant is often written in the form:</p>
+                    
+                    <div class="formula">
+                        \[k = \frac{1}{4 \pi \varepsilon_0}\]
+                    </div>
+                    
+                    <p>Where, \( \varepsilon_0 \) is called the <strong>permittivity constant</strong> which is numerically equal to:</p>
+                    
+                    <div class="formula">
+                        \[\varepsilon_0 = 8.85 \times 10^{-12} \, \text{C}^2 / \text{Nm}^2\]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Electric Field Tab -->
+            <div class="tab-content" id="field">
+                <section class="section">
+                    <h2>3. Electric Field</h2>
+                    
+                    <div class="definition">
+                        <p>The <strong>electric field strength</strong> (\( \mathbf{E} \)) at a point is defined as the force per unit charge experienced by a test charge \( q_i \), placed at that point.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[\mathbf{E} = \frac{\mathbf{F}}{q_i}\]
+                    </div>
+                    
+                    <h3>3.1 Lines of Force</h3>
+                    <p>The <em>electric field lines</em> or <em>lines of force</em> are helpful in visualizing field patterns. They provide the following basic information:</p>
+                    
+                    <ul>
+                        <li>The direction of the field is along the tangent to a line of force.</li>
+                        <li>The strength or magnitude of the field is proportional to the number of lines that cross a unit area perpendicular to the line.</li>
+                    </ul>
+                    
+                    <h3>3.2 Gauss' Law</h3>
+                    <div class="definition">
+                        <p>The net flux of \(\vec{E}\) through a closed surface equals \(\frac{1}{\varepsilon_{0}}\) times the net charge enclosed by the surface.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[\oint \vec{E} \cdot d\vec{S} = \frac{q}{\varepsilon_{0}}\]
+                    </div>
+                    
+                    <h3>3.3 Electric Field due to Various Charge Distributions</h3>
+                    
+                    <div class="charge-distribution">
+                        <div class="charge-card">
+                            <div class="charge-title">1. Isolated Point Charge</div>
+                            <div class="formula">
+                                \[\vec{E} = \frac{1}{4\pi\varepsilon_{0}} \frac{q}{r^{2}} \hat{r}\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">2. A Ring of Charge</div>
+                            <div class="formula">
+                                \[E_{\parallel} = 0\]
+                                \[E_{\perp} = \frac{1}{4\pi\epsilon_0} \frac{qx}{(R^2 + x^2)^{3/2}}\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">3. A Disc of Charge</div>
+                            <div class="formula">
+                                \[E_{\parallel} = 0\]
+                                \[E_{\perp} = \frac{\sigma}{2\epsilon_o} \left[ 1 - \frac{x}{\sqrt{x^2 + R^2}} \right]\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">4. Infinite Sheet of Charge</div>
+                            <div class="formula">
+                                \[E_{\perp} = \frac{\sigma}{2\epsilon_o}\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">5. Infinitely Long Line of Charge</div>
+                            <div class="formula">
+                                \[E_{\parallel} = 0\]
+                                \[E_{\perp} = \frac{\lambda}{2\pi\epsilon_o r}\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">6. Finite Line of Charge</div>
+                            <div class="formula">
+                                \[E_{\perp} = \frac{\lambda}{4\pi\epsilon_0 x} \left[ \sin \alpha + \sin \beta \right]\]
+                                \[E_{\parallel} = \frac{\lambda}{4\pi\epsilon_0 x} \left[ \cos \beta - \cos\alpha \right]\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">7. Uniformly Charged Sphere</div>
+                            <p>Inside \(0 \leq r \leq R\):</p>
+                            <div class="formula">
+                                \[\mathbf{E} = \frac{\rho \mathbf{r}}{3\epsilon_0}\]
+                            </div>
+                            <p>Outside \(r \geq R\):</p>
+                            <div class="formula">
+                                \[\mathbf{E} = \frac{\rho R^3}{3\epsilon_0 r^2} \hat{r}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>3.4 Electric Dipole</h3>
+                    
+                    <h4>Electric Field Intensity due to Dipole</h4>
+                    <p>(i) Along the axis:</p>
+                    <div class="formula">
+                        \[\vec{E}_{\parallel} = \frac{2k\vec{p}}{x^3}\]
+                    </div>
+                    <p>The direction of electric field along the axis is in the same direction as that of the dipole moment.</p>
+                    
+                    <p>(ii) Along the bisector:</p>
+                    <div class="formula">
+                        \[\vec{E}_{\perp} = -\frac{k\vec{p}}{y^3}\]
+                    </div>
+                    <p>The direction of electric field along the bisector is opposite to that of the dipole moment.</p>
+                </section>
+            </div>
+            
+            <!-- Electric Potential Tab -->
+            <div class="tab-content" id="potential">
+                <section class="section">
+                    <h2>4. Electric Potential</h2>
+                    
+                    <div class="definition">
+                        <p><em>Electric potential, ΔV</em> is defined as <em>the change in electrostatic potential energy per unit charge.</em></p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[\Delta V = \frac{\Delta U}{q}\]
+                    </div>
+                    
+                    <p>The SI unit of electric potential is the volt (V).</p>
+                    
+                    <h3>4.1 Relationship between E and V</h3>
+                    
+                    <div class="formula">
+                        \[\Delta V = \frac{W_{ext}}{q}\]
+                    </div>
+                    
+                    <p>Now:</p>
+                    <div class="formula">
+                        \[W_{ext} = \int \mathbf{F}_{ext} \cdot d\mathbf{s}\]
+                    </div>
+                    
+                    <h3>4.2 Electric Potential due to Various Charge Distributions</h3>
+                    
+                    <div class="charge-distribution">
+                        <div class="charge-card">
+                            <div class="charge-title">1. Isolated Charge</div>
+                            <div class="formula">
+                                \[V = \frac{1}{4\pi\epsilon_0} \frac{q}{r}\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">2. A Ring of Charge</div>
+                            <div class="formula">
+                                \[V = \frac{1}{4\pi\epsilon_0} \frac{q}{\sqrt{R^2 + x^2}}\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">3. A Disc of Charge</div>
+                            <div class="formula">
+                                \[V = \frac{\sigma}{2\epsilon_0} \left[ \sqrt{R^2 + x^2} - x \right]\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">4. A Sphere of Charge</div>
+                            <p>Inside \( 0 \leq r \leq R \):</p>
+                            <div class="formula">
+                                \[V = \frac{\rho R^2}{6\epsilon_0} \left[ 3 - \frac{r^2}{R^2} \right]\]
+                            </div>
+                            <p>Outside \( r \geq R \):</p>
+                            <div class="formula">
+                                \[V = \frac{1}{4\pi\epsilon_0} \frac{q}{r}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>4.3 Electric Potential Due to a Dipole</h3>
+                    
+                    <p>(i) Along the axis:</p>
+                    <div class="formula">
+                        \[V_{\parallel} = \frac{2kp}{x^2}\]
+                    </div>
+                    
+                    <p>(ii) Along the bisector:</p>
+                    <div class="formula">
+                        \[V_{\perp} = 0\]
+                    </div>
+                    
+                    <h3>4.4 Dipole in an External Uniform Field</h3>
+                    
+                    <h4>(i) Torque</h4>
+                    <p>If a dipole is oriented at an angle \(\theta\) to a uniform electric field, the charges experience equal and opposite forces. So there is no net force on the dipole. However, there is a net torque on the dipole.</p>
+                    
+                    <div class="formula">
+                        \[\vec{\tau} = \vec{p} \times \vec{E}\]
+                    </div>
+                    
+                    <p>The magnitude of the torque is:</p>
+                    
+                    <div class="formula">
+                        \[\tau = pE \sin \theta\]
+                    </div>
+                    
+                    <h4>(ii) Potential Energy</h4>
+                    <p>The potential energy of a dipole in an external field is given by:</p>
+                    
+                    <div class="formula">
+                        \[U = -\vec{p} \cdot \vec{E}\]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Capacitors Tab -->
+            <div class="tab-content" id="capacitors">
+                <section class="section">
+                    <h2>5. Capacitors</h2>
+                    
+                    <div class="definition">
+                        <p>A <em>capacitor</em> is a device that stores electrical energy. The capacitance of the capacitor is defined as the <em>magnitude of the charge on one plate divided by the magnitude of the potential difference V between them</em>.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[C = \frac{q}{V}\]
+                    </div>
+                    
+                    <p><em>Capacitance</em> depends on the size and shape of the plates and the <em>material between them</em>. It does not depend on \( q \) or \( V \) individually. The SI unit of capacitance is the <strong>farad (F)</strong>.</p>
+                    
+                    <div class="formula">
+                        \[1 \, \text{farad} = 1 \, \text{coulomb/volt}\]
+                    </div>
+                    
+                    <h3>5.1 Types of Capacitors</h3>
+                    
+                    <div class="charge-distribution">
+                        <div class="charge-card">
+                            <div class="charge-title">1. Parallel Plate Capacitor</div>
+                            <div class="formula">
+                                \[\sigma = \frac{q}{A}\]
+                                \[E = \frac{\sigma}{\varepsilon_o} = \frac{q}{\varepsilon_o A}\]
+                                \[V = Ed = \frac{qd}{\varepsilon_o A}\]
+                                \[C = \frac{q}{V} = \frac{\varepsilon_o A}{d}\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">2. Spherical Capacitor</div>
+                            <div class="formula">
+                                \[V = \frac{q}{4\pi\varepsilon_o} \left[ \frac{1}{a} - \frac{1}{b} \right]\]
+                                \[C = \frac{q}{V} = \frac{4\pi\varepsilon_o ab}{b-a}\]
+                            </div>
+                        </div>
+                        
+                        <div class="charge-card">
+                            <div class="charge-title">3. Cylindrical Capacitor</div>
+                            <div class="formula">
+                                \[E = \frac{\lambda}{2\pi\varepsilon_o r} \quad a \leq r \leq b\]
+                                \[V = \frac{\lambda}{2\pi\varepsilon_0} \ln \left| \frac{b}{a} \right|\]
+                                \[C = \frac{q}{V} = \frac{2\pi\varepsilon_0 l}{\ln \left| \frac{b}{a} \right|}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>5.2 Energy Stored in a Capacitor</h3>
+                    
+                    <p>The energy stored in a capacitor is equal to the work done to charge it.</p>
+                    
+                    <div class="formula">
+                        \[dW = Vdq = \left( \frac{q}{C} \right) dq\]
+                    </div>
+                    
+                    <p>The charge moves through the wires, not across the gap between the plates.</p>
+                    
+                    <p>The total work done to transfer charge \( Q \) is:</p>
+                    
+                    <div class="formula">
+                        \[W = \int_{0}^{Q} \frac{q}{C} dq = \frac{Q^2}{2C} = \frac{QV}{2} = \frac{1}{2} CV^2\]
+                    </div>
+                    
+                    <h3>5.3 Capacitors with Dielectric</h3>
+                    
+                    <p>Since the charge on each plate is unaffected the capacitance in the presence of the dielectric is:</p>
+                    
+                    <div class="formula">
+                        \[C = \frac{q_0}{V} = \frac{kq_0}{V_0} = kC_0\]
+                    </div>
+                    
+                    <p>The capacitance of the capacitor increases by a factor \( k \).</p>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Complete Electrostatics Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+        
+        // Render MathJax equations
+        // In a real implementation, you would include MathJax library
+        // For this example, we'll just use the LaTeX formatting as is
+    </script>
+</body>
+</html>
