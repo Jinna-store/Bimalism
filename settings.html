@@ -670,17 +670,20 @@
     <script>
         // Enhanced user blocking function
         function isBlockedUser(name, isStudent, grade) {
-            if (!name || !isStudent || !grade) return false;
+            if (!name) return false;
             
             // Normalize the name for comparison
             const normalizedName = name.toLowerCase().replace(/[^a-z]/g, '');
             
             // Check if the user matches the blocked criteria
             const isHariharan = normalizedName.includes('hariharan');
+            const isBhavik = normalizedName.includes('bhavik');
             const isFromAchariya = isStudent === 'yes';
             const isGrade9 = grade === '9';
             
-            return isHariharan && isFromAchariya && isGrade9;
+            // Hariharan is blocked only if from Achariya and in Grade 9
+            // Bhavik is blocked regardless of other conditions
+            return (isHariharan && isFromAchariya && isGrade9) || isBhavik;
         }
 
         // Load saved settings
@@ -697,7 +700,11 @@
 
             // Check if current user is blocked
             if (isBlockedUser(name, isStudent, grade)) {
-                alert('Dogs are not allowed.');
+                if (name && name.toLowerCase().includes('bhavik')) {
+                    alert('Bhavik is not allowed.');
+                } else {
+                    alert('Dogs are not allowed.');
+                }
                 window.location.href = 'index.html'; // Redirect to a blocked page
                 return;
             }
@@ -706,9 +713,13 @@
                 document.getElementById('name').value = name;
                 document.getElementById('accountName').textContent = name;
             }
-            if (gender) document.querySelector(`input[name="gender"][value="${gender}"]`).checked = true;
+            if (gender) {
+                const genderRadio = document.querySelector(`input[name="gender"][value="${gender}"]`);
+                if (genderRadio) genderRadio.checked = true;
+            }
             if (isStudent) {
-                document.querySelector(`input[name="student"][value="${isStudent}"]`).checked = true;
+                const studentRadio = document.querySelector(`input[name="student"][value="${isStudent}"]`);
+                if (studentRadio) studentRadio.checked = true;
                 if (isStudent === 'yes') {
                     document.getElementById('gradeSection').classList.remove('hidden');
                 }
@@ -842,7 +853,11 @@
 
             // Check if user is blocked using enhanced function
             if (isBlockedUser(name, isStudent, grade)) {
-                alert('Dogs are not allowed.');
+                if (name.toLowerCase().includes('bhavik')) {
+                    alert('Bomvik is not allowed.');
+                } else {
+                    alert('Not allowed.');
+                }
                 window.location.href = 'index.html'; // Redirect to a blocked page
                 return;
             }
@@ -869,9 +884,13 @@
             const grade = localStorage.getItem('grade') || '';
             const dob = localStorage.getItem('dob') || '';
             document.getElementById('name').value = name;
-            if (gender) document.querySelector(`input[name="gender"][value="${gender}"]`).checked = true;
+            if (gender) {
+                const genderRadio = document.querySelector(`input[name="gender"][value="${gender}"]`);
+                if (genderRadio) genderRadio.checked = true;
+            }
             if (isStudent) {
-                document.querySelector(`input[name="student"][value="${isStudent}"]`).checked = true;
+                const studentRadio = document.querySelector(`input[name="student"][value="${isStudent}"]`);
+                if (studentRadio) studentRadio.checked = true;
                 document.getElementById('gradeSection').classList.toggle('hidden', isStudent !== 'yes');
             }
             document.getElementById('grade').value = grade;
