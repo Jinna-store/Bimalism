@@ -1,703 +1,920 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JEE Complete Syllabus</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-  --primary: #2c3e50;
-  --secondary: #3498db;
-  --accent: #e74c3c;
-  --light: #ecf0f1;
-  --dark: #2c3e50;
-  --success: #2ecc71;
-  --warning: #f39c12;
-  --physics: #3498db;
-  --chemistry: #e74c3c;
-  --maths: #2ecc71;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Mains Complete Syllabus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --physics: #3498db;
+            --chemistry: #e74c3c;
+            --maths: #2ecc71;
+            --biology: #9b59b6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  color: var(--dark);
-  line-height: 1.6;
-  padding-bottom: 60px;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-header {
-  background: var(--primary);
-  color: white;
-  padding: 15px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: var(--shadow);
-}
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
 
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.logo {
-  font-size: 24px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-}
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
 
-.logo i {
-  margin-right: 10px;
-  color: var(--accent);
-}
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
 
-nav ul {
-  display: flex;
-  list-style: none;
-}
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
 
-nav li {
-  margin-left: 25px;
-}
+        nav li {
+            margin-left: 25px;
+        }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: var(--transition);
-  padding: 5px 10px;
-  border-radius: 4px;
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
 
-nav a:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-.back-btn {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-}
+        .back-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
 
-.back-btn i {
-  margin-right: 8px;
-}
+        .back-btn i {
+            margin-right: 8px;
+        }
 
-.back-btn:hover {
-  background: #c0392b;
-  transform: translateY(-2px);
-}
+        .back-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
 
-.hero {
-  text-align: center;
-  padding: 40px 0;
-  background: white;
-  margin: 20px 0;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-}
+        .hero {
+            text-align: center;
+            padding: 40px 0;
+            background: white;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
 
-.hero h1 {
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 20px;
-}
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
 
-.hero p {
-  font-size: 1.2rem;
-  color: #7f8c8d;
-  max-width: 800px;
-  margin: 0 auto;
-}
+        .hero p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-.subject {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 30px 0;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-}
+        .subject {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
 
-.subject:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
+        .subject:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
 
-.subject-header {
-  padding: 20px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        .subject-header {
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.physics-header {
-  background: var(--physics);
-}
+        .physics-header {
+            background: var(--physics);
+        }
 
-.chemistry-header {
-  background: var(--chemistry);
-}
+        .chemistry-header {
+            background: var(--chemistry);
+        }
 
-.maths-header {
-  background: var(--maths);
-}
+        .maths-header {
+            background: var(--maths);
+        }
 
-.subject-header h2 {
-  font-size: 1.8rem;
-  display: flex;
-  align-items: center;
-}
+        .biology-header {
+            background: var(--biology);
+        }
 
-.subject-header h2 i {
-  margin-right: 10px;
-}
+        .subject-header h2 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
 
-.subject-content {
-  padding: 20px;
-}
+        .subject-header h2 i {
+            margin-right: 10px;
+        }
 
-.chapter {
-  margin-bottom: 15px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  overflow: hidden;
-}
+        .subject-content {
+            padding: 20px;
+        }
 
-.chapter-header {
-  background: #f8f9fa;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  transition: var(--transition);
-}
+        .chapter {
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-.chapter-header:hover {
-  background: #e9ecef;
-}
+        .chapter-header {
+            background: #f8f9fa;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-.chapter-title {
-  font-weight: 600;
-  font-size: 1.1rem;
-}
+        .chapter-header:hover {
+            background: #e9ecef;
+        }
 
-.chapter-content {
-  padding: 0 15px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
+        .chapter-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            flex-grow: 1;
+        }
 
-.chapter-content.active {
-  max-height: 500px;
-  padding: 15px;
-}
+        .chapter-weightage {
+            background: var(--warning);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
-.chapter-summary {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
+        .chapter-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
 
-.chapter-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+        .chapter-content.active {
+            max-height: 500px;
+            padding: 15px;
+        }
 
-.btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-  text-decoration: none;
-}
+        .chapter-summary {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
 
-.btn i {
-  margin-right: 8px;
-}
+        .chapter-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
 
-.btn-primary {
-  background: var(--secondary);
-  color: white;
-}
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
 
-.btn-primary:hover {
-  background: #2980b9;
-  transform: translateY(-2px);
-}
+        .btn i {
+            margin-right: 8px;
+        }
 
-.btn-success {
-  background: var(--success);
-  color: white;
-}
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
 
-.btn-success:hover {
-  background: #27ae60;
-  transform: translateY(-2px);
-}
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
 
-.btn-warning {
-  background: var(--warning);
-  color: white;
-}
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
 
-.btn-warning:hover {
-  background: #e67e22;
-  transform: translateY(-2px);
-}
+        .btn-success:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
 
-.btn-sm {
-  padding: 8px 16px;
-  font-size: 0.9rem;
-}
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+        }
 
-.subject-actions {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
+        .btn-warning:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
 
-.back-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: var(--primary);
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-  z-index: 99;
-  opacity: 0;
-  visibility: hidden;
-}
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
 
-.back-to-top.active {
-  opacity: 1;
-  visibility: visible;
-}
+        .subject-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
 
-.back-to-top:hover {
-  background: var(--secondary);
-  transform: translateY(-5px);
-}
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+        }
 
-.download-section {
-  text-align: center;
-  margin: 40px 0;
-}
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-.download-btn {
-  background: var(--primary);
-  color: white;
-  padding: 15px 30px;
-  font-size: 1.1rem;
-}
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
 
-.download-btn:hover {
-  background: #1a252f;
-  transform: translateY(-3px);
-}
+        .download-section {
+            text-align: center;
+            margin: 40px 0;
+        }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-  color: #7f8c8d;
-}
+        .download-btn {
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
 
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  nav li {
-    margin: 5px 10px;
-  }
-  
-  .hero h1 {
-    font-size: 2rem;
-  }
-  
-  .subject-header {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-  
-  .chapter-actions {
-    flex-direction: column;
-  }
-  
-  .subject-actions {
-    flex-direction: column;
-  }
-}
-</style>
+        .download-btn:hover {
+            background: #1a252f;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7f8c8d;
+        }
+
+        .exam-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .exam-info h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .subject-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .chapter-actions {
+                flex-direction: column;
+            }
+            
+            .subject-actions {
+                flex-direction: column;
+            }
+
+            .chapter-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <div class="container header-content">
-    <div class="logo">
-      <i class="fas fa-graduation-cap"></i>
-      <span>JEE Prep Pro</span>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#physics"><i class="fas fa-atom"></i> Physics</a></li>
-        <li><a href="#chemistry"><i class="fas fa-flask"></i> Chemistry</a></li>
-        <li><a href="#maths"><i class="fas fa-leaf"></i> Mathematics</a></li>
-        <li><a href="jee1.pdf"><i class="fas fa-file-alt"></i> JEE Previous question Paper</a></li>
-      </ul>
-    </nav>
-    <button class="back-btn" onclick="location.href='index.html'">
-      <i class="fas fa-arrow-left"></i> Back to Home
-    </button>
-  </div>
-</header>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>JEE Prep Pro</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#physics"><i class="fas fa-atom"></i> Physics</a></li>
+                    <li><a href="#chemistry"><i class="fas fa-flask"></i> Chemistry</a></li>
+                    <li><a href="#maths"><i class="fas fa-calculator"></i> Mathematics</a></li>
+                    <li><a href="jee1.pdf"><i class="fas fa-file-alt"></i> Previous Papers</a></li>
+                </ul>
+            </nav>
+            <button class="back-btn" onclick="location.href='index.html'">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+    </header>
 
-<div id="content">
-  <div class="container">
-    <div class="hero">
-      <h1>JEE Complete Syllabus</h1>
-      <p>Your comprehensive guide to Physics, Chemistry, and Mathematics syllabus for JEE Main & Advanced examination. Access chapter summaries and quizzes for each topic.</p>
-    </div>
+   <div id="content">
+    <div class="container">
+        <div class="hero">
+            <h1>JEE Mains Complete Syllabus</h1>
+            <p>Your comprehensive guide to Physics, Chemistry, and Mathematics syllabus for JEE Main examination. Access chapter summaries, weightages, and quizzes for each topic.</p>
+        </div>
 
-    <div class="download-section">
-      <button class="btn download-btn" onclick="downloadPDF()">
-        <i class="fas fa-download"></i> Download Full Syllabus as PDF
-      </button>
-    </div>
+        <div class="exam-info">
+            <h2>JEE Mains Examination Overview</h2>
+            <p>The Joint Entrance Examination (JEE) Main is conducted for admission to various undergraduate engineering and architecture courses in NITs, IIITs, and other Centrally Funded Technical Institutions (CFTIs).</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Exam Pattern</h3>
+                    <p>Computer Based Test (CBT)</p>
+                    <p>Duration: 3 hours</p>
+                    <p>Total Questions: 90 (30 from each subject)</p>
+                </div>
+                <div class="info-card">
+                    <h3>Marking Scheme</h3>
+                    <p>+4 for correct answer</p>
+                    <p>-1 for incorrect answer</p>
+                    <p>0 for unattempted questions</p>
+                </div>
+                <div class="info-card">
+                    <h3>Subjects</h3>
+                    <p>Physics</p>
+                    <p>Chemistry</p>
+                    <p>Mathematics</p>
+                </div>
+            </div>
+        </div>
 
-    <div class="subject" id="physics">
-      <div class="subject-header physics-header">
-        <h2><i class="fas fa-atom"></i> Physics</h2>
-        <div class="subject-actions">
-          <button class="btn btn-primary" onclick="location.href='jpy-sum1.html'">
-            <i class="fas fa-file-alt"></i> Full Summary
-          </button>
-          <button class="btn btn-success" onclick="location.href='jpy-ln1-quiz.html'">
-            <i class="fas fa-brain"></i> Physics Quiz
-          </button>
+        <div class="download-section">
+            <button class="btn download-btn" onclick="downloadPDF()">
+                <i class="fas fa-download"></i> Download Full Syllabus as PDF
+            </button>
         </div>
-      </div>
-      <div class="subject-content">
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 1: Physics and Measurements</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Physical quantities, SI units, dimensional analysis, significant figures, error analysis.
+
+        <div class="subject" id="physics">
+            <div class="subject-header physics-header">
+                <h2><i class="fas fa-atom"></i> Physics</h2>
+                <div class="subject-actions">
+                    <button class="btn btn-primary" onclick="location.href='jpy.html'">
+                        <i class="fas fa-file-alt"></i> Full Summary
+                    </button>
+                    <button class="btn btn-success" onclick="location.href='jpy-quiz.html'">
+                        <i class="fas fa-brain"></i> Physics Quiz
+                    </button>
+                </div>
             </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum1.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln1-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
+            <div class="subject-content">
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 1: Physics and Measurement</span>
+                        <span class="chapter-weightage">~4%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Physical quantities, units, dimensions, dimensional analysis, errors in measurement, significant figures, measuring instruments.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum1.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln1-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 2: Kinematics</span>
+                        <span class="chapter-weightage">~5%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Motion in a straight line, uniform and non-uniform motion, velocity, acceleration, projectile motion, relative velocity.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum2.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln2-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 3: Laws of Motion</span>
+                        <span class="chapter-weightage">~6%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Newton's laws, force, inertia, momentum, impulse, friction, circular motion, equilibrium of concurrent forces.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum3.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln3-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 4: Work, Energy and Power</span>
+                        <span class="chapter-weightage">~5%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Work, kinetic energy, potential energy, conservation of energy, power, collisions.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum4.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln4-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 5: Rotational Motion</span>
+                        <span class="chapter-weightage">~5%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Rotational motion involves the study of objects rotating about an axis, described by angular quantities like torque, moment of inertia, and angular momentum.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum5.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln5-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 6: Gravitation</span>
+                        <span class="chapter-weightage">~4%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Universal law of gravitation, gravitational potential, escape velocity, orbital velocity, geostationary satellites.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum6.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln6-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 7: Properties of Solids and Liquids</span>
+                        <span class="chapter-weightage">~5%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            This chapter covers the properties of solids and liquids, including elasticity, viscosity, and surface tension.
+                            
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum7.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln7-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 8: Thermodynamics</span>
+                        <span class="chapter-weightage">~6%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Thermal equilibrium, zeroth law, first law, second law, heat engines, refrigerators, specific heat, latent heat.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum8.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln8-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 9: Kinetic Theory of Gases</span>
+                        <span class="chapter-weightage">~3%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Explains gas behavior by treating gases as large numbers of tiny particles in random motion, where pressure arises from collisions and temperature measures average kinetic energy.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum9.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln9-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 10: Oscillations and Waves</span>
+                        <span class="chapter-weightage">~4%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            This chapter covers the concepts of oscillations and waves, including simple harmonic motion, wave properties, and sound waves.
+                            
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum10.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln10-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 11: Electrostatics</span>
+                        <span class="chapter-weightage">~4%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Electric charges, Coulomb's law, electric field, field lines, dipole, Gauss's theorem, potential, capacitance.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum11.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln11-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 12: Current Electricity</span>
+                        <span class="chapter-weightage">~9%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Electric current, Ohm's law, resistance, Kirchhoff's laws, Wheatstone bridge, potentiometer, power.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum12.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln12-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 13: Magnetic Effects of Current and Magnetism</span>
+                        <span class="chapter-weightage">~8%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            This chapter covers the magnetic effects produced by electric currents and the properties of magnets.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum13.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln13-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 14: Electromagnetic Induction and Alternating Currents</span>
+                        <span class="chapter-weightage">~8%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            This chapter covers the concepts of electromagnetic induction and alternating currents, including Faraday's law, Lenz's law, and AC circuit analysis.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum14.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln14-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 15: Electromagnetic Waves</span>
+                        <span class="chapter-weightage">~8%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Faraday's law, electromagnetic waves, spectrum, properties, applications of EM waves.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum15.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln15-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 16: Optics</span>
+                        <span class="chapter-weightage">~4%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            This chapter covers the reflection, refraction, and dispersion of light, as well as the formation of images by mirrors and lenses.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum16.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln16-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 17: Atoms and Nuclei</span>
+                        <span class="chapter-weightage">~10%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            Structure of atoms, atomic models, quantum numbers, electron configuration, isotopes, nuclear reactions.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum17.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln17-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 18: Electronic Devices</span>
+                        <span class="chapter-weightage">~5%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            This chapter covers the working principles of various electronic devices, including diodes, transistors, and operational amplifiers.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum18.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln18-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 19: Communication Systems</span>
+                        <span class="chapter-weightage">~4%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            This chapter covers the principles of communication systems, including modulation, demodulation, and various types of communication channels.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum19.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln19-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <div class="chapter-header" onclick="toggleChapter(this)">
+                        <span class="chapter-title">Ch 20: Experimental Skills</span>
+                        <span class="chapter-weightage">~4%</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="chapter-content">
+                        <div class="chapter-summary">
+                            This chapter covers the basic concepts of experimental skills, including measurement techniques, data analysis, and the scientific method.
+                        </div>
+                        <div class="chapter-actions">
+                            <a class="btn btn-primary btn-sm" href="jpy-sum20.html">
+                                <i class="fas fa-book"></i> Summary
+                            </a>
+                            <a class="btn btn-success btn-sm" href="jpy-ln20-quiz.html">
+                                <i class="fas fa-question-circle"></i> Quiz
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 2: Kinematics</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Distance, displacement, speed, velocity, acceleration, equations of motion, graphs.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum2.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln2-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 3: Laws of motion</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Newton's laws of motion, friction, dynamics of uniform circular motion.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum3.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln3-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 4: Work, Power & Energy</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-             Work, kinetic energy, work-energy theorem, power, potential energy, conservation of energy.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum4.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln4-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 5: Rotational motion</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Rotational motion describes the kinematics and dynamics of rotating bodies, relating angular displacement (θ), velocity (ω), acceleration (α), moment of inertia (I), torque (τ), angular momentum (L), and rotational kinetic energy through fundamental laws and equations analogous to linear motion.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum5.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln5-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 6: Gravitation</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Gravitation describes the universal attractive force between masses governed by Newton's inverse-square law, explaining planetary motion through Kepler's laws, orbital mechanics, gravitational potential energy, and variations in acceleration due to gravity with height, depth, and Earth's rotation.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum6.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln6-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 7: Properties of solid ,Liquid and gas</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Solids exhibit elasticity with stress-strain relationships and moduli (Young's, shear, bulk); liquids demonstrate fluid properties including pressure variation, buoyancy, continuity, Bernoulli's principle, surface tension, and viscosity; gases follow similar fluid laws while thermal properties govern expansion, specific heat, heat transfer mechanisms, and radiation laws for all states.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum7.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln7-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 8: Thermodynamics</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Thermodynamics studies heat, work, and energy transformations through laws governing system behavior, processes (isothermal, adiabatic), internal energy changes, and efficiency in cyclic operations.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum8.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln8-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 9: Mechanical Properties of Fluids</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Pressure, Pascal's law, Bernoulli's principle, viscosity, surface tension.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum9.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln9-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 10: Thermal Properties of Matter</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Heat, temperature, thermal expansion, calorimetry, heat transfer, Newton's law of cooling.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum1p.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln1p-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 11: Thermodynamics</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Thermal equilibrium, laws of thermodynamics, heat engines, refrigerators.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum11.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln11-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 12: Kinetic Theory</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Molecular nature of matter, behavior of gases, kinetic theory of gases, degrees of freedom.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jpy-sum12.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jpy-ln12-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 13: Oscillations</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Periodic motion, simple harmonic motion, oscillations of spring, simple pendulum.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jee-summary.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jee-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="chapter">
-          <div class="chapter-header" onclick="toggleChapter(this)">
-            <span class="chapter-title">Ch 14: Waves</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="chapter-content">
-            <div class="chapter-summary">
-              Wave motion, types of waves, speed of wave, superposition principle, standing waves, beats, Doppler effect.
-            </div>
-            <div class="chapter-actions">
-              <button class="btn btn-primary btn-sm" onclick="location.href='jee-summary.html'">
-                <i class="fas fa-book"></i> Summary
-              </button>
-              <button class="btn btn-success btn-sm" onclick="location.href='jee-quiz.html'">
-                <i class="fas fa-question-circle"></i> Quiz
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="subject" id="chemistry">
       <div class="subject-header chemistry-header">
@@ -1298,6 +1515,7 @@ document.querySelectorAll('nav a').forEach(anchor => {
 </script>
 </body>
 </html>
+
 
 
 
