@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thermodynamics Quiz</title>
+    <title>Electronic Devices Quiz</title>
     <style>
         * {
             margin: 0;
@@ -273,13 +273,27 @@
             font-size: 1rem;
             display: inline-block;
         }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .circuit-diagram {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Thermodynamics Quiz</h1>
-            <p class="subtitle">Test your knowledge of thermodynamic processes, laws, and applications</p>
+            <h1>Electronic Devices Quiz</h1>
+            <p class="subtitle">Test your knowledge of Semiconductors, Diodes, Transistors, and Logic Gates</p>
             <div class="timer-container">
                 Time Left: <span id="timer">15:00</span>
             </div>
@@ -304,7 +318,7 @@
                 <div class="progress" id="quiz-progress"></div>
             </div>
             <div class="progress-text">
-                <span>Progress: <span id="progress-text">1</span>/15</span>
+                <span>Progress: <span id="progress-text">1</span>/20</span>
                 <span id="answered-count">0 questions answered</span>
             </div>
         </div>
@@ -315,7 +329,7 @@
         
         <div class="result-container" id="result-content">
             <h2 class="result-title">Quiz Results</h2>
-            <div class="score" id="score">0/15</div>
+            <div class="score" id="score">0/20</div>
             <p id="result-message"></p>
             
             <div class="result-details" id="result-details">
@@ -332,157 +346,207 @@
     </div>
 
     <script>
-        // Quiz questions based on Thermodynamics
+        // Quiz questions based on Electronic Devices
         const quizQuestions = [
             {
-                question: "What is the mathematical expression for work done in a thermodynamic process?",
+                question: "Which of the following is NOT a semiconductor material?",
                 options: [
-                    "W = ∫P dV",
-                    "W = ∫V dP", 
-                    "W = PΔV",
-                    "W = ΔU + Q"
+                    "Germanium",
+                    "Silicon",
+                    "Copper",
+                    "Gallium Arsenide"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is the binding energy of an electron in the covalent bond of Germanium?",
+                options: [
+                    "0.7 eV",
+                    "1.1 eV",
+                    "1.4 eV",
+                    "0.3 eV"
                 ],
                 correct: 0
             },
             {
-                question: "According to the First Law of Thermodynamics, what is the relationship between Q, W, and ΔU?",
+                question: "In an n-type semiconductor, what are the majority charge carriers?",
                 options: [
-                    "Q = W + ΔU",
-                    "ΔU = Q - W", 
-                    "W = Q - ΔU",
-                    "All of the above"
+                    "Electrons",
+                    "Holes",
+                    "Protons",
+                    "Neutrons"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which element is commonly used as a pentavalent impurity for doping silicon?",
+                options: [
+                    "Boron",
+                    "Aluminium",
+                    "Phosphorus",
+                    "Gallium"
+                ],
+                correct: 2
+            },
+            {
+                question: "In a p-n junction diode under forward bias, what happens to the depletion region?",
+                options: [
+                    "It widens",
+                    "It narrows",
+                    "It remains the same",
+                    "It disappears completely"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the typical doping concentration in extrinsic semiconductors?",
+                options: [
+                    "1 impurity atom in 100 atoms",
+                    "1 impurity atom in 1,000 atoms",
+                    "1 impurity atom in 1,000,000 atoms",
+                    "1 impurity atom in 100,000,000 atoms"
                 ],
                 correct: 3
             },
             {
-                question: "In which thermodynamic process does the temperature remain constant?",
+                question: "In a transistor, which junction is typically reverse biased?",
                 options: [
-                    "Adiabatic process",
-                    "Isothermal process",
-                    "Isochoric process", 
-                    "Isobaric process"
+                    "Emitter-base junction",
+                    "Collector-base junction",
+                    "Both junctions",
+                    "Neither junction"
                 ],
                 correct: 1
             },
             {
-                question: "What is the work done in an isothermal expansion of an ideal gas?",
+                question: "What is the relationship between emitter, base, and collector currents in a transistor?",
                 options: [
-                    "W = nRΔT",
-                    "W = nRT ln(V₂/V₁)",
-                    "W = PΔV",
-                    "W = 0"
-                ],
-                correct: 1
-            },
-            {
-                question: "In an adiabatic process, what is the value of heat transfer Q?",
-                options: [
-                    "Q > 0",
-                    "Q < 0", 
-                    "Q = 0",
-                    "Q = ΔU"
-                ],
-                correct: 2
-            },
-            {
-                question: "What is the relationship between Cₚ and Cᵥ for an ideal gas?",
-                options: [
-                    "Cₚ - Cᵥ = R",
-                    "Cₚ + Cᵥ = R",
-                    "Cₚ/Cᵥ = R", 
-                    "Cₚ × Cᵥ = R"
+                    "I_E = I_C + I_B",
+                    "I_C = I_E + I_B",
+                    "I_B = I_E + I_C",
+                    "I_E = I_C = I_B"
                 ],
                 correct: 0
             },
             {
-                question: "Which of the following is true for internal energy of an ideal gas?",
+                question: "Which of the following logic gates is known as a universal gate?",
                 options: [
-                    "It depends only on temperature",
-                    "It depends on both temperature and volume",
-                    "It depends on both temperature and pressure",
-                    "It is always zero"
+                    "AND gate",
+                    "OR gate",
+                    "NOT gate",
+                    "NOR gate"
+                ],
+                correct: 3
+            },
+            {
+                question: "In a half-wave rectifier, during which part of the input cycle does current flow through the load?",
+                options: [
+                    "Positive half cycle only",
+                    "Negative half cycle only",
+                    "Both half cycles",
+                    "Neither half cycle"
                 ],
                 correct: 0
             },
             {
-                question: "In a cyclic process, what is the change in internal energy ΔU?",
+                question: "What is the Boolean expression for an AND gate?",
                 options: [
-                    "ΔU > 0",
-                    "ΔU < 0",
-                    "ΔU = 0", 
-                    "ΔU = Q"
-                ],
-                correct: 2
-            },
-            {
-                question: "What does the area under the curve on a P-V diagram represent?",
-                options: [
-                    "Heat transfer",
-                    "Internal energy change",
-                    "Work done",
-                    "Temperature change"
-                ],
-                correct: 2
-            },
-            {
-                question: "For an adiabatic process of an ideal gas, which equation is correct?",
-                options: [
-                    "PV = constant",
-                    "PVᵞ = constant",
-                    "TV = constant", 
-                    "P/T = constant"
+                    "Y = A + B",
+                    "Y = A · B",
+                    "Y = Ā",
+                    "Y = A ⊕ B"
                 ],
                 correct: 1
             },
             {
-                question: "In an isothermal process for an ideal gas, what is ΔU equal to?",
+                question: "In a full-wave rectifier, how many diodes are typically used?",
                 options: [
-                    "nCᵥΔT",
-                    "Q - W",
-                    "0",
-                    "nRΔT"
-                ],
-                correct: 2
-            },
-            {
-                question: "What is the ratio Cₚ/Cᵥ denoted by?",
-                options: [
-                    "R",
-                    "γ", 
-                    "α",
-                    "β"
+                    "1",
+                    "2",
+                    "3",
+                    "4"
                 ],
                 correct: 1
             },
             {
-                question: "In which process is no work done?",
+                question: "Which of the following is a trivalent impurity?",
                 options: [
-                    "Isothermal process",
-                    "Adiabatic process",
-                    "Isochoric process",
-                    "Isobaric process"
+                    "Phosphorus",
+                    "Arsenic",
+                    "Antimony",
+                    "Boron"
                 ],
-                correct: 2
+                correct: 3
             },
             {
-                question: "For a system undergoing adiabatic expansion, what happens to its temperature?",
+                question: "What happens to the resistance of a semiconductor when temperature increases?",
                 options: [
                     "Increases",
-                    "Decreases", 
+                    "Decreases",
                     "Remains constant",
                     "First increases then decreases"
                 ],
                 correct: 1
             },
             {
-                question: "What is the work done in an isochoric process?",
+                question: "In a common emitter transistor amplifier, what is the formula for DC current gain?",
                 options: [
-                    "nRT ln(V₂/V₁)",
-                    "PΔV",
-                    "0",
-                    "nCᵥΔT"
+                    "β = I_C / I_B",
+                    "β = I_E / I_B",
+                    "β = I_C / I_E",
+                    "β = I_B / I_C"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which of the following is the truth table for a NOR gate?",
+                options: [
+                    "A=0,B=0 → Y=0; A=0,B=1 → Y=0; A=1,B=0 → Y=0; A=1,B=1 → Y=1",
+                    "A=0,B=0 → Y=1; A=0,B=1 → Y=0; A=1,B=0 → Y=0; A=1,B=1 → Y=0",
+                    "A=0,B=0 → Y=0; A=0,B=1 → Y=1; A=1,B=0 → Y=1; A=1,B=1 → Y=1",
+                    "A=0,B=0 → Y=1; A=0,B=1 → Y=1; A=1,B=0 → Y=1; A=1,B=1 → Y=0"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the main purpose of a Zener diode?",
+                options: [
+                    "Amplification",
+                    "Rectification",
+                    "Voltage regulation",
+                    "Oscillation"
                 ],
                 correct: 2
+            },
+            {
+                question: "In a p-n-p transistor, what is the direction of conventional current flow from emitter to base?",
+                options: [
+                    "Into the base",
+                    "Out of the base",
+                    "No current flows",
+                    "Depends on biasing"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which of the following statements about intrinsic semiconductors is correct?",
+                options: [
+                    "They have high conductivity at absolute zero",
+                    "They contain intentional impurities",
+                    "The number of electrons equals the number of holes",
+                    "They are always n-type"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is the primary function of a rectifier circuit?",
+                options: [
+                    "To amplify signals",
+                    "To convert AC to DC",
+                    "To generate high frequency signals",
+                    "To stabilize voltage"
+                ],
+                correct: 1
             }
         ];
 
@@ -523,7 +587,7 @@
                     <div class="question-text">${question.question}</div>
                     <div class="options">${optionsHTML}</div>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                <div class="navigation-buttons">
                     <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
                         ← Previous
                     </button>
@@ -640,14 +704,14 @@
             
             // Result message based on score
             let message = '';
-            if (score >= 13) {
-                message = 'Excellent! You have a strong understanding of Thermodynamics.';
-            } else if (score >= 10) {
-                message = 'Good job! You have a good grasp of thermodynamic concepts.';
-            } else if (score >= 7) {
-                message = 'Not bad! Review the material to improve your understanding.';
+            if (score >= 17) {
+                message = 'Excellent! You have a strong understanding of Electronic Devices concepts.';
+            } else if (score >= 14) {
+                message = 'Great job! You have a good grasp of semiconductors, diodes, and transistors.';
+            } else if (score >= 11) {
+                message = 'Good effort! Review the material to strengthen your understanding.';
             } else {
-                message = 'Keep studying! Review the thermodynamics concepts thoroughly.';
+                message = 'Keep studying! Review the Electronic Devices concepts thoroughly.';
             }
             
             document.getElementById('result-message').textContent = message;
@@ -669,9 +733,7 @@
 
         // Navigate to home page
         function goToHome() {
-            // In a real application, this would redirect to the thermodynamics summary page
-            alert("Redirecting to Thermodynamics Summary Page");
-            // window.location.href = "thermodynamics.html";
+            window.location.href = "electronic-devices-summary.html";
         }
 
         // Initialize the quiz when the page loads
