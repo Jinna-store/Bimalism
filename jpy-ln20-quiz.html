@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communication Systems Quiz</title>
+    <title>Experimental Skills Quiz</title>
     <style>
         * {
             margin: 0;
@@ -278,8 +278,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>Communication Systems Quiz</h1>
-            <p class="subtitle">Test your knowledge of Earth's Atmosphere, Wave Propagation, and Modulation</p>
+            <h1>Experimental Skills Quiz</h1>
+            <p class="subtitle">Test your knowledge of Measuring Instruments, Physics Experiments, and Electronics</p>
             <div class="timer-container">
                 Time Left: <span id="timer">15:00</span>
             </div>
@@ -332,207 +332,207 @@
     </div>
 
     <script>
-        // Quiz questions based on Communication Systems (Chapter 20)
+        // Quiz questions based on Experimental Skills
         const quizQuestions = [
             {
-                question: "Which atmospheric layer has a temperature range from 298K to 220K?",
+                question: "What is the formula for Vernier Constant in linear scale instruments?",
                 options: [
-                    "Troposphere",
-                    "Stratosphere",
-                    "Mesosphere",
-                    "Ionosphere"
+                    "1 MSD - 1 VSD",
+                    "1 MSD + 1 VSD",
+                    "1 MSD / 1 VSD",
+                    "1 VSD - 1 MSD"
                 ],
                 correct: 0
             },
             {
-                question: "What is the main cause of the greenhouse effect?",
+                question: "For instruments with circular scales, how is the least count calculated?",
                 options: [
-                    "Atmosphere is transparent to visible radiation but reflects infrared radiation",
-                    "Atmosphere absorbs all solar radiation",
-                    "Earth's magnetic field traps heat",
-                    "Ozone layer absorbs ultraviolet radiation"
+                    "Pitch × Number of divisions",
+                    "Pitch / Number of divisions",
+                    "Number of divisions / Pitch",
+                    "1 / (Pitch × Number of divisions)"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the time period formula for a simple pendulum?",
+                options: [
+                    "T = 2π√(g/L)",
+                    "T = 2π√(L/g)",
+                    "T = √(2πL/g)",
+                    "T = 2π(L/g)"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which apparatus is used to measure Young's modulus of a material?",
+                options: [
+                    "Searle's apparatus",
+                    "Potentiometer",
+                    "Metre bridge",
+                    "Resonance tube"
                 ],
                 correct: 0
             },
             {
-                question: "For AM radio waves (frequency less than 30 MHz), what happens in the ionosphere?",
+                question: "What method is used to determine surface tension of liquids?",
                 options: [
-                    "They are absorbed completely",
-                    "They pass through unaffected",
-                    "They are reflected back to Earth",
-                    "They are converted to heat energy"
-                ],
-                correct: 2
-            },
-            {
-                question: "What is the primary limitation for TV signal transmission (100-200 MHz)?",
-                options: [
-                    "Ionosphere reflects the signals back to Earth",
-                    "Signals cannot travel through the atmosphere",
-                    "Signals are absorbed by water vapor",
-                    "Signals require line-of-sight transmission"
-                ],
-                correct: 3
-            },
-            {
-                question: "The formula for the height of a TV transmitting antenna is:",
-                options: [
-                    "h = d² / (2Rₑ)",
-                    "h = √(dRₑ)",
-                    "h = 2dRₑ",
-                    "h = Rₑ / (2d)"
+                    "Capillary rise method",
+                    "Cooling curve method",
+                    "Stokes' method",
+                    "Resonance method"
                 ],
                 correct: 0
             },
             {
-                question: "What is modulation in communication systems?",
+                question: "The formula for viscosity using Stokes' law is:",
                 options: [
-                    "Amplifying weak signals",
-                    "Converting analog to digital signals",
-                    "Superimposing information on a carrier wave",
-                    "Filtering noise from signals"
-                ],
-                correct: 2
-            },
-            {
-                question: "Which type of modulation varies the amplitude of the carrier wave?",
-                options: [
-                    "Frequency Modulation (FM)",
-                    "Amplitude Modulation (AM)",
-                    "Phase Modulation (PM)",
-                    "Pulse Code Modulation (PCM)"
-                ],
-                correct: 1
-            },
-            {
-                question: "The modulation index for AM is defined as:",
-                options: [
-                    "Ratio of carrier frequency to signal frequency",
-                    "Ratio of amplitude change to normal carrier amplitude",
-                    "Ratio of maximum frequency deviation to modulating frequency",
-                    "Ratio of signal power to carrier power"
-                ],
-                correct: 1
-            },
-            {
-                question: "Which modulation technique is preferred for digital communication?",
-                options: [
-                    "Pulse Amplitude Modulation (PAM)",
-                    "Pulse Width Modulation (PWM)",
-                    "Pulse Position Modulation (PPM)",
-                    "Pulse Code Modulation (PCM)"
-                ],
-                correct: 3
-            },
-            {
-                question: "What are the two main types of communication channels?",
-                options: [
-                    "Analog and Digital",
-                    "Wired and Wireless",
-                    "Line and Space",
-                    "Short-range and Long-range"
-                ],
-                correct: 2
-            },
-            {
-                question: "Which type of transmission line is used where balanced properties are required?",
-                options: [
-                    "Coaxial cable",
-                    "Twisted pair",
-                    "Parallel wire line",
-                    "Optical fiber"
-                ],
-                correct: 2
-            },
-            {
-                question: "What is the main advantage of twisted pair wires?",
-                options: [
-                    "They can transmit signals over very long distances",
-                    "They minimize electrical interference",
-                    "They have the highest bandwidth",
-                    "They are the most secure"
-                ],
-                correct: 1
-            },
-            {
-                question: "Coaxial cables are suitable for frequencies up to:",
-                options: [
-                    "1 MHz",
-                    "10 MHz",
-                    "100 MHz",
-                    "1 GHz"
-                ],
-                correct: 3
-            },
-            {
-                question: "What is the primary advantage of optical communication over electronic communication?",
-                options: [
-                    "Lower cost equipment",
-                    "Wider channel bandwidth",
-                    "Easier installation",
-                    "Compatibility with existing systems"
-                ],
-                correct: 1
-            },
-            {
-                question: "Optical communication frequencies are typically in the range of:",
-                options: [
-                    "10⁶ to 10⁸ Hz",
-                    "10⁹ to 10¹¹ Hz",
-                    "10¹² to 10¹⁶ Hz",
-                    "10¹⁷ to 10²⁰ Hz"
-                ],
-                correct: 2
-            },
-            {
-                question: "What principle is used in optical fibers to transmit light with minimal loss?",
-                options: [
-                    "Refraction",
-                    "Diffraction",
-                    "Total internal reflection",
-                    "Polarization"
-                ],
-                correct: 2
-            },
-            {
-                question: "An optical fiber typically consists of:",
-                options: [
-                    "A single glass strand",
-                    "A core with lower refractive index than cladding",
-                    "A core with higher refractive index than cladding",
-                    "A metallic conductor surrounded by insulation"
-                ],
-                correct: 2
-            },
-            {
-                question: "The acceptance angle θₑ for an optical fiber in air is given by:",
-                options: [
-                    "sin θₑ = √(n₁² - n₂²)",
-                    "sin θₑ = n₁/n₂",
-                    "sin θₑ = n₂/n₁",
-                    "sin θₑ = (n₁ - n₂)/n₀"
+                    "η = 2r²(ρ-σ)g/(9vₜ)",
+                    "η = 9r²(ρ-σ)g/(2vₜ)",
+                    "η = 2r(ρ-σ)g/(9vₜ²)",
+                    "η = 9r(ρ-σ)g/(2vₜ²)"
                 ],
                 correct: 0
             },
             {
-                question: "Which atmospheric layer has temperatures increasing from 180K to 700K?",
+                question: "Which law forms the basis of the cooling curve method for specific heat measurement?",
                 options: [
-                    "Troposphere",
-                    "Stratosphere",
-                    "Mesosphere",
-                    "Ionosphere"
+                    "Newton's law of cooling",
+                    "Ohm's law",
+                    "Hooke's law",
+                    "Snell's law"
                 ],
-                correct: 3
+                correct: 0
             },
             {
-                question: "In FM, the modulation index is defined as:",
+                question: "In a resonance tube experiment, if ℓ₁ and ℓ₂ are lengths for first and second resonance, the speed of sound is:",
                 options: [
-                    "Ratio of amplitude change to normal carrier amplitude",
-                    "Ratio of carrier frequency to signal frequency",
-                    "Ratio of maximum frequency deviation to modulating frequency",
-                    "Ratio of signal power to carrier power"
+                    "C = ν × 2(ℓ₂ - ℓ₁)",
+                    "C = ν × (ℓ₂ - ℓ₁)",
+                    "C = 2ν × (ℓ₂ - ℓ₁)",
+                    "C = ν × (ℓ₂ + ℓ₁)/2"
                 ],
-                correct: 2
+                correct: 0
+            },
+            {
+                question: "Which principle is used in Post Office Box and Metre Bridge?",
+                options: [
+                    "Wheatstone bridge principle",
+                    "Ohm's law",
+                    "Kirchhoff's law",
+                    "Faraday's law"
+                ],
+                correct: 0
+            },
+            {
+                question: "In electrical experiments, how is an ammeter connected?",
+                options: [
+                    "In series",
+                    "In parallel",
+                    "Both series and parallel",
+                    "Neither series nor parallel"
+                ],
+                correct: 0
+            },
+            {
+                question: "What is the working principle of a potentiometer?",
+                options: [
+                    "Potential difference is proportional to length of uniform wire",
+                    "Current is proportional to length of wire",
+                    "Resistance is proportional to length of wire",
+                    "Voltage is inversely proportional to length of wire"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which condition must be satisfied for potentiometer experiments?",
+                options: [
+                    "EMF of driving cell > EMF of auxiliary cells",
+                    "EMF of driving cell < EMF of auxiliary cells",
+                    "EMF of driving cell = EMF of auxiliary cells",
+                    "No specific condition"
+                ],
+                correct: 0
+            },
+            {
+                question: "For which optical element can we use parallax method to find focal length?",
+                options: [
+                    "Concave mirror and convex lens",
+                    "Convex mirror only",
+                    "Concave lens only",
+                    "All mirrors and lenses"
+                ],
+                correct: 0
+            },
+            {
+                question: "The formula for refractive index using prism method is:",
+                options: [
+                    "μ = sin((A+Dₘ)/2) / sin(A/2)",
+                    "μ = sin(A/2) / sin((A+Dₘ)/2)",
+                    "μ = sin(A+Dₘ) / sin(A)",
+                    "μ = sin(A) / sin(A+Dₘ)"
+                ],
+                correct: 0
+            },
+            {
+                question: "For a diode to conduct, how should it be biased?",
+                options: [
+                    "Anode positive w.r.t. cathode",
+                    "Anode negative w.r.t. cathode",
+                    "Both terminals at same potential",
+                    "Either way works"
+                ],
+                correct: 0
+            },
+            {
+                question: "How is a Zener diode typically used?",
+                options: [
+                    "Reverse biased as voltage regulator",
+                    "Forward biased as amplifier",
+                    "Reverse biased as amplifier",
+                    "Forward biased as rectifier"
+                ],
+                correct: 0
+            },
+            {
+                question: "For proper transistor operation:",
+                options: [
+                    "b-e forward biased, b-c reverse biased",
+                    "b-e reverse biased, b-c forward biased",
+                    "Both junctions forward biased",
+                    "Both junctions reverse biased"
+                ],
+                correct: 0
+            },
+            {
+                question: "When using a multimeter to identify a diode, what pattern is observed?",
+                options: [
+                    "Low resistance one way, high resistance other way",
+                    "High resistance both ways",
+                    "Low resistance both ways",
+                    "Same resistance both ways"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which instrument is used to measure radius of curvature of spherical surfaces?",
+                options: [
+                    "Spherometer",
+                    "Screw gauge",
+                    "Vernier calipers",
+                    "Travelling microscope"
+                ],
+                correct: 0
+            },
+            {
+                question: "In Searle's apparatus, what is the purpose of the auxiliary wire?",
+                options: [
+                    "For comparison of length",
+                    "To provide electrical connection",
+                    "To increase sensitivity",
+                    "To reduce errors"
+                ],
+                correct: 0
             }
         ];
 
@@ -691,13 +691,13 @@
             // Result message based on score
             let message = '';
             if (score >= 17) {
-                message = 'Excellent! You have a strong understanding of Communication Systems.';
+                message = 'Excellent! You have a strong understanding of Experimental Skills.';
             } else if (score >= 14) {
-                message = 'Great job! You have a good grasp of communication concepts.';
+                message = 'Great job! You have a good grasp of experimental concepts.';
             } else if (score >= 11) {
                 message = 'Good effort! Review the material to strengthen your understanding.';
             } else {
-                message = 'Keep studying! Review the communication systems concepts thoroughly.';
+                message = 'Keep studying! Review the experimental skills concepts thoroughly.';
             }
             
             document.getElementById('result-message').textContent = message;
