@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atoms and Nuclei Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .info-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .info-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1a237e;
+        }
+        
+        .progress-container {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 0 20px 20px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #4caf50, #8bc34a);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .quiz-content {
+            padding: 30px;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #1a237e;
+            font-weight: 600;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .option:hover {
+            background-color: #e3f2fd;
+            border-color: #90caf9;
+        }
+        
+        .option.selected {
+            background-color: #e8f5e9;
+            border-color: #4caf50;
+        }
+        
+        .option.correct {
+            background-color: #c8e6c9;
+            border-color: #4caf50;
+        }
+        
+        .option.incorrect {
+            background-color: #ffcdd2;
+            border-color: #f44336;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result-container {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .result-title {
+            font-size: 2.2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #4caf50;
+            margin: 20px 0;
+        }
+        
+        .result-message {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .review-container {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .review-title {
+            font-size: 1.5rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .review-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #1a237e;
+        }
+        
+        .review-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .review-answer {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e8f5e9;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1rem;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                font-size: 1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+        
+        .timer {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f44336;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Atoms and Nuclei Quiz</h1>
+            <p class="subtitle">Test your knowledge of atomic models, nuclear physics, and radioactivity</p>
+        </header>
+        
+        <div class="quiz-info">
+            <div class="info-item">
+                <div class="info-label">Questions</div>
+                <div class="info-value" id="question-count">1/20</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Score</div>
+                <div class="info-value" id="score">0</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Time</div>
+                <div class="info-value" id="timer">10:00</div>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <div class="quiz-content" id="quiz-content">
+            <div class="question-container">
+                <div class="question-number" id="question-number">Question 1 of 20</div>
+                <div class="question-text" id="question-text">Loading question...</div>
+            </div>
+            
+            <div class="options-container" id="options-container">
+                <!-- Options will be populated by JavaScript -->
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-btn" disabled>Previous</button>
+                <button id="next-btn">Next</button>
+                <button id="submit-btn" style="display: none;">Submit Quiz</button>
+            </div>
+        </div>
+        
+        <div class="result-container" id="result-container">
+            <h2 class="result-title">Quiz Completed!</h2>
+            <div class="score" id="final-score">0/20</div>
+            <p class="result-message" id="result-message">Keep learning to improve your score!</p>
+            
+            <div class="review-container" id="review-container">
+                <h3 class="review-title">Review Your Answers</h3>
+                <!-- Review content will be populated by JavaScript -->
+            </div>
+            
+            <button id="restart-btn" style="margin-top: 30px;">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions and answers
+        const quizData = [
+            {
+                question: "In Rutherford's gold foil experiment, what did the observation that most alpha particles passed through the foil indicate?",
+                options: [
+                    "Atoms are mostly empty space",
+                    "The nucleus is positively charged",
+                    "Electrons orbit the nucleus",
+                    "Atoms contain a dense nucleus"
+                ],
+                correct: 0,
+                explanation: "The fact that most alpha particles passed through the foil indicated that atoms are mostly empty space, with the mass concentrated in a small nucleus."
+            },
+            {
+                question: "What is the distance of closest approach in Rutherford's scattering experiment given by?",
+                options: [
+                    "d = Ze² / (4πε₀mv²)",
+                    "d = Ze² / (πε₀mv²)",
+                    "d = Ze / (4πε₀mv²)",
+                    "d = Ze² / (4πε₀m)"
+                ],
+                correct: 1,
+                explanation: "The distance of closest approach is given by d = Ze² / (πε₀mv²), where Z is atomic number, e is electron charge, ε₀ is permittivity of free space, m is mass of alpha particle, and v is its initial velocity."
+            },
+            {
+                question: "According to Bohr's atomic model, what is the angular momentum of an electron in the nth orbit?",
+                options: [
+                    "mvr = nħ",
+                    "mvr = nh",
+                    "mvr = nħ/2",
+                    "mvr = nh/2π"
+                ],
+                correct: 0,
+                explanation: "Bohr postulated that the angular momentum of an electron in the nth orbit is quantized and given by mvr = nħ, where ħ = h/2π."
+            },
+            {
+                question: "What is the radius of the first Bohr orbit for hydrogen?",
+                options: [
+                    "5.3 × 10⁻¹¹ m",
+                    "1.06 × 10⁻¹⁰ m",
+                    "2.12 × 10⁻¹⁰ m",
+                    "0.53 × 10⁻¹⁰ m"
+                ],
+                correct: 0,
+                explanation: "The radius of the first Bohr orbit for hydrogen is 5.3 × 10⁻¹¹ m, often denoted as the Bohr radius (a₀)."
+            },
+            {
+                question: "Which series in the hydrogen spectrum lies in the visible region?",
+                options: [
+                    "Lyman series",
+                    "Balmer series",
+                    "Paschen series",
+                    "Brackett series"
+                ],
+                correct: 1,
+                explanation: "The Balmer series corresponds to electronic transitions to n=2 and lies in the visible region of the electromagnetic spectrum."
+            },
+            {
+                question: "What is the formula for the radius of a nucleus?",
+                options: [
+                    "R = R₀A",
+                    "R = R₀A²",
+                    "R = R₀A¹/³",
+                    "R = R₀A³"
+                ],
+                correct: 2,
+                explanation: "The radius of a nucleus is given by R = R₀A¹/³, where R₀ ≈ 1.1 × 10⁻¹⁵ m and A is the mass number."
+            },
+            {
+                question: "What is the relationship between half-life (T₁/₂) and decay constant (λ)?",
+                options: [
+                    "T₁/₂ = λ/ln2",
+                    "T₁/₂ = ln2/λ",
+                    "T₁/₂ = 1/λ",
+                    "T₁/₂ = λ²"
+                ],
+                correct: 1,
+                explanation: "The half-life is related to the decay constant by T₁/₂ = ln2/λ ≈ 0.693/λ."
+            },
+            {
+                question: "In nuclear fission of U-235, what is typically released along with the fission products?",
+                options: [
+                    "Protons",
+                    "Electrons",
+                    "Neutrons",
+                    "Alpha particles"
+                ],
+                correct: 2,
+                explanation: "In nuclear fission of U-235, typically 2-3 neutrons are released along with the fission products, which can sustain a chain reaction."
+            },
+            {
+                question: "What is the value of 1 atomic mass unit (amu) in MeV?",
+                options: [
+                    "511 MeV",
+                    "931.5 MeV",
+                    "13.6 MeV",
+                    "1.022 MeV"
+                ],
+                correct: 1,
+                explanation: "1 atomic mass unit (amu) is equivalent to 931.5 MeV of energy according to Einstein's mass-energy equivalence principle."
+            },
+            {
+                question: "Which of the following is NOT a property of nuclear forces?",
+                options: [
+                    "They are charge independent",
+                    "They are short range forces",
+                    "They are 10³⁷ times stronger than gravitational forces",
+                    "They are always repulsive"
+                ],
+                correct: 3,
+                explanation: "Nuclear forces are strongly attractive, not repulsive. They are charge independent, short range, and much stronger than gravitational or electromagnetic forces."
+            },
+            {
+                question: "What is the impact parameter in Rutherford scattering?",
+                options: [
+                    "The distance between two nuclei",
+                    "The perpendicular distance of velocity vector from nucleus center",
+                    "The distance of closest approach",
+                    "The radius of the nucleus"
+                ],
+                correct: 1,
+                explanation: "The impact parameter is defined as the perpendicular distance of the velocity vector of the α-particle from the center of the nucleus when the particle is far away from the nucleus."
+            },
+            {
+                question: "According to Bohr's model, what is the total energy of an electron in the nth orbit?",
+                options: [
+                    "E = - (13.6 Z²/n²) eV",
+                    "E = (13.6 Z²/n²) eV",
+                    "E = - (13.6 n²/Z²) eV",
+                    "E = (13.6 n²/Z²) eV"
+                ],
+                correct: 0,
+                explanation: "The total energy of an electron in the nth orbit of a hydrogen-like atom is E = - (13.6 Z²/n²) eV, where Z is the atomic number."
+            },
+            {
+                question: "What is the fine structure constant approximately equal to?",
+                options: [
+                    "1/137",
+                    "1/57",
+                    "1/237",
+                    "1/337"
+                ],
+                correct: 0,
+                explanation: "The fine structure constant α is approximately equal to 1/137. It's a dimensionless constant that characterizes the strength of electromagnetic interactions."
+            },
+            {
+                question: "Which of the following statements about nuclear density is correct?",
+                options: [
+                    "It increases with mass number",
+                    "It decreases with mass number",
+                    "It is approximately constant for all nuclei",
+                    "It is maximum for light nuclei"
+                ],
+                correct: 2,
+                explanation: "Nuclear density is approximately constant for all nuclei, about 2.3 × 10¹⁷ kg/m³, because nuclear volume is proportional to mass number."
+            },
+            {
+                question: "What is the relationship between mean life (τ) and decay constant (λ)?",
+                options: [
+                    "τ = 1/λ",
+                    "τ = λ",
+                    "τ = ln2/λ",
+                    "τ = λ/ln2"
+                ],
+                correct: 0,
+                explanation: "The mean life τ is the average lifetime of radioactive nuclei and is equal to the reciprocal of the decay constant: τ = 1/λ."
+            },
+            {
+                question: "In beta minus decay, what particle is emitted along with an electron?",
+                options: [
+                    "Proton",
+                    "Neutron",
+                    "Antineutrino",
+                    "Positron"
+                ],
+                correct: 2,
+                explanation: "In beta minus decay, an electron and an antineutrino are emitted when a neutron transforms into a proton inside the nucleus."
+            },
+            {
+                question: "What is the energy released per nucleon in nuclear fusion compared to fission?",
+                options: [
+                    "Much lower",
+                    "Slightly lower",
+                    "Approximately equal",
+                    "Higher"
+                ],
+                correct: 3,
+                explanation: "Nuclear fusion releases more energy per nucleon than fission. For example, hydrogen fusion releases about 6.7 MeV per nucleon, while uranium fission releases about 0.85 MeV per nucleon."
+            },
+            {
+                question: "What is the maximum number of spectral lines emitted when an electron is in the nth orbit?",
+                options: [
+                    "n",
+                    "n²",
+                    "n(n-1)/2",
+                    "2n"
+                ],
+                correct: 2,
+                explanation: "The maximum number of spectral lines that can be emitted when an electron is in the nth orbit is given by n(n-1)/2, representing all possible transitions to lower energy levels."
+            },
+            {
+                question: "Which of the following particles was proposed by Yukawa to explain nuclear forces?",
+                options: [
+                    "Electron",
+                    "Proton",
+                    "Meson",
+                    "Photon"
+                ],
+                correct: 2,
+                explanation: "Hideki Yukawa proposed in 1935 that nuclear forces are due to the exchange of mesons between nucleons."
+            },
+            {
+                question: "What is the value of Rydberg's constant approximately?",
+                options: [
+                    "1.1 × 10⁷ m⁻¹",
+                    "1.1 × 10⁸ m⁻¹",
+                    "1.1 × 10⁹ m⁻¹",
+                    "1.1 × 10¹⁰ m⁻¹"
+                ],
+                correct: 0,
+                explanation: "Rydberg's constant R is approximately 1.097 × 10⁷ m⁻¹. It appears in the formula for hydrogen spectral lines."
+            }
+        ];
+
+        // DOM elements
+        const questionCountElement = document.getElementById('question-count');
+        const scoreElement = document.getElementById('score');
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progress-bar');
+        const questionNumberElement = document.getElementById('question-number');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+        const submitButton = document.getElementById('submit-btn');
+        const quizContent = document.getElementById('quiz-content');
+        const resultContainer = document.getElementById('result-container');
+        const finalScoreElement = document.getElementById('final-score');
+        const resultMessageElement = document.getElementById('result-message');
+        const reviewContainer = document.getElementById('review-container');
+        const restartButton = document.getElementById('restart-btn');
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let timeLeft = 600; // 10 minutes in seconds
+        let timerInterval;
+
+        // Initialize the quiz
+        function initQuiz() {
+            showQuestion();
+            startTimer();
+            updateProgressBar();
+        }
+
+        // Display the current question
+        function showQuestion() {
+            const question = quizData[currentQuestion];
+            
+            questionNumberElement.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+            questionCountElement.textContent = `${currentQuestion + 1}/${quizData.length}`;
+            questionTextElement.textContent = question.question;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create new options
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                // If user has already selected this option, mark it as selected
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            prevButton.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === quizData.length - 1) {
+                nextButton.style.display = 'none';
+                submitButton.style.display = 'block';
+            } else {
+                nextButton.style.display = 'block';
+                submitButton.style.display = 'none';
+            }
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            // Remove selected class from all options
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Add selected class to clicked option
+            options[optionIndex].classList.add('selected');
+            
+            // Store user's answer
+            userAnswers[currentQuestion] = optionIndex;
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion();
+                updateProgressBar();
+            }
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                updateProgressBar();
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Start the timer
+        function startTimer() {
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeLeft < 60) {
+                timerElement.style.color = '#f44336';
+            }
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            score = 0;
+            for (let i = 0; i < quizData.length; i++) {
+                if (userAnswers[i] === quizData[i].correct) {
+                    score++;
+                }
+            }
+            
+            // Update final score display
+            finalScoreElement.textContent = `${score}/${quizData.length}`;
+            scoreElement.textContent = score;
+            
+            // Set result message based on score
+            let message = '';
+            if (score === quizData.length) {
+                message = 'Perfect! You have mastered Atoms and Nuclei!';
+            } else if (score >= quizData.length * 0.8) {
+                message = 'Excellent! You have a strong understanding of the topic.';
+            } else if (score >= quizData.length * 0.6) {
+                message = 'Good job! You have a solid foundation in Atoms and Nuclei.';
+            } else if (score >= quizData.length * 0.4) {
+                message = 'Fair effort! Review the material to strengthen your knowledge.';
+            } else {
+                message = 'Keep studying! Focus on the key concepts of Atoms and Nuclei.';
+            }
+            resultMessageElement.textContent = message;
+            
+            // Show review section
+            showReview();
+            
+            // Switch to result view
+            quizContent.style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        // Show review of answers
+        function showReview() {
+            reviewContainer.innerHTML = '<h3 class="review-title">Review Your Answers</h3>';
+            
+            quizData.forEach((question, index) => {
+                const reviewItem = document.createElement('div');
+                reviewItem.classList.add('review-item');
+                
+                const userAnswerIndex = userAnswers[index];
+                const isCorrect = userAnswerIndex === question.correct;
+                
+                reviewItem.innerHTML = `
+                    <div class="review-question">${index + 1}. ${question.question}</div>
+                    <div>Your answer: <span style="color: ${isCorrect ? '#4caf50' : '#f44336'}">${userAnswerIndex !== null ? question.options[userAnswerIndex] : 'Not answered'}</span></div>
+                    ${!isCorrect ? `<div>Correct answer: <span style="color: #4caf50">${question.options[question.correct]}</span></div>` : ''}
+                    <div class="explanation">${question.explanation}</div>
+                `;
+                
+                reviewContainer.appendChild(reviewItem);
+            });
+        }
+
+        // Restart the quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            timeLeft = 600;
+            
+            scoreElement.textContent = '0';
+            timerElement.textContent = '10:00';
+            timerElement.style.color = '#1a237e';
+            
+            quizContent.style.display = 'block';
+            resultContainer.style.display = 'none';
+            
+            initQuiz();
+        }
+
+        // Event listeners
+        prevButton.addEventListener('click', prevQuestion);
+        nextButton.addEventListener('click', nextQuestion);
+        submitButton.addEventListener('click', submitQuiz);
+        restartButton.addEventListener('click', restartQuiz);
+
+        // Initialize the quiz when the page loads
+        window.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>

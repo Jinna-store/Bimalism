@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optics Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th {
+            background-color: #3949ab;
+        }
+        
+        .comparison-table td:first-child {
+            font-weight: bold;
+            background-color: #f0f4ff;
+        }
+        
+        .color-spectrum {
+            display: flex;
+            height: 40px;
+            margin: 20px 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .color-violet { background-color: #8b00ff; }
+        .color-indigo { background-color: #4b0082; }
+        .color-blue { background-color: #0000ff; }
+        .color-green { background-color: #00ff00; }
+        .color-yellow { background-color: #ffff00; }
+        .color-orange { background-color: #ffa500; }
+        .color-red { background-color: #ff0000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Optics Summary</h1>
+            <p class="subtitle">Reflection, Refraction, Lenses, Wave Optics, and Polarization</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="reflection">Reflection</div>
+            <div class="nav-tab" data-tab="refraction">Refraction</div>
+            <div class="nav-tab" data-tab="lenses">Lenses</div>
+            <div class="nav-tab" data-tab="wave-optics">Wave Optics</div>
+            <div class="nav-tab" data-tab="polarization">Polarization</div>
+        </div>
+        
+        <div class="content">
+            <!-- Reflection Tab -->
+            <div class="tab-content active" id="reflection">
+                <section class="section">
+                    <h2>1. Reflection</h2>
+                    
+                    <h3>1.1 Plane Mirrors</h3>
+                    
+                    <div class="important-points">
+                        <h4>Properties of Plane Mirror Images:</h4>
+                        <ul>
+                            <li>Image is always virtual, erect, and of same size as object</li>
+                            <li>Image is at same distance behind mirror as object is in front</li>
+                            <li>If object moves towards mirror at speed v, image approaches at same speed v</li>
+                            <li>Image suffers lateral inversion (left-right reversal)</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Deviation by Plane Mirror</h4>
+                    
+                    <div class="formula">
+                        \[ \delta = 180^\circ - (i + r) = 180^\circ - 2i \]
+                    </div>
+                    
+                    <p>Maximum deviation occurs at normal incidence: δ<sub>max</sub> = 180° when i = 0°</p>
+                    
+                    <h3>1.2 Spherical Mirrors</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Mirror Formula</div>
+                        <div class="formula">
+                            \[ \frac{1}{u} + \frac{1}{v} = \frac{1}{f} \]
+                        </div>
+                        <p>Where u = object distance, v = image distance, f = focal length</p>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Lateral Magnification</div>
+                        <div class="formula">
+                            \[ m = \frac{-v}{u} \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Newton's Formula</div>
+                        <div class="formula">
+                            \[ x_1 x_2 = f^2 \]
+                        </div>
+                        <p>Where x₁ and x₂ are object and image distances measured from focus</p>
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Applications:</h4>
+                        <ul>
+                            <li><strong>Convex mirrors:</strong> Used as rear-view mirrors (increased field of view)</li>
+                            <li><strong>Concave mirrors:</strong> Used by dentists (enlarged image when object between F and P)</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Refraction Tab -->
+            <div class="tab-content" id="refraction">
+                <section class="section">
+                    <h2>2. Refraction</h2>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Snell's Law</div>
+                        <div class="formula">
+                            \[ \frac{\sin i}{\sin r} = \text{constant} = \mu \]
+                        </div>
+                    </div>
+                    
+                    <h3>2.1 Apparent Shift</h3>
+                    
+                    <div class="formula">
+                        \[ h' = \frac{h}{\mu} \]
+                        \[ s = h - h' = h\left(1 - \frac{1}{\mu}\right) \]
+                    </div>
+                    
+                    <h3>2.2 Total Internal Reflection</h3>
+                    
+                    <div class="definition">
+                        <p>Total internal reflection occurs when light travels from denser to rarer medium and angle of incidence exceeds critical angle.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \mu_2 \sin \theta_c = \mu_1 \]
+                        \[ \theta_c = \sin^{-1}\left(\frac{\mu_1}{\mu_2}\right) \]
+                    </div>
+                    
+                    <p>If rarer medium is air (μ₁ = 1):</p>
+                    <ul>
+                        <li>For glass: θ<sub>c</sub> ≈ 42°</li>
+                        <li>For water: θ<sub>c</sub> ≈ 49°</li>
+                    </ul>
+                    
+                    <h3>2.3 Prisms</h3>
+                    
+                    <div class="definition">
+                        <p>A prism is an optical medium bounded by two plane refracting surfaces inclined at an angle.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \delta = A(\mu - 1) \quad \text{(for small angles)} \]
+                        \[ \mu = \frac{\sin\left(\frac{\delta_{\min} + A}{2}\right)}{\sin\left(\frac{A}{2}\right)} \]
+                    </div>
+                    
+                    <h3>2.4 Dispersion</h3>
+                    
+                    <div class="definition">
+                        <p>Dispersion is the splitting of white light into its constituent colors due to wavelength-dependent refractive index.</p>
+                    </div>
+                    
+                    <div class="color-spectrum">
+                        <div class="color-violet" style="flex: 1"></div>
+                        <div class="color-indigo" style="flex: 1"></div>
+                        <div class="color-blue" style="flex: 1"></div>
+                        <div class="color-green" style="flex: 1"></div>
+                        <div class="color-yellow" style="flex: 1"></div>
+                        <div class="color-orange" style="flex: 1"></div>
+                        <div class="color-red" style="flex: 1"></div>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \mu = A + \frac{B}{\lambda^2} \quad \text{(Cauchy's formula)} \]
+                    </div>
+                    
+                    <h4>Angular Dispersion</h4>
+                    
+                    <div class="formula">
+                        \[ \theta = \delta_v - \delta_r \]
+                    </div>
+                    
+                    <h4>Dispersive Power</h4>
+                    
+                    <div class="formula">
+                        \[ \omega = \frac{\theta}{\delta_y} = \frac{\delta_v - \delta_r}{\delta_y} = \frac{\mu_v - \mu_r}{\mu_y - 1} \]
+                    </div>
+                    
+                    <h4>Achromatic Prism (Deviation without Dispersion)</h4>
+                    
+                    <div class="formula">
+                        \[ (\mu_v - \mu_r)A = (\mu'_v - \mu'_r)A' \]
+                    </div>
+                    
+                    <h4>Direct Vision Prism (Dispersion without Deviation)</h4>
+                    
+                    <div class="formula">
+                        \[ (\mu - 1)A = (\mu' - 1)A' \]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Lenses Tab -->
+            <div class="tab-content" id="lenses">
+                <section class="section">
+                    <h2>3. Lenses</h2>
+                    
+                    <h3>3.1 Refraction at Curved Surfaces</h3>
+                    
+                    <div class="formula">
+                        \[ \frac{\mu_2}{v} - \frac{\mu_1}{u} = \frac{\mu_2 - \mu_1}{R} \]
+                    </div>
+                    
+                    <div class="formula">
+                        \[ m = \frac{\mu_1 v}{\mu_2 u} \]
+                    </div>
+                    
+                    <h3>3.2 Lens Formula</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Lens Formula</div>
+                        <div class="formula">
+                            \[ \frac{1}{v} - \frac{1}{u} = \frac{1}{f} \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Magnification</div>
+                        <div class="formula">
+                            \[ m = \frac{v}{u} \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Lensmaker's Formula</div>
+                        <div class="formula">
+                            \[ \frac{1}{f} = \left(\frac{\mu_2}{\mu_1} - 1\right)\left(\frac{1}{R_1} - \frac{1}{R_2}\right) \]
+                        </div>
+                    </div>
+                    
+                    <h3>3.3 Lens Power and Combinations</h3>
+                    
+                    <div class="definition">
+                        <p>Power of a lens: P = 1/f (in diopters, when f is in meters)</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \frac{1}{F} = \frac{1}{f_1} + \frac{1}{f_2} + \ldots + \frac{1}{f_n} \]
+                        \[ P = P_1 + P_2 + \ldots + P_n \]
+                    </div>
+                    
+                    <h3>3.4 Optical Instruments</h3>
+                    
+                    <h4>Simple Microscope</h4>
+                    
+                    <div class="formula">
+                        \[ M = 1 + \frac{D}{f} \]
+                    </div>
+                    
+                    <h4>Compound Microscope</h4>
+                    
+                    <div class="formula">
+                        \[ M_{\min} = -\frac{v}{u} \frac{D}{f_e} \quad \text{(image at ∞)} \]
+                        \[ M_{\max} = -\frac{v}{u} \left(1 + \frac{D}{f_e}\right) \quad \text{(image at D)} \]
+                    </div>
+                    
+                    <h4>Astronomical Telescope</h4>
+                    
+                    <div class="formula">
+                        \[ M = \frac{f_o}{f_e} \]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Wave Optics Tab -->
+            <div class="tab-content" id="wave-optics">
+                <section class="section">
+                    <h2>4. Wave Optics</h2>
+                    
+                    <h3>4.1 Huygen's Principle</h3>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>Every point on wavefront vibrates in same phase with same frequency</li>
+                            <li>Every point acts as new source of secondary waves</li>
+                            <li>Wavefronts move with wave velocity in the medium</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>4.2 Coherent Sources</h3>
+                    
+                    <div class="definition">
+                        <p>Two sources are coherent if they have same frequency and constant phase difference.</p>
+                    </div>
+                    
+                    <h3>4.3 Young's Double Slit Experiment</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Fringe Width</div>
+                        <div class="formula">
+                            \[ \omega = \frac{\lambda D}{d} \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Optical Path</div>
+                        <div class="formula">
+                            \[ L = \mu d \]
+                        </div>
+                    </div>
+                    
+                    <h4>Intensity Distribution</h4>
+                    
+                    <div class="formula">
+                        \[ I = I_1 + I_2 + 2\sqrt{I_1 I_2} \cos\phi \]
+                    </div>
+                    
+                    <p>For equal intensities (I₁ = I₂ = I₀):</p>
+                    
+                    <div class="formula">
+                        \[ I = 4I_0 \cos^2(\phi/2) \]
+                    </div>
+                    
+                    <p>Maxima: I<sub>max</sub> = 4I₀ when φ = 2nπ</p>
+                    <p>Minima: I<sub>min</sub> = 0 when φ = (2n-1)π</p>
+                    
+                    <h3>4.4 Diffraction</h3>
+                    
+                    <div class="definition">
+                        <p>Diffraction is the spreading of waves when passing through openings comparable to wavelength.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ a \sin\theta = n\lambda \quad \text{(diffraction minima)} \]
+                    </div>
+                    
+                    <div class="formula">
+                        \[ I = I_0 \left(\frac{\sin\phi}{\phi}\right)^2 \]
+                        \[ \phi = \frac{\pi a \sin\theta}{\lambda} = \frac{\pi}{\lambda}\left(\frac{ay}{D}\right) \]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Polarization Tab -->
+            <div class="tab-content" id="polarization">
+                <section class="section">
+                    <h2>5. Polarization</h2>
+                    
+                    <div class="definition">
+                        <p>Polarization is the phenomenon of restricting light oscillations to a particular plane perpendicular to direction of propagation.</p>
+                    </div>
+                    
+                    <h3>5.1 Types of Light</h3>
+                    
+                    <ul>
+                        <li><strong>Unpolarized:</strong> Oscillations in all possible directions</li>
+                        <li><strong>Plane polarized:</strong> Oscillations restricted to single direction</li>
+                    </ul>
+                    
+                    <h3>5.2 Methods of Polarization</h3>
+                    
+                    <ul>
+                        <li>Refraction</li>
+                        <li>Reflection</li>
+                        <li>Dichroism (Nicol prism)</li>
+                        <li>Scattering</li>
+                    </ul>
+                    
+                    <h3>5.3 Brewster's Law</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Brewster's Law</div>
+                        <div class="formula">
+                            \[ \mu = \tan i_p \]
+                        </div>
+                        <p>At polarizing angle, reflected and refracted rays are perpendicular: i<sub>p</sub> + r = 90°</p>
+                    </div>
+                    
+                    <h3>5.4 Nicol's Prism</h3>
+                    
+                    <div class="definition">
+                        <p>Based on double refraction in calcite crystal, producing ordinary and extraordinary rays (both plane polarized).</p>
+                    </div>
+                    
+                    <h3>5.5 Malus Law</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Malus Law</div>
+                        <div class="formula">
+                            \[ I = I_0 \cos^2\theta \]
+                        </div>
+                        <p>For unpolarized light: I = I₀/2</p>
+                    </div>
+                    
+                    <h3>5.6 Polaroids</h3>
+                    
+                    <div class="definition">
+                        <p>Artificial polarizing devices using quinine iodosulphate crystals in plastic sheets.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Optics Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

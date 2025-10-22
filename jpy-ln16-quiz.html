@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optics Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .timer-container {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-home {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .btn-home:hover {
+            background: #388e3c;
+        }
+        
+        .btn-submit {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #1976d2;
+        }
+        
+        .btn-reset {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #f57c00;
+        }
+        
+        .progress-container {
+            padding: 15px 30px;
+            background: #e3f2fd;
+            border-bottom: 1px solid #bbdefb;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #4caf50;
+            width: 5%;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 5px solid #1a237e;
+        }
+        
+        .question-number {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .option:hover {
+            border-color: #1a237e;
+            background: #f0f4ff;
+        }
+        
+        .option.selected {
+            border-color: #1a237e;
+            background: #e3f2fd;
+        }
+        
+        .option input {
+            transform: scale(1.2);
+        }
+        
+        .result-container {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4caf50;
+            margin: 20px 0;
+        }
+        
+        .result-details {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .detail-item {
+            padding: 15px;
+            background: #f5f5f5;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .correct {
+            border-left: 5px solid #4caf50;
+        }
+        
+        .incorrect {
+            border-left: 5px solid #f44336;
+        }
+        
+        .review-btn {
+            background: #9c27b0;
+            color: white;
+            margin-top: 20px;
+        }
+        
+        .review-btn:hover {
+            background: #7b1fa2;
+        }
+        
+        @media (max-width: 768px) {
+            .timer-container {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+                display: inline-block;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Optics Quiz</h1>
+            <p class="subtitle">Test your knowledge of Reflection, Refraction, Lenses, Wave Optics, and Polarization</p>
+            <div class="timer-container">
+                Time Left: <span id="timer">15:00</span>
+            </div>
+        </header>
+        
+        <div class="nav-buttons">
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <div>
+                <button class="btn btn-reset" onclick="resetQuiz()">
+                    Reset Quiz
+                </button>
+                <button class="btn btn-submit" onclick="submitQuiz()">
+                    Submit Answers
+                </button>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="quiz-progress"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progress: <span id="progress-text">1</span>/20</span>
+                <span id="answered-count">0 questions answered</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-content">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="result-container" id="result-content">
+            <h2 class="result-title">Quiz Results</h2>
+            <div class="score" id="score">0/20</div>
+            <p id="result-message"></p>
+            
+            <div class="result-details" id="result-details">
+                <!-- Result details will be inserted here -->
+            </div>
+            
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <button class="btn review-btn" onclick="resetQuiz()">
+                Take Quiz Again
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions based on Optics
+        const quizQuestions = [
+            {
+                question: "According to Snell's law of refraction, the ratio of sines of angle of incidence and refraction is:",
+                options: [
+                    "Constant for given media",
+                    "Proportional to wavelength",
+                    "Inversely proportional to frequency",
+                    "Equal to velocity ratio"
+                ],
+                correct: 0
+            },
+            {
+                question: "For a plane mirror, the image formed is always:",
+                options: [
+                    "Real, inverted, and same size",
+                    "Virtual, erect, and same size",
+                    "Real, erect, and diminished",
+                    "Virtual, inverted, and enlarged"
+                ],
+                correct: 1
+            },
+            {
+                question: "The mirror formula is given by:",
+                options: [
+                    "1/u + 1/v = 1/f",
+                    "1/u - 1/v = 1/f",
+                    "u + v = f",
+                    "uv = f²"
+                ],
+                correct: 0
+            },
+            {
+                question: "Newton's formula for spherical mirrors states that:",
+                options: [
+                    "x₁x₂ = f²",
+                    "x₁ + x₂ = f",
+                    "x₁/x₂ = f",
+                    "x₁ - x₂ = f"
+                ],
+                correct: 0
+            },
+            {
+                question: "The apparent shift when viewing an object through a refracting medium is given by:",
+                options: [
+                    "s = h(1 - 1/μ)",
+                    "s = h(μ - 1)",
+                    "s = h/μ",
+                    "s = hμ"
+                ],
+                correct: 0
+            },
+            {
+                question: "Total internal reflection occurs when light travels from:",
+                options: [
+                    "Rarer to denser medium at any angle",
+                    "Denser to rarer medium at angle less than critical angle",
+                    "Denser to rarer medium at angle greater than critical angle",
+                    "Rarer to denser medium at critical angle"
+                ],
+                correct: 2
+            },
+            {
+                question: "The critical angle θc is given by:",
+                options: [
+                    "θc = sin⁻¹(μ₂/μ₁)",
+                    "θc = sin⁻¹(μ₁/μ₂)",
+                    "θc = cos⁻¹(μ₂/μ₁)",
+                    "θc = tan⁻¹(μ₁/μ₂)"
+                ],
+                correct: 1
+            },
+            {
+                question: "For a prism, the angle of deviation δ for small angles is approximately:",
+                options: [
+                    "δ = A(μ - 1)",
+                    "δ = A/μ",
+                    "δ = μA",
+                    "δ = A + μ"
+                ],
+                correct: 0
+            },
+            {
+                question: "Cauchy's formula for refractive index variation with wavelength is:",
+                options: [
+                    "μ = A + B/λ²",
+                    "μ = Aλ + B",
+                    "μ = A/λ + B",
+                    "μ = Aλ² + B"
+                ],
+                correct: 0
+            },
+            {
+                question: "The dispersive power of a prism is given by:",
+                options: [
+                    "ω = (μᵥ - μᵣ)/(μ - 1)",
+                    "ω = (μᵥ + μᵣ)/(μ - 1)",
+                    "ω = (μᵥ - μᵣ)/μ",
+                    "ω = μ/(μᵥ - μᵣ)"
+                ],
+                correct: 0
+            },
+            {
+                question: "The lens formula is:",
+                options: [
+                    "1/v - 1/u = 1/f",
+                    "1/v + 1/u = 1/f",
+                    "v - u = f",
+                    "uv = f²"
+                ],
+                correct: 0
+            },
+            {
+                question: "Lensmaker's formula for a lens in air is:",
+                options: [
+                    "1/f = (μ - 1)(1/R₁ - 1/R₂)",
+                    "1/f = (μ - 1)(R₁ - R₂)",
+                    "1/f = μ(1/R₁ - 1/R₂)",
+                    "1/f = (1/R₁ + 1/R₂)/μ"
+                ],
+                correct: 0
+            },
+            {
+                question: "The power of a lens in diopters is given by:",
+                options: [
+                    "P = 1/f (f in meters)",
+                    "P = f (f in meters)",
+                    "P = 1/f (f in centimeters)",
+                    "P = f (f in centimeters)"
+                ],
+                correct: 0
+            },
+            {
+                question: "In Young's double slit experiment, the fringe width is given by:",
+                options: [
+                    "ω = λD/d",
+                    "ω = dD/λ",
+                    "ω = λd/D",
+                    "ω = D/λd"
+                ],
+                correct: 0
+            },
+            {
+                question: "For two coherent sources, the resultant intensity is given by:",
+                options: [
+                    "I = I₁ + I₂ + 2√(I₁I₂)cosφ",
+                    "I = I₁ + I₂ - 2√(I₁I₂)cosφ",
+                    "I = I₁I₂cosφ",
+                    "I = (I₁ + I₂)cosφ"
+                ],
+                correct: 0
+            },
+            {
+                question: "The condition for nth minimum in single slit diffraction is:",
+                options: [
+                    "a sinθ = nλ",
+                    "a sinθ = (n + ½)λ",
+                    "a sinθ = λ/n",
+                    "a sinθ = nλ/2"
+                ],
+                correct: 0
+            },
+            {
+                question: "Brewster's law states that:",
+                options: [
+                    "μ = sin iₚ",
+                    "μ = cos iₚ",
+                    "μ = tan iₚ",
+                    "μ = cot iₚ"
+                ],
+                correct: 2
+            },
+            {
+                question: "According to Malus law, when polarized light passes through an analyzer:",
+                options: [
+                    "I = I₀ cos²θ",
+                    "I = I₀ sin²θ",
+                    "I = I₀ cosθ",
+                    "I = I₀ sinθ"
+                ],
+                correct: 0
+            },
+            {
+                question: "The magnifying power of a simple microscope is:",
+                options: [
+                    "M = 1 + D/f",
+                    "M = 1 - D/f",
+                    "M = D/f",
+                    "M = f/D"
+                ],
+                correct: 0
+            },
+            {
+                question: "For an astronomical telescope in normal adjustment, the magnifying power is:",
+                options: [
+                    "M = fₒ/fₑ",
+                    "M = fₑ/fₒ",
+                    "M = (fₒ + fₑ)/fₑ",
+                    "M = fₒfₑ/(fₒ + fₑ)"
+                ],
+                correct: 0
+            }
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let userAnswers = Array(quizQuestions.length).fill(null);
+        let timeLeft = 15 * 60; // 15 minutes in seconds
+        let timerInterval;
+        let quizSubmitted = false;
+
+        // Initialize the quiz
+        function initializeQuiz() {
+            displayQuestion();
+            startTimer();
+            updateProgress();
+        }
+
+        // Display current question
+        function displayQuestion() {
+            const quizContent = document.getElementById('quiz-content');
+            const question = quizQuestions[currentQuestion];
+            
+            let optionsHTML = '';
+            question.options.forEach((option, index) => {
+                const isChecked = userAnswers[currentQuestion] === index ? 'checked' : '';
+                optionsHTML += `
+                    <label class="option ${isChecked ? 'selected' : ''}">
+                        <input type="radio" name="answer" value="${index}" ${isChecked} 
+                               onchange="selectAnswer(${index})">
+                        ${option}
+                    </label>
+                `;
+            });
+            
+            quizContent.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${quizQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                    <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <button class="btn btn-submit" onclick="nextQuestion()">
+                        ${currentQuestion === quizQuestions.length - 1 ? 'Finish' : 'Next'} →
+                    </button>
+                </div>
+            `;
+        }
+
+        // Select an answer
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestion] = answerIndex;
+            document.querySelectorAll('.option').forEach((opt, idx) => {
+                if (idx === answerIndex) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+            updateProgress();
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                submitQuiz();
+            }
+        }
+
+        // Navigate to previous question
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        // Update progress bar and counter
+        function updateProgress() {
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            const progress = (answered / quizQuestions.length) * 100;
+            
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = answered;
+            document.getElementById('answered-count').textContent = `${answered} of ${quizQuestions.length} questions answered`;
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeLeft < 300) { // 5 minutes
+                document.getElementById('timer').style.color = '#ff5252';
+            }
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            if (quizSubmitted) return;
+            
+            quizSubmitted = true;
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            let resultDetails = '';
+            
+            quizQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                
+                if (isCorrect) score++;
+                
+                resultDetails += `
+                    <div class="detail-item ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div>
+                            <strong>Q${index + 1}:</strong> ${question.question}<br>
+                            <span>Your answer: ${userAnswer !== null ? question.options[userAnswer] : 'Not answered'}</span><br>
+                            <span>Correct answer: ${question.options[question.correct]}</span>
+                        </div>
+                        <div>${isCorrect ? '✓' : '✗'}</div>
+                    </div>
+                `;
+            });
+            
+            // Display results
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('result-content').style.display = 'block';
+            document.getElementById('score').textContent = `${score}/${quizQuestions.length}`;
+            document.getElementById('result-details').innerHTML = resultDetails;
+            
+            // Result message based on score
+            let message = '';
+            if (score >= 17) {
+                message = 'Excellent! You have a strong understanding of Optics.';
+            } else if (score >= 14) {
+                message = 'Great job! You have a good grasp of optical concepts.';
+            } else if (score >= 11) {
+                message = 'Good effort! Review the material to strengthen your understanding.';
+            } else {
+                message = 'Keep studying! Review the optics concepts thoroughly.';
+            }
+            
+            document.getElementById('result-message').textContent = message;
+        }
+
+        // Reset the quiz
+        function resetQuiz() {
+            currentQuestion = 0;
+            userAnswers = Array(quizQuestions.length).fill(null);
+            timeLeft = 15 * 60;
+            quizSubmitted = false;
+            
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('result-content').style.display = 'none';
+            
+            clearInterval(timerInterval);
+            initializeQuiz();
+        }
+
+        // Navigate to home page
+        function goToHome() {
+            window.location.href = "jee.html";
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initializeQuiz;
+    </script>
+</body>
+</html>

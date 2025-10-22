@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Systems Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .atmosphere-layers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .layer-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .layer-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .variable {
+            font-family: 'Cambria Math', serif;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .atmosphere-layers {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Communication Systems Summary</h1>
+            <p class="subtitle">Earth's Atmosphere, Electromagnetic Waves, Modulation, and Communication Channels</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="atmosphere">Earth's Atmosphere</div>
+            <div class="nav-tab" data-tab="propagation">Wave Propagation</div>
+            <div class="nav-tab" data-tab="modulation">Modulation</div>
+            <div class="nav-tab" data-tab="channels">Communication Channels</div>
+            <div class="nav-tab" data-tab="optical">Optical Communication</div>
+        </div>
+        
+        <div class="content">
+            <!-- Earth's Atmosphere Tab -->
+            <div class="tab-content active" id="atmosphere">
+                <section class="section">
+                    <h2>1. Earth's Atmosphere and Electromagnetic Waves</h2>
+                    
+                    <h3>1.1 Composition of Earth's Atmosphere</h3>
+                    <p>The earth's atmosphere mainly consists of:</p>
+                    <ul>
+                        <li>Nitrogen: 78%</li>
+                        <li>Oxygen: 21%</li>
+                        <li>Other gases: Argon, carbon dioxide, water vapor, hydrocarbons, sulfur compounds, and dust particles</li>
+                    </ul>
+                    
+                    <h3>1.2 Layers of the Atmosphere</h3>
+                    
+                    <div class="atmosphere-layers">
+                        <div class="layer-card">
+                            <div class="layer-title">Troposphere</div>
+                            <table>
+                                <tr>
+                                    <th>Height</th>
+                                    <td>Up to 12 km from Earth's surface</td>
+                                </tr>
+                                <tr>
+                                    <th>Temperature</th>
+                                    <td>298K to 220K</td>
+                                </tr>
+                                <tr>
+                                    <th>Characteristics</th>
+                                    <td>All climatic changes occur in this region</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="layer-card">
+                            <div class="layer-title">Stratosphere</div>
+                            <table>
+                                <tr>
+                                    <th>Height</th>
+                                    <td>12 km to 50 km</td>
+                                </tr>
+                                <tr>
+                                    <th>Temperature</th>
+                                    <td>220K to 280K</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="layer-card">
+                            <div class="layer-title">Mesosphere</div>
+                            <table>
+                                <tr>
+                                    <th>Height</th>
+                                    <td>50 km to 80 km</td>
+                                </tr>
+                                <tr>
+                                    <th>Temperature</th>
+                                    <td>280K to 180K</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="layer-card">
+                            <div class="layer-title">Ionosphere</div>
+                            <table>
+                                <tr>
+                                    <th>Height</th>
+                                    <td>80 km to 400 km</td>
+                                </tr>
+                                <tr>
+                                    <th>Temperature</th>
+                                    <td>180K to 700K</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <h3>1.3 Greenhouse Effect</h3>
+                    <div class="definition">
+                        <p>The atmosphere is transparent to visible radiations, but most infrared (heat) radiations are not allowed to pass through. The energy from the sun heats the earth which then starts emitting radiations like any other hot body. However, since the earth is much colder than sun, its radiations are mainly in the infra-red region. These radiations are unable to cross the lower atmosphere and are reflected back. Low lying clouds also reflect back the infra-red radiations. As such, the earth's surface warms at night. This phenomenon is called the Greenhouse effect.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Wave Propagation Tab -->
+            <div class="tab-content" id="propagation">
+                <section class="section">
+                    <h2>2. Propagation of Radio Waves</h2>
+                    
+                    <h3>2.1 Low Frequency Waves (AM Band)</h3>
+                    <p>Radio waves at frequencies from 10 meters or more wavelengths (frequency less than 30 MHz) is called the formation of the AM band.</p>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>Lower atmosphere is transparent for these waves, but the ionosphere reflects them back.</li>
+                            <li>A signal transmitted from a fixed point to another point can be received in two possible ways:
+                                <ul>
+                                    <li>Ground wave: Immediately after reflection from the Earth's surface</li>
+                                    <li>Sky wave: Reflection from the ionosphere</li>
+                                </ul>
+                            </li>
+                            <li>Waves with frequency of about 1500 kHz (wavelengths above 200 m) are transmitted primarily through the ground.</li>
+                            <li>Low-frequency sky waves lose their energy much quicker than higher frequency sky waves.</li>
+                            <li>Higher frequencies are mainly transmitted through the sky.</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>2.2 High Frequency Waves (Television Transmission)</h3>
+                    <p>Above the frequency of approximately 40MHz, the ionosphere reflects the earth wave. The television signal is frequency of 100-200 MHz.</p>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>TV broadcasting through the sky is not possible — only direct reception through the ground is possible.</li>
+                            <li>To have larger coverage, transmission has to be done through very long antennas.</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>2.3 Height of Transmitting Antenna for TV Telecast</h3>
+                    <div class="formula">
+                        \[h = \frac{d^2}{2R_e}\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\( h \) = height of transmitting antenna</li>
+                        <li>\( d \) = radius of the area to be covered for TV telecast</li>
+                        <li>\( R_e \) = radius of the Earth</li>
+                    </ul>
+                </section>
+            </div>
+            
+            <!-- Modulation Tab -->
+            <div class="tab-content" id="modulation">
+                <section class="section">
+                    <h2>3. Types of Modulation</h2>
+                    
+                    <div class="definition">
+                        <p>Modulation is the process of transmitting high frequency signals to long distances by superimposing on a high frequency wave which acts as carrier of the information.</p>
+                    </div>
+                    
+                    <h3>3.1 For Sinusoidal Continuous Carrier Wave</h3>
+                    
+                    <div class="two-column">
+                        <div>
+                            <h4>(A) Amplitude Modulation (AM)</h4>
+                            <p>When the amplitude of high frequency carrier wave is changed in accordance with the intensity of the modulating signal, it is called <strong>amplitude modulation</strong>.</p>
+                            
+                            <div class="formula">
+                                Modulation factor, (\(m\)) = \(\frac{\text{Amplitude change of carrier wave}}{\text{Amplitude of normal carrier wave}}\)
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>(B) Frequency Modulation (FM)</h4>
+                            <p>When the frequency of carrier wave is changed in accordance with the instantaneous value of the (modulating) signal it is called <strong>frequency modulation</strong>.</p>
+                            
+                            <div class="formula">
+                                \[m_f = \frac{\text{maximum frequency deviation}}{\text{modulating frequency}}\]
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4>(C) Phase Modulation (PM)</h4>
+                    <p>Here the phase angle \(\phi\) of the carrier signal varies in accordance with the modulating voltage.</p>
+                    
+                    <h3>3.2 For Pulsed Carrier Waves</h3>
+                    
+                    <div class="important-points">
+                        <h4>Types of Pulse Modulation:</h4>
+                        <ul>
+                            <li>Pulse amplitude modulation (PAM)</li>
+                            <li>Pulse width modulation (PWM) or pulse duration modulation</li>
+                            <li>Pulse position modulation (PPM)</li>
+                            <li>Pulse code modulation (PCM)</li>
+                        </ul>
+                        <p>PCM is the preferred modulation scheme for digital communication, while others are more suited to analog systems.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Communication Channels Tab -->
+            <div class="tab-content" id="channels">
+                <section class="section">
+                    <h2>4. Communication Channels</h2>
+                    
+                    <h3>4.1 Types of Communication</h3>
+                    
+                    <div class="two-column">
+                        <div>
+                            <h4>(i) Line Communication</h4>
+                            <p>The oldest point to point communication mode is communication through wires as in earlier telephone and telegraph links.</p>
+                            
+                            <h4>Types of Line Communication:</h4>
+                            <ul>
+                                <li>Two wire transmission lines</li>
+                                <li>Coaxial cables</li>
+                                <li>Optical fibres</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4>(ii) Space Communication</h4>
+                            <p>A new dimension recently added to the space communication is satellite communication.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>4.2 Two Wire Transmission Lines</h3>
+                    
+                    <div class="two-column">
+                        <div>
+                            <h4>(a) Parallel Wire Lines</h4>
+                            <p>The parallel wire line is used where balanced properties are required.</p>
+                            <div class="formula">
+                                System of conductors radiates \( RF \) energy if the conductor separation becomes appreciably approaching a wavelength half that of the operating frequency.
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>(b) Twisted Pair Wires Lines</h4>
+                            <p>Twisting helps in minimizing electrical interference. They cannot transmit signals over very large distances.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>4.3 Co-axial Wire Lines</h3>
+                    <p>These wires are used when unbalanced properties are needed. Often used to interconnect a transmitter and an earthed antenna. Co-axial line wires can be used for microwaves and ultra-high frequency waves (1 GHz).</p>
+                </section>
+            </div>
+            
+            <!-- Optical Communication Tab -->
+            <div class="tab-content" id="optical">
+                <section class="section">
+                    <h2>5. Optical Communication</h2>
+                    
+                    <h3>5.1 Advantages of Optical Communication</h3>
+                    
+                    <div class="important-points">
+                        <h4>Key Advantages:</h4>
+                        <ol>
+                            <li><strong>Wide channel bandwidth and large channel carrying capacity</strong> because of the use of higher frequencies - \( 10^{14} \, \text{Hz} \) as compared to the electronic communication links.</li>
+                            <li><strong>Low transmission losses.</strong> In optical fibres losses per km are less.</li>
+                            <li><strong>Signal security and not accessible to interference.</strong> The optical signals is confined to the inside of fibre and cannot be tempered easily. So secret information like banking, defence etc. is more secure.</li>
+                        </ol>
+                    </div>
+                    
+                    <p>Optical communication is through carrier optical signals. Easily accessible optical frequencies lie in the range \( 10^{12} \) to \( 10^{16} \, \text{Hz} \). It is very high as compared to the radio frequencies (\( 10^6 \) to \( 10^8 \, \text{Hz} \)) or microwaves (\( 10^9 \) to \( 10^{11} \, \text{Hz} \)).</p>
+                    
+                    <h3>5.2 Components of an Optical Communication Link</h3>
+                    
+                    <div class="two-column">
+                        <div>
+                            <h4>(i) Optical Source and Modulator</h4>
+                            <p>Light sources which can be modulated by our information carrying signal.</p>
+                        </div>
+                        
+                        <div>
+                            <h4>(ii) Optical Signal Detector or Photo Detector</h4>
+                            <p>The optical signal reaching the receiving end has to be detected by a detector which converts light into electrical signal so that the transmitted information may be decoded.</p>
+                        </div>
+                    </div>
+                    
+                    <h4>(iii) Cables which can carry optical signal</h4>
+                    <p>Light cannot travel along a metallic wire or cable but can pass through a transparent glass, polymers or dielectric. Therefore, optical transmission line called optical fibre is made from any of these materials. Total internal reflection is the principle behind fibre optics.</p>
+                    
+                    <h3>5.3 Optical Fibre Structure</h3>
+                    <p>An optical fibre consists typically of a transparent core fibre of glass of refractive index \( n_1 \) surrounded by a transparent glass sheath or cladding of slightly lower refractive index \( n_2 \), with both enclosed in an opaque protective jacket.</p>
+                    
+                    <h3>5.4 Acceptance Angle Formula</h3>
+                    <div class="formula">
+                        \[\sin \theta_e = \frac{\sqrt{n_1^2 - n_2^2}}{n_0}\]
+                    </div>
+                    <p>Where:</p>
+                    <ul>
+                        <li>\( \theta_e \) = entrance angle on the axis of the core</li>
+                        <li>\( n_1 \) = refractive index of core</li>
+                        <li>\( n_2 \) = refractive index of cladding</li>
+                        <li>\( n_0 \) = refractive index of external medium</li>
+                    </ul>
+                    
+                    <p>For air as the external medium (\(n_0 = 1\)), equation reduces to:</p>
+                    <div class="formula">
+                        \[\sin \theta_e = \sqrt{n_1^2 - n_2^2}\]
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Communication Systems Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

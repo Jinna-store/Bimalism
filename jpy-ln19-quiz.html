@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Systems Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .info-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .info-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1a237e;
+        }
+        
+        .progress-container {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 0 20px 20px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #4caf50, #8bc34a);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .quiz-content {
+            padding: 30px;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #1a237e;
+            font-weight: 600;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .option:hover {
+            background-color: #e3f2fd;
+            border-color: #90caf9;
+        }
+        
+        .option.selected {
+            background-color: #e8f5e9;
+            border-color: #4caf50;
+        }
+        
+        .option.correct {
+            background-color: #c8e6c9;
+            border-color: #4caf50;
+        }
+        
+        .option.incorrect {
+            background-color: #ffcdd2;
+            border-color: #f44336;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result-container {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .result-title {
+            font-size: 2.2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #4caf50;
+            margin: 20px 0;
+        }
+        
+        .result-message {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .review-container {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .review-title {
+            font-size: 1.5rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .review-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #1a237e;
+        }
+        
+        .review-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .review-answer {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #e8f5e9;
+        }
+        
+        .explanation {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1rem;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                font-size: 1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+        
+        .timer {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f44336;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Communication Systems Quiz</h1>
+            <p class="subtitle">Test your knowledge of atmosphere, wave propagation, modulation, and optical communication</p>
+        </header>
+        
+        <div class="quiz-info">
+            <div class="info-item">
+                <div class="info-label">Questions</div>
+                <div class="info-value" id="question-count">1/20</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Score</div>
+                <div class="info-value" id="score">0</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Time</div>
+                <div class="info-value" id="timer">10:00</div>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <div class="quiz-content" id="quiz-content">
+            <div class="question-container">
+                <div class="question-number" id="question-number">Question 1 of 20</div>
+                <div class="question-text" id="question-text">Loading question...</div>
+            </div>
+            
+            <div class="options-container" id="options-container">
+                <!-- Options will be populated by JavaScript -->
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-btn" disabled>Previous</button>
+                <button id="next-btn">Next</button>
+                <button id="submit-btn" style="display: none;">Submit Quiz</button>
+            </div>
+        </div>
+        
+        <div class="result-container" id="result-container">
+            <h2 class="result-title">Quiz Completed!</h2>
+            <div class="score" id="final-score">0/20</div>
+            <p class="result-message" id="result-message">Keep learning to improve your score!</p>
+            
+            <div class="review-container" id="review-container">
+                <h3 class="review-title">Review Your Answers</h3>
+                <!-- Review content will be populated by JavaScript -->
+            </div>
+            
+            <button id="restart-btn" style="margin-top: 30px;">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions and answers
+        const quizData = [
+            {
+                question: "Which atmospheric layer is responsible for all climatic changes and extends up to 12 km from Earth's surface?",
+                options: [
+                    "Troposphere",
+                    "Stratosphere", 
+                    "Mesosphere",
+                    "Ionosphere"
+                ],
+                correct: 0,
+                explanation: "The troposphere extends from Earth's surface up to 12 km and is where all climatic changes occur. Its temperature ranges from 298K to 220K."
+            },
+            {
+                question: "What is the primary composition of Earth's atmosphere?",
+                options: [
+                    "78% oxygen, 21% nitrogen",
+                    "78% nitrogen, 21% oxygen", 
+                    "50% nitrogen, 50% oxygen",
+                    "90% nitrogen, 10% oxygen"
+                ],
+                correct: 1,
+                explanation: "Earth's atmosphere mainly consists of 78% nitrogen and 21% oxygen, with the remaining 1% comprising argon, CO₂, water vapor, and other trace elements."
+            },
+            {
+                question: "What phenomenon describes how Earth's atmosphere traps infrared radiation, keeping the surface warm at night?",
+                options: [
+                    "Ozone effect",
+                    "Greenhouse effect", 
+                    "Doppler effect",
+                    "Photoelectric effect"
+                ],
+                correct: 1,
+                explanation: "The greenhouse effect occurs because the atmosphere is transparent to visible radiation but blocks most infrared radiation. Earth's emitted infrared radiation gets trapped, warming the surface."
+            },
+            {
+                question: "Which atmospheric layer reflects AM radio waves back to Earth, enabling long-distance communication?",
+                options: [
+                    "Troposphere",
+                    "Stratosphere", 
+                    "Mesosphere",
+                    "Ionosphere"
+                ],
+                correct: 3,
+                explanation: "The ionosphere (80-400 km altitude) reflects AM radio waves (frequencies less than 30 MHz) back to Earth, enabling sky wave propagation for long-distance communication."
+            },
+            {
+                question: "What is the frequency range for AM band radio waves?",
+                options: [
+                    "Less than 30 MHz",
+                    "30-100 MHz", 
+                    "100-200 MHz",
+                    "Above 200 MHz"
+                ],
+                correct: 0,
+                explanation: "The AM band consists of radio waves with frequencies less than 30 MHz (wavelengths more than 10 meters). These waves can be reflected by the ionosphere."
+            },
+            {
+                question: "Why can't TV signals (100-200 MHz) use sky wave propagation?",
+                options: [
+                    "They are absorbed by the troposphere",
+                    "The ionosphere does not reflect them back to Earth", 
+                    "They are too weak to travel long distances",
+                    "They interfere with other signals"
+                ],
+                correct: 1,
+                explanation: "Above approximately 40 MHz, the ionosphere does not reflect waves back to Earth. TV signals (100-200 MHz) can only use ground wave propagation, requiring tall antennas for coverage."
+            },
+            {
+                question: "What is the formula for calculating the height of a TV transmitting antenna?",
+                options: [
+                    "h = d² / (2Rₑ)",
+                    "h = 2d / Rₑ", 
+                    "h = Rₑ / d²",
+                    "h = √(dRₑ)"
+                ],
+                correct: 0,
+                explanation: "The height of a transmitting antenna for TV telecast is given by h = d² / (2Rₑ), where d is the radius of coverage area and Rₑ is Earth's radius."
+            },
+            {
+                question: "Which type of modulation changes the amplitude of the carrier wave in accordance with the signal?",
+                options: [
+                    "Frequency Modulation (FM)",
+                    "Amplitude Modulation (AM)", 
+                    "Phase Modulation (PM)",
+                    "Pulse Code Modulation (PCM)"
+                ],
+                correct: 1,
+                explanation: "In Amplitude Modulation (AM), the amplitude of the high-frequency carrier wave is changed according to the intensity of the modulating signal, while the frequency remains constant."
+            },
+            {
+                question: "What is the modulation index for FM waves defined as?",
+                options: [
+                    "Amplitude of carrier / Amplitude of signal",
+                    "Frequency of carrier / Frequency of signal", 
+                    "Maximum frequency deviation / Modulating frequency",
+                    "Phase shift / Signal amplitude"
+                ],
+                correct: 2,
+                explanation: "The modulation index for FM waves is defined as m_f = (maximum frequency deviation) / (modulating frequency)."
+            },
+            {
+                question: "Which modulation technique is preferred for digital communication?",
+                options: [
+                    "Pulse Amplitude Modulation (PAM)",
+                    "Pulse Width Modulation (PWM)", 
+                    "Pulse Position Modulation (PPM)",
+                    "Pulse Code Modulation (PCM)"
+                ],
+                correct: 3,
+                explanation: "Pulse Code Modulation (PCM) is the preferred modulation scheme for digital communication, while other pulse modulations are more suited to analog systems."
+            },
+            {
+                question: "Which type of line communication uses twisting to minimize electrical interference?",
+                options: [
+                    "Parallel wire lines",
+                    "Twisted pair wires", 
+                    "Coaxial cables",
+                    "Optical fibers"
+                ],
+                correct: 1,
+                explanation: "Twisted pair wires use twisting to minimize electrical interference, though they cannot transmit signals over very large distances effectively."
+            },
+            {
+                question: "What is the main advantage of coaxial cables over parallel wire lines?",
+                options: [
+                    "They are cheaper to manufacture",
+                    "They can transmit signals over longer distances", 
+                    "They radiate less RF energy",
+                    "They are easier to install"
+                ],
+                correct: 2,
+                explanation: "Coaxial cables radiate less RF energy compared to parallel wire lines, especially when conductor separation approaches half the operating wavelength."
+            },
+            {
+                question: "What frequency range do optical communication systems typically use?",
+                options: [
+                    "10⁶ to 10⁸ Hz",
+                    "10⁹ to 10¹¹ Hz", 
+                    "10¹² to 10¹⁶ Hz",
+                    "10¹⁷ to 10¹⁹ Hz"
+                ],
+                correct: 2,
+                explanation: "Optical communication uses frequencies in the range of 10¹² to 10¹⁶ Hz, which is much higher than radio frequencies (10⁶-10⁸ Hz) or microwaves (10⁹-10¹¹ Hz)."
+            },
+            {
+                question: "What is the primary principle behind light transmission in optical fibers?",
+                options: [
+                    "Refraction",
+                    "Diffraction", 
+                    "Total internal reflection",
+                    "Polarization"
+                ],
+                correct: 2,
+                explanation: "Total internal reflection is the principle behind fiber optics. Light is transmitted along the fiber with minimal loss due to repeated total internal reflection at the core-cladding interface."
+            },
+            {
+                question: "What are the three main components of an optical communication system?",
+                options: [
+                    "Transmitter, receiver, antenna",
+                    "Modulator, demodulator, amplifier", 
+                    "Optical source, optical detector, optical fiber",
+                    "Encoder, decoder, transmission line"
+                ],
+                correct: 2,
+                explanation: "The three main components are: (1) Optical source and modulator, (2) Optical signal detector or photodetector, and (3) Optical fiber cables."
+            },
+            {
+                question: "In an optical fiber, the core has refractive index n₁ and cladding has n₂. What is the relationship between them?",
+                options: [
+                    "n₁ = n₂",
+                    "n₁ < n₂", 
+                    "n₁ > n₂",
+                    "n₁ = 2n₂"
+                ],
+                correct: 2,
+                explanation: "The core has a higher refractive index (n₁) than the cladding (n₂) to enable total internal reflection. Typically, n₁ is slightly greater than n₂."
+            },
+            {
+                question: "What is the formula for the entrance angle θₑ in an optical fiber with air as the external medium?",
+                options: [
+                    "sin θₑ = n₁ / n₂",
+                    "sin θₑ = n₂ / n₁", 
+                    "sin θₑ = √(n₁² - n₂²)",
+                    "sin θₑ = (n₁ - n₂)"
+                ],
+                correct: 2,
+                explanation: "For air as the external medium (n₀ = 1), the entrance angle is given by sin θₑ = √(n₁² - n₂²), where n₁ and n₂ are the refractive indices of core and cladding respectively."
+            },
+            {
+                question: "Which atmospheric layer has temperatures increasing from 180K to 700K?",
+                options: [
+                    "Troposphere",
+                    "Stratosphere", 
+                    "Mesosphere",
+                    "Ionosphere"
+                ],
+                correct: 3,
+                explanation: "The ionosphere (80-400 km altitude) has temperatures that increase from 180K to 700K with height, unlike other layers where temperature may decrease or vary differently."
+            },
+            {
+                question: "What is the main reason optical communication offers better signal security?",
+                options: [
+                    "It uses encrypted signals",
+                    "Optical signals are confined inside fibers", 
+                    "It operates at higher frequencies",
+                    "It requires special equipment to intercept"
+                ],
+                correct: 1,
+                explanation: "Optical signals are confined to the inside of the fiber and cannot be easily tapped or intercepted, making them more secure for applications like banking and defense."
+            },
+            {
+                question: "Which type of modulation varies the phase angle of the carrier signal according to the modulating voltage?",
+                options: [
+                    "Amplitude Modulation (AM)",
+                    "Frequency Modulation (FM)", 
+                    "Phase Modulation (PM)",
+                    "Pulse Amplitude Modulation (PAM)"
+                ],
+                correct: 2,
+                explanation: "In Phase Modulation (PM), the phase angle φ of the carrier signal varies in accordance with the modulating voltage, which effectively appears as a varying frequency."
+            }
+        ];
+
+        // DOM elements
+        const questionCountElement = document.getElementById('question-count');
+        const scoreElement = document.getElementById('score');
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progress-bar');
+        const questionNumberElement = document.getElementById('question-number');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+        const submitButton = document.getElementById('submit-btn');
+        const quizContent = document.getElementById('quiz-content');
+        const resultContainer = document.getElementById('result-container');
+        const finalScoreElement = document.getElementById('final-score');
+        const resultMessageElement = document.getElementById('result-message');
+        const reviewContainer = document.getElementById('review-container');
+        const restartButton = document.getElementById('restart-btn');
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let timeLeft = 600; // 10 minutes in seconds
+        let timerInterval;
+
+        // Initialize the quiz
+        function initQuiz() {
+            showQuestion();
+            startTimer();
+            updateProgressBar();
+        }
+
+        // Display the current question
+        function showQuestion() {
+            const question = quizData[currentQuestion];
+            
+            questionNumberElement.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+            questionCountElement.textContent = `${currentQuestion + 1}/${quizData.length}`;
+            questionTextElement.textContent = question.question;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Create new options
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                
+                // If user has already selected this option, mark it as selected
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            prevButton.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === quizData.length - 1) {
+                nextButton.style.display = 'none';
+                submitButton.style.display = 'block';
+            } else {
+                nextButton.style.display = 'block';
+                submitButton.style.display = 'none';
+            }
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            // Remove selected class from all options
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Add selected class to clicked option
+            options[optionIndex].classList.add('selected');
+            
+            // Store user's answer
+            userAnswers[currentQuestion] = optionIndex;
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion();
+                updateProgressBar();
+            }
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                updateProgressBar();
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Start the timer
+        function startTimer() {
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeLeft < 60) {
+                timerElement.style.color = '#f44336';
+            }
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            score = 0;
+            for (let i = 0; i < quizData.length; i++) {
+                if (userAnswers[i] === quizData[i].correct) {
+                    score++;
+                }
+            }
+            
+            // Update final score display
+            finalScoreElement.textContent = `${score}/${quizData.length}`;
+            scoreElement.textContent = score;
+            
+            // Set result message based on score
+            let message = '';
+            if (score === quizData.length) {
+                message = 'Perfect! You have mastered Communication Systems!';
+            } else if (score >= quizData.length * 0.8) {
+                message = 'Excellent! You have a strong understanding of Communication Systems.';
+            } else if (score >= quizData.length * 0.6) {
+                message = 'Good job! You have a solid foundation in Communication Systems.';
+            } else if (score >= quizData.length * 0.4) {
+                message = 'Fair effort! Review the material to strengthen your knowledge.';
+            } else {
+                message = 'Keep studying! Focus on the key concepts of Communication Systems.';
+            }
+            resultMessageElement.textContent = message;
+            
+            // Show review section
+            showReview();
+            
+            // Switch to result view
+            quizContent.style.display = 'none';
+            resultContainer.style.display = 'block';
+        }
+
+        // Show review of answers
+        function showReview() {
+            reviewContainer.innerHTML = '<h3 class="review-title">Review Your Answers</h3>';
+            
+            quizData.forEach((question, index) => {
+                const reviewItem = document.createElement('div');
+                reviewItem.classList.add('review-item');
+                
+                const userAnswerIndex = userAnswers[index];
+                const isCorrect = userAnswerIndex === question.correct;
+                
+                reviewItem.innerHTML = `
+                    <div class="review-question">${index + 1}. ${question.question}</div>
+                    <div>Your answer: <span style="color: ${isCorrect ? '#4caf50' : '#f44336'}">${userAnswerIndex !== null ? question.options[userAnswerIndex] : 'Not answered'}</span></div>
+                    ${!isCorrect ? `<div>Correct answer: <span style="color: #4caf50">${question.options[question.correct]}</span></div>` : ''}
+                    <div class="explanation">${question.explanation}</div>
+                `;
+                
+                reviewContainer.appendChild(reviewItem);
+            });
+        }
+
+        // Restart the quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            timeLeft = 600;
+            
+            scoreElement.textContent = '0';
+            timerElement.textContent = '10:00';
+            timerElement.style.color = '#1a237e';
+            
+            quizContent.style.display = 'block';
+            resultContainer.style.display = 'none';
+            
+            initQuiz();
+        }
+
+        // Event listeners
+        prevButton.addEventListener('click', prevQuestion);
+        nextButton.addEventListener('click', nextQuestion);
+        submitButton.addEventListener('click', submitQuiz);
+        restartButton.addEventListener('click', restartQuiz);
+
+        // Initialize the quiz when the page loads
+        window.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>

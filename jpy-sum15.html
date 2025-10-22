@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electromagnetic Waves Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        .spectrum-table {
+            font-size: 0.9rem;
+        }
+        
+        .spectrum-table th {
+            background-color: #3949ab;
+            font-size: 0.95rem;
+        }
+        
+        .wave-equation {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Electromagnetic Waves Summary</h1>
+            <p class="subtitle">Displacement Current, Wave Properties, and Electromagnetic Spectrum</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="displacement-current">Displacement Current</div>
+            <div class="nav-tab" data-tab="wave-properties">Wave Properties</div>
+            <div class="nav-tab" data-tab="spectrum">EM Spectrum</div>
+        </div>
+        
+        <div class="content">
+            <!-- Displacement Current Tab -->
+            <div class="tab-content active" id="displacement-current">
+                <section class="section">
+                    <h2>1. Displacement Current</h2>
+                    
+                    <div class="definition">
+                        <p>Displacement current is a quantity that is defined in terms of the rate of change of electric flux. It plays a crucial role in making Ampere's law consistent for time-varying electric fields.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ I_D = \varepsilon_0 \frac{d\phi_e}{dt} \]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>I<sub>D</sub> = displacement current</li>
+                        <li>ε<sub>0</sub> = permittivity of free space</li>
+                        <li>dΦ<sub>e</sub>/dt = rate of change of electric flux</li>
+                    </ul>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Ampere-Maxwell Circuital Law</div>
+                        <p>The modified form of Ampere's law that includes displacement current:</p>
+                        <div class="formula">
+                            \[ \oint \vec{B} \cdot d\vec{l} = \mu_0 \left( I_C + \varepsilon_0 \frac{d\phi_e}{dt} \right) \]
+                        </div>
+                        <p>Where I<sub>C</sub> is the conduction current.</p>
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Properties of Displacement Current:</h4>
+                        <ul>
+                            <li>The conduction current and displacement current are always equal in magnitude: I<sub>C</sub> = I<sub>D</sub></li>
+                            <li>Like conduction current, displacement current is also a source of magnetic field</li>
+                            <li>Displacement current exists even in vacuum where there are no charges</li>
+                            <li>It completes the current circuit through capacitors</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>1.1 Production of Electromagnetic Waves</h3>
+                    
+                    <div class="definition">
+                        <p>According to Maxwell's theory, an accelerated charge produces electromagnetic waves by setting up time-varying electric and magnetic fields that act as sources for each other.</p>
+                    </div>
+                    
+                    <ul>
+                        <li>An accelerated charge sets up a varying magnetic field in its neighborhood</li>
+                        <li>This varying magnetic field produces a varying electric field</li>
+                        <li>Both fields vary with time and sustain each other</li>
+                        <li>The coupled electric and magnetic fields propagate through space as electromagnetic waves</li>
+                    </ul>
+                </section>
+            </div>
+            
+            <!-- Wave Properties Tab -->
+            <div class="tab-content" id="wave-properties">
+                <section class="section">
+                    <h2>2. Properties of Electromagnetic Waves</h2>
+                    
+                    <div class="wave-equation">
+                        <h4>Wave Equation for Electromagnetic Waves</h4>
+                        <div class="formula">
+                            \[ \frac{\partial^2 E}{\partial x^2} = \mu_0 \varepsilon_0 \frac{\partial^2 E}{\partial t^2} \]
+                        </div>
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Fundamental Properties:</h4>
+                        <ul>
+                            <li><strong>Speed in vacuum:</strong> Electromagnetic waves travel through vacuum with speed of light:
+                                <div class="formula">
+                                    \[ c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}} = 3 \times 10^8 \, \text{m/s} \]
+                                </div>
+                            </li>
+                            <li><strong>Transverse nature:</strong> Electric and magnetic fields are perpendicular to each other and to the direction of propagation</li>
+                            <li><strong>Field relationship:</strong> The instantaneous magnitudes of E and B are related by:
+                                <div class="formula">
+                                    \[ \frac{E}{B} = c \]
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <h3>2.1 Energy and Momentum of EM Waves</h3>
+                    
+                    <div class="definition">
+                        <p>The Poynting vector describes the rate of energy flow per unit area in electromagnetic waves.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \vec{S} = \frac{1}{\mu_0} \vec{E} \times \vec{B} \]
+                    </div>
+                    
+                    <p>Electromagnetic waves carry both energy and momentum, which leads to radiation pressure:</p>
+                    
+                    <div class="formula">
+                        \[ \text{For perfect absorber: } P = \frac{S}{c} \]
+                        \[ \text{For perfect reflector: } P = \frac{2S}{c} \]
+                    </div>
+                    
+                    <h3>2.2 Sinusoidal Plane Electromagnetic Waves</h3>
+                    
+                    <div class="definition">
+                        <p>For a sinusoidal plane wave propagating in the positive x-direction:</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ E = E_m \sin (kx - \omega t) \]
+                        \[ B = B_m \sin (kx - \omega t) \]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>ω = 2πf (angular frequency)</li>
+                        <li>k = 2π/λ (wave number)</li>
+                    </ul>
+                    
+                    <h4>Intensity of EM Waves</h4>
+                    
+                    <div class="formula">
+                        \[ S_{av} = \frac{E_m B_m}{2\mu_0} = \frac{E_m^2}{2\mu_0 c} = \frac{c}{2\mu_0} B_m^2 \]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- EM Spectrum Tab -->
+            <div class="tab-content" id="spectrum">
+                <section class="section">
+                    <h2>3. Electromagnetic Spectrum</h2>
+                    
+                    <div class="definition">
+                        <p>The electromagnetic spectrum is the orderly distribution of electromagnetic waves according to their wavelength or frequency, forming distinct groups with different properties and applications.</p>
+                    </div>
+                    
+                    <h3>3.1 Complete Electromagnetic Spectrum</h3>
+                    
+                    <table class="spectrum-table">
+                        <thead>
+                            <tr>
+                                <th>Radiation</th>
+                                <th>Discoverer</th>
+                                <th>Production</th>
+                                <th>Wavelength Range</th>
+                                <th>Frequency Range</th>
+                                <th>Energy Range</th>
+                                <th>Properties</th>
+                                <th>Applications</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Gamma Rays</strong></td>
+                                <td>Becquerel & Curie</td>
+                                <td>Radioactive decay of nuclei</td>
+                                <td>10⁻¹⁴ m to 10⁻¹⁰ m</td>
+                                <td>3×10²² Hz to 3×10¹⁸ Hz</td>
+                                <td>10⁶ eV</td>
+                                <td>High penetrating power, uncharged, low ionizing power</td>
+                                <td>Nuclear structure studies, medical treatment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>X-Rays</strong></td>
+                                <td>Roentgen</td>
+                                <td>High energy electrons hitting heavy targets</td>
+                                <td>6×10⁻¹⁰ m to 10⁻⁹ m</td>
+                                <td>5×10¹⁹ Hz to 3×10¹⁷ Hz</td>
+                                <td>2.4×10³ eV to 1.2×10⁵ eV</td>
+                                <td>Medium penetrating power, similar to gamma rays</td>
+                                <td>Medical diagnosis, crystal structure studies</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ultraviolet</strong></td>
+                                <td>Ritter</td>
+                                <td>Ionized gases, sun, spark lamps</td>
+                                <td>6×10⁻¹⁰ m to 3.8×10⁻⁷ m</td>
+                                <td>3×10¹⁷ Hz to 5×10¹⁹ Hz</td>
+                                <td>2×10¹ eV to 3×10² eV</td>
+                                <td>Causes photoelectric effect</td>
+                                <td>Detecting adulteration, water sterilization</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Visible Light</strong></td>
+                                <td>Newton</td>
+                                <td>Electron transitions in atoms</td>
+                                <td>3.8×10⁻⁷ m to 7.8×10⁻⁷ m</td>
+                                <td>8×10¹⁴ Hz to 4×10¹⁴ Hz</td>
+                                <td>3.2 eV to 1.6 eV</td>
+                                <td>Sensitive to human eye</td>
+                                <td>Vision, molecular structure studies</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Infrared</strong></td>
+                                <td>Herschel</td>
+                                <td>Molecular vibrations and rotations</td>
+                                <td>7.8×10⁻⁷ m to 10⁻³ m</td>
+                                <td>4×10¹⁴ Hz to 3×10¹¹ Hz</td>
+                                <td>1.6 eV to 10⁻³ eV</td>
+                                <td>Heating effect</td>
+                                <td>Thermal imaging, remote controls</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microwaves</strong></td>
+                                <td>Hertz</td>
+                                <td>Klystron tubes, magnetrons</td>
+                                <td>10⁻³ m to 0.3 m</td>
+                                <td>3×10¹¹ Hz to 10⁹ Hz</td>
+                                <td>10⁻³ eV to 10⁻⁶ eV</td>
+                                <td>Reflection, refraction, diffraction</td>
+                                <td>Radar, telecommunications, microwave ovens</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Radio Waves</strong></td>
+                                <td>Marconi</td>
+                                <td>Oscillating circuits</td>
+                                <td>0.3 m to few km</td>
+                                <td>10⁹ Hz to few Hz</td>
+                                <td>10⁻⁶ eV to ≈0</td>
+                                <td>Long wavelength, low energy</td>
+                                <td>Communication, broadcasting</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>3.2 Radio Wave Subdivisions</h3>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Wavelength Range</th>
+                                <th>Frequency Range</th>
+                                <th>Applications</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SHF (Super High Frequency)</td>
+                                <td>0.01 m to 0.1 m</td>
+                                <td>3×10¹⁰ Hz to 3×10⁹ Hz</td>
+                                <td>Radar, satellite communication</td>
+                            </tr>
+                            <tr>
+                                <td>UHF (Ultra High Frequency)</td>
+                                <td>0.1 m to 1 m</td>
+                                <td>3×10⁹ Hz to 3×10⁸ Hz</td>
+                                <td>Television communication</td>
+                            </tr>
+                            <tr>
+                                <td>VHF (Very High Frequency)</td>
+                                <td>1 m to 10 m</td>
+                                <td>3×10⁸ Hz to 3×10⁷ Hz</td>
+                                <td>FM radio, television</td>
+                            </tr>
+                            <tr>
+                                <td>HF (High Frequency)</td>
+                                <td>10 m to 100 m</td>
+                                <td>3×10⁷ Hz to 3×10⁶ Hz</td>
+                                <td>Medium distance communication</td>
+                            </tr>
+                            <tr>
+                                <td>MF (Medium Frequency)</td>
+                                <td>100 m to 1000 m</td>
+                                <td>3×10⁶ Hz to 3×10⁵ Hz</td>
+                                <td>AM radio, marine navigation</td>
+                            </tr>
+                            <tr>
+                                <td>LF (Low Frequency)</td>
+                                <td>1000 m to 10000 m</td>
+                                <td>3×10⁵ Hz to 3×10⁴ Hz</td>
+                                <td>Long range communication</td>
+                            </tr>
+                            <tr>
+                                <td>VLF (Very Low Frequency)</td>
+                                <td>10000 m to 30000 m</td>
+                                <td>&lt; 3×10⁴ Hz</td>
+                                <td>Long distance communication</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Electromagnetic Waves Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

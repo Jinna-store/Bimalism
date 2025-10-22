@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnetic Effects of Current & Magnetism Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .timer-container {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-home {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .btn-home:hover {
+            background: #388e3c;
+        }
+        
+        .btn-submit {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #1976d2;
+        }
+        
+        .btn-reset {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #f57c00;
+        }
+        
+        .progress-container {
+            padding: 15px 30px;
+            background: #e3f2fd;
+            border-bottom: 1px solid #bbdefb;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #4caf50;
+            width: 5%;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 5px solid #1a237e;
+        }
+        
+        .question-number {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .option:hover {
+            border-color: #1a237e;
+            background: #f0f4ff;
+        }
+        
+        .option.selected {
+            border-color: #1a237e;
+            background: #e3f2fd;
+        }
+        
+        .option input {
+            transform: scale(1.2);
+        }
+        
+        .result-container {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4caf50;
+            margin: 20px 0;
+        }
+        
+        .result-details {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .detail-item {
+            padding: 15px;
+            background: #f5f5f5;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .correct {
+            border-left: 5px solid #4caf50;
+        }
+        
+        .incorrect {
+            border-left: 5px solid #f44336;
+        }
+        
+        .review-btn {
+            background: #9c27b0;
+            color: white;
+            margin-top: 20px;
+        }
+        
+        .review-btn:hover {
+            background: #7b1fa2;
+        }
+        
+        @media (max-width: 768px) {
+            .timer-container {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+                display: inline-block;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Magnetic Effects of Current & Magnetism Quiz</h1>
+            <p class="subtitle">Test your knowledge of Biot-Savart Law, Magnetic Forces, Magnetic Materials, and Earth's Magnetism</p>
+            <div class="timer-container">
+                Time Left: <span id="timer">15:00</span>
+            </div>
+        </header>
+        
+        <div class="nav-buttons">
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <div>
+                <button class="btn btn-reset" onclick="resetQuiz()">
+                    Reset Quiz
+                </button>
+                <button class="btn btn-submit" onclick="submitQuiz()">
+                    Submit Answers
+                </button>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="quiz-progress"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progress: <span id="progress-text">1</span>/20</span>
+                <span id="answered-count">0 questions answered</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-content">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="result-container" id="result-content">
+            <h2 class="result-title">Quiz Results</h2>
+            <div class="score" id="score">0/20</div>
+            <p id="result-message"></p>
+            
+            <div class="result-details" id="result-details">
+                <!-- Result details will be inserted here -->
+            </div>
+            
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <button class="btn review-btn" onclick="resetQuiz()">
+                Take Quiz Again
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions based on Magnetic Effects of Current & Magnetism
+        const quizQuestions = [
+            {
+                question: "According to Biot-Savart Law, the magnetic field element dB due to a current element Idl is:",
+                options: [
+                    "Directly proportional to the square of the distance from the element",
+                    "Inversely proportional to the current in the element",
+                    "Perpendicular to both the current element and the position vector",
+                    "Independent of the angle between current element and position vector"
+                ],
+                correct: 2
+            },
+            {
+                question: "The magnetic field at the center of a circular loop of radius R carrying current I is:",
+                options: [
+                    "B = μ₀I/(2R)",
+                    "B = μ₀I/(4πR)",
+                    "B = μ₀I/(2πR)",
+                    "B = μ₀I/(4R)"
+                ],
+                correct: 0
+            },
+            {
+                question: "For an infinitely long straight wire carrying current I, the magnetic field at distance R is:",
+                options: [
+                    "B = μ₀I/(4πR)",
+                    "B = μ₀I/(2πR)",
+                    "B = μ₀I/(2R)",
+                    "B = μ₀I/(πR)"
+                ],
+                correct: 1
+            },
+            {
+                question: "The magnetic field on the axis of a solenoid with n turns per unit length carrying current I is:",
+                options: [
+                    "B = μ₀nI",
+                    "B = μ₀I/(2n)",
+                    "B = μ₀nI/2",
+                    "B = μ₀I/n"
+                ],
+                correct: 0
+            },
+            {
+                question: "The force on a charged particle moving in a magnetic field is given by:",
+                options: [
+                    "F = q(E + v × B)",
+                    "F = q(v × B)",
+                    "F = q(E × B)",
+                    "F = q(v · B)"
+                ],
+                correct: 1
+            },
+            {
+                question: "When a charged particle moves perpendicular to a uniform magnetic field, its path is:",
+                options: [
+                    "Parabolic",
+                    "Elliptical",
+                    "Circular",
+                    "Straight line"
+                ],
+                correct: 2
+            },
+            {
+                question: "The radius of the circular path of a charged particle in a magnetic field is given by:",
+                options: [
+                    "r = mv/(qB)",
+                    "r = qB/(mv)",
+                    "r = mB/(qv)",
+                    "r = qv/(mB)"
+                ],
+                correct: 0
+            },
+            {
+                question: "The time period of revolution of a charged particle in a uniform magnetic field:",
+                options: [
+                    "Depends on the velocity of the particle",
+                    "Depends on the radius of the path",
+                    "Is independent of both velocity and radius",
+                    "Depends on the charge of the particle only"
+                ],
+                correct: 2
+            },
+            {
+                question: "When a charged particle's velocity has components both perpendicular and parallel to a magnetic field, its path is:",
+                options: [
+                    "Circular",
+                    "Parabolic",
+                    "Helical",
+                    "Elliptical"
+                ],
+                correct: 2
+            },
+            {
+                question: "The magnetic dipole moment of a current loop is defined as:",
+                options: [
+                    "pₘ = I × A",
+                    "pₘ = I/A",
+                    "pₘ = IA",
+                    "pₘ = I + A"
+                ],
+                correct: 2
+            },
+            {
+                question: "For a magnetic dipole in a uniform magnetic field, the torque is given by:",
+                options: [
+                    "τ = pₘ × B",
+                    "τ = pₘ · B",
+                    "τ = B × pₘ",
+                    "τ = pₘ/B"
+                ],
+                correct: 0
+            },
+            {
+                question: "The potential energy of a magnetic dipole in a magnetic field is:",
+                options: [
+                    "U = pₘ · B",
+                    "U = -pₘ · B",
+                    "U = pₘ × B",
+                    "U = -pₘ × B"
+                ],
+                correct: 1
+            },
+            {
+                question: "According to Ampere's circuital law, the line integral of B around a closed loop equals:",
+                options: [
+                    "μ₀ times the net current enclosed",
+                    "ε₀ times the net current enclosed",
+                    "μ₀ times the net charge enclosed",
+                    "ε₀ times the net charge enclosed"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which of the following materials has negative magnetic susceptibility?",
+                options: [
+                    "Paramagnetic",
+                    "Ferromagnetic",
+                    "Diamagnetic",
+                    "Antiferromagnetic"
+                ],
+                correct: 2
+            },
+            {
+                question: "For paramagnetic materials, the relative permeability μᵣ is:",
+                options: [
+                    "Slightly less than 1",
+                    "Slightly greater than 1",
+                    "Much greater than 1",
+                    "Exactly 1"
+                ],
+                correct: 1
+            },
+            {
+                question: "The Curie temperature is the temperature above which:",
+                options: [
+                    "Paramagnetic materials become diamagnetic",
+                    "Diamagnetic materials become paramagnetic",
+                    "Ferromagnetic materials become paramagnetic",
+                    "Paramagnetic materials become ferromagnetic"
+                ],
+                correct: 2
+            },
+            {
+                question: "The angle between the geographic meridian and magnetic meridian is called:",
+                options: [
+                    "Angle of dip",
+                    "Angle of declination",
+                    "Magnetic inclination",
+                    "Horizontal angle"
+                ],
+                correct: 1
+            },
+            {
+                question: "The horizontal component of Earth's magnetic field is given by:",
+                options: [
+                    "H = Bₑ sinδ",
+                    "H = Bₑ cosδ",
+                    "H = Bₑ tanδ",
+                    "H = Bₑ cotδ"
+                ],
+                correct: 1
+            },
+            {
+                question: "In a tangent galvanometer, the current is proportional to:",
+                options: [
+                    "sinθ",
+                    "cosθ",
+                    "tanθ",
+                    "cotθ"
+                ],
+                correct: 2
+            },
+            {
+                question: "The force between two parallel current-carrying conductors is:",
+                options: [
+                    "Always attractive",
+                    "Always repulsive",
+                    "Attractive if currents are in the same direction",
+                    "Repulsive if currents are in the same direction"
+                ],
+                correct: 2
+            }
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let userAnswers = Array(quizQuestions.length).fill(null);
+        let timeLeft = 15 * 60; // 15 minutes in seconds
+        let timerInterval;
+        let quizSubmitted = false;
+
+        // Initialize the quiz
+        function initializeQuiz() {
+            displayQuestion();
+            startTimer();
+            updateProgress();
+        }
+
+        // Display current question
+        function displayQuestion() {
+            const quizContent = document.getElementById('quiz-content');
+            const question = quizQuestions[currentQuestion];
+            
+            let optionsHTML = '';
+            question.options.forEach((option, index) => {
+                const isChecked = userAnswers[currentQuestion] === index ? 'checked' : '';
+                optionsHTML += `
+                    <label class="option ${isChecked ? 'selected' : ''}">
+                        <input type="radio" name="answer" value="${index}" ${isChecked} 
+                               onchange="selectAnswer(${index})">
+                        ${option}
+                    </label>
+                `;
+            });
+            
+            quizContent.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${quizQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                    <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <button class="btn btn-submit" onclick="nextQuestion()">
+                        ${currentQuestion === quizQuestions.length - 1 ? 'Finish' : 'Next'} →
+                    </button>
+                </div>
+            `;
+        }
+
+        // Select an answer
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestion] = answerIndex;
+            document.querySelectorAll('.option').forEach((opt, idx) => {
+                if (idx === answerIndex) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+            updateProgress();
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                submitQuiz();
+            }
+        }
+
+        // Navigate to previous question
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        // Update progress bar and counter
+        function updateProgress() {
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            const progress = (answered / quizQuestions.length) * 100;
+            
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = answered;
+            document.getElementById('answered-count').textContent = `${answered} of ${quizQuestions.length} questions answered`;
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeLeft < 300) { // 5 minutes
+                document.getElementById('timer').style.color = '#ff5252';
+            }
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            if (quizSubmitted) return;
+            
+            quizSubmitted = true;
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            let resultDetails = '';
+            
+            quizQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                
+                if (isCorrect) score++;
+                
+                resultDetails += `
+                    <div class="detail-item ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div>
+                            <strong>Q${index + 1}:</strong> ${question.question}<br>
+                            <span>Your answer: ${userAnswer !== null ? question.options[userAnswer] : 'Not answered'}</span><br>
+                            <span>Correct answer: ${question.options[question.correct]}</span>
+                        </div>
+                        <div>${isCorrect ? '✓' : '✗'}</div>
+                    </div>
+                `;
+            });
+            
+            // Display results
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('result-content').style.display = 'block';
+            document.getElementById('score').textContent = `${score}/${quizQuestions.length}`;
+            document.getElementById('result-details').innerHTML = resultDetails;
+            
+            // Result message based on score
+            let message = '';
+            if (score >= 17) {
+                message = 'Excellent! You have a strong understanding of Magnetic Effects of Current & Magnetism.';
+            } else if (score >= 14) {
+                message = 'Great job! You have a good grasp of magnetic concepts.';
+            } else if (score >= 11) {
+                message = 'Good effort! Review the material to strengthen your understanding.';
+            } else {
+                message = 'Keep studying! Review the magnetic effects concepts thoroughly.';
+            }
+            
+            document.getElementById('result-message').textContent = message;
+        }
+
+        // Reset the quiz
+        function resetQuiz() {
+            currentQuestion = 0;
+            userAnswers = Array(quizQuestions.length).fill(null);
+            timeLeft = 15 * 60;
+            quizSubmitted = false;
+            
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('result-content').style.display = 'none';
+            
+            clearInterval(timerInterval);
+            initializeQuiz();
+        }
+
+        // Navigate to home page
+        function goToHome() {
+            window.location.href = "jee.html";
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initializeQuiz;
+    </script>
+</body>
+</html>

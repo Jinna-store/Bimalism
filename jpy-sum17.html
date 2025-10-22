@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atoms and Nuclei Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th {
+            background-color: #3949ab;
+        }
+        
+        .comparison-table td:first-child {
+            font-weight: bold;
+            background-color: #f0f4ff;
+        }
+        
+        .series-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .series-table th {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 12px 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .series-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .decay-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .decay-table th {
+            background-color: #3949ab;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        .decay-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Atoms and Nuclei Summary</h1>
+            <p class="subtitle">Atomic Models, Nuclear Physics, Radioactivity, and Nuclear Reactions</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="atomic-models">Atomic Models</div>
+            <div class="nav-tab" data-tab="bohr-theory">Bohr's Theory</div>
+            <div class="nav-tab" data-tab="hydrogen-spectrum">Hydrogen Spectrum</div>
+            <div class="nav-tab" data-tab="nuclear-physics">Nuclear Physics</div>
+            <div class="nav-tab" data-tab="radioactivity">Radioactivity</div>
+        </div>
+        
+        <div class="content">
+            <!-- Atomic Models Tab -->
+            <div class="tab-content active" id="atomic-models">
+                <section class="section">
+                    <h2>1. Atomic Models</h2>
+                    
+                    <h3>1.1 Rutherford Gold-Foil Experiment</h3>
+                    
+                    <div class="important-points">
+                        <h4>Key Findings:</h4>
+                        <ul>
+                            <li>Most alpha particles passed through, indicating mostly empty space</li>
+                            <li>Some alpha particles deflected at large angles, indicating concentrated positive charge</li>
+                            <li>Very few alpha particles bounced back, indicating very small, dense nucleus</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Number of Particles Scattered</h4>
+                    
+                    <div class="formula">
+                        \[ N \propto \sin^{-4} \left( \frac{\theta}{2} \right) \]
+                    </div>
+                    
+                    <h4>Distance of Closest Approach</h4>
+                    
+                    <div class="formula">
+                        \[ d = \frac{Z e^2}{\pi \epsilon_0 m v_i^2} \]
+                    </div>
+                    
+                    <p>Distance of closest approach is of the order of \(10^{-14}\) m. Nuclear size is measured in Fermi (\(1 \, \text{Fermi} = 10^{-15}\) m).</p>
+                    
+                    <h4>Impact Parameter</h4>
+                    
+                    <div class="formula">
+                        \[ b = \frac{Ze^2 \cot \frac{\theta}{2}}{4\pi\epsilon_0 \left( \frac{1}{2} mv_i^2 \right)} \]
+                    </div>
+                    
+                    <p>Where θ is the angle of scattering. For head-on collision, impact parameter is zero.</p>
+                    
+                    <h3>1.2 Rutherford Model of the Atom</h3>
+                    
+                    <div class="important-points">
+                        <h4>Postulates:</h4>
+                        <ul>
+                            <li>Whole positive charge and almost entire mass concentrated in a small nucleus</li>
+                            <li>Electrons revolve around nucleus in circular orbits</li>
+                            <li>Atom as a whole is neutral</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Bohr's Theory Tab -->
+            <div class="tab-content" id="bohr-theory">
+                <section class="section">
+                    <h2>2. Bohr's Atomic Model</h2>
+                    
+                    <div class="important-points">
+                        <h4>Postulates:</h4>
+                        <ul>
+                            <li>Electrons move in fixed circular orbits without radiating energy</li>
+                            <li>Only certain orbits are permitted where angular momentum is quantized</li>
+                            <li>Energy is radiated or absorbed only when electrons jump between orbits</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>2.1 Mathematical Formulation</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Centripetal Force Equation</div>
+                        <div class="formula">
+                            \[ \frac{1}{4\pi\epsilon_0} \frac{(Ze)(e)}{r^2} = \frac{mv^2}{r} \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Angular Momentum Quantization</div>
+                        <div class="formula">
+                            \[ mvr = n \cdot \frac{h}{2\pi} \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Bohr's Frequency Condition</div>
+                        <div class="formula">
+                            \[ E_2 - E_1 = hv \]
+                        </div>
+                    </div>
+                    
+                    <h3>2.2 Bohr's Theory of Hydrogen Atom</h3>
+                    
+                    <h4>Radius of Orbit</h4>
+                    
+                    <div class="formula">
+                        \[ r_n = \frac{\epsilon_0 n^2 h^2}{\pi m e^2 Z} \]
+                    </div>
+                    
+                    <p>For hydrogen atom (Z=1): \( r_n \propto n^2 \)</p>
+                    <p>Radii of various orbits: \( 1 : 4 : 9 : 16 \ldots \)</p>
+                    <p>First orbit radius: \( r_1 = 5.3 \times 10^{-11} \, \text{m} \)</p>
+                    
+                    <h4>Velocity of Electron</h4>
+                    
+                    <div class="formula">
+                        \[ v = \frac{Ze^2}{2\varepsilon_0 n h} \]
+                    </div>
+                    
+                    <p>For hydrogen atom: \( v = \alpha \frac{c}{n} \), where \( \alpha = \frac{1}{137} \) (fine structure constant)</p>
+                    <p>Maximum velocity in hydrogen atom: \( 2.19 \times 10^6 \, \text{ms}^{-1} \)</p>
+                    
+                    <h4>Orbital Frequency</h4>
+                    
+                    <div class="formula">
+                        \[ v = \frac{\text{me}^4}{4\varepsilon_0^2 n^3 h^3} \]
+                    </div>
+                    
+                    <p>For innermost orbit: \( v = 65.8 \times 10^{14} \, \text{Hz} \)</p>
+                    
+                    <h3>2.3 Energy of Electron</h3>
+                    
+                    <h4>Kinetic Energy</h4>
+                    
+                    <div class="formula">
+                        \[ \text{K.E.} = \frac{\text{me}^4}{8\varepsilon_0^2 n^2 h^2} = \frac{e^2}{8\pi\varepsilon_0 r} \]
+                    </div>
+                    
+                    <h4>Potential Energy</h4>
+                    
+                    <div class="formula">
+                        \[ \text{P.E.} = \frac{-Ze^2}{4\pi\varepsilon_0 r} = \frac{-\text{me}^4}{8\varepsilon_0^2 n^2 h^2} \]
+                    </div>
+                    
+                    <p>Potential energy is numerically twice the K.E.</p>
+                    
+                    <h4>Total Energy</h4>
+                    
+                    <div class="formula">
+                        \[ \text{T.E.} = -\frac{\text{me}^4}{8\epsilon_0^2 h^2} \left( \frac{1}{n^2} \right) \]
+                    </div>
+                    
+                    <p>For hydrogen-like atoms: \( E_n = -R \, ch \frac{Z^2}{n^2} \)</p>
+                    <p>For hydrogen atom: \( E_n = \frac{-13.6}{n^2} \, \text{eV} \)</p>
+                </section>
+            </div>
+            
+            <!-- Hydrogen Spectrum Tab -->
+            <div class="tab-content" id="hydrogen-spectrum">
+                <section class="section">
+                    <h2>3. Hydrogen Spectrum</h2>
+                    
+                    <h3>3.1 Frequency and Wave Number</h3>
+                    
+                    <div class="formula">
+                        \[ v = \frac{me^4}{8\epsilon_0 h^3} \left( \frac{1}{n_1^2} - \frac{1}{n_2^2} \right) \]
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \bar{v} = \frac{1}{\lambda} = R \left( \frac{1}{n_1^2} - \frac{1}{n_2^2} \right) \]
+                    </div>
+                    
+                    <p>Where \( R = \frac{me^4}{8\epsilon_0 c h^3} = 10973700 \, \text{m}^{-1} \) (Rydberg's constant)</p>
+                    
+                    <h3>3.2 Spectral Series</h3>
+                    
+                    <table class="series-table">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Name of Series</th>
+                                <th>Region</th>
+                                <th>Origin</th>
+                                <th>Max. λ</th>
+                                <th>Min. λ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>Lyman series</td>
+                                <td>UV</td>
+                                <td>n₂ = 2,3,4... to n₁ = 1</td>
+                                <td>\(\frac{4}{3R}\)</td>
+                                <td>\(\frac{1}{R}\)</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Balmer series</td>
+                                <td>Visible</td>
+                                <td>n₂ = 3,4,5... to n₁ = 2</td>
+                                <td>\(\frac{36}{5R}\)</td>
+                                <td>\(\frac{4}{R}\)</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Paschen series</td>
+                                <td>Near Infrared</td>
+                                <td>n₂ = 4,5,6... to n₁ = 3</td>
+                                <td>\(\frac{144}{7R}\)</td>
+                                <td>\(\frac{9}{R}\)</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Brackett series</td>
+                                <td>Middle Infrared</td>
+                                <td>n₂ = 5,6,7... to n₁ = 4</td>
+                                <td>\(\frac{400}{9R}\)</td>
+                                <td>\(\frac{16}{R}\)</td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>Pfund series</td>
+                                <td>Far Infrared</td>
+                                <td>n₂ = 6,7,8... to n₁ = 5</td>
+                                <td>\(\frac{900}{11R}\)</td>
+                                <td>\(\frac{25}{R}\)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>3.3 Maximum Number of Spectral Lines</h3>
+                    
+                    <div class="formula">
+                        \[ \text{Maximum lines} = \frac{n(n-1)}{2} \]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Nuclear Physics Tab -->
+            <div class="tab-content" id="nuclear-physics">
+                <section class="section">
+                    <h2>4. Nuclear Physics</h2>
+                    
+                    <h3>4.1 Size of the Nucleus</h3>
+                    
+                    <div class="formula">
+                        \[ R = R_0(A)^{1/3} \]
+                    </div>
+                    
+                    <p>Where A is mass number and \( R_0 = 1.1 \times 10^{-15} \, \text{m} \)</p>
+                    <p>Nuclear radii vary from 1F to 10F</p>
+                    
+                    <h4>Nuclear Volume</h4>
+                    
+                    <div class="formula">
+                        \[ V = \frac{4}{3} \pi R^3 = \frac{4}{3} \pi R_0^3 A \]
+                    </div>
+                    
+                    <p>Nuclear volume is proportional to mass number (V ∝ A)</p>
+                    
+                    <h4>Nuclear Density</h4>
+                    
+                    <p>Density of nucleus: \( 2.29 \times 10^{17} \, \text{kg/m}^3 \)</p>
+                    <p>Nuclear density does not depend on A; density of all nuclei is almost same</p>
+                    
+                    <h3>4.2 Atomic Mass Unit</h3>
+                    
+                    <div class="definition">
+                        <p>1 amu = \( \frac{1}{12} \)th of the mass of carbon atom C¹²</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ 1 \, \text{amu} = 1.66 \times 10^{-27} \, \text{kg} = 931.5 \, \text{MeV} \]
+                    </div>
+                    
+                    <h3>4.3 Mass Defect</h3>
+                    
+                    <div class="formula">
+                        \[ \Delta M = ZM_p + (A-Z)M_n - M' \]
+                    </div>
+                    
+                    <p>Where Mₚ = mass of proton, Mₙ = mass of neutron, M' = mass of nucleus</p>
+                    
+                    <h3>4.4 Binding Energy</h3>
+                    
+                    <div class="formula">
+                        \[ B = [ZM_H + (A-Z) M_n - M]c^2 \]
+                    </div>
+                    
+                    <p>Where M_H = Mₚ + Mₑ = mass of hydrogen atom, M = M' + ZMₑ = mass of atom</p>
+                    
+                    <h4>Binding Energy per Nucleon</h4>
+                    
+                    <div class="formula">
+                        \[ \bar{B} = \frac{B}{A} = \frac{[ZM_H + (A-Z)M_n - M]c^2}{A} \]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Nuclear Stability:</h4>
+                        <ul>
+                            <li>A = 1 to 39: \( \bar{B} < 8.5 \, \text{MeV/nucleon} \)</li>
+                            <li>A = 40-120: \( \bar{B} \approx 8.5 \, \text{MeV/nucleon} \)</li>
+                            <li>Iron (A=56): \( \bar{B} \approx 8.8 \, \text{MeV/nucleon} \)</li>
+                            <li>A > 121: Decreases slowly up to U-238 (7.6 MeV)</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>4.5 Nuclear Forces</h3>
+                    
+                    <div class="important-points">
+                        <h4>Properties:</h4>
+                        <ul>
+                            <li>Due to exchange of mesons (Yukawa 1935)</li>
+                            <li>Strongly attractive, charge independent</li>
+                            <li>Spin dependent, short range (maximum at 1.5 Fermi)</li>
+                            <li>10³⁷ times stronger than gravitational forces</li>
+                            <li>10² times stronger than electrostatic forces</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Radioactivity Tab -->
+            <div class="tab-content" id="radioactivity">
+                <section class="section">
+                    <h2>5. Radioactivity</h2>
+                    
+                    <div class="definition">
+                        <p>Radioactivity is the phenomenon of spontaneous emission of radiations by the nucleus of a substance.</p>
+                    </div>
+                    
+                    <h3>5.1 Radioactive Decay Law</h3>
+                    
+                    <div class="formula">
+                        \[ \frac{-dN}{dt} = \lambda N_t \]
+                    </div>
+                    
+                    <div class="formula">
+                        \[ N_t = N_0 e^{-\lambda t} \]
+                    </div>
+                    
+                    <p>Where Nₜ = number of radioactive nuclei left after time t, λ = decay constant</p>
+                    
+                    <h3>5.2 Decay Constant</h3>
+                    
+                    <div class="definition">
+                        <p>Decay constant is the reciprocal of the time in which number of nuclei left is 1/e times the number of nuclei at t=0.</p>
+                    </div>
+                    
+                    <h3>5.3 Half-Life</h3>
+                    
+                    <div class="formula">
+                        \[ T_{1/2} = \frac{\log_e 2}{\lambda} = \frac{0.693}{\lambda} \]
+                    </div>
+                    
+                    <h3>5.4 Mean Life</h3>
+                    
+                    <div class="formula">
+                        \[ \tau = \frac{1}{\lambda} \]
+                    </div>
+                    
+                    <h3>5.5 Rate of Decay</h3>
+                    
+                    <div class="formula">
+                        \[ R_t = \lambda N_t \]
+                    </div>
+                    
+                    <h3>5.6 Units of Radioactivity</h3>
+                    
+                    <ul>
+                        <li>1 Becquerel = 1 disintegration/sec</li>
+                        <li>1 Curie = \( 3.7 \times 10^{10} \) disintegrations/sec</li>
+                        <li>1 Rutherford = \( 10^6 \) disintegrations/sec</li>
+                    </ul>
+                    
+                    <h3>5.7 Nuclear Decay</h3>
+                    
+                    <table class="decay-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Reaction</th>
+                                <th>Available Energy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alpha Decay</td>
+                                <td>\( z^{X^A} \rightarrow z_2 Y^{A-4} + zHe^4 \)</td>
+                                <td>\( Q = [m_X - m_Y - m_c]c^2 \)</td>
+                            </tr>
+                            <tr>
+                                <td>Beta Decay (Minus)</td>
+                                <td>\( zX^A \rightarrow z + iY^A + -i\beta^0 + v \)</td>
+                                <td>\( Q = [m_X - m_Y]c^2 \)</td>
+                            </tr>
+                            <tr>
+                                <td>Beta Decay (Plus)</td>
+                                <td>\( zX^A \rightarrow z_1 Y^A + i\beta^0 + v \)</td>
+                                <td>\( Q = [m_X - m_Y - zm_c]c^2 \)</td>
+                            </tr>
+                            <tr>
+                                <td>Electron Capture</td>
+                                <td>\( zX^A + -1e^0 \rightarrow z_1Y^A + v \)</td>
+                                <td>\( Q = [m_X - m_Y]c^2 \)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>5.8 Nuclear Reactions</h3>
+                    
+                    <h4>Nuclear Fission</h4>
+                    
+                    <div class="definition">
+                        <p>Process of disintegration of a heavy nucleus into two or more moderate nuclei of comparable masses.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ 92 \text{U}^{235} + 0\text{n}^1 \rightarrow 92 \text{U}^{236} \rightarrow 56 \text{Ba}^{141} + 36 \text{Kr}^{92} + 3 \text{on}^1 + Q(200 \, \text{MeV}) \]
+                    </div>
+                    
+                    <p>Energy released per nucleon ≈ 0.85 MeV</p>
+                    
+                    <h4>Nuclear Fusion</h4>
+                    
+                    <div class="definition">
+                        <p>Process of combining two or more lighter nuclei to form a heavy nucleus.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ 4_1 \text{H}^1 \rightarrow 2 \text{He}^4 + 2_1 \text{e}^0 + Q(26.7 \, \text{MeV}) \]
+                    </div>
+                    
+                    <p>Energy released per nucleon = 6.68 MeV</p>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Atoms and Nuclei Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

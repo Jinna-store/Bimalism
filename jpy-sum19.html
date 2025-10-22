@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Systems Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: #333;
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th {
+            background-color: #3949ab;
+        }
+        
+        .comparison-table td:first-child {
+            font-weight: bold;
+            background-color: #f0f4ff;
+        }
+        
+        .atmosphere-layer {
+            display: flex;
+            margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .layer-color {
+            width: 20px;
+        }
+        
+        .layer-info {
+            flex: 1;
+            padding: 15px;
+            background-color: #f8f9fa;
+        }
+        
+        .layer-name {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 5px;
+        }
+        
+        .modulation-type {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .modulation-title {
+            font-weight: bold;
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+        
+        .fiber-diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+        }
+        
+        .fiber-core {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #e0e0e0, #bdbdbd);
+            border-radius: 50%;
+            position: relative;
+            margin: 10px;
+        }
+        
+        .fiber-cladding {
+            display: inline-block;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, #f5f5f5, #e0e0e0);
+            border-radius: 50%;
+            position: relative;
+            margin: 10px;
+        }
+        
+        .fiber-jacket {
+            display: inline-block;
+            width: 180px;
+            height: 180px;
+            background: #424242;
+            border-radius: 50%;
+            position: relative;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Communication Systems Summary</h1>
+            <p class="subtitle">Atmosphere, Radio Wave Propagation, Modulation, and Optical Communication</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="atmosphere">Earth's Atmosphere</div>
+            <div class="nav-tab" data-tab="propagation">Wave Propagation</div>
+            <div class="nav-tab" data-tab="modulation">Modulation</div>
+            <div class="nav-tab" data-tab="channels">Communication Channels</div>
+            <div class="nav-tab" data-tab="optical">Optical Communication</div>
+        </div>
+        
+        <div class="content">
+            <!-- Atmosphere Tab -->
+            <div class="tab-content active" id="atmosphere">
+                <section class="section">
+                    <h2>1. Earth's Atmosphere</h2>
+                    
+                    <div class="definition">
+                        <p>The earth's atmosphere mainly consists of nitrogen (78%) and oxygen (21%) along with argon, CO₂, water vapor, and other trace elements.</p>
+                    </div>
+                    
+                    <h3>1.1 Atmospheric Layers</h3>
+                    
+                    <div class="atmosphere-layer">
+                        <div class="layer-color" style="background-color: #4caf50;"></div>
+                        <div class="layer-info">
+                            <div class="layer-name">Troposphere</div>
+                            <p><strong>Height:</strong> 0-12 km from Earth's surface</p>
+                            <p><strong>Temperature:</strong> 298K to 220K</p>
+                            <p><strong>Characteristics:</strong> All climatic changes occur here</p>
+                        </div>
+                    </div>
+                    
+                    <div class="atmosphere-layer">
+                        <div class="layer-color" style="background-color: #2196f3;"></div>
+                        <div class="layer-info">
+                            <div class="layer-name">Stratosphere</div>
+                            <p><strong>Height:</strong> 12-50 km</p>
+                            <p><strong>Temperature:</strong> 220K to 280K (increases with height)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="atmosphere-layer">
+                        <div class="layer-color" style="background-color: #9c27b0;"></div>
+                        <div class="layer-info">
+                            <div class="layer-name">Mesosphere</div>
+                            <p><strong>Height:</strong> 50-80 km</p>
+                            <p><strong>Temperature:</strong> 280K to 180K (decreases with height)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="atmosphere-layer">
+                        <div class="layer-color" style="background-color: #ff9800;"></div>
+                        <div class="layer-info">
+                            <div class="layer-name">Ionosphere</div>
+                            <p><strong>Height:</strong> 80-400 km</p>
+                            <p><strong>Temperature:</strong> 180K to 700K (increases with height)</p>
+                            <p><strong>Importance:</strong> Reflects radio waves for long-distance communication</p>
+                        </div>
+                    </div>
+                    
+                    <h3>1.2 Greenhouse Effect</h3>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>Atmosphere is transparent to visible radiation but blocks most infrared radiation</li>
+                            <li>Earth emits infrared radiation that gets trapped by the atmosphere</li>
+                            <li>Low-lying clouds reflect back infrared radiation</li>
+                            <li>This phenomenon keeps Earth warm at night</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Wave Propagation Tab -->
+            <div class="tab-content" id="propagation">
+                <section class="section">
+                    <h2>2. Radio Wave Propagation</h2>
+                    
+                    <h3>2.1 Low Frequency Waves (AM Band)</h3>
+                    
+                    <div class="definition">
+                        <p>Radio waves with frequencies less than 30 MHz (wavelengths more than 10 meters) form the AM band.</p>
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Propagation Characteristics:</h4>
+                        <ul>
+                            <li>Lower atmosphere is transparent to these waves</li>
+                            <li>Ionosphere reflects them back to Earth</li>
+                            <li>Two propagation paths: ground wave and sky wave</li>
+                            <li>Frequencies around 1500 kHz are transmitted primarily through ground waves</li>
+                            <li>Higher frequencies are mainly transmitted through sky waves</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>2.2 High Frequency Waves (TV Transmission)</h3>
+                    
+                    <div class="important-points">
+                        <h4>Characteristics:</h4>
+                        <ul>
+                            <li>Above approximately 40 MHz, ionosphere does not reflect waves back to Earth</li>
+                            <li>TV signals (100-200 MHz) cannot use sky wave propagation</li>
+                            <li>Only direct reception through ground waves is possible</li>
+                            <li>Requires very tall antennas for larger coverage</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Transmitting Antenna Height</h4>
+                    
+                    <div class="formula">
+                        \[ h = \frac{d^2}{2R_e} \]
+                    </div>
+                    
+                    <p>Where:<br>
+                    h = height of transmitting antenna<br>
+                    d = radius of area to be covered<br>
+                    Rₑ = radius of Earth</p>
+                </section>
+            </div>
+            
+            <!-- Modulation Tab -->
+            <div class="tab-content" id="modulation">
+                <section class="section">
+                    <h2>3. Types of Modulation</h2>
+                    
+                    <div class="definition">
+                        <p>Modulation is the process of superimposing information signals on a high-frequency carrier wave for long-distance transmission.</p>
+                    </div>
+                    
+                    <h3>3.1 Continuous Wave Modulation</h3>
+                    
+                    <div class="modulation-type">
+                        <div class="modulation-title">Amplitude Modulation (AM)</div>
+                        <p>Amplitude of carrier wave is changed in accordance with the intensity of the modulating signal.</p>
+                        <div class="formula">
+                            Modulation factor (m) = Amplitude change of carrier wave / Amplitude of normal carrier wave
+                        </div>
+                    </div>
+                    
+                    <div class="modulation-type">
+                        <div class="modulation-title">Frequency Modulation (FM)</div>
+                        <p>Frequency of carrier wave is changed in accordance with the instantaneous value of the modulating signal.</p>
+                        <div class="formula">
+                            \[ m_f = \frac{\text{maximum frequency deviation}}{\text{modulating frequency}} \]
+                        </div>
+                    </div>
+                    
+                    <div class="modulation-type">
+                        <div class="modulation-title">Phase Modulation (PM)</div>
+                        <p>Phase angle of the carrier signal varies in accordance with the modulating voltage.</p>
+                    </div>
+                    
+                    <h3>3.2 Pulse Modulation</h3>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Application</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pulse Amplitude Modulation (PAM)</td>
+                                <td>Amplitude of pulses varies with modulating signal</td>
+                                <td>Analog systems</td>
+                            </tr>
+                            <tr>
+                                <td>Pulse Width Modulation (PWM)</td>
+                                <td>Width/duration of pulses varies with modulating signal</td>
+                                <td>Analog systems</td>
+                            </tr>
+                            <tr>
+                                <td>Pulse Position Modulation (PPM)</td>
+                                <td>Position of pulses varies with modulating signal</td>
+                                <td>Analog systems</td>
+                            </tr>
+                            <tr>
+                                <td>Pulse Code Modulation (PCM)</td>
+                                <td>Digital representation of analog signals</td>
+                                <td>Digital communication (preferred)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            
+            <!-- Communication Channels Tab -->
+            <div class="tab-content" id="channels">
+                <section class="section">
+                    <h2>4. Communication Channels</h2>
+                    
+                    <h3>4.1 Types of Communication</h3>
+                    
+                    <div class="important-points">
+                        <h4>Main Categories:</h4>
+                        <ul>
+                            <li><strong>Line Communication:</strong> Through physical connections (wires, cables)</li>
+                            <li><strong>Space Communication:</strong> Through wireless transmission</li>
+                            <li><strong>Satellite Communication:</strong> Recent addition to space communication</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>4.2 Line Communication Channels</h3>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Applications</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Two-wire Transmission Lines</td>
+                                <td>Parallel wire lines used where balanced properties are required</td>
+                                <td>Traditional telephone lines</td>
+                            </tr>
+                            <tr>
+                                <td>Twisted Pair Wires</td>
+                                <td>Twisting helps minimize electrical interference</td>
+                                <td>Limited distance transmission</td>
+                            </tr>
+                            <tr>
+                                <td>Coaxial Cables</td>
+                                <td>Used when unbalanced properties are needed</td>
+                                <td>Microwaves, UHF waves (up to 1 GHz)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="important-points">
+                        <h4>Note:</h4>
+                        <p>Systems of conductors radiate RF energy if conductor separation approaches half the operating wavelength. This occurs more in parallel wires than in coaxial lines.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Optical Communication Tab -->
+            <div class="tab-content" id="optical">
+                <section class="section">
+                    <h2>5. Optical Communication</h2>
+                    
+                    <h3>5.1 Advantages of Optical Communication</h3>
+                    
+                    <div class="important-points">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li><strong>Wide channel bandwidth:</strong> Uses frequencies around 10¹⁴ Hz compared to 10⁶-10⁸ Hz for radio</li>
+                            <li><strong>Large channel capacity:</strong> Can carry more information</li>
+                            <li><strong>Low transmission losses:</strong> Minimal signal degradation over distance</li>
+                            <li><strong>Signal security:</strong> Optical signals confined inside fibers, difficult to intercept</li>
+                            <li><strong>Immune to interference:</strong> Not affected by electromagnetic interference</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>5.2 Components of Optical Communication System</h3>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Function</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Optical Source and Modulator</td>
+                                <td>Generates and modulates light with information</td>
+                                <td>Lasers, LEDs</td>
+                            </tr>
+                            <tr>
+                                <td>Optical Signal Detector</td>
+                                <td>Converts light back to electrical signal</td>
+                                <td>Semiconductor photodetectors</td>
+                            </tr>
+                            <tr>
+                                <td>Optical Fiber Cable</td>
+                                <td>Transmits light signals over distance</td>
+                                <td>Glass/polymer fibers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>5.3 Optical Fiber Structure</h3>
+                    
+                    <div class="fiber-diagram">
+                        <div class="fiber-jacket">
+                            <div class="fiber-cladding">
+                                <div class="fiber-core"></div>
+                            </div>
+                        </div>
+                        <p>Core (n₁) → Cladding (n₂) → Protective Jacket</p>
+                    </div>
+                    
+                    <div class="definition">
+                        <p>An optical fiber consists of a transparent core with refractive index n₁, surrounded by cladding with slightly lower refractive index n₂, enclosed in a protective jacket.</p>
+                    </div>
+                    
+                    <h4>Principle: Total Internal Reflection</h4>
+                    
+                    <p>Light is transmitted through the fiber with minimal loss due to total internal reflection at the core-cladding interface.</p>
+                    
+                    <h4>Entrance Angle Formula</h4>
+                    
+                    <div class="formula">
+                        \[ \sin \theta_e = \frac{\sqrt{n_1^2 - n_2^2}}{n_0} \]
+                    </div>
+                    
+                    <p>For air as external medium (n₀ = 1):</p>
+                    
+                    <div class="formula">
+                        \[ \sin \theta_e = \sqrt{n_1^2 - n_2^2} \]
+                    </div>
+                    
+                    <p>Where:<br>
+                    θₑ = entrance angle on the axis of the core<br>
+                    n₁ = refractive index of core<br>
+                    n₂ = refractive index of cladding<br>
+                    n₀ = refractive index of external medium</p>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Communication Systems Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electromagnetic Induction & AC Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a237e, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .timer-container {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-home {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .btn-home:hover {
+            background: #388e3c;
+        }
+        
+        .btn-submit {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #1976d2;
+        }
+        
+        .btn-reset {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #f57c00;
+        }
+        
+        .progress-container {
+            padding: 15px 30px;
+            background: #e3f2fd;
+            border-bottom: 1px solid #bbdefb;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #4caf50;
+            width: 5%;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 5px solid #1a237e;
+        }
+        
+        .question-number {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .option:hover {
+            border-color: #1a237e;
+            background: #f0f4ff;
+        }
+        
+        .option.selected {
+            border-color: #1a237e;
+            background: #e3f2fd;
+        }
+        
+        .option input {
+            transform: scale(1.2);
+        }
+        
+        .result-container {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4caf50;
+            margin: 20px 0;
+        }
+        
+        .result-details {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .detail-item {
+            padding: 15px;
+            background: #f5f5f5;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .correct {
+            border-left: 5px solid #4caf50;
+        }
+        
+        .incorrect {
+            border-left: 5px solid #f44336;
+        }
+        
+        .review-btn {
+            background: #9c27b0;
+            color: white;
+            margin-top: 20px;
+        }
+        
+        .review-btn:hover {
+            background: #7b1fa2;
+        }
+        
+        @media (max-width: 768px) {
+            .timer-container {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+                display: inline-block;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Electromagnetic Induction & Alternating Current Quiz</h1>
+            <p class="subtitle">Test your knowledge of Magnetic Flux, Faraday's Law, Inductance, AC Circuits, and Transformers</p>
+            <div class="timer-container">
+                Time Left: <span id="timer">15:00</span>
+            </div>
+        </header>
+        
+        <div class="nav-buttons">
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <div>
+                <button class="btn btn-reset" onclick="resetQuiz()">
+                    Reset Quiz
+                </button>
+                <button class="btn btn-submit" onclick="submitQuiz()">
+                    Submit Answers
+                </button>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="quiz-progress"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progress: <span id="progress-text">1</span>/20</span>
+                <span id="answered-count">0 questions answered</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-content">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="result-container" id="result-content">
+            <h2 class="result-title">Quiz Results</h2>
+            <div class="score" id="score">0/20</div>
+            <p id="result-message"></p>
+            
+            <div class="result-details" id="result-details">
+                <!-- Result details will be inserted here -->
+            </div>
+            
+            <button class="btn btn-home" onclick="goToHome()">
+                <span>←</span> Back to Home
+            </button>
+            <button class="btn review-btn" onclick="resetQuiz()">
+                Take Quiz Again
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions based on Electromagnetic Induction & AC
+        const quizQuestions = [
+            {
+                question: "According to Gauss' law for magnetism, the total magnetic flux through a closed surface is:",
+                options: [
+                    "Equal to the charge enclosed",
+                    "Proportional to the magnetic field strength",
+                    "Always zero",
+                    "Equal to the current enclosed"
+                ],
+                correct: 2
+            },
+            {
+                question: "Faraday's first law of electromagnetic induction states that:",
+                options: [
+                    "The induced emf is proportional to the rate of change of flux",
+                    "An emf is induced whenever there is a change in magnetic flux",
+                    "The induced emf opposes the change in flux",
+                    "The induced emf is maximum when flux is maximum"
+                ],
+                correct: 1
+            },
+            {
+                question: "Lenz's law is contained in Faraday's law through the:",
+                options: [
+                    "Magnitude of induced emf",
+                    "Direction of induced current",
+                    "Negative sign in the equation",
+                    "Rate of change of flux"
+                ],
+                correct: 2
+            },
+            {
+                question: "The motional emf induced in a conductor of length l moving with velocity v perpendicular to a magnetic field B is given by:",
+                options: [
+                    "E = Blv",
+                    "E = B²lv",
+                    "E = Bl/v",
+                    "E = Bv/l"
+                ],
+                correct: 0
+            },
+            {
+                question: "For a coil rotating in a magnetic field, the magnetic flux through the coil varies as:",
+                options: [
+                    "Φ = NBA sin(ωt)",
+                    "Φ = NBA cos(ωt)",
+                    "Φ = NBωA cos(ωt)",
+                    "Φ = NBωA sin(ωt)"
+                ],
+                correct: 1
+            },
+            {
+                question: "The self-inductance L of a coil is defined by the relation:",
+                options: [
+                    "Φ = L/I",
+                    "Φ = LI",
+                    "E = -L dI/dt",
+                    "U = ½ LI²"
+                ],
+                correct: 1
+            },
+            {
+                question: "The energy stored in an inductor carrying current I is given by:",
+                options: [
+                    "U = ½ LI",
+                    "U = ½ LI²",
+                    "U = L²I",
+                    "U = LI²"
+                ],
+                correct: 1
+            },
+            {
+                question: "In an L-R circuit, the time constant τ is given by:",
+                options: [
+                    "τ = L/R",
+                    "τ = R/L",
+                    "τ = LR",
+                    "τ = 1/(LR)"
+                ],
+                correct: 0
+            },
+            {
+                question: "The mutual inductance M between two coils is related to their self-inductances L₁ and L₂ by:",
+                options: [
+                    "M = L₁ + L₂",
+                    "M = √(L₁L₂)",
+                    "M = k√(L₁L₂)",
+                    "M = L₁L₂/(L₁ + L₂)"
+                ],
+                correct: 2
+            },
+            {
+                question: "When two inductors L₁ and L₂ are connected in series, their equivalent inductance is:",
+                options: [
+                    "L = L₁ + L₂",
+                    "L = L₁L₂/(L₁ + L₂)",
+                    "1/L = 1/L₁ + 1/L₂",
+                    "L = √(L₁L₂)"
+                ],
+                correct: 0
+            },
+            {
+                question: "The RMS value of an alternating current I = Iₘ sin(ωt) is:",
+                options: [
+                    "Iₘ/2",
+                    "Iₘ/√2",
+                    "2Iₘ/π",
+                    "Iₘ/π"
+                ],
+                correct: 1
+            },
+            {
+                question: "In a purely inductive AC circuit, the current:",
+                options: [
+                    "Leads the voltage by 90°",
+                    "Lags the voltage by 90°",
+                    "Is in phase with the voltage",
+                    "Leads the voltage by 45°"
+                ],
+                correct: 1
+            },
+            {
+                question: "The inductive reactance Xₗ of an inductor is given by:",
+                options: [
+                    "Xₗ = ωL",
+                    "Xₗ = 1/ωL",
+                    "Xₗ = L/ω",
+                    "Xₗ = ω/L"
+                ],
+                correct: 0
+            },
+            {
+                question: "In a purely capacitive AC circuit, the current:",
+                options: [
+                    "Leads the voltage by 90°",
+                    "Lags the voltage by 90°",
+                    "Is in phase with the voltage",
+                    "Lags the voltage by 45°"
+                ],
+                correct: 0
+            },
+            {
+                question: "The capacitive reactance Xc of a capacitor is given by:",
+                options: [
+                    "Xc = ωC",
+                    "Xc = 1/ωC",
+                    "Xc = C/ω",
+                    "Xc = ω/C"
+                ],
+                correct: 1
+            },
+            {
+                question: "In an RLC series circuit, the impedance Z is given by:",
+                options: [
+                    "Z = R + Xₗ + Xc",
+                    "Z = √(R² + Xₗ² + Xc²)",
+                    "Z = √[R² + (Xₗ - Xc)²]",
+                    "Z = √[R² + (Xₗ + Xc)²]"
+                ],
+                correct: 2
+            },
+            {
+                question: "At resonance in an RLC series circuit:",
+                options: [
+                    "Impedance is maximum",
+                    "Current is minimum",
+                    "Impedance is equal to R",
+                    "Xₗ and Xc are maximum"
+                ],
+                correct: 2
+            },
+            {
+                question: "The resonant frequency fᵣ of an RLC series circuit is given by:",
+                options: [
+                    "fᵣ = 1/(2π√LC)",
+                    "fᵣ = 2π√LC",
+                    "fᵣ = 1/(2πLC)",
+                    "fᵣ = 2π/√LC"
+                ],
+                correct: 0
+            },
+            {
+                question: "The Q-factor of a series resonant circuit is given by:",
+                options: [
+                    "Q = R√(L/C)",
+                    "Q = (1/R)√(L/C)",
+                    "Q = R√(C/L)",
+                    "Q = (1/R)√(C/L)"
+                ],
+                correct: 1
+            },
+            {
+                question: "For an ideal transformer, the ratio of secondary to primary voltage is equal to:",
+                options: [
+                    "Ratio of currents",
+                    "Ratio of number of turns",
+                    "Square of the ratio of number of turns",
+                    "Inverse ratio of number of turns"
+                ],
+                correct: 1
+            }
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let userAnswers = Array(quizQuestions.length).fill(null);
+        let timeLeft = 15 * 60; // 15 minutes in seconds
+        let timerInterval;
+        let quizSubmitted = false;
+
+        // Initialize the quiz
+        function initializeQuiz() {
+            displayQuestion();
+            startTimer();
+            updateProgress();
+        }
+
+        // Display current question
+        function displayQuestion() {
+            const quizContent = document.getElementById('quiz-content');
+            const question = quizQuestions[currentQuestion];
+            
+            let optionsHTML = '';
+            question.options.forEach((option, index) => {
+                const isChecked = userAnswers[currentQuestion] === index ? 'checked' : '';
+                optionsHTML += `
+                    <label class="option ${isChecked ? 'selected' : ''}">
+                        <input type="radio" name="answer" value="${index}" ${isChecked} 
+                               onchange="selectAnswer(${index})">
+                        ${option}
+                    </label>
+                `;
+            });
+            
+            quizContent.innerHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${quizQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                    <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <button class="btn btn-submit" onclick="nextQuestion()">
+                        ${currentQuestion === quizQuestions.length - 1 ? 'Finish' : 'Next'} →
+                    </button>
+                </div>
+            `;
+        }
+
+        // Select an answer
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestion] = answerIndex;
+            document.querySelectorAll('.option').forEach((opt, idx) => {
+                if (idx === answerIndex) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+            updateProgress();
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            } else {
+                submitQuiz();
+            }
+        }
+
+        // Navigate to previous question
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        // Update progress bar and counter
+        function updateProgress() {
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            const progress = (answered / quizQuestions.length) * 100;
+            
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = answered;
+            document.getElementById('answered-count').textContent = `${answered} of ${quizQuestions.length} questions answered`;
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeLeft < 300) { // 5 minutes
+                document.getElementById('timer').style.color = '#ff5252';
+            }
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            if (quizSubmitted) return;
+            
+            quizSubmitted = true;
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            let resultDetails = '';
+            
+            quizQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                
+                if (isCorrect) score++;
+                
+                resultDetails += `
+                    <div class="detail-item ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div>
+                            <strong>Q${index + 1}:</strong> ${question.question}<br>
+                            <span>Your answer: ${userAnswer !== null ? question.options[userAnswer] : 'Not answered'}</span><br>
+                            <span>Correct answer: ${question.options[question.correct]}</span>
+                        </div>
+                        <div>${isCorrect ? '✓' : '✗'}</div>
+                    </div>
+                `;
+            });
+            
+            // Display results
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('result-content').style.display = 'block';
+            document.getElementById('score').textContent = `${score}/${quizQuestions.length}`;
+            document.getElementById('result-details').innerHTML = resultDetails;
+            
+            // Result message based on score
+            let message = '';
+            if (score >= 17) {
+                message = 'Excellent! You have a strong understanding of Electromagnetic Induction & AC.';
+            } else if (score >= 14) {
+                message = 'Great job! You have a good grasp of electromagnetic concepts.';
+            } else if (score >= 11) {
+                message = 'Good effort! Review the material to strengthen your understanding.';
+            } else {
+                message = 'Keep studying! Review the electromagnetic induction and AC concepts thoroughly.';
+            }
+            
+            document.getElementById('result-message').textContent = message;
+        }
+
+        // Reset the quiz
+        function resetQuiz() {
+            currentQuestion = 0;
+            userAnswers = Array(quizQuestions.length).fill(null);
+            timeLeft = 15 * 60;
+            quizSubmitted = false;
+            
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('result-content').style.display = 'none';
+            
+            clearInterval(timerInterval);
+            initializeQuiz();
+        }
+
+        // Navigate to home page
+        function goToHome() {
+            window.location.href = "jee.html";
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initializeQuiz;
+    </script>
+</body>
+</html>

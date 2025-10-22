@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electromagnetic Induction & Alternating Current Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .circuit-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .circuit-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .circuit-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .variable {
+            font-family: 'Cambria Math', serif;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .circuit-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .example {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th {
+            background-color: #3949ab;
+        }
+        
+        .comparison-table td:first-child {
+            font-weight: bold;
+            background-color: #f0f4ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Electromagnetic Induction & Alternating Currents Summary</h1>
+            <p class="subtitle">Magnetic Flux, Faraday's Law, Inductance, AC Circuits, and Transformers</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="magnetic-flux">Magnetic Flux</div>
+            <div class="nav-tab" data-tab="faraday">Faraday's Law</div>
+            <div class="nav-tab" data-tab="inductance">Inductance</div>
+            <div class="nav-tab" data-tab="ac-circuits">AC Circuits</div>
+            <div class="nav-tab" data-tab="transformers">Transformers</div>
+        </div>
+        
+        <div class="content">
+            <!-- Magnetic Flux Tab -->
+            <div class="tab-content active" id="magnetic-flux">
+                <section class="section">
+                    <h2>1. Magnetic Flux</h2>
+                    
+                    <div class="definition">
+                        <p>Magnetic flux (Φ<sub>B</sub>) through an area dS in a magnetic field B is defined as the surface integral of the magnetic field over that area.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \Phi_B = \int \vec{B} \cdot d\vec{S} \]
+                    </div>
+                    
+                    <p>For an elemental area dS in a magnetic field B, the associated magnetic flux is:</p>
+                    
+                    <div class="formula">
+                        \[ d\Phi_B = \vec{B} \cdot d\vec{S} = B \, dS \cos \theta \]
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Gauss' Law for Magnetism</div>
+                        <p>Since magnetic field lines are closed curves (no magnetic monopoles exist), the total magnetic flux linked with a closed surface is always zero:</p>
+                        <div class="formula">
+                            \[ \oint \vec{B} \cdot d\vec{S} = 0 \]
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Faraday's Law Tab -->
+            <div class="tab-content" id="faraday">
+                <section class="section">
+                    <h2>2. Faraday's Laws of Electromagnetic Induction</h2>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Faraday's First Law</div>
+                        <p>Whenever there is a change of magnetic flux linked with a circuit, or whenever a moving conductor cuts magnetic flux, an emf is induced in it.</p>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Faraday's Second Law</div>
+                        <p>The magnitude of induced emf is equal to the rate of change of magnetic flux:</p>
+                        <div class="formula">
+                            \[ \mathcal{E} = \left| \frac{d\Phi}{dt} \right| \]
+                        </div>
+                    </div>
+                    
+                    <h3>2.1 Lenz's Law</h3>
+                    
+                    <div class="definition">
+                        <p>The direction of the induced emf is such that it opposes the change in magnetic flux that produces it.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \mathcal{E} = -\frac{d\Phi}{dt} \]
+                    </div>
+                    
+                    <p>The negative sign indicates the opposition to the change in flux, as per Lenz's law.</p>
+                    
+                    <h3>2.2 Induced Charge Flow</h3>
+                    
+                    <div class="formula">
+                        \[ i = \frac{\mathcal{E}}{R} = -\frac{1}{R}\frac{d\Phi}{dt} \]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>The induced charge is independent of the manner and time in which the flux changes</li>
+                            <li>The induced emf and current depend on the time rate of change of flux</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>2.3 Motional EMF</h3>
+                    
+                    <div class="definition">
+                        <p>When a conductor moves in a magnetic field, an emf is induced across it.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \mathcal{E} = \frac{\Delta\Phi}{\Delta t} = Blv \sin \theta \]
+                    </div>
+                    
+                    <p>In vector notation:</p>
+                    
+                    <div class="formula">
+                        \[ \mathcal{E} = \int (\vec{v} \times \vec{B}) \cdot d\vec{l} \]
+                    </div>
+                    
+                    <h3>2.4 Rotating Coil in Magnetic Field</h3>
+                    
+                    <div class="formula">
+                        \[ \Phi = NBS \cos \omega t \]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>N = number of turns</li>
+                        <li>S = area of the coil</li>
+                        <li>ω = angular velocity of rotation</li>
+                    </ul>
+                </section>
+            </div>
+            
+            <!-- Inductance Tab -->
+            <div class="tab-content" id="inductance">
+                <section class="section">
+                    <h2>3. Inductance</h2>
+                    
+                    <h3>3.1 Self-Inductance</h3>
+                    
+                    <div class="definition">
+                        <p>Self-inductance (L) is the property of a coil that opposes any change in the current flowing through it.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \Phi \propto I \quad \Rightarrow \quad \Phi = LI \]
+                    </div>
+                    
+                    <p>Where L is the self-inductance of the coil.</p>
+                    
+                    <h4>Self-Inductance of a Coil</h4>
+                    
+                    <div class="formula">
+                        \[ L = \frac{\Phi}{I} = \frac{\mu_0}{4\pi}(2\pi^2N^2R) = \frac{1}{2}\mu_0\pi N^2R \]
+                    </div>
+                    
+                    <h3>3.2 Energy Stored in an Inductor</h3>
+                    
+                    <div class="formula">
+                        \[ U = \frac{1}{2}LI^2 \]
+                    </div>
+                    
+                    <h4>Energy Density of Magnetic Field</h4>
+                    
+                    <div class="formula">
+                        \[ u = \frac{B^2}{2\mu_0} \]
+                    </div>
+                    
+                    <h3>3.3 L-R Circuit</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Growth of Current</div>
+                        <div class="formula">
+                            \[ I = I_0 \left( 1 - e^{-t/\tau} \right) \]
+                        </div>
+                        <p>Where:</p>
+                        <ul>
+                            <li>I<sub>0</sub> = E/R (final current)</li>
+                            <li>τ = L/R (time constant)</li>
+                        </ul>
+                        <p>At t = τ, I = I<sub>0</sub>(1 - e<sup>-1</sup>) = 0.63 I<sub>0</sub></p>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Decay of Current</div>
+                        <div class="formula">
+                            \[ I = I_0 e^{-t/\tau} \]
+                        </div>
+                        <p>At t = τ, I = I<sub>0</sub>/e = 0.37 I<sub>0</sub></p>
+                    </div>
+                    
+                    <h3>3.4 Mutual Induction</h3>
+                    
+                    <div class="definition">
+                        <p>Mutual induction is the phenomenon where an induced emf appears in one circuit due to changes in the magnetic field produced by a nearby circuit.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \Phi_2 = MI_1 \]
+                        \[ \mathcal{E}_2 = M \frac{dI_1}{dt} \]
+                    </div>
+                    
+                    <p>Where M is the coefficient of mutual induction.</p>
+                    
+                    <div class="formula">
+                        \[ M = k\sqrt{L_1 L_2} \]
+                    </div>
+                    
+                    <p>Where k is the coefficient of coupling (0 ≤ k ≤ 1).</p>
+                    
+                    <h3>3.5 Grouping of Coils</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Coils in Series</div>
+                        <div class="formula">
+                            \[ L_s = L_1 + L_2 \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Coils in Parallel</div>
+                        <div class="formula">
+                            \[ \frac{1}{L_p} = \frac{1}{L_1} + \frac{1}{L_2} \]
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- AC Circuits Tab -->
+            <div class="tab-content" id="ac-circuits">
+                <section class="section">
+                    <h2>4. Alternating Current Circuits</h2>
+                    
+                    <h3>4.1 Alternating Current</h3>
+                    
+                    <div class="formula">
+                        \[ I = I_{max} \sin \omega t \]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>I = instantaneous current</li>
+                        <li>I<sub>max</sub> = maximum current</li>
+                        <li>ω = angular frequency = 2πf</li>
+                    </ul>
+                    
+                    <h3>4.2 RMS and Average Values</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">RMS Value</div>
+                        <div class="formula">
+                            \[ I_{rms} = \frac{I_{max}}{\sqrt{2}} = 0.707 I_{max} \]
+                            \[ V_{rms} = \frac{V_{max}}{\sqrt{2}} = 0.707 V_{max} \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Average Value</div>
+                        <div class="formula">
+                            \[ I_{av} = \frac{2I_{max}}{\pi} = 0.637 I_{max} \]
+                        </div>
+                    </div>
+                    
+                    <h3>4.3 AC Circuit Components</h3>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Circuit Type</th>
+                                <th>Current Expression</th>
+                                <th>Impedance/Reactance</th>
+                                <th>Phase Relationship</th>
+                                <th>Power</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pure Resistive</td>
+                                <td>i = I<sub>max</sub> sin ωt</td>
+                                <td>Z = R</td>
+                                <td>Voltage and current in phase</td>
+                                <td>P = V<sub>rms</sub>I<sub>rms</sub></td>
+                            </tr>
+                            <tr>
+                                <td>Pure Inductive</td>
+                                <td>i = I<sub>max</sub> sin(ωt - π/2)</td>
+                                <td>X<sub>L</sub> = ωL</td>
+                                <td>Current lags voltage by 90°</td>
+                                <td>Zero (wattless)</td>
+                            </tr>
+                            <tr>
+                                <td>Pure Capacitive</td>
+                                <td>i = I<sub>max</sub> sin(ωt + π/2)</td>
+                                <td>X<sub>C</sub> = 1/ωC</td>
+                                <td>Current leads voltage by 90°</td>
+                                <td>Zero (wattless)</td>
+                            </tr>
+                            <tr>
+                                <td>RL Series</td>
+                                <td>-</td>
+                                <td>Z = √(R² + X<sub>L</sub>²)</td>
+                                <td>Current lags voltage</td>
+                                <td>P = V<sub>rms</sub>I<sub>rms</sub> cos φ</td>
+                            </tr>
+                            <tr>
+                                <td>RC Series</td>
+                                <td>-</td>
+                                <td>Z = √(R² + X<sub>C</sub>²)</td>
+                                <td>Current leads voltage</td>
+                                <td>P = V<sub>rms</sub>I<sub>rms</sub> cos φ</td>
+                            </tr>
+                            <tr>
+                                <td>RLC Series</td>
+                                <td>-</td>
+                                <td>Z = √[R² + (X<sub>L</sub> - X<sub>C</sub>)²]</td>
+                                <td>Depends on X<sub>L</sub> and X<sub>C</sub></td>
+                                <td>P = V<sub>rms</sub>I<sub>rms</sub> cos φ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>4.4 Series Resonance Circuit</h3>
+                    
+                    <div class="definition">
+                        <p>At resonance, the inductive and capacitive reactances become equal, resulting in minimum impedance and maximum current.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ X_L = X_C \quad \Rightarrow \quad \omega L = \frac{1}{\omega C} \]
+                        \[ \omega_r = \frac{1}{\sqrt{LC}} \quad \Rightarrow \quad f_r = \frac{1}{2\pi\sqrt{LC}} \]
+                    </div>
+                    
+                    <h4>Q-Factor (Quality Factor)</h4>
+                    
+                    <div class="formula">
+                        \[ Q = \frac{1}{R} \sqrt{\frac{L}{C}} \]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Points at Resonance:</h4>
+                        <ul>
+                            <li>Impedance is minimum: Z = R</li>
+                            <li>Current is maximum</li>
+                            <li>Voltage and current are in phase (φ = 0)</li>
+                            <li>Power factor is unity (cos φ = 1)</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Transformers Tab -->
+            <div class="tab-content" id="transformers">
+                <section class="section">
+                    <h2>5. Transformers</h2>
+                    
+                    <div class="definition">
+                        <p>A transformer is a device that transfers electrical energy from one circuit to another through electromagnetic induction, typically with a change in voltage and current.</p>
+                    </div>
+                    
+                    <h3>5.1 Transformer Principle</h3>
+                    
+                    <div class="formula">
+                        \[ \mathcal{E}_1 = -N_1 \frac{d\Phi_B}{dt} \quad \text{and} \quad \mathcal{E}_2 = -N_2 \frac{d\Phi_B}{dt} \]
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \frac{\mathcal{E}_1}{\mathcal{E}_2} = \frac{N_1}{N_2} \]
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \frac{V_2}{V_1} = \frac{N_2}{N_1} \]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>V<sub>1</sub>, V<sub>2</sub> = terminal voltages of primary and secondary</li>
+                        <li>N<sub>1</sub>, N<sub>2</sub> = number of turns in primary and secondary</li>
+                    </ul>
+                    
+                    <h3>5.2 Efficiency of Transformer</h3>
+                    
+                    <div class="formula">
+                        \[ \eta = \frac{\text{Output Power}}{\text{Input Power}} \]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Energy Losses in Transformers:</h4>
+                        <ul>
+                            <li>Primary resistance (copper loss)</li>
+                            <li>Hysteresis in the core</li>
+                            <li>Eddy currents in the core</li>
+                            <li>Flux leakage</li>
+                        </ul>
+                        <p>Modern transformers can achieve efficiencies of up to 99%.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Electromagnetic Induction & Alternating Currents Summary | Based on JEE Main Physics</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

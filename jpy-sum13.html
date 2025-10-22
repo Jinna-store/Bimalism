@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnetic Effects of Current & Magnetism Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a237e, #283593);
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #283593;
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            padding: 16px 24px;
+            color: white;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-tab.active {
+            border-bottom: 3px solid #ffd54f;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a237e;
+        }
+        
+        h3 {
+            color: #283593;
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+        
+        h4 {
+            color: #3949ab;
+            font-size: 1.2rem;
+            margin: 20px 0 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .definition {
+            background-color: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .formula {
+            font-family: 'Cambria Math', serif;
+            background-color: #f0f4ff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 4px solid #283593;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background-color: #1a237e;
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .law-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .law-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .circuit-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .circuit-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .circuit-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .variable {
+            font-family: 'Cambria Math', serif;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        
+        .important-points {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffa000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .important-points h4 {
+            color: #ff6f00;
+            margin-top: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a237e;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .circuit-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .example {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .diagram {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th {
+            background-color: #3949ab;
+        }
+        
+        .comparison-table td:first-child {
+            font-weight: bold;
+            background-color: #f0f4ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Magnetic Effects of Current & Magnetism Summary</h1>
+            <p class="subtitle">Biot-Savart Law, Magnetic Forces, Magnetic Materials, and Earth's Magnetism</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="biot-savart">Biot-Savart Law</div>
+            <div class="nav-tab" data-tab="magnetic-force">Magnetic Force</div>
+            <div class="nav-tab" data-tab="magnetic-dipole">Magnetic Dipole</div>
+            <div class="nav-tab" data-tab="magnetic-materials">Magnetic Materials</div>
+            <div class="nav-tab" data-tab="earth-magnetism">Earth's Magnetism</div>
+        </div>
+        
+        <div class="content">
+            <!-- Biot-Savart Law Tab -->
+            <div class="tab-content active" id="biot-savart">
+                <section class="section">
+                    <h2>1. Biot-Savart Law</h2>
+                    
+                    <div class="definition">
+                        <p>The Biot-Savart law gives the magnetic field produced by a current-carrying element. The direction of the magnetic field element \( dB \) is perpendicular to both the current element \( Idl \) and the position vector \( \vec{r} \).</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[dB = \frac{\mu_0}{4\pi} \frac{Idl \sin \theta}{r^2}\]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>The direction of \( \vec{dB} \) can be obtained by applying the right-hand rule to \( Id\vec{l} \times \vec{r} \)</li>
+                            <li>\( \mu_0 \) is the permeability of free space (\( 4\pi \times 10^{-7} \) T·m/A)</li>
+                            <li>\( \theta \) is the angle between the current element and the position vector</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>1.1 Magnetic Field Due to Different Current Systems</h3>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Current System</th>
+                                <th>Magnetic Field Expression</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Straight wire of finite length</td>
+                                <td>\( B = \frac{\mu_0 I}{4 \pi R} (\sin \alpha_1 + \sin \alpha_2) \)</td>
+                            </tr>
+                            <tr>
+                                <td>Infinitely long straight wire</td>
+                                <td>\( B = \frac{\mu_0 I}{2 \pi R} \)</td>
+                            </tr>
+                            <tr>
+                                <td>Arc of a circle</td>
+                                <td>\( B = \frac{\mu_0 I \phi}{4 \pi R} \)</td>
+                            </tr>
+                            <tr>
+                                <td>On the axis of a ring</td>
+                                <td>\( B_{\parallel} = \frac{\mu_0 I R^2}{2(R^2 + x^2)^{3/2}} \)<br>\( B_{\perp} = 0 \)</td>
+                            </tr>
+                            <tr>
+                                <td>At the center of a ring</td>
+                                <td>\( B = \frac{\mu_0 I}{2R} \)</td>
+                            </tr>
+                            <tr>
+                                <td>On the axis of a solenoid</td>
+                                <td>\( B = \mu_0 n I = \mu_0 \frac{N}{l} I \)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>1.2 Ampere's Circuital Law</h3>
+                    
+                    <div class="definition">
+                        <p>The line integral of the magnetic field \( \vec{B} \) around any closed loop is equal to \( \mu_0 \) times the net current enclosed by the loop.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[\oint \vec{B} \cdot d\vec{l} = \mu_0 I_{\text{enc}}\]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Magnetic Force Tab -->
+            <div class="tab-content" id="magnetic-force">
+                <section class="section">
+                    <h2>2. Magnetic Force</h2>
+                    
+                    <h3>2.1 Force on a Moving Charge</h3>
+                    
+                    <div class="definition">
+                        <p>A charged particle moving in a magnetic field experiences a force perpendicular to both its velocity and the magnetic field.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \vec{F} = q(\vec{v} \times \vec{B}) \]
+                        \[ F = qvB \sin \theta \]
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>\( q \) = charge of the particle</li>
+                        <li>\( \vec{v} \) = velocity of the particle</li>
+                        <li>\( \vec{B} \) = magnetic field</li>
+                        <li>\( \theta \) = angle between velocity and magnetic field vectors</li>
+                    </ul>
+                    
+                    <h3>2.2 Motion of a Charged Particle in a Uniform Magnetic Field</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Circular Motion</div>
+                        <p>When a charged particle moves perpendicular to a uniform magnetic field, it follows a circular path.</p>
+                        <div class="formula">
+                            \[ qvB = \frac{mv^2}{r} \]
+                            \[ r = \frac{mv}{qB} \]
+                        </div>
+                        <p>Where \( r \) is the radius of the circular path.</p>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Time Period</div>
+                        <p>The time period of revolution is independent of the velocity and radius.</p>
+                        <div class="formula">
+                            \[ T = \frac{2\pi r}{v} = \frac{2\pi m}{qB} \]
+                        </div>
+                    </div>
+                    
+                    <h3>2.3 Helical Motion</h3>
+                    
+                    <div class="definition">
+                        <p>When a charged particle's velocity is not perpendicular to the magnetic field, it moves in a helical path.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ v = v_{\parallel} + v_{\perp} \]
+                        \[ \text{Radius of helix: } r = \frac{mv_{\perp}}{qB} \]
+                        \[ \text{Pitch: } p = v_{\parallel} T = \frac{2\pi mv_{\parallel}}{qB} \]
+                    </div>
+                    
+                    <h3>2.4 Lorentz Force</h3>
+                    
+                    <div class="definition">
+                        <p>When a particle is subjected to both electric and magnetic fields, the total force is called the Lorentz force.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \vec{F} = q(\vec{E} + \vec{v} \times \vec{B}) \]
+                    </div>
+                    
+                    <h3>2.5 Force on a Current-Carrying Conductor</h3>
+                    
+                    <div class="definition">
+                        <p>A current-carrying conductor placed in a magnetic field experiences a force.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ d\vec{F} = I d\vec{l} \times \vec{B} \]
+                        \[ \vec{F} = \int (I d\vec{l} \times \vec{B}) \]
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Magnetic Dipole Tab -->
+            <div class="tab-content" id="magnetic-dipole">
+                <section class="section">
+                    <h2>3. Magnetic Dipole</h2>
+                    
+                    <div class="definition">
+                        <p>A small current-carrying loop acts like a magnetic dipole. The magnetic dipole moment is defined as the product of current and area enclosed by the loop.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \vec{p}_m = I\vec{A} \]
+                        \[ \text{For N turns: } \vec{p}_m = NI\vec{A} \]
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>The direction of the magnetic moment coincides with the direction of the area vector</li>
+                            <li>The area vector is perpendicular to the plane of the loop (right-hand rule)</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>3.1 Comparison: Electric vs Magnetic Dipole</h3>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Electric Dipole</th>
+                                <th>Magnetic Dipole</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Field along axis</td>
+                                <td>\( \vec{E}_{\parallel} = \frac{1}{2\pi\epsilon_0} \frac{\vec{p}_E}{x^3} \)</td>
+                                <td>\( \vec{B}_{\parallel} = \frac{\mu_0 \vec{p}_m}{2\pi x^3} \)</td>
+                            </tr>
+                            <tr>
+                                <td>Torque in external field</td>
+                                <td>\( \vec{\tau} = \vec{p}_E \times \vec{E} \)</td>
+                                <td>\( \vec{\tau} = \vec{p}_m \times \vec{B} \)</td>
+                            </tr>
+                            <tr>
+                                <td>Potential energy</td>
+                                <td>\( U = -\vec{p}_E \cdot \vec{E} \)</td>
+                                <td>\( U = -\vec{p}_m \cdot \vec{B} \)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>3.2 Field Due to a Bar Magnet</h3>
+                    
+                    <div class="law-box">
+                        <div class="law-title">On Axial Line (End-on Position)</div>
+                        <div class="formula">
+                            \[ B = \frac{\mu_0}{4\pi} \frac{2md}{(d^2 - l^2)^2} \]
+                            \[ \text{If } l^2 \ll d^2, \quad B = \frac{\mu_0}{4\pi} \frac{2m}{d^3} \]
+                        </div>
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">On Equatorial Line (Broadside-on Position)</div>
+                        <div class="formula">
+                            \[ B = \frac{\mu_0}{4\pi} \frac{m}{(d^2 + l^2)^{3/2}} \]
+                            \[ \text{If } l^2 \ll d^2, \quad B = \frac{\mu_0}{4\pi} \frac{m}{d^3} \]
+                        </div>
+                    </div>
+                    
+                    <h3>3.3 Tangent Law and Tangent Galvanometer</h3>
+                    
+                    <div class="definition">
+                        <p>When a magnet is suspended in two mutually perpendicular magnetic fields \( B \) and \( H \), it comes to rest at an angle \( \theta \) such that:</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ B = H \tan \theta \]
+                    </div>
+                    
+                    <div class="law-box">
+                        <div class="law-title">Tangent Galvanometer</div>
+                        <p>A tangent galvanometer measures electric current using the tangent law.</p>
+                        <div class="formula">
+                            \[ B_H \tan \theta = \frac{\mu_0 i n}{2 r} \]
+                            \[ i = \frac{2 r B_H}{\mu_0 n} \tan \theta = K \tan \theta \]
+                        </div>
+                        <p>Where \( K = \frac{2 r B_H}{\mu_0 n} \) is the galvanometer constant.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Magnetic Materials Tab -->
+            <div class="tab-content" id="magnetic-materials">
+                <section class="section">
+                    <h2>4. Magnetic Materials</h2>
+                    
+                    <h3>4.1 Key Definitions</h3>
+                    
+                    <div class="definition">
+                        <p><strong>Magnetic Field (B):</strong> The total number of lines of force per unit area. Unit: Wb/m² or Tesla.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \vec{B} = \frac{\mu}{4\pi} \frac{m}{r^2} \hat{r} \quad \text{Wb/m}^2 \]
+                        \[ \mu = \mu_0 \mu_r \]
+                    </div>
+                    
+                    <div class="definition">
+                        <p><strong>Magnetic Field Strength (H):</strong> The magnetizing field, independent of the medium.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \vec{H} = \frac{\vec{B}}{\mu} \quad \text{A/m} \]
+                    </div>
+                    
+                    <div class="definition">
+                        <p><strong>Intensity of Magnetization (I):</strong> Magnetic moment per unit volume.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ I = \frac{\text{magnetic moment}}{\text{volume}} \]
+                    </div>
+                    
+                    <div class="definition">
+                        <p><strong>Magnetic Susceptibility (χ):</strong> Ratio of intensity of magnetization to magnetizing field.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \chi = \frac{I}{H} \]
+                    </div>
+                    
+                    <div class="definition">
+                        <p><strong>Magnetic Permeability (μ):</strong> Ratio of magnetic induction to magnetizing field.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ \mu = \frac{B}{H} = \mu_0 \mu_r \]
+                    </div>
+                    
+                    <h3>4.2 Types of Magnetic Materials</h3>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Diamagnetic</th>
+                                <th>Paramagnetic</th>
+                                <th>Ferromagnetic</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Susceptibility (χ)</td>
+                                <td>Small and negative</td>
+                                <td>Small and positive</td>
+                                <td>Large and positive</td>
+                            </tr>
+                            <tr>
+                                <td>Relative permeability (μ<sub>r</sub>)</td>
+                                <td>&lt; 1</td>
+                                <td>&gt; 1</td>
+                                <td>&gt;&gt; 1</td>
+                            </tr>
+                            <tr>
+                                <td>Behavior in non-uniform field</td>
+                                <td>Repelled</td>
+                                <td>Attracted</td>
+                                <td>Strongly attracted</td>
+                            </tr>
+                            <tr>
+                                <td>Field lines</td>
+                                <td>Do not cross through</td>
+                                <td>Cross through</td>
+                                <td>Cross through</td>
+                            </tr>
+                            <tr>
+                                <td>Examples</td>
+                                <td>Cu, Zn, Bi, Ag, Au, Glass, NaCl</td>
+                                <td>Al, Na, Sb, Pt, Mn, Cr</td>
+                                <td>Fe, Ni, Co</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>4.3 Ferromagnetic Substances</h3>
+                    
+                    <div class="important-points">
+                        <h4>Properties:</h4>
+                        <ul>
+                            <li>Acquire high degree of magnetization in the same sense as the applied field</li>
+                            <li>Have permeability of the order of hundreds and thousands</li>
+                            <li>Susceptibility is very large and positive</li>
+                            <li>Attracted even by weak magnets</li>
+                            <li>Above Curie temperature, they become paramagnetic</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>4.4 Hysteresis Loop</h3>
+                    
+                    <div class="definition">
+                        <p>The hysteresis loop shows the relationship between magnetic field strength (H) and magnetic flux density (B) when a ferromagnetic material undergoes a complete cycle of magnetization.</p>
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>The area enclosed by the hysteresis loop represents energy loss per unit volume per cycle</li>
+                            <li>Soft magnetic materials have narrow hysteresis loops (low energy loss)</li>
+                            <li>Hard magnetic materials have wide hysteresis loops (high energy loss, good for permanent magnets)</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Earth's Magnetism Tab -->
+            <div class="tab-content" id="earth-magnetism">
+                <section class="section">
+                    <h2>5. Earth's Magnetism</h2>
+                    
+                    <h3>5.1 Components of Earth's Magnetic Field</h3>
+                    
+                    <div class="diagram">
+                        <p><strong>Earth's Magnetic Field Components:</strong></p>
+                        <p>Geographic meridian, Magnetic meridian, Angle of declination (δ), Angle of dip (φ)</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ B_H = B \cos \phi \]
+                        \[ B_V = B \sin \phi \]
+                        \[ B_H^2 + B_V^2 = B^2 \]
+                    </div>
+                    
+                    <h3>5.2 Key Definitions</h3>
+                    
+                    <div class="definition">
+                        <p><strong>Angle of Declination (δ):</strong> The angle between the geographic meridian and the magnetic meridian.</p>
+                    </div>
+                    
+                    <div class="definition">
+                        <p><strong>Angle of Dip or Inclination (φ):</strong> The angle that the Earth's magnetic field makes with the horizontal.</p>
+                    </div>
+                    
+                    <div class="important-points">
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>At poles: φ = 90°</li>
+                            <li>At equator: φ = 0°</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="definition">
+                        <p><strong>Horizontal Component (H):</strong> The component of Earth's magnetic field in the horizontal direction.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ H = B_e \cos \delta \]
+                    </div>
+                    
+                    <div class="definition">
+                        <p><strong>Vertical Component (V):</strong> The component of Earth's magnetic field in the vertical direction.</p>
+                    </div>
+                    
+                    <div class="formula">
+                        \[ V = B_e \sin \delta \]
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Magnetic Effects of Current & Magnetism Summary | Based on JEE Main Physics Revision Notes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
